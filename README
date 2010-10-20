@@ -1,0 +1,6 @@
+Webpages for division of biomolecules at FUUK
+
+Dependencies:
+  * django >= 1.2.3
+  * django-multilingual-ng
+
