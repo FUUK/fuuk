@@ -1,3 +1,4 @@
+# coding: utf-8
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -14,6 +15,9 @@ class Department(models.Model):
     class Meta:
         app_label = 'people'
 
+    def __unicode__(self):
+        return self.name
+
 
 class Place(models.Model):
     department = models.ForeignKey(Department)
@@ -24,4 +28,7 @@ class Place(models.Model):
 
     class Meta:
         app_label = 'people'
+
+    def __unicode__(self):
+        return self.department.name
 

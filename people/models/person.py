@@ -1,3 +1,4 @@
+# coding: utf-8
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -21,6 +22,9 @@ class Human(models.Model):
 
     class Meta:
         app_label = 'people'
+
+    def __unicode__(self):
+        return self.nickname
 
 
 class Person(models.Model):
@@ -52,3 +56,6 @@ class Person(models.Model):
         unique_together = (
             ('first_name', 'last_name', 'type'),
         )
+    
+    def __unicode__(self):
+        return self.human.nickname

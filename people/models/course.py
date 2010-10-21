@@ -19,6 +19,9 @@ class Course(models.Model):
     class Meta:
         app_label = 'people'
 
+    def __unicode__(self):
+        return self.name
+
 
 class Attachment(models.Model):
     course = models.ForeignKey(Course)
