@@ -44,3 +44,8 @@ class GrantAdmin(multilingual.MultilingualModelAdmin):
 
 admin.site.register( Grant, GrantAdmin)
 
+class ArticleAdmin(multilingual.MultilingualModelAdmin):
+    list_display = ('title', 'type', 'year')
+
+admin.site.register( Article, ArticleAdmin)
+

@@ -29,3 +29,6 @@ class Thesis(models.Model):
     class Meta:
         app_label = 'people'
 
+    def __unicode__(self):
+        return self.title
+

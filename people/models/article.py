@@ -1,3 +1,4 @@
+# coding: utf-8
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -52,6 +53,9 @@ class Article(models.Model):
             ('year', 'publication', 'volume', 'page_from', 'page_to'),
         )
 
+    def __unicode__(self):
+        return self.title
+
 class Author(models.Model):
     person = models.ForeignKey(Person)
     article = models.ForeignKey(Article)
@@ -63,4 +67,7 @@ class Author(models.Model):
             ('person', 'article'),
             ('article', 'order'),
         )
+
+    def __unicode__(self):
+        return self.person.human.nickname
 
