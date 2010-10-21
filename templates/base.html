@@ -1,0 +1,22 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>{% block title %}Videopůjčovny s. r. o.{% endblock %}</title>
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css">
+</head>
+
+<body>
+<div id="header">Videopůjčovny s. r. o.</div>
+<div id="menu">
+<ul>
+<li><a href="/">Titulní strana</a></li>
+<li><a href="/provozovny/">Provozovny</a></li>
+<li><a href="/nabidka/">Nabídka titulů</a></li>
+<li><a href="/kontakt/">Kontakt</a></li>
+<li><a href="/pro_cleny/">Pro členy</a></li>
+</ul>
+</div>
+<div id="content">{% block content %}{% endblock %}</div>
+</body>
+</html>

@@ -8,8 +8,8 @@ from people.models import Person
 class Course(models.Model):
     lectors = models.ManyToManyField(Person)
     code = models.CharField(max_length=10, unique=True, validators=[RegexValidator(r'^[A-Z]{4}[0-9]{3}$')])
-    LS = models.CharField(max_length=8, blank=True, null=True, validators=[RegexValidator(r'^[0-9]/[0-9] (Z|Zk|KZ|Z,Zk)$')])
-    ZS = models.CharField(max_length=8, blank=True, null=True, validators=[RegexValidator(r'^[0-9]/[0-9] (Z|Zk|KZ|Z,Zk)$')])
+    ls = models.CharField(max_length=8, blank=True, null=True, validators=[RegexValidator(r'^[0-9]/[0-9] (Z|Zk|KZ|Z,Zk)$')])
+    zs = models.CharField(max_length=8, blank=True, null=True, validators=[RegexValidator(r'^[0-9]/[0-9] (Z|Zk|KZ|Z,Zk)$')])
 
     class Translation(multilingual.Translation):
         name = models.CharField(max_length=200)
