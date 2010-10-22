@@ -32,3 +32,6 @@ class Attachment(models.Model):
         app_label = 'people'
         unique_together = (('course', 'title'),)
 
+    def __unicode__(self):
+        return self.title
+

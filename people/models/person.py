@@ -56,6 +56,7 @@ class Person(models.Model):
         unique_together = (
             ('first_name', 'last_name', 'type'),
         )
-    
+
     def __unicode__(self):
-        return self.human.nickname
+        return '%s %s%s' % (self.first_name, self.last_name, self.human or '')
+
