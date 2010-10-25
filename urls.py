@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^articles/$', 'people.views.article_list'),
     url(r'^articles/([0-9]{4})/$', 'people.views.article_list'),
     url(r'^grants/$', 'django.views.generic.list_detail.object_list', grants),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 )
 
 if settings.DEBUG:

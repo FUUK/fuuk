@@ -22,9 +22,10 @@ class Department(models.Model):
 class Place(models.Model):
     department = models.ForeignKey(Department)
     phone = models.CharField(max_length=20, unique=True, validators=[phone_validator])
-
+    
     class Translation(multilingual.Translation):
         name = models.CharField(max_length=200)
+        floor = models.CharField(max_length=10, blank=True)
 
     class Meta:
         app_label = 'people'

@@ -1,8 +1,9 @@
+{% load i18n %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>MFF UK: Oddělení fyziky biomolekul</title>
+<title>{% trans "MFF UK: Oddělení fyziky biomolekul" %}</title>
 <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css">
 <script src="{{ MEDIA_URL }}css/js/scripts.js" type="text/javascript"></script>
 </head>
@@ -14,33 +15,34 @@
 <div id="ie-space"></div>
 <div id="sidebar-content">
 <ul id="navlist" >
-	<li id="active"><a href="/" id="current">Vítejte</a></li>
-	<li>Studium
+	<li id="active"><a href="/" id="current">{% trans "Vítejte" %}</a></li>
+	<li>{% trans "Studium" %}
 		<ul>
-			<li><a href="//">Nabídka prací</a></li>
-			<li><a href="//">Obhájené práce</a></li>
-			<li><a href="//">Letní škola</a></li>
+			<li><a href="/thesis_offer/">{% trans "Nabídka prací" %}</a></li>
+			<li><a href="//">{% trans "Obhájené práce" %}</a></li>
+			<li><a href="//">{% trans "Letní škola" %}</a></li>
 		</ul>
 	</li>
-	<li>Lidé
+	<li>{% trans "Lidé" %}
 		<ul>
-			<li><a href="/people/staff">Členové oddělení</a></li>
-			<li><a href="/people/phd/">Doktorandi</a></li>
-			<li><a href="/people/students">Studenti</a></li>
+			<li><a href="/people/staff">{% trans "Členové oddělení" %}</a></li>
+			<li><a href="/people/phd/">{% trans "Doktorandi" %}</a></li>
+			<li><a href="/people/students">{% trans "Studenti" %}</a></li>
 		</ul>
 	</li>
-	<li>Věda
+	<li>{% trans "Věda" %}
 		<ul>
-			<li><a href="/problems/">Problematika</a></li>
-			<li><a href="/articles/">Publikace</a></li>
-			<li><a href="/grants/">Granty</a></li>
-			<li><a href="/labs/">Laboratoře</a></li>
-			<li><a href="/coop/">Spolupráce</a></li>
+			<li><a href="/problems/">{% trans "Problematika" %}</a></li>
+			<li><a href="/articles/">{% trans "Publikace" %}</a></li>
+			<li><a href="/grants/">{% trans "Granty" %}</a></li>
+			<li><a href="/labs/">{% trans "Laboratoře" %}</a></li>
+			<li><a href="/coop/">{% trans "Spolupráce" %}</a></li>
 		</ul>
 	</li>
-	<li><a href="/galery/">Galerie</a></li>
-	<li><a href="/path/">Kde nás najdete</a></li>
+	<li><a href="/galery/">{% trans "Galerie" %}</a></li>
+	<li><a href="/path/">{% trans "Kde nás najdete" %}</a></li>
 </ul>
+
 </div>
 </div>
 <div id="main-panel">
@@ -50,7 +52,7 @@
 </div>
 <div id="footer">
 ﻿
-<div id="paticka"> S připomínkami a dotazy se obracejte na <a href="mailto:profant@karlov.mff.cuni.cz,pazderka@karlov.mff.cuni.cz">správce</a> stránek.
+<div id="paticka">{% trans "S připomínkami a dotazy se obracejte na" %} <a href="mailto:profant@karlov.mff.cuni.cz,pazderka@karlov.mff.cuni.cz">{% trans "správce" %} </a>{% trans  "stránek." %}
 </div>
 
 </div>

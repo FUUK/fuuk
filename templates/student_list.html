@@ -1,24 +1,24 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block content %}
-<h1>Studenti</h1>
-
-<h2>Studenti magisterského studia</h2>
+{% if people2_list or people_list %}
+<h1>{% trans "Studenti" %}</h1>
+{% endif %}
+{% if people_list %}
+<h2>{% trans "Studenti magisterského studia" %}</h2>
+{% endif %}
 <ul>
 {%for people in people_list %}
-{% if people.type == "MGR" %}
-<li><a class="normal" href=/people/{{ people.human.nickname }}>{{ people.prefix }} {{ people.first_name }} {{ people.last_name }} {{ people.suffix }}</a></li>
-{% endif %}
+<li><a class="normal" href=/people/detail/{{ people.human.nickname }}>{{ people.prefix }} {{ people.first_name }} {{ people.last_name }} {{ people.suffix }}</a></li>
 {% endfor %}
 </ul>
 <hr size="1" width="100%" />
-
-<h2>Studenti bakalářského studia</h2>
-<ul>
-{%for people in people_list %}
-{% if people.type == "BC" %}
-<li><a class="normal" href=/people/{{ people.human.nickname }}>{{ people.prefix }} {{ people.first_name }} {{ people.last_name }} {{ people.suffix }}</a></li>
+{% if people2_list %}
+<h2>{% trans "Studenti bakalářského studia" %}</h2>
 {% endif %}
+<ul>
+{%for people in people2_list %}
+<li><a class="normal" href=/people/detail/{{ people.human.nickname }}>{{ people.prefix }} {{ people.first_name }} {{ people.last_name }} {{ people.suffix }}</a></li>
 {% endfor %}
 </ul>
 </div>
