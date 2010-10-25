@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Běžící granty</h1>
+<ul>
+{% for grant in grants_list %}
+<li><p><a href="{{ grant.number }}" class="strong">{{ grant.title }}</a></ br></p></li>
+{% endfor %}
+</ul>
+<h1>Ukončené granty</h1>
+<ul>
+{% for grant in grants2_list %}
+<li><p><a href="{{ grant.number }}" class="strong">{{ grant.title }}</a></ br></p></li>
+{% endfor %}
+</ul>
+{% endblock %}

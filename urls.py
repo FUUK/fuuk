@@ -2,8 +2,18 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.conf import settings
-from people.models import Article
+from datetime import date
+from people.models import Grant
+from django.db.models import Q
+
 admin.autodiscover()
+
+grants = {
+    'queryset': Grant.objects.filter(end__gte=date.today().year),
+    'template_name': 'grant_list.html',
+    'template_object_name': 'grants',
+    'extra_context': {'grants2_list': Grant.objects.filter(Q(end__gte=(date.today().year) - 2), Q(end__lt=date.today().year))},
+}
 
 urlpatterns = patterns('',
     url(r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'front_page.html'}),
@@ -11,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^people/', include('people.urls')),
     url(r'^articles/$', 'people.views.article_list'),
     url(r'^articles/([0-9]{4})/$', 'people.views.article_list'),
+    url(r'^grants/$', 'django.views.generic.list_detail.object_list', grants),
 )
 
 if settings.DEBUG:
