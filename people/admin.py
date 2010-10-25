@@ -1,56 +1,46 @@
 # coding: utf-8
 from django.contrib import admin
+
 import multilingual
-from people.models.place import Department, Place
-from people.models.person import Human, Person
-
-from people.models.course import Course, Attachment
-from people.models.grant import Grant
-from people.models.article import Article, Author
-from people.models.thesis import Thesis
-
-class PlaceAdmin(multilingual.MultilingualModelAdmin):
-    list_display = ('name', 'phone', 'department')
-
-admin.site.register( Place, PlaceAdmin)
+from people.models import Department, Place, Human, Person, Course, Attachment, Grant, Article, Author, Thesis
 
 class DepartmentAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('name', 'fax')
 
-admin.site.register( Department, DepartmentAdmin)
-
-class PersonAdmin(multilingual.MultilingualModelAdmin):
-    list_display = ('human', 'type', 'first_name', 'last_name', 'place')
-
-admin.site.register( Person, PersonAdmin)
-
-class ThesisAdmin(multilingual.MultilingualModelAdmin):
-    list_display = ('type', 'title', 'author', 'advisor')
-
-admin.site.register( Thesis, ThesisAdmin)
-
-class CourseAdmin(multilingual.MultilingualModelAdmin):
-    list_display = ('name', 'ls', 'zs', 'code')
-
-admin.site.register( Course, CourseAdmin)
+class PlaceAdmin(multilingual.MultilingualModelAdmin):
+    list_display = ('name', 'phone', 'department')
 
 class HumanAdmin(admin.ModelAdmin):
     list_display = ('nickname',)
 
-admin.site.register( Human, HumanAdmin)
+class PersonAdmin(multilingual.MultilingualModelAdmin):
+    list_display = ('human', 'type', 'first_name', 'last_name', 'place')
+
+class CourseAdmin(multilingual.MultilingualModelAdmin):
+    list_display = ('name', 'ls', 'zs', 'code')
+
+class AttachmentAdmin(admin.ModelAdmin):
+    list_display = ('course', 'title')
 
 class GrantAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('author', 'number', 'title', 'start', 'end')
 
-admin.site.register( Grant, GrantAdmin)
-
 class ArticleAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('title', 'type', 'year')
-
-admin.site.register( Article, ArticleAdmin)
 
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('person', 'article', 'order')
 
-admin.site.register( Author, AuthorAdmin)
+class ThesisAdmin(multilingual.MultilingualModelAdmin):
+    list_display = ('type', 'title', 'author', 'advisor')
 
+admin.site.register(Place, PlaceAdmin)
+admin.site.register(Department, DepartmentAdmin)
+admin.site.register(Person, PersonAdmin)
+admin.site.register(Human, HumanAdmin)
+admin.site.register(Course, CourseAdmin)
+admin.site.register(Attachment, AttachmentAdmin)
+admin.site.register(Grant, GrantAdmin)
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(Author, AuthorAdmin)
+admin.site.register(Thesis, ThesisAdmin)

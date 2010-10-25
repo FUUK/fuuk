@@ -69,5 +69,5 @@ class Author(models.Model):
         )
 
     def __unicode__(self):
-        return self.person.human.nickname
+        return u'%s %s (%s)' % (self.person, self.article, self.order)
 
