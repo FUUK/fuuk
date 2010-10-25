@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ text }}</h1>
+<div id="menu_top"><ul id="menu_lide">
+{% for year in years reversed%}
+	<li class="active"><a href="/articles/{{ year }}/">{{ year }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% if prefix != None %}
+<h2>Rok {{ prefix }}:</h2>
+{% endif %}
+<ol>
+{%for article in articles %}
+<li><a href="http://dx.doi.org/{{ article.identification }}" target="_blank">
+ {% for author in article.author_set.all %}
+ 	{{ author.person.last_name }} {{ author.person.first_name.0 }}.,
+ {% endfor %}
+ :{{ article.title }}. <strong>{{ article.publication }}</strong> {{ article.volume }} ({{ article.year }}) {{ article.page_from }}-{{ article.page_to }}.</a></li>
+{% endfor %}
+</ol>
+
+</div>
+{% endblock %}

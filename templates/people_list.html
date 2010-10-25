@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ text }}</h1>
+{%for people in people_list %}
+<div class="list-name"><a class="strong" href=/people/{{ people.human.nickname }}>{{ people.prefix }} {{ people.first_name }} {{ people.last_name }}{% if people.suffix %}, {{ people.suffix }}{% endif %}</a>{% if people.subtitle %}, <span class="little"><strong>{{ people.subtitle }}</strong></span>
+{% endif %}
+</div>
+<div class="list-mail"><p class="little"><strong>E-mail:</strong> {{ people.email }}</p></div>
+<div class="list-phone"><p class="little"><strong>Tel.:</strong> {{ people.place.phone }}</p></div>
+{% endfor %}
+
+</div>
+{% endblock %}

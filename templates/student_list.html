@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Studenti</h1>
+
+<h2>Studenti magisterského studia</h2>
+<ul>
+{%for people in people_list %}
+{% if people.type == "MGR" %}
+<li><a class="normal" href=/people/{{ people.human.nickname }}>{{ people.prefix }} {{ people.first_name }} {{ people.last_name }} {{ people.suffix }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>
+<hr size="1" width="100%" />
+
+<h2>Studenti bakalářského studia</h2>
+<ul>
+{%for people in people_list %}
+{% if people.type == "BC" %}
+<li><a class="normal" href=/people/{{ people.human.nickname }}>{{ people.prefix }} {{ people.first_name }} {{ people.last_name }} {{ people.suffix }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>
+</div>
+{% endblock %}

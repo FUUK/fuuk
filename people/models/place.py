@@ -30,5 +30,5 @@ class Place(models.Model):
         app_label = 'people'
 
     def __unicode__(self):
-        return self.department.name
+        return self.name
 

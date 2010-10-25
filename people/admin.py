@@ -49,3 +49,8 @@ class ArticleAdmin(multilingual.MultilingualModelAdmin):
 
 admin.site.register( Article, ArticleAdmin)
 
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('person', 'article', 'order')
+
+admin.site.register( Author, AuthorAdmin)
+
