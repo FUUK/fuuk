@@ -1,0 +1,456 @@
+/* BODY */
+/*barvy:
+odkazy: #485883
+navstivene: #6a83c2
+*/
+body
+{
+width: 95%;
+margin:10px auto;
+padding:0;
+color: #000000;
+background:#ffffff;
+}
+
+/**********/
+/* HEADER */
+
+#header
+{
+width: 100%;
+margin: 0;
+height: 100px;
+padding: 0;
+/*border-bottom: 1px solid blue;*/
+background: url("img/mrizka.png") left repeat;
+}
+
+#header-content
+{
+float: left;
+height: 100px;
+width: 498px;
+padding: 0;
+/*border-bottom: 1px solid blue;*/
+/*background: url("./title.cz.png") left no-repeat;*/
+}
+
+#lang 
+{
+float: right;
+width: 80px;
+margin:0;
+padding:0;
+}
+
+/***********/
+/* CONTENT */
+
+#content
+{
+width: 90%;
+margin:1em auto;
+/*border: 1px solid blue;*/
+text-align: right;
+}
+
+#sidebar
+{
+float: left;
+width: 180px;
+margin: auto;
+padding:0;
+}
+
+#sidebar-content
+{
+margin: 0.4em 0 0 0;
+/*border: 1px solid grey;*/
+padding: 0.1em 0.5em;
+background: #FFFFFF;
+}
+
+#ie-space
+{
+#margin:1.5em 0 0 0;
+}
+
+#main-panel
+{
+margin:0 0 0 180px;
+padding:0;
+}
+
+#main-content
+{
+margin:10px auto;
+padding: 1em;
+}
+
+/**********/
+/* FOOTER */
+
+#footer
+{
+padding: 10px;
+font: 8px Verdana;
+text-align: center;
+/*border-top: 1px solid blue;*/
+/*background: #dddddd;*/
+}
+
+hr.cleaner
+{
+clear:both;
+display: none
+}
+
+/**********************/
+/* NAVILIST - SIDEBAR */
+
+#navlist
+{
+padding: 0px 1px 1px;
+margin-top: 10px;
+margin-left: 0;
+font: bold 12px Verdana, sans-serif;
+width: 100%;
+border-top: 1px #566a9d solid;
+}
+
+#navlist li
+{
+list-style: none;
+margin: 0;
+border-bottom: 1px #566a9d solid;
+text-align: left;
+}
+
+#navlist li a
+{
+display: block;
+padding: 0.25em 0.5em 0.25em 0.25em;
+border-left: 1em solid #FFFFFF;
+background: #FFFFFF;
+text-decoration: none;
+}
+
+#navlist li ul
+{
+list-style: none;
+margin: 0;
+padding: 0 0 0 1em;
+text-align: left;
+}
+
+#navlist li ul li
+{
+list-style: none;
+margin: 0;
+border-bottom: 0px #566a9d solid;
+text-align: left;
+}
+
+#navlist li a:link { color: #566a9d; }
+#navlist li a:visited { color: #566a9d; }
+
+#navlist li a:hover
+{
+border-color: #6a83c2;
+color: #6a83c2;
+}
+
+/**********************/
+/* NAVILIST - MENU_TOP */
+/*
+#menu_top
+{
+margin:0px;
+overflow: hidden;
+width:auto
+}
+
+#menu_lide
+{
+list-style-type: none;
+margin:0px;
+padding:0px;
+}
+
+#menu_lide li
+{
+float: left;
+padding: 0 1em 0 1em;
+}
+*/
+
+/*h1 {
+margin: 10px auto 10px auto;
+background: url(./bod-fial.gif) repeat-x 0 50%;
+font-size: 12px;
+z-index: 1;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #566a9d;
+display: block;
+}*/
+
+/* Start Holly Hack, hidden from MacIE. \*/
+* html #menu_top ul li {
+height: 1%;
+}
+/* End Holly Hack. */
+
+#menu_top{
+margin: 10px auto 10px auto;
+background: url(./img/bod-fial.gif) repeat-x 0 50%;
+font-size: 12px;
+vertical-align: middle;
+z-index: 1;
+}
+
+#menu_top ul {
+list-style-type: none;
+text-align: left;
+vertical-align: middle;
+margin: 0px auto 0px 10px;
+padding: 0px;
+z-index: 2;
+}
+
+#menu_top li {
+display: inline;
+text-align: center;
+vertical-align: middle;
+margin: 0px 5px;
+}
+
+#menu_top li a {
+padding: 1px 5px;
+color: #566a9d;
+background-color: #ffffff;
+border: 1px solid #566a9d;
+text-decoration: none;
+vertical-align: middle;
+}
+
+#menu_top li a:hover, #menu_top li a#current {
+color: #6a83c2;
+border: 1px solid #6a83c2;
+border-top: 2px solid #6a83c2;
+border-bottom: 2px solid #6a83c2;
+background-color: #e3e6ed;
+vertical-align: middle;
+}
+
+
+/*********************************/
+/* ROZDELENI OBSAHU NA DVA SLOUPCE*/
+#levy_sloupec
+{
+/*border: 1px solid #FFFFFF;*/
+float: left;
+width: 50%;
+margin:0;
+padding: 0;
+} 
+
+#pravy_sloupec
+{
+/*border: 1px solid #FFFFFF;*/
+margin:0 0 0 50%;
+padding:0;
+} 
+
+/********************************/
+/* AKTUALITY*/
+#akt-new 
+{
+width: auto;
+margin: 0 200px 0 0;
+padding: 0 1em 0 1em;
+border: 1px solid #6a83c2;
+display: block;
+background-color: #ffffee;
+}
+
+#akt-foto
+{
+float: right;
+width: 180px;
+height: 346px;
+margin: 0px;
+padding:0;
+background-color: #eeeeee;
+display: block;
+}
+
+#akt-all
+{
+width: auto;
+margin: 0 200px 0 0;
+padding: 1em;
+}
+
+#akt-new hr {
+color: #6a83c2;
+border: 0;
+background-color: #6a83c2;
+height: 1px;
+width: 90%;
+}
+
+/********************************/
+/* JAZYK */
+#lang
+{
+margin: 0px;
+padding: 0px;
+}
+
+#lang ul
+{
+margin: 0px;
+padding: 0px;
+margin-top: 0.6em;
+}
+
+
+#lang li
+{
+list-style: none;
+text-align: right;
+}
+
+#lang li a
+{
+display: block;
+/*padding: 0.1em 0.4em 0.0em 0.0em;*/
+margin: 5px 8px 3px 5px;
+text-decoration: none;
+}
+
+/*********/
+/*CODE*/
+code {
+font-family: courier, monospace;
+display: block;
+background-color: #eeeeee;
+}
+
+/*LIST-seznam*/
+div.list-name {
+margin: 1.5em 0 0 1em;
+}
+
+div.list-mail {
+margin: 0 0 0 5em;
+}
+
+div.list-phone {
+margin: -2em 0 0 50%;
+}
+
+
+
+/*tabulky*/
+td.date {
+vertical-align: top;
+text-align: center;
+white-space: nowrap;
+}
+td.top { 
+vertical-align: top;
+}
+
+/*Obrazky*/
+.floatright {
+    float: right;
+    margin: 10px 5px 10px 15px;
+}
+
+img {
+border:none;
+}
+
+img.space {
+margin: 1em 1em 1em 1em;
+border: 10px;
+}
+
+
+/*********/
+/* FONTY */
+
+body { 
+    font-family: Helvetica CE, Verdana, Arial; font-size:10pt; color: #000000;
+}
+
+h1 {color: #000000; font-size: 14pt;} 
+h2	{color: #000000; font-size: 12pt;} 
+h3	{color: #000000; font-size: 10pt;} 
+
+h2 a {
+	color: #566a9d; 
+	font-size:12pt; 
+	font-weight:bold;
+	text-decoration: none
+}
+
+a {
+	color: #566a9d; 
+	font-size:10pt; 
+	font-weight:normal; 
+	text-decoration: none
+}
+a:active 	{ 
+color: #566a9d; 
+text-decoration: none 
+} 
+a:hover     { 
+color: #6a83c2; 
+text-decoration: none 
+}  
+	
+
+p.little 	{ color: #000000; font-size:8pt }
+p.strong	{ color: #000000; font-size:10pt; font-weight:bold }
+
+a.strong 	{ color: #566a9d; font-size:10pt; font-weight:bold; text-decoration: none }    
+	a.strong:active 	{ color: #566a9d; text-decoration: none }                                      
+	a.strong:hover     { color: #6a83c2; text-decoration: none }    
+
+a.title 	{ color: #566a9d; font-size:16pt; font-weight:bold; text-decoration: none }    
+	a.title:active 	{ color: #566a9d; text-decoration: none }                                      
+	a.title:hover     { color: #6a83c2;; text-decoration: none }    
+	
+a.title2 	{ color: #566a9d; font-size:13pt; font-weight:normal; text-decoration: none }    
+	a.title2:active 	{ color: #566a9d; text-decoration: none }                                      
+	a.title2:hover     { color: #6a83c2; text-decoration: none }    
+
+a.little 	{ color: #566a9d; font-size:8pt; font-weight:normal; text-decoration: none}    
+	a.litle:active 	{ color: #566a9d; text-decoration: none }                                      
+	a.litle:hover     { color: #6a83c2; text-decoration: none }    
+	
+span.title	{ color: #000000; font-size:16pt}
+span.little	{ color: #000000; font-size:8pt}
+
+#akt-new {font-size: 80%}
+#akt-new a {font-size: 8pt}
+#akt-new  h1 	{color: #000000; font-size: 11pt} 
+#akt-new  h2	{color: #000000; font-size: 9pt} 
+
+/*justify*/
+p.justify { text-align: justify }
+p.center { text-align: center }
+#just { text-align: justify }
+
+#main-content { text-align: justify }
+
+#paticka {
+font: 10px Verdana;
+}
+
+#paticka a{
+font: 10px Verdana;
+}
