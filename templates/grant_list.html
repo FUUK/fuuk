@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block content %}
 {% if grants_list %}
-<h1>{% trans "Běžící granty" %}</h1>
+<h1>{% trans "Current grants" %}</h1>
 {% endif %}
 <ul>
 {% for grant in grants_list %}
@@ -10,7 +10,7 @@
 {% endfor %}
 </ul>
 {% if grants2_list %}
-<h1>{% trans "Ukončené granty" %}</h1>
+<h1>{% trans "Ended grants" %}</h1>
 {% endif %}
 <ul>
 {% for grant in grants2_list %}

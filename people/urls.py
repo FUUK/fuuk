@@ -10,14 +10,14 @@ phds = {
     'queryset': Person.objects.filter(type__icontains='PHD').order_by('last_name'),
     'template_name': 'people_list.html',
     'template_object_name': 'people',
-    'extra_context': {"text": "Doktorandi"},
+    'extra_context': {"text": _('PhD. students')},
 }
 
 staff = {
     'queryset': Person.objects.filter(type__icontains='STAFF').order_by('last_name'),
     'template_name': 'people_list.html',
     'template_object_name': 'people',
-    'extra_context': {"text": "Členové oddělení"},
+    'extra_context': {"text": _('Staff')},
 }
 
 students = {

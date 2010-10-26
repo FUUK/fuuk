@@ -5,6 +5,12 @@
 <div id="menu_top">
 <ul id="menu_lide">
 <li><a class="title" href="">{{ person.first_name.0 }}. {{ person.last_name }}</a></li>
+{% if person.author_set.all %}
+<li><a class="strong" href="/papers/">{% trans "Papers" %} </a></li>
+{% endif %}
+{% if person.course_set.all %}
+<li><a class="strong" href="/courses/">{% trans "Courses" %} </a></li>
+{% endif %}
 </ul>
 </div>
 <table border="0">
@@ -14,18 +20,21 @@
 		</td>
 		<td>
 			<h2>{{ person.prefix }} {{ person.first_name }} {{ person.last_name }}{% if person.suffix %}, {{ person.suffix }}{% endif %}</h2>
-			<em><strong>{% trans "Narozen" %}:</strong></em>&nbsp;&nbsp;{{ person.birth_date }}, {{ person.birth_place }}
-      	<br /><em><strong>{% trans "Pracoviště" %}:</strong></em>&nbsp;&nbsp;{{ person.place.department.name }}
-      	<br /><em><strong>{% trans "Místnost" %}:</strong></em>&nbsp;&nbsp;{{ person.place.name }}, {{ person.place.floor }}
-      	<br /><em><strong>{% trans "Telefon" %}:</strong></em>&nbsp;&nbsp;{{ person.place.phone }}
-      	<br /><em><strong>{% trans "Fax" %}:</strong></em>&nbsp;&nbsp;{{ person.place.department.fax }}
-      	<br /><em><strong>{% trans "E-mail" %}:</strong></em>&nbsp;&nbsp;<a class="strong" href="mailto:{{ person.email }}">{{ person.email }}</a>	
+			<em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ person.birth_date }}, {{ person.birth_place }}
+      	<br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{{ person.place.department.name }}
+      	<br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{{ person.place.name }}, {{ person.place.floor }}
+      	<br /><em><strong>Phone:</strong></em>&nbsp;&nbsp;{{ person.place.phone }}
+      	<br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{{ person.place.department.fax }}
+      	<br /><em><strong>E-mail:</strong></em>&nbsp;&nbsp;<a class="strong" href="mailto:{{ person.email }}">{{ person.email }}</a>	
 		</td>
 	</tr>
 </table>
 <hr  size="3" width="100%"/>
-<p class="strong" align="left">{% trans "Odborné zájmy" %}:</p>
-{{ person.interests }}
+<p class="strong" align="left">{% trans "Fields of interest and research experience" %}:
+<ul>
+{{ person.interests|safe }}
+</ul>
+</p>
 <hr  size="3" width="100%"/>
 {% endfor %}
 {% endblock %}
