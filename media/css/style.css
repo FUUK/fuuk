@@ -160,41 +160,6 @@ border-color: #6a83c2;
 color: #6a83c2;
 }
 
-/**********************/
-/* NAVILIST - MENU_TOP */
-/*
-#menu_top
-{
-margin:0px;
-overflow: hidden;
-width:auto
-}
-
-#menu_lide
-{
-list-style-type: none;
-margin:0px;
-padding:0px;
-}
-
-#menu_lide li
-{
-float: left;
-padding: 0 1em 0 1em;
-}
-*/
-
-/*h1 {
-margin: 10px auto 10px auto;
-background: url(./bod-fial.gif) repeat-x 0 50%;
-font-size: 12px;
-z-index: 1;
-text-align: left;
-background-color: #ffffff;
-border: 1px solid #566a9d;
-display: block;
-}*/
-
 /* Start Holly Hack, hidden from MacIE. \*/
 * html #menu_top ul li {
 height: 1%;
@@ -241,63 +206,6 @@ border-top: 2px solid #6a83c2;
 border-bottom: 2px solid #6a83c2;
 background-color: #e3e6ed;
 vertical-align: middle;
-}
-
-
-/*********************************/
-/* ROZDELENI OBSAHU NA DVA SLOUPCE*/
-#levy_sloupec
-{
-/*border: 1px solid #FFFFFF;*/
-float: left;
-width: 50%;
-margin:0;
-padding: 0;
-} 
-
-#pravy_sloupec
-{
-/*border: 1px solid #FFFFFF;*/
-margin:0 0 0 50%;
-padding:0;
-} 
-
-/********************************/
-/* AKTUALITY*/
-#akt-new 
-{
-width: auto;
-margin: 0 200px 0 0;
-padding: 0 1em 0 1em;
-border: 1px solid #6a83c2;
-display: block;
-background-color: #ffffee;
-}
-
-#akt-foto
-{
-float: right;
-width: 180px;
-height: 346px;
-margin: 0px;
-padding:0;
-background-color: #eeeeee;
-display: block;
-}
-
-#akt-all
-{
-width: auto;
-margin: 0 200px 0 0;
-padding: 1em;
-}
-
-#akt-new hr {
-color: #6a83c2;
-border: 0;
-background-color: #6a83c2;
-height: 1px;
-width: 90%;
 }
 
 /********************************/
