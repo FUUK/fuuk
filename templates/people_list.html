@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block content %}
 <h1>{{ text }}</h1>
 {%for people in people_list %}
@@ -9,6 +8,5 @@
 <div class="list-mail"><p class="little"><strong>E-mail:</strong> {{ people.email }}</p></div>
 <div class="list-phone"><p class="little"><strong>Tel.:</strong> {{ people.place.phone }}</p></div>
 {% endfor %}
-
 </div>
 {% endblock %}

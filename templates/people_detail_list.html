@@ -2,17 +2,7 @@
 {% load i18n %}
 {% block content %}
 {% for person in human.person_set.all %}
-<div id="menu_top">
-<ul id="menu_lide">
-<li><a class="title" href="">{{ person.first_name.0 }}. {{ person.last_name }}</a></li>
-{% if person.author_set.all %}
-<li><a class="strong" href="/papers/">{% trans "Papers" %} </a></li>
-{% endif %}
-{% if person.course_set.all %}
-<li><a class="strong" href="/courses/">{% trans "Courses" %} </a></li>
-{% endif %}
-</ul>
-</div>
+{% include "people_base.html" %}
 <table border="0">
 	<tr>
 		<td align="center" valign="middle">
@@ -35,6 +25,6 @@
 {{ person.interests|safe }}
 </ul>
 </p>
-<hr  size="3" width="100%"/>
 {% endfor %}
+<hr  size="3" width="100%"/>
 {% endblock %}

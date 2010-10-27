@@ -1,0 +1,18 @@
+{% load i18n %}
+<div id="menu_top">
+<ul id="menu_lide">
+<li><a class="title" href="/people/detail/{{ person.human.nickname }}">{{ person.first_name.0 }}. {{ person.last_name }}</a></li>
+{% if person.author_set.all %}
+<li><a class="strong" href="/people/detail/{{ person.human.nickname }}/papers">{% trans "Papers" %} </a></li>
+{% endif %}
+{% if person.student.all %}
+<li><a class="strong" href="/people/detail/{{ person.human.nickname }}/students">{% trans "Students" %} </a></li>
+{% endif %}
+{% if person.course_set.all %}
+<li><a class="strong" href="/people/detail/{{ person.human.nickname }}/courses">{% trans "Courses" %} </a></li>
+{% endif %}
+{% if person.grant_set.all %}
+<li><a class="strong" href="/people/detail/{{ person.human.nickname }}/grants">{% trans "Grants" %} </a></li>
+{% endif %}
+</ul>
+</div>

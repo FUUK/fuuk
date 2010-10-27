@@ -32,4 +32,8 @@ urlpatterns = patterns('',
     url(r'^staff/$', 'django.views.generic.list_detail.object_list', staff),
     url(r'^students/$', 'django.views.generic.list_detail.object_list', students),
     url(r'^detail/(\w+)/$', 'people.views.people_detail'),
+    url(r'^detail/(\w+)/papers/$', 'people.views.people_paper'),
+    url(r'^detail/(\w+)/courses/$', 'people.views.people_course'),
+    url(r'^detail/(\w+)/students/$', 'people.views.people_students'),
+    url(r'^detail/(\w+)/grants/$', 'people.views.people_grants'),
 )
