@@ -22,7 +22,7 @@ class Article(models.Model):
     type = models.CharField(max_length=10, choices=ARTICLE_TYPES)
     # DOI for ARTICLE (required)
     # ISBN for BOOK, PROCEEDING (required)
-    identification = models.CharField(max_length=15, blank=True, null=True, unique=True)
+    identification = models.CharField(max_length=25, blank=True, null=True, unique=True)
     year = models.SmallIntegerField(validators=[MinValueValidator(1990)])
     title = models.CharField(max_length=200)
 

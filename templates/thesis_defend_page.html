@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+{% if thesis_list %}
+<h1>{% trans "According to thesis type" %}</h1>
+{% endif %}
+<ul>
+{% for type in type_list %}
+<li><a href="{{ type }}" class="strong">{{ type }}</a></li>
+{% endfor %}
+</ul>
+<h1>{% trans "According to years" %}</h1>
+<ul>
+{% for year in years_list %}
+<li><p><a href="{{ year }}" class="strong">{{ year }}</a></ br></p></li>
+{% endfor %}
+{% for year in thesis_list %}{{ year.title }}{% endfor %}
+</ul>
+{% endblock %}

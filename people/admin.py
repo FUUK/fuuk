@@ -44,4 +44,3 @@ admin.site.register(Grant, GrantAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Thesis, ThesisAdmin)
-
