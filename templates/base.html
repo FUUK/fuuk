@@ -1,70 +1,79 @@
 {% load i18n %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>{% trans "MFF UK, Prague: Division of biomolecular physics" %}</title>
-<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css">
-<script src="{{ MEDIA_URL }}css/js/scripts.js" type="text/javascript"></script>
-</head>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>{% trans "MFF UK, Prague: Division of biomolecular physics" %}</title>
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css">
+        <script src="{{ MEDIA_URL }}css/js/scripts.js" type="text/javascript"></script>
+    </head>
 
-<body onload="compactMenu('navlist',true,'&plusmn; ');">
-<div id="header">
-<div id="header-content" style='background: url(/media/css/img/logo.png) left no-repeat; width:800px; margin-left: 10px'>
-<div style='margin-left:100px;font-size:24px; font-weight:bold; color: #FFFFFF; text-align: center'>{% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}</div>
-<div style='margin-left:100px;margin-top:10px; font-size:12px; font-weight:bold; color: #FFFFFF'>
-{% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16, tel: +420 221 911 345, fax: +420 224 922 797
-</div>
-</div>
-</div>
+    <body onload="compactMenu('navlist',true,'&plusmn; ');">
+        <div id="header">
+            <div id="header-content" style='background: url(/media/css/img/logo.png) left no-repeat; width:800px; margin-left: 10px'>
+                <div style='margin-left:100px;font-size:24px; font-weight:bold; color: #FFFFFF; text-align: center'>
+                    {% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}
+                </div>
+                <div style='margin-left:100px;margin-top:10px; font-size:12px; font-weight:bold; color: #FFFFFF'>
+                    {% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16, tel: +420 221 911 345, fax: +420 224 922 797
+                </div>
+            </div>
+            <div id="lang">
+                {% for lang in LANGUAGES reversed %}
+                    {% ifnotequal lang.0 LANGUAGE_CODE %}
+                        <form method="POST" action="{% url set_language %}">
+                            <input type="hidden" name="language" value="{{ lang.0 }}" />
+                            <input type="image" alt="{{ lang.1 }}" src="{{ MEDIA_URL }}img/{{ lang.0 }}.png" />
+                        </form>
+                    {% endifnotequal %}
+                {% endfor %}
+            </div>
+        </div>
 
-<div id="sidebar">
-<div id="ie-space"></div>
-<div id="sidebar-content">
-<ul id="navlist" >
-	<li id="active"><a href="/" id="current">{% trans "Welcome" %}</a></li>
-	<li>{% trans "Education" %}
-		<ul>
-			<li><a href="/thesis_offer/">{% trans "Thesis offer" %}</a></li>
-			<li><a href="/thesis_defend/">{% trans "Defended thesis" %}</a></li>
-			<li><a href="//">{% trans "Summer school" %}</a></li>
-		</ul>
-	</li>
-	<li>{% trans "People" %}
-		<ul>
-			<li><a href="/people/staff">{% trans "Staff" %}</a></li>
-			<li><a href="/people/phd/">{% trans "PhD. students" %}</a></li>
-			<li><a href="/people/students">{% trans "Students" %}</a></li>
-		</ul>
-	</li>
-	<li>{% trans "Science" %}
-		<ul>
-			<li><a href="/problems/">{% trans "Problematics" %}</a></li>
-			<li><a href="/articles/">{% trans "Publications" %}</a></li>
-			<li><a href="/grants/">{% trans "Grants" %}</a></li>
-			<li><a href="/labs/">{% trans "Labs" %}</a></li>
-			<li><a href="/coop/">{% trans "Cooperations" %}</a></li>
-		</ul>
-	</li>
-	<li><a href="/galery/">{% trans "Gallery" %}</a></li>
-	<li><a href="/path/">{% trans "How to find us" %}</a></li>
-</ul>
+        <div id="sidebar">
+            <div id="ie-space"></div>
+            <div id="sidebar-content">
+                <ul id="navlist" >
+                	<li id="active"><a href="{% url homepage %}" id="current">{% trans "Welcome" %}</a></li>
+                	<li>{% trans "Education" %}
+                		<ul>
+                			<li><a href="/thesis_offer/">{% trans "Thesis offer" %}</a></li>
+                			<li><a href="/thesis_defend/">{% trans "Defended thesis" %}</a></li>
+                			<li><a href="//">{% trans "Summer school" %}</a></li>
+                		</ul>
+                	</li>
+                	<li>{% trans "People" %}
+                		<ul>
+                			<li><a href="{% url staff_list %}">{% trans "Staff" %}</a></li>
+                			<li><a href="{% url phd_list %}">{% trans "PhD. students" %}</a></li>
+                			<li><a href="{% url student_list %}">{% trans "Students" %}</a></li>
+                		</ul>
+                	</li>
+                	<li>{% trans "Science" %}
+                		<ul>
+                			<li><a href="/problems/">{% trans "Problematics" %}</a></li>
+                			<li><a href="{% url article_list %}">{% trans "Publications" %}</a></li>
+                			<li><a href="{% url grant_list %}">{% trans "Grants" %}</a></li>
+                			<li><a href="/labs/">{% trans "Labs" %}</a></li>
+                			<li><a href="/coop/">{% trans "Cooperations" %}</a></li>
+                		</ul>
+                	</li>
+                	<li><a href="/gallery/">{% trans "Gallery" %}</a></li>
+                	<li><a href="/path/">{% trans "How to find us" %}</a></li>
+                </ul>
+            </div>
+        </div>
 
-</div>
-</div>
-<div id="main-panel">
-<div id="main-content">
-{% block content %}{% endblock %}
-</div>
-</div>
-<div id="footer">
-﻿
-<div id="paticka">{% trans "Contact" %} <a href="mailto:profant@karlov.mff.cuni.cz,pazderka@karlov.mff.cuni.cz">{% trans "webmasters" %}</a> {% trans  "for any suggestion or more information." %}
-</div>
+        <div id="main-panel">
+            <div id="main-content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
 
-</div>
-
-</div>
-
-</body>
+        <div id="footer">
+            <div id="paticka">
+                {% trans "Contact" %} <a href="mailto:profant@karlov.mff.cuni.cz,pazderka@karlov.mff.cuni.cz">{% trans "webmasters" %}</a> {% trans  "for any suggestion or more information." %}
+            </div>
+        </div>
+    </body>
 </html>
