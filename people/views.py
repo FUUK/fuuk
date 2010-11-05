@@ -30,12 +30,19 @@ def people_detail(request, nick):
 
 
 def people_paper(request, nick):
+<<<<<<< Updated upstream
     context = {
         'human': get_object_or_404(Human, nickname=nick),
         'papers': get_list_or_404(Article, author__person__human=human),
     }
     return render_to_response('people_paper_list.html', context, RequestContext(request))
 
+=======
+    human = Human.objects.filter(nickname=nick)[0]
+    papers_article = Article.objects.filter(author=human).filter(type='Article')
+    papers_proceeding = Article.objects.filter(author=human).filter(type='Proceeding')
+    return render_to_response('people_paper_list.html', locals(), context_instance=RequestContext(request))
+>>>>>>> Stashed changes
 
 def people_course(request, nick):
     context = {
