@@ -12,7 +12,7 @@
 <strong><em>{% trans "Identification number of grant" %}:</em></strong> {{ grant.number }}<br />
 <strong><em>{% trans "Head of the project" %}:</em></strong> {{ grant.author.prefix }}
  {{ grant.author.first_name }} {{ grant.author.last_name }}{% if grant.author.suffix %}, {{ grant.author.suffix }}{% endif %}<br />
-<strong><em>{% trans "Vice-head of the project" %}:</em></strong> {{ grant.co_authors }}<br />
+<strong><em>{% trans "Vice-head of the project" %}:</em></strong> {{ grant.co_authors.all }}<br />
 </p>
 <p>{{ grant.annotation }}</p>
 <hr size="3" width="100%" />

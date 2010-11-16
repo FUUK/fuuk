@@ -1,27 +1,27 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
-{% for person in human.person_set.all %}
-{% include "people_base.html" %}
-{% endfor %}
-<ul>
-{% for student in student %}
-<li>
-<p align="justify"><a href="/people/detail/{{ student.human.nickname }}" class="strong">{{ student.prefix }} {{ student.first_name }} 		{{ student.last_name }}{% if people.suffix %}, {{ student.suffix }}{% endif %}</a><br />
-	{% if student.type = 'BC' %}
-		{% trans "year of Bc. study" %}<br />
-		<strong>{% trans "Bachelor thesis" %}:</strong> {{ student.thesis_set.title }}
-	{% endif %}
-	{% if student.type = 'MGR' %}
-		{% trans "year of Mgr. study" %}<br />
-		<strong>{% trans "Master thesis" %}:</strong> {{ student.thesis_set.title }}
-	{% endif %}
-	{% if student.type = 'PHD' %}
-		{% trans "year of PhD. study" %}<br />
-		<strong>{% trans "Disertation thesis" %}:</strong> {{ student.thesis_set.all }}
-	{% endif %}
-</p>
-</li>
-{% endfor %}
+	{% for person in human.person_set.all %}
+		{% include "people_base.html" %}
+	{% endfor %}
+	<ul>
+		{% for student in student %}
+			<li>
+				<p align="justify"><a href="/people/detail/{{ student.human.nickname }}" class="strong">{{ student.prefix }} {{ student.first_name }} 		{{ student.last_name }}{% if people.suffix %}, {{ student.suffix }}{% endif %}</a><br />
+				{% if student.type = 'BC' %}
+					{% trans "year of Bc. study" %}<br />
+					<strong>{% trans "Bachelor thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
+				{% endif %}
+				{% if student.type = 'MGR' %}
+					{% trans "year of Mgr. study" %}<br />
+					<strong>{% trans "Master thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
+				{% endif %}
+				{% if student.type = 'PHD' %}
+					{% trans "year of PhD. study" %}<br />
+					<strong>{% trans "Disertation thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
+				{% endif %}
+				</p>
+			</li>
+		{% endfor %}
 </ul>
 {% endblock %}
