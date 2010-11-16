@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
-{% for person in human.person_set.all %}
-{% include "people_base.html" %}
-{% endfor %}
-<h2>{% trans "Grants" %}:</h2>
-{% for grant in grants %}
-<h2>{{ grant.title }}</h2>
-<p>
-<strong><em>{% trans "Grant agency" %}:</em></strong> {{ grant.agency }}<br />
-<strong><em>{% trans "Identification number of grant" %}:</em></strong> {{ grant.number }}<br />
-<strong><em>{% trans "Head of the project" %}:</em></strong> {{ grant.author.prefix }}
- {{ grant.author.first_name }} {{ grant.author.last_name }}{% if grant.author.suffix %}, {{ grant.author.suffix }}{% endif %}<br />
-<strong><em>{% trans "Vice-head of the project" %}:</em></strong> {{ grant.co_authors.all }}<br />
-</p>
-<p>{{ grant.annotation }}</p>
-<hr size="3" width="100%" />
-{% endfor %}
+	{% for person in human.person_set.all %}
+		{% include "people_base.html" %}
+	{% endfor %}
+	<h2>{% trans "Grants" %}:</h2>
+	{% for grant in grants %}
+		<h2>{{ grant.title }}</h2>
+		<p>
+			<strong><em>{% trans "Grant agency" %}:</em></strong> {{ grant.agency }}<br />
+			<strong><em>{% trans "Identification number of grant" %}:</em></strong> {{ grant.number }}<br />
+			<strong><em>{% trans "Head of the project" %}:</em></strong> {{ grant.author.prefix }} {{ grant.author.first_name }} {{ grant.author.last_name }}{% if grant.author.suffix %}, {{ grant.author.suffix }}{% endif %}<br />
+			<strong><em>{% trans "Vice-head of the project" %}:</em></strong> {{ grant.co_authors.all.0.first_name }}<br />
+		</p>
+		<p>
+			{{ grant.annotation }}
+		</p>
+		<hr size="3" width="100%" />
+	{% endfor %}
 {% endblock %}

@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
-{% for person in human.person_set.all %}
-{% include "people_base.html" %}
-{% endfor %}
-{% if papers_article %}<h1>{% trans "Papers" %}</h1>{% endif %}
-<ul>
-{% for article in papers_article %}
-<li><a href="http://dx.doi.org/{{ article.identification }}" target="_blank">
- {% for author in article.author_set.all %}
- {{ author.person.last_name }} {{ author.person.first_name.0 }}.{% if not forloop.last %}, {% endif %}{% endfor %}: {{ article.title }}. <strong>{{ article.publication }}</strong> {{ article.volume }} ({{ article.year }}) {{ article.page_from }}-{{ article.page_to }}.</a></li>
-{% endfor %}
-</ul>
-{% if papers_proceeding %}<h1>{% trans "Conference proceedings" %}</h1>{% endif %}
-<ul>
-{% for article in papers_proceeding %}
-<li>{% for author in article.author_set.all %} {{ author.person.last_name }} {{ author.person.first_name.0 }}.{% if not forloop.last %}, {% endif %}{% endfor %}: {{ article.title }}. <strong>{{ article.publication }}</strong> {{ article.volume }} ({{ article.year }}) {{ article.page_from }}-{{ article.page_to }}.</li>
-{% endfor %}
-</ul>
+	{% for person in human.person_set.all %}
+		{% include "people_base.html" %}
+	{% endfor %}
+	{% if papers_article %}
+		<h1>{% trans "Papers" %}</h1>
+	{% endif %}
+	<ul>
+		{% for article in papers_article %}
+			<li><a href="http://dx.doi.org/{{ article.identification }}" target="_blank">
+ 			{% for author in article.author_set.all %}
+ 				{{ author.person.last_name }} {{ author.person.first_name.0 }}.{% if not forloop.last %}, {% endif %}{% endfor %}: {{ article.title }}. <strong>{{ article.publication }}</strong> {{ article.volume }} ({{ article.year }}) {{ article.page_from }}-{{ article.page_to }}.</a></li>
+			{% endfor %}
+	</ul>
+	{% if papers_proceeding %}
+		<h1>{% trans "Conference proceedings" %}</h1>
+	{% endif %}
+	<ul>
+	{% for article in papers_proceeding %}
+		<li>{% for author in article.author_set.all %} {{ author.person.last_name }} {{ author.person.first_name.0 }}.{% if not forloop.last %}, {% endif %}{% endfor %}: {{ article.title }}. <strong>{{ article.publication }}</strong> {{ article.volume }} ({{ article.year }}) {{ article.page_from }}-{{ article.page_to }}.</li>
+	{% endfor %}
+	</ul>
 {% endblock %}

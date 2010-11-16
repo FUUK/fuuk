@@ -43,6 +43,7 @@ class Person(models.Model):
     birth_place = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=200, blank=True, null=True, unique=True)
     photo = models.ImageField(max_length=200, blank=True, null=True, upload_to='img/person')
+    year = models.SmallIntegerField(blank=True, null=True)
 
     class Translation(multilingual.Translation):
         subtitle = models.CharField(max_length=200, blank=True, null=True)
@@ -58,4 +59,4 @@ class Person(models.Model):
         )
 
     def __unicode__(self):
-        return '%s %s%s' % (self.first_name, self.last_name, self.human or '')
+        return '%s %s (%s)' % (self.first_name, self.last_name, self.human or '')
