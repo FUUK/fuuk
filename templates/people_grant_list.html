@@ -11,7 +11,9 @@
 			<strong><em>{% trans "Grant agency" %}:</em></strong> {{ grant.agency }}<br />
 			<strong><em>{% trans "Identification number of grant" %}:</em></strong> {{ grant.number }}<br />
 			<strong><em>{% trans "Head of the project" %}:</em></strong> {{ grant.author.prefix }} {{ grant.author.first_name }} {{ grant.author.last_name }}{% if grant.author.suffix %}, {{ grant.author.suffix }}{% endif %}<br />
-			<strong><em>{% trans "Vice-head of the project" %}:</em></strong> {{ grant.co_authors.all.0.first_name }}<br />
+			{% if grant.co_authors.all %}
+				<strong><em>{% trans "Vice-head of the project" %}:</em></strong> {% for co_author in grant.co_authors.all %}{{ co_author.prefix }} {{ co_author.first_name }} {{ co_author.last_name }}{% if co_author.suffix %}, {{ co_author.suffix }}{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}<br />
+			{% endif %}
 		</p>
 		<p>
 			{{ grant.annotation }}
