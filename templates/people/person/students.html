@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    {{ block.super }}
+    <h1>{% trans "Students" %}:</h1>
+    <ul>
+        {% for student in students %}
+            <li>
+                <p align="justify"><a href="/people/detail/{{ student.human.nickname }}" class="strong">{{ student.full_name }}</a><br />
+                    {% if student.type = 'BC' %}
+                        {% trans "year of Bc. study" %}<br />
+                        <strong>{% trans "Bachelor thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
+                    {% endif %}
+                    {% if student.type = 'MGR' %}
+                        {% trans "year of Mgr. study" %}<br />
+                        <strong>{% trans "Master thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
+                    {% endif %}
+                    {% if student.type = 'PHD' %}
+                        {% trans "year of PhD. study" %}<br />
+                        <strong>{% trans "Disertation thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
+                    {% endif %}
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

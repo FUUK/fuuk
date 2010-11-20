@@ -1,5 +1,6 @@
 # coding: utf-8
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 import multilingual
@@ -26,7 +27,7 @@ class Human(models.Model):
     def __unicode__(self):
         return self.nickname
 
-
+#TODO: How to select current person? Return is_active??
 class Person(models.Model):
     # functional fields
     #is_active = models.BooleanField()
@@ -43,7 +44,7 @@ class Person(models.Model):
     birth_place = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=200, blank=True, null=True, unique=True)
     photo = models.ImageField(max_length=200, blank=True, null=True, upload_to='img/person')
-    year = models.SmallIntegerField(blank=True, null=True)
+    class_year = models.SmallIntegerField(blank=True, null=True)
 
     class Translation(multilingual.Translation):
         subtitle = models.CharField(max_length=200, blank=True, null=True)
@@ -59,4 +60,32 @@ class Person(models.Model):
         )
 
     def __unicode__(self):
-        return '%s %s (%s)' % (self.first_name, self.last_name, self.human or '')
+        return u"%s %s (%s)" % (self.first_name, self.last_name, self.human or '')
+
+    def clean(self):
+        if self.type and not self.human:
+            raise ValidationError(_('Person with type must have human.'))
+        if self.type in ('PHD', 'MGR', 'BC') and not self.class_year:
+            raise ValidationError(_('Students must have class year.'))
+
+    @property
+    def name(self):
+        # e.g. for articles
+        # should be used when titles are not displayed
+        first_names = self.first_name.split(' ')
+        first_names = ['%s.' % name[0] for name in first_names]
+        return u"%s %s" % (
+            self.last_name,
+            ''.join(first_names)
+        )
+
+    @property
+    def full_name(self):
+        return u"%s%s%s %s%s%s" % (
+            self.prefix,
+            self.prefix and ' ' or '',
+            self.first_name,
+            self.last_name,
+            self.suffix and ', ' or '',
+            self.suffix
+        )

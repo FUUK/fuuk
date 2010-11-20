@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    {{ block.super }}
+    <h1>{% trans "Grants" %}:</h1>
+    <ul>
+        {% for grant in grants %}
+            <li>
+                <p>
+                    <h2>{{ grant.title }}</h2>
+                    <p>
+                        <strong><em>{% trans "Grant agency" %}:</em></strong> {{ grant.agency }}<br />
+                        <strong><em>{% trans "Identification number of grant" %}:</em></strong> {{ grant.number }}<br />
+                        <strong><em>{% trans "Head of the project" %}:</em></strong>{{ grant.author.full_name }}<br />
+                        {% if grant.co_authors.all %}
+                            <strong><em>{% trans "Vice-head of the project" %}:</em></strong>
+                            {% for co_author in grant.co_authors.all %}
+                                {{ co_author.full_name }}{% if not forloop.last %},{% endif %}
+                            {% endfor %}<br />
+                        {% endif %}
+                    </p>
+                    <p>
+                        {{ grant.annotation }}
+                    </p>
+                    <hr size="3" width="100%" />
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

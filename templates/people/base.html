@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {{ block.super }}
+    {% if is_paginated %}
+        {% for p in page_range %}
+            {% if p == page %}
+                {{ p }}
+            {% else %}
+                <a href="?page={{p}}">{{ p }}</a>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

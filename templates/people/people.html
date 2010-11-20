@@ -1,0 +1,30 @@
+{% extends "people/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    {% for people in object_list %}
+        <div class="list-name">
+            <a class="strong" href=/people/detail/{{ people.human.nickname }}>{{ people.full_name }}</a>
+            {% if people.subtitle %}
+                <span class="little"><strong>{{ people.subtitle }}</strong></span>
+            {% endif %}
+        </div>
+        {% if people.email %}
+            <div class="list-mail">
+                <p class="little">
+                    <strong>E-mail:</strong> {{ people.email }}
+                </p>
+            </div>
+        {% endif %}
+        {% if people.place.phone %}
+            <div class="list-phone">
+                <p class="little">
+                    <strong>Tel.:</strong> {{ people.place.phone }}
+                </p>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {{ block.super }}
+{% endblock %}

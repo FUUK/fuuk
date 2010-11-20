@@ -1,0 +1,42 @@
+{% extends "people/person/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    {{ block.super }}
+    <table border="0">
+        <tr>
+            {% comment %}
+                TODO: do not display if photo is missing
+            {% endcomment %}
+            <td align="center" valign="middle">
+                <img src="/media/{{ person.photo }}" width="120" height="154" vspace="0" hspace="30" alt="FOTO" />
+            </td>
+            <td>
+                <h2>{{ person.full_name }}</h2>
+                {% if person.birth_date %}
+                    <em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ person.birth_date }}{% if person.birth_place %}, {{ person.birth_place }}{% endif %}
+                {% endif %}
+                {% if person.place %}
+                    <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{{ person.place.department.name }}
+                    <br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{{ person.place.name }}, {{ person.place.floor }}
+                    <br /><em><strong>Phone:</strong></em>&nbsp;&nbsp;{{ person.place.phone }}
+                    <br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{{ person.place.department.fax }}
+                {% endif %}
+                {% if person.email %}
+                    <br /><em><strong>E-mail:</strong></em>&nbsp;&nbsp;<a class="strong" href="mailto:{{ person.email }}">{{ person.email }}</a>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <hr  size="3" width="100%"/>
+
+    {% if person.interests %}
+        <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:
+            {% comment %}
+                TODO: use some markdown to render interests
+            {% endcomment %}
+            {{ person.interests|safe }}
+        </p>
+        <hr  size="3" width="100%"/>
+    {% endif %}
+{% endblock %}

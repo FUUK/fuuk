@@ -1,0 +1,24 @@
+{% extends "people/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    {% if object_list %}
+        <h1>{% trans "Current grants" %}</h1>
+        <ul>
+            {% for grant in object_list %}
+                <li><a href="{{ grant.number }}" class="strong">{{ grant.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if grants_finished %}
+        <h1>{% trans "Ended grants" %}</h1>
+        <ul>
+            {% for grant in grants_finished %}
+                <li><a href="{{ grant.number }}" class="strong">{{ grant.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {{ block.super }}
+{% endblock %}
