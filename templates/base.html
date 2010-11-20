@@ -1,4 +1,8 @@
 {% load i18n %}
+{% comment %}
+    TODO: check this template
+    TODO: title block
+{% endcomment %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
     <head>
@@ -52,8 +56,8 @@
                 	<li>{% trans "Science" %}
                 		<ul>
                 			<li><a href="/problems/">{% trans "Problematics" %}</a></li>
-                			<li><a href="{% url article_list %}">{% trans "Publications" %}</a></li>
-                			<li><a href="{% url grant_list %}">{% trans "Grants" %}</a></li>
+                			<li><a href="{% url articles %}">{% trans "Publications" %}</a></li>
+                			<li><a href="{% url grants %}">{% trans "Grants" %}</a></li>
                 			<li><a href="/labs/">{% trans "Labs" %}</a></li>
                 			<li><a href="/coop/">{% trans "Cooperations" %}</a></li>
                 		</ul>

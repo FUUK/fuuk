@@ -1,0 +1,33 @@
+{% extends "people/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <h1>Articles</h1>
+    <div id="menu_top">
+        <ul id="menu_lide">
+            {% for y in years %}
+                <li class="active"><a href="/people/articles/{{ y }}/">{{ y }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if year %}
+        <h2>{% trans "Year" %} {{ year }}:</h2>
+    {% endif %}
+
+    <ol>
+        {% for article in object_list %}
+            <li>
+                {% if article.identification %}
+                    <a href="http://dx.doi.org/{{ article.identification }}" target="_blank">
+                        {{ article.citation }}
+                    </a>
+                {% else %}
+                    {{ article.citation }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+
+    {{ block.super }}
+{% endblock %}

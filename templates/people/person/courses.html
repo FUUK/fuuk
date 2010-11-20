@@ -1,0 +1,23 @@
+{% extends "people/person/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    {{ block.super }}
+    <h1>{% trans "Courses" %}:</h1>
+    <ul>
+        {% for course in courses %}
+            <li>
+                <p>
+                    <a class="strong" href="http://is.cuni.cz/studium/predmety/index.php?do=predmet&kod={{ course.code }}" target="_blank">{{ course.name }}</a><br />
+                    <em><strong>{% trans "Code" %}:</strong></em> {{ course.code }}<br />
+                    {% if course.ls %}
+                        <em><strong>{% trans "Range in summer semester" %}:</strong></em> {{ course.ls }}<br />
+                    {% endif %}
+                    {% if course.zs %}
+                        <em><strong>{% trans "Range in winter semester" %}:</strong></em> {{ course.zs }}<br />
+                    {% endif %}
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

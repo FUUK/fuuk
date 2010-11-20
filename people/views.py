@@ -1,108 +1,135 @@
 # -*- coding: utf-8 -*-
 from datetime import date
+
+from django.db.models import Count
+from django.http import Http404
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.template import RequestContext
-from people.models import Article, Human, Course, Person, Grant
 from django.utils.translation import ugettext as _
 from django.views.generic.list_detail import object_list
 
-def article_list(request, prefix=None):
-    if prefix is not None:
-        articles = Article.objects.filter(year__icontains=prefix)
-    else:
-        articles = Article.objects.filter(year__gte=(date.today().year - 1)).order_by('year').reverse()
+from people.models import Article, Human, Course, Person, Grant
+
+
+def article_list(request, year=None):
+    queryset = Article.objects
+    if year is not None:
+        year = int(year)
+        queryset = queryset.filter(year=year)
+    queryset = queryset.order_by('-year', '-pk')
 
     context = {
-        'prefix': prefix,
-        # TODO: remove distinct :-!
-        'years': Article.objects.values_list('year', flat=True).distinct(),
-        'articles': articles,
+        'year': year,
+        'years': Article.objects.values_list('year', flat=True).annotate(Count('year')).order_by('-year'),
     }
-    return render_to_response('article_list.html', context, RequestContext(request))
+    return object_list(
+        request,
+        queryset,
+        template_name='people/articles.html',
+        extra_context=context,
+    )
 
-
-def people_detail(request, nick):
-    context = {
-        'human': get_object_or_404(Human, nickname=nick),
-    }
-    return render_to_response('people_detail_list.html', context, RequestContext(request))
-
-
-def people_paper(request, nick):
-    human = get_object_or_404(Human, nickname=nick)
-    context = {
-        'human': human,
-        'papers_article': Article.objects.filter(author__person__human=human, type='Article'),
-        'papers_proceeding': Article.objects.filter(author__person__human=human, type='Proceeding'),
-    }
-    return render_to_response('people_paper_list.html', context, RequestContext(request))
-
-def people_course(request, nick):
-    human = get_object_or_404(Human, nickname=nick)
-    context = {
-        'human': human,
-        'course': get_list_or_404(Course, lectors__human=human),
-    }
-    return render_to_response('people_course_list.html', context, RequestContext(request))
-
-
-def people_students(request, nick):
-    human = get_object_or_404(Human, nickname=nick)
-    context = {
-        'human': human,
-        'student': get_list_or_404(Person, advisor__human=human),
-    }
-    return render_to_response('people_student_list.html', context, RequestContext(request))
-
-
-def people_grants(request, nick):
-    human = get_object_or_404(Human, nickname=nick)
-    context = {
-        'human': human,
-        'grants': get_list_or_404(Grant, author__human=human),
-    }
-    return render_to_response('people_grant_list.html', context, RequestContext(request))
 
 def grant_list(request):
-    queryset = Grant.objects.filter(end__gte=date.today().year)   
+    queryset = Grant.objects.filter(end__gte=date.today().year).order_by('-end', '-pk')
+    grants_finished = Grant.objects.filter(end__gte=(date.today().year - 2), end__lt=date.today().year).order_by('-end', '-pk')
     context = {
-        'template_name': 'grant_list.html',
-        'template_object_name': 'grants',
-        'extra_context': {
-            'grants2_list': Grant.objects.filter(end__gte=(date.today().year - 2), end__lt=date.today().year),
-        },   
+        'grants_finished': grants_finished,
     }
-    return object_list(request, queryset, **context)
+    return object_list(
+        request,
+        queryset,
+        template_name='people/grants.html',
+        extra_context=context,
+    )
+
 
 def staff_list(request):
-    queryset = Person.objects.filter(type='STAFF').order_by('last_name')    
+    queryset = Person.objects.filter(type='STAFF').order_by('last_name')
     context = {
-        'template_name': 'people_list.html',
-        'template_object_name': 'people',
-        'extra_context': {
-            "text": _('Staff')
-        },
+        "title": _('Staff')
     }
-    return object_list(request, queryset, **context)
+    return object_list(
+        request,
+        queryset,
+        template_name='people/people.html',
+        extra_context=context,
+    )
+
 
 def phd_list(request):
     queryset = Person.objects.filter(type='PHD').order_by('last_name')
     context = {
-        'template_name': 'people_list.html',
-        'template_object_name': 'people',
-        'extra_context': {
-            "text": _('PhD. students')
-        },
+        "title": _('PhD. students')
     }
-    return object_list(request, queryset, **context)
+    return object_list(
+        request,
+        queryset,
+        template_name='people/people.html',
+        extra_context=context,
+    )
+
 
 def student_list(request):
     queryset = Person.objects.filter(type='MGR').order_by('last_name')
     context = {
-        'template_name': 'student_list.html',
-        'template_object_name': 'people',
-        'extra_context': {
-            'people2_list': Person.objects.filter(type__icontains='BC').order_by('last_name')
-        },
+        'bachelors': Person.objects.filter(type='BC').order_by('last_name')
     }
-    return object_list(request, queryset, **context)
+    return object_list(
+        request,
+        queryset,
+        template_name='people/students.html',
+        extra_context=context,
+    )
+
+
+def get_person_or_404(nickname):
+    try:
+        return Person.objects.filter(human__nickname=nickname).order_by('pk')[0]
+    except (Person.DoesNotExist, IndexError):
+        # (nickname is invalid, no person exist)
+        raise Http404
+
+
+def person_detail(request, nickname):
+    context = {
+        'person': get_person_or_404(nickname)
+    }
+    return render_to_response('people/person/detail.html', context, RequestContext(request))
+
+
+def person_articles(request, nickname):
+    person = get_person_or_404(nickname)
+    context = {
+        'person': person,
+        'papers_article': Article.objects.filter(author__person__human=person.human, type='ARTICLE'),
+        'papers_proceeding': Article.objects.filter(author__person__human=person.human, type='PROCEEDING'),
+    }
+    return render_to_response('people/person/articles.html', context, RequestContext(request))
+
+
+def person_courses(request, nickname):
+    person = get_person_or_404(nickname)
+    context = {
+        'person': person,
+        'courses': get_list_or_404(Course, lectors__human=person.human),
+    }
+    return render_to_response('people/person/courses.html', context, RequestContext(request))
+
+
+def person_students(request, nick):
+    person = get_person_or_404(nickname)
+    context = {
+        'person': person,
+        'students': get_list_or_404(Person, advisor__human=person.human),
+    }
+    return render_to_response('people/person/students.html', context, RequestContext(request))
+
+
+def person_grants(request, nick):
+    person = get_person_or_404(nickname)
+    context = {
+        'person': person,
+        'grants': get_list_or_404(Grant, author__human=person.human),
+    }
+    return render_to_response('people/person/grants.html', context, RequestContext(request))

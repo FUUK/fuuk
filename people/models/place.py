@@ -6,6 +6,7 @@ import multilingual
 
 phone_validator = RegexValidator(r'^\+420( [0-9]{3}){3}$')
 
+
 class Department(models.Model):
     fax = models.CharField(max_length=20, blank=True, null=True, unique=True, validators=[phone_validator])
 
@@ -32,4 +33,3 @@ class Place(models.Model):
 
     def __unicode__(self):
         return u'%s %s' % (self.name, self.department)
-

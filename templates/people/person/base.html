@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    {{ block.super }}
+    <div id="menu_top">
+        <ul id="menu_lide">
+            <li>
+                <a class="title" href="{% url person_detail person.human.nickname %}">{{ person.name }}</a>
+            </li>
+            {% if person.author_set.all %}
+                <li>
+                    <a class="strong" href="{% url person_articles person.human.nickname %}">{% trans "Articles" %} </a>
+                </li>
+            {% endif %}
+            {% if person.student.all %}
+                <li>
+                    <a class="strong" href="{% url person_students person.human.nickname %}">{% trans "Students" %} </a>
+                </li>
+            {% endif %}
+            {% if person.course_set.all %}
+                <li>
+                    <a class="strong" href="{% url person_courses person.human.nickname %}">{% trans "Courses" %} </a>
+                </li>
+            {% endif %}
+            {% if person.grant_set.all %}
+                <li>
+                    <a class="strong" href="{% url person_grants person.human.nickname %}">{% trans "Grants" %} </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

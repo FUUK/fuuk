@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
@@ -28,3 +29,13 @@ class Grant(models.Model):
     def __unicode__(self):
         return self.title
 
+    def clean(self):
+        # Many-to-many fields can only be checked if instance is already saved
+        if self.pk and self.co_authors.all():
+            # Check human if possible
+            if self.author.human:
+                if self.author.human in self.co_authors.values_list('human', flat=True):
+                    raise ValidationError('Author can not be also co_author.')
+            else:
+                if self.author in self.co_authors.all():
+                    raise ValidationError('Author can not be also co_author.')
