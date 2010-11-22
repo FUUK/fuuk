@@ -8,7 +8,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.generic.list_detail import object_list
 
-from people.models import Article, Human, Course, Person, Grant
+from people.models import Article, Human, Course, Person, Grant, Thesis
 
 
 def article_list(request, year=None):
@@ -26,6 +26,7 @@ def article_list(request, year=None):
         request,
         queryset,
         template_name='people/articles.html',
+        paginate_by=10,
         extra_context=context,
     )
 
@@ -117,7 +118,7 @@ def person_courses(request, nickname):
     return render_to_response('people/person/courses.html', context, RequestContext(request))
 
 
-def person_students(request, nick):
+def person_students(request, nickname):
     person = get_person_or_404(nickname)
     context = {
         'person': person,
@@ -126,10 +127,22 @@ def person_students(request, nick):
     return render_to_response('people/person/students.html', context, RequestContext(request))
 
 
-def person_grants(request, nick):
+def person_grants(request, nickname):
     person = get_person_or_404(nickname)
     context = {
         'person': person,
         'grants': get_list_or_404(Grant, author__human=person.human),
     }
     return render_to_response('people/person/grants.html', context, RequestContext(request))
+
+def thesis_defend(request):
+    context = {
+    'types': Thesis.objects.filter(abstract__isnull=False).values_list('type', flat=True).annotate(Count('type')).order_by('-type'),
+    'years': Thesis.objects.values_list('year', flat=True).annotate(Count('year')).order_by('-year'),
+    }
+    return render_to_response('people/thesis_defend_page.html', context, RequestContext(request))
+
+def thesis_defend_ext(request, ext):
+    context = {
+    }
+    return render_to_response('people/thesis_defend_ext_page.html', context, RequestContext(request))
