@@ -2,5 +2,17 @@
 {% load i18n %}
 
 {% block content %}
-    {{ block.super }}
+	{% regroup thesis by type as type_list %}
+	<h1>{% trans "Thesis defendedn in year" %} {{ ext }}:</h1>	
+	{% for type in type_list %}
+   	<h1>{{ type.grouper }}</h1>
+    	<ul>
+      	{% for item in type.list %}
+      	<!-- Make inteligent href from title ... -->
+        		<li><b>{{ item.author.full_name }}:</b> {{ item.title }}<br />
+        		{% trans "Advisor" %}: {{ item.advisor.full_name }}</li>
+        {% endfor %}
+    	</ul>   
+	{% endfor %}
+	{{ block.super }}
 {% endblock %}

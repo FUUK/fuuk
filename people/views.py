@@ -137,12 +137,18 @@ def person_grants(request, nickname):
 
 def thesis_defend(request):
     context = {
-    'types': Thesis.objects.filter(abstract__isnull=False).values_list('type', flat=True).annotate(Count('type')).order_by('-type'),
-    'years': Thesis.objects.values_list('year', flat=True).annotate(Count('year')).order_by('-year'),
+        #Not filtering correctly finished thesis...
+        'types': Thesis.objects.filter(abstract__isnull=False).values_list('type', flat=True).annotate(Count('type')).order_by('-type'),
+        'years': Thesis.objects.filter(abstract__isnull=False).values_list('year', flat=True).annotate(Count('year')).order_by('-year'),
     }
     return render_to_response('people/thesis_defend_page.html', context, RequestContext(request))
 
 def thesis_defend_ext(request, ext):
+    ext = int(ext)
     context = {
+        'ext': ext,
+        #Same here ...
+        #'types': Thesis.objects.filter(abstract__isnull=False, year=ext).values_list('type', flat=True).annotate(Count('type')).order_by('-type'),
+        'thesis': Thesis.objects.filter(abstract__isnull=False, year=ext),
     }
     return render_to_response('people/thesis_defend_ext_page.html', context, RequestContext(request))
