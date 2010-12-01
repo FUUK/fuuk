@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     url(r'^articles/([0-9]{4})/$', 'people.views.article_list', name="articles"), #does it work??? - sure:)
     # TODO: grants by years
     url(r'^grants/$', 'people.views.grant_list', name="grants"),
+    url(r'^grants/(\d+)/$', 'people.views.grant_detail'),
     # TODO: grant detail view
     url(r'^thesis_defend/$', 'people.views.thesis_defend', name="thesis_defend"),
     url(r'^thesis_defend/([0-9]{4})/$', 'people.views.thesis_defend_ext', name="thesis_defend"),

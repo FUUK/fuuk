@@ -1,5 +1,6 @@
 {% extends "people/person/base.html" %}
 {% load i18n %}
+{% load humanize %}
 
 {% block content %}
     {{ block.super }}
@@ -9,15 +10,15 @@
             <li>
                 <p align="justify"><a href="/people/detail/{{ student.human.nickname }}" class="strong">{{ student.full_name }}</a><br />
                     {% if student.type = 'BC' %}
-                        {% trans "year of Bc. study" %}<br />
+                        {{ student.class_year|ordinal }} {% trans "year of Bc. study" %}<br />
                         <strong>{% trans "Bachelor thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
                     {% endif %}
                     {% if student.type = 'MGR' %}
-                        {% trans "year of Mgr. study" %}<br />
+                        {{ student.class_year|ordinal }} {% trans "year of Mgr. study" %}<br />
                         <strong>{% trans "Master thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
                     {% endif %}
                     {% if student.type = 'PHD' %}
-                        {% trans "year of PhD. study" %}<br />
+                        {{ student.class_year|ordinal }} {% trans "year of PhD. study" %}<br />
                         <strong>{% trans "Disertation thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
                     {% endif %}
                 </p>

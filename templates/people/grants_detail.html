@@ -1,11 +1,11 @@
-{% extends "people/person/base.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 
 {% block content %}
     {{ block.super }}
     <h1>{% trans "Grants" %}:</h1>
     <ul>
-        {% for grant in grants %}
+        {% for grant in object_list %}
             <li>
                 <p>
                     <h2>{{ grant.title }}</h2>

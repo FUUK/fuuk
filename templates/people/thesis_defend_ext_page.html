@@ -3,7 +3,7 @@
 
 {% block content %}
 	{% regroup thesis by type as type_list %}
-	<h1>{% trans "Thesis defendedn in year" %} {{ ext }}:</h1>	
+	<h1>{% trans "Thesis defended in year" %} {{ ext }}:</h1>	
 	{% for type in type_list %}
    	<h1>{{ type.grouper }}</h1>
     	<ul>

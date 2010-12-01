@@ -1,5 +1,6 @@
 {% extends "people/person/base.html" %}
 {% load i18n %}
+{% load humanize %}
 
 {% block content %}
     {{ block.super }}
@@ -18,7 +19,7 @@
                 {% endif %}
                 {% if person.place %}
                     <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{{ person.place.department.name }}
-                    <br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{{ person.place.name }}, {{ person.place.floor }}
+                    <br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{{ person.place.name }}
                     <br /><em><strong>Phone:</strong></em>&nbsp;&nbsp;{{ person.place.phone }}
                     <br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{{ person.place.department.fax }}
                 {% endif %}
@@ -31,12 +32,18 @@
     <hr  size="3" width="100%"/>
 
     {% if person.interests %}
-        <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:
+        <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
             {% comment %}
                 TODO: use some markdown to render interests
             {% endcomment %}
             {{ person.interests|safe }}
-        </p>
+        <hr  size="3" width="100%"/>
+    {% endif %}
+    {% if person.stays %}
+        <p class="strong" align="left">{% trans "Long term stays" %}:</p>
+            {% comment %}
+                TODO: use some markdown to render interests
+            {% endcomment %}                 {{ person.stays|safe }}             
         <hr  size="3" width="100%"/>
     {% endif %}
 {% endblock %}

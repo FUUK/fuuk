@@ -44,6 +44,13 @@ def grant_list(request):
         extra_context=context,
     )
 
+def grant_detail(request, odkaz):
+    queryset = Grant.objects.filter(id=odkaz)
+    return object_list(
+        request,
+        queryset,
+        template_name='people/grants_detail.html',
+    )
 
 def staff_list(request):
     queryset = Person.objects.filter(type='STAFF').order_by('last_name')
@@ -105,6 +112,9 @@ def person_articles(request, nickname):
         'person': person,
         'papers_article': Article.objects.filter(author__person__human=person.human, type='ARTICLE'),
         'papers_proceeding': Article.objects.filter(author__person__human=person.human, type='PROCEEDING'),
+        'papers_talk': Article.objects.filter(author__person__human=person.human, type='TALK'),
+        'papers_poster': Article.objects.filter(author__person__human=person.human, type='POSTER'),
+        'papers_book': Article.objects.filter(author__person__human=person.human, type='BOOK'),
     }
     return render_to_response('people/person/articles.html', context, RequestContext(request))
 
@@ -148,7 +158,6 @@ def thesis_defend_ext(request, ext):
     context = {
         'ext': ext,
         #Same here ...
-        #'types': Thesis.objects.filter(abstract__isnull=False, year=ext).values_list('type', flat=True).annotate(Count('type')).order_by('-type'),
         'thesis': Thesis.objects.filter(abstract__isnull=False, year=ext),
     }
     return render_to_response('people/thesis_defend_ext_page.html', context, RequestContext(request))
