@@ -10,10 +10,10 @@ class DepartmentAdmin(multilingual.MultilingualModelAdmin):
 class PlaceAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('name', 'phone', 'department')
 
-class HumanAdmin(admin.ModelAdmin):
+class HumanAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('nickname',)
 
-class PersonAdmin(multilingual.MultilingualModelAdmin):
+class PersonAdmin(admin.ModelAdmin):
     list_display = ('human', 'type', 'first_name', 'last_name', 'place')
 
 class CourseAdmin(multilingual.MultilingualModelAdmin):

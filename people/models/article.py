@@ -34,6 +34,7 @@ class Article(models.Model):
     # only ARTICLE
     volume = models.CharField(max_length=10, blank=True, null=True) #TODO: integer?
     # required for BOOK, ARTICLE, PROCEEDING
+    #TODO: pages are sometimes in form 'A7809'
     page_from = models.SmallIntegerField(blank=True, null=True)
     page_to = models.SmallIntegerField(blank=True, null=True)
     # editors for PROCEEDING (required), TALK, POSTER (not required)
