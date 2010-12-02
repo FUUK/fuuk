@@ -20,6 +20,17 @@ class Human(models.Model):
     Used for history
     """
     nickname = models.CharField(max_length=20, unique=True) # just for overview
+    birth_date = models.DateField(blank=True, null=True)
+    birth_place = models.CharField(max_length=200, blank=True, null=True)
+    email = models.EmailField(max_length=200, blank=True, null=True, unique=True)
+    photo = models.ImageField(max_length=200, blank=True, null=True, upload_to='img/person')
+
+    class Translation(multilingual.Translation):
+        subtitle = models.CharField(max_length=200, blank=True, null=True)
+        #TODO: these might require some markdown
+        cv = models.TextField(blank=True, null=True)
+        interests = models.TextField(blank=True, null=True)
+        stays = models.TextField(blank=True, null=True)
 
     class Meta:
         app_label = 'people'
@@ -27,10 +38,10 @@ class Human(models.Model):
     def __unicode__(self):
         return self.nickname
 
-#TODO: How to select current person? Return is_active??
+
 class Person(models.Model):
     # functional fields
-    #is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
     human = models.ForeignKey(Human, blank=True, null=True) #required if type != None
     type = models.CharField(max_length=10, blank=True, null=True, choices=PERSON_TYPES)
     advisor = models.ForeignKey('Person', related_name='student', blank=True, null=True)
@@ -40,18 +51,7 @@ class Person(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     suffix = models.CharField(max_length=20, blank=True, null=True)
-    birth_date = models.DateField(blank=True, null=True)
-    birth_place = models.CharField(max_length=200, blank=True, null=True)
-    email = models.EmailField(max_length=200, blank=True, null=True, unique=True)
-    photo = models.ImageField(max_length=200, blank=True, null=True, upload_to='img/person')
     class_year = models.SmallIntegerField(blank=True, null=True)
-
-    class Translation(multilingual.Translation):
-        subtitle = models.CharField(max_length=200, blank=True, null=True)
-        #TODO: these might require some markdown
-        cv = models.TextField(blank=True, null=True)
-        interests = models.TextField(blank=True, null=True)
-        stays = models.TextField(blank=True, null=True)
 
     class Meta:
         app_label = 'people'
@@ -63,6 +63,7 @@ class Person(models.Model):
         return u"%s %s (%s)" % (self.first_name, self.last_name, self.human or '')
 
     def clean(self):
+        #TODO: only one person per human can be active
         if self.type and not self.human:
             raise ValidationError(_('Person with type must have human.'))
         if self.type in ('PHD', 'MGR', 'BC') and not self.class_year:
