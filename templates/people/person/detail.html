@@ -10,12 +10,12 @@
                 TODO: do not display if photo is missing
             {% endcomment %}
             <td align="center" valign="middle">
-                <img src="/media/{{ person.photo }}" width="120" height="154" vspace="0" hspace="30" alt="FOTO" />
+                <img src="/media/{{ person.human.photo }}" width="120" height="154" vspace="0" hspace="30" alt="FOTO" />
             </td>
             <td>
                 <h2>{{ person.full_name }}</h2>
-                {% if person.birth_date %}
-                    <em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ person.birth_date }}{% if person.birth_place %}, {{ person.birth_place }}{% endif %}
+                {% if person.human.birth_date %}
+                    <em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ person.human.birth_date }}{% if person.human.birth_place %}, {{ person.human.birth_place }}{% endif %}
                 {% endif %}
                 {% if person.place %}
                     <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{{ person.place.department.name }}
@@ -23,27 +23,34 @@
                     <br /><em><strong>Phone:</strong></em>&nbsp;&nbsp;{{ person.place.phone }}
                     <br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{{ person.place.department.fax }}
                 {% endif %}
-                {% if person.email %}
-                    <br /><em><strong>E-mail:</strong></em>&nbsp;&nbsp;<a class="strong" href="mailto:{{ person.email }}">{{ person.email }}</a>
+                {% if person.human.email %}
+                    <br /><em><strong>E-mail:</strong></em>&nbsp;&nbsp;<a class="strong" href="mailto:{{ person.human.email }}">{{ person.human.email }}</a>
                 {% endif %}
             </td>
         </tr>
     </table>
     <hr  size="3" width="100%"/>
 
-    {% if person.interests %}
+    {% if person.human.interests %}
         <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
             {% comment %}
                 TODO: use some markdown to render interests
             {% endcomment %}
-            {{ person.interests|safe }}
+            {{ person.human.interests|safe }}
         <hr  size="3" width="100%"/>
     {% endif %}
-    {% if person.stays %}
+    {% if person.human.stays %}
         <p class="strong" align="left">{% trans "Long term stays" %}:</p>
             {% comment %}
                 TODO: use some markdown to render interests
-            {% endcomment %}                 {{ person.stays|safe }}             
+            {% endcomment %}                 {{ person.human.stays|safe }}             
+        <hr  size="3" width="100%"/>
+    {% endif %}
+    {% if person.human.cv %}
+        <p class="strong" align="left">{% trans "Curiculum vitae" %}:</p>
+            {% comment %}
+                TODO: use some markdown to render interests
+            {% endcomment %}                 {{ person.human.cv|safe }}             
         <hr  size="3" width="100%"/>
     {% endif %}
 {% endblock %}
