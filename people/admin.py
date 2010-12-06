@@ -22,6 +22,7 @@ class PersonAdmin(admin.ModelAdmin):
 class CourseAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('name', 'ls', 'zs', 'code')
     filter_horizontal = ('lectors',)
+    ordering = ('code',)
 
 class AttachmentAdmin(admin.ModelAdmin):
     list_display = ('course', 'title')
