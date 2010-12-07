@@ -4,10 +4,12 @@ from django.conf.urls.defaults import patterns, url
 urlpatterns = patterns('',
     # Global pages
     url(r'^articles/$', 'people.views.article_list', name="articles"),
-    url(r'^articles/([0-9]{4})/$', 'people.views.article_list', name="articles"), #does it work???
-    # TODO: grants by years?
+    url(r'^articles/([0-9]{4})/$', 'people.views.article_list', name="articles"),
+    # TODO: grants by years
     url(r'^grants/$', 'people.views.grant_list', name="grants"),
-    # TODO: grant detail view
+    url(r'^grants/(\d+)/$', 'people.views.grant_detail', name="grants"),
+    url(r'^thesis_defend/$', 'people.views.thesis_defend', name="thesis_defend"),
+    url(r'^thesis_defend/([0-9]{4})/$', 'people.views.thesis_defend_ext', name="thesis_defend"),
 
     # Staff menu
     url(r'^phd/$', 'people.views.phd_list', name="phd_list"),

@@ -7,13 +7,13 @@
         <div class="list-name">
             <a class="strong" href=/people/detail/{{ people.human.nickname }}>{{ people.full_name }}</a>
             {% if people.subtitle %}
-                <span class="little"><strong>{{ people.subtitle }}</strong></span>
+                <span class="little"><strong> {{ people.subtitle }}</strong></span>
             {% endif %}
         </div>
-        {% if people.email %}
+        {% if people.human.email %}
             <div class="list-mail">
                 <p class="little">
-                    <strong>E-mail:</strong> {{ people.email }}
+                    <strong>E-mail:</strong> {{ people.human.email }}
                 </p>
             </div>
         {% endif %}

@@ -1,0 +1,19 @@
+{% extends "people/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <h1>{% trans "According to thesis type" %}</h1>
+    <ul>
+        {% for t in types %}
+            <li><a href="{{ t }}" class="strong">{{ t }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h1>{% trans "According to years" %}</h1>
+    <ul>
+        {% for y in years %}
+            <li><a href="{{ y }}" class="strong">{{ y }}</a></li>
+        {% endfor %}
+    </ul>
+    {{ block.super }}
+{% endblock %}

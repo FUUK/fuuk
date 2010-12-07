@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "people/person/base.html" %}
 {% load i18n %}
 
 {% block content %}
@@ -12,11 +12,36 @@
                     <p>
                         <strong><em>{% trans "Grant agency" %}:</em></strong> {{ grant.agency }}<br />
                         <strong><em>{% trans "Identification number of grant" %}:</em></strong> {{ grant.number }}<br />
-                        <strong><em>{% trans "Head of the project" %}:</em></strong>{{ grant.author.full_name }}<br />
+                        <strong><em>{% trans "Head of the project" %}:</em></strong> {{ grant.author.full_name }} {% if not grant.author.type %}{{ grant.author.place }}{% endif %}<br />
                         {% if grant.co_authors.all %}
                             <strong><em>{% trans "Vice-head of the project" %}:</em></strong>
                             {% for co_author in grant.co_authors.all %}
-                                {{ co_author.full_name }}{% if not forloop.last %},{% endif %}
+                                {{ co_author.full_name }}{% if not co_author.type %} ({{ co_author.place }}){% endif %}{% if not forloop.last %},{% endif %}
+                            {% endfor %}<br />
+                        {% endif %}
+                    </p>
+                    <p>
+                        {{ grant.annotation }}
+                    </p>
+                    <hr size="3" width="100%" />
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+    <h1>{% trans "Finished grants" %}:</h1>
+    <ul>
+        {% for grant in grants_finished %}
+            <li>
+                <p>
+                    <h2>{{ grant.title }}</h2>
+                    <p>
+                        <strong><em>{% trans "Grant agency" %}:</em></strong> {{ grant.agency }}<br />
+                        <strong><em>{% trans "Identification number of grant" %}:</em></strong> {{ grant.number }}<br />
+                        <strong><em>{% trans "Head of the project" %}:</em></strong> {{ grant.author.full_name }} {% if not grant.author.type %}{{ grant.author.place }}{% endif %}<br />
+                        {% if grant.co_authors.all %}
+                            <strong><em>{% trans "Vice-head of the project" %}:</em></strong>
+                            {% for co_author in grant.co_authors.all %}
+                                {{ co_author.full_name }}{% if not co_author.type %} ({{ co_author.place }}){% endif %}{% if not forloop.last %},{% endif %}
                             {% endfor %}<br />
                         {% endif %}
                     </p>

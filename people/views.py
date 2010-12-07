@@ -8,7 +8,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.generic.list_detail import object_list
 
-from people.models import Article, Human, Course, Person, Grant
+from people.models import Article, Human, Course, Person, Grant, Thesis
 
 
 def article_list(request, year=None):
@@ -26,6 +26,7 @@ def article_list(request, year=None):
         request,
         queryset,
         template_name='people/articles.html',
+        paginate_by=10,
         extra_context=context,
     )
 
@@ -43,9 +44,16 @@ def grant_list(request):
         extra_context=context,
     )
 
+def grant_detail(request, odkaz):
+    queryset = Grant.objects.filter(id=odkaz)
+    return object_list(
+        request,
+        queryset,
+        template_name='people/grants_detail.html',
+    )
 
 def staff_list(request):
-    queryset = Person.objects.filter(type='STAFF').order_by('last_name')
+    queryset = Person.objects.filter(type='STAFF', is_active=True).order_by('last_name')
     context = {
         "title": _('Staff')
     }
@@ -58,7 +66,7 @@ def staff_list(request):
 
 
 def phd_list(request):
-    queryset = Person.objects.filter(type='PHD').order_by('last_name')
+    queryset = Person.objects.filter(type='PHD', is_active=True).order_by('last_name')
     context = {
         "title": _('PhD. students')
     }
@@ -71,9 +79,9 @@ def phd_list(request):
 
 
 def student_list(request):
-    queryset = Person.objects.filter(type='MGR').order_by('last_name')
+    queryset = Person.objects.filter(type='MGR', is_active=True).order_by('last_name')
     context = {
-        'bachelors': Person.objects.filter(type='BC').order_by('last_name')
+        'bachelors': Person.objects.filter(type='BC', is_active=True).order_by('last_name')
     }
     return object_list(
         request,
@@ -104,6 +112,9 @@ def person_articles(request, nickname):
         'person': person,
         'papers_article': Article.objects.filter(author__person__human=person.human, type='ARTICLE'),
         'papers_proceeding': Article.objects.filter(author__person__human=person.human, type='PROCEEDING'),
+        'papers_talk': Article.objects.filter(author__person__human=person.human, type='TALK'),
+        'papers_poster': Article.objects.filter(author__person__human=person.human, type='POSTER'),
+        'papers_book': Article.objects.filter(author__person__human=person.human, type='BOOK'),
     }
     return render_to_response('people/person/articles.html', context, RequestContext(request))
 
@@ -117,19 +128,36 @@ def person_courses(request, nickname):
     return render_to_response('people/person/courses.html', context, RequestContext(request))
 
 
-def person_students(request, nick):
+def person_students(request, nickname):
     person = get_person_or_404(nickname)
     context = {
         'person': person,
-        'students': get_list_or_404(Person, advisor__human=person.human),
+        'students': get_list_or_404(Person, advisor__human=person.human, is_active=True),
     }
     return render_to_response('people/person/students.html', context, RequestContext(request))
 
 
-def person_grants(request, nick):
+def person_grants(request, nickname):
     person = get_person_or_404(nickname)
     context = {
         'person': person,
         'grants': get_list_or_404(Grant, author__human=person.human),
     }
     return render_to_response('people/person/grants.html', context, RequestContext(request))
+
+
+def thesis_defend(request):
+    context = {
+        'types': Thesis.objects.filter(defended=True).values_list('type', flat=True).annotate(Count('type')).order_by('-type'),
+        'years': Thesis.objects.filter(defended=True).values_list('year', flat=True).annotate(Count('year')).order_by('-year'),
+    }
+    return render_to_response('people/thesis_defend_page.html', context, RequestContext(request))
+
+
+def thesis_defend_ext(request, ext):
+    ext = int(ext)
+    context = {
+        'ext': ext,
+        'thesis': Thesis.objects.filter(defended=True, year=ext),
+    }
+    return render_to_response('people/thesis_defend_ext_page.html', context, RequestContext(request))

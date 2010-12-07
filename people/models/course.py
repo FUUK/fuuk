@@ -13,7 +13,7 @@ class Course(models.Model):
 
     class Translation(multilingual.Translation):
         name = models.CharField(max_length=200)
-        annotation = models.CharField(max_length=200, blank=True, null=True)
+        annotation = models.CharField(max_length=500, blank=True, null=True)
         note = models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
