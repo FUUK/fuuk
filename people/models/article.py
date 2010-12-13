@@ -22,7 +22,7 @@ class Article(models.Model):
     type = models.CharField(max_length=10, choices=ARTICLE_TYPES)
     # DOI for ARTICLE (required)
     # ISBN for BOOK, PROCEEDING (required)
-    identification = models.CharField(max_length=25, blank=True, null=True, unique=True)
+    identification = models.CharField(max_length=100, blank=True, null=True, unique=True)
     year = models.SmallIntegerField(validators=[MinValueValidator(1990)])
     title = models.CharField(max_length=200)
 
@@ -75,8 +75,8 @@ class Article(models.Model):
             if self.presenter:
                 raise ValidationError(_('Book can not have presenter.'))
         elif self.type == 'ARTICLE':
-            if not self.identification:
-                raise ValidationError(_('Article has to have DOI number.'))
+#            if not self.identification:
+#                raise ValidationError(_('Article has to have DOI number.'))
             if not self.publication:
                 raise ValidationError(_('Article has to have journal.'))
             if not self.volume:

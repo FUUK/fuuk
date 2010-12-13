@@ -5,32 +5,36 @@
     {{ block.super }}
     {% if papers_article %}
         <h1>{% trans "Articles" %}</h1>
-        <ul>
+        <ol>
             {% for article in papers_article %}
                 {% comment %}
                     TODO: make inclusive templatetag for this?
                 {% endcomment %}
                 <li>
                     {% if article.identification %}
-                        <a href="http://dx.doi.org/{{ article.identification }}" target="_blank">
-                            {{ article.citation }}
-                        </a>
+                        <p>
+                        	<a href="http://dx.doi.org/{{ article.identification }}" target="_blank">
+                            	{{ article.citation }}
+                        	</a>
+                        </p>
                     {% else %}
-                        {{ article.citation }}
+                        <p>
+                        	{{ article.citation }}
+                        </p>
                     {% endif %}
                 </li>
             {% endfor %}
-        </ul>
+        </ol>
     {% endif %}
 
     {% if papers_proceeding %}
         <h1>{% trans "Conference proceedings" %}</h1>
-        <ul>
+        <ol>
             {% for article in papers_proceeding %}
                 <li>
                     {{ article.citation }}
                 </li>
             {% endfor %}
-        </ul>
+        </ol>
     {% endif %}
 {% endblock %}

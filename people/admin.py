@@ -15,7 +15,7 @@ class HumanAdmin(multilingual.MultilingualModelAdmin):
     ordering = ('nickname',)
 
 class PersonAdmin(admin.ModelAdmin):
-    list_display = ('human', 'type', 'first_name', 'last_name', 'place')
+    list_display = ('last_name', 'first_name', 'human', 'type', 'place')
     list_filter = ('type',)
     ordering = ('last_name',)
 

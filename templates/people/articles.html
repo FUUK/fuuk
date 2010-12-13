@@ -19,11 +19,15 @@
         {% for article in object_list %}
             <li>
                 {% if article.identification %}
-                    <a href="http://dx.doi.org/{{ article.identification }}" target="_blank">
-                        {{ article.citation }}
-                    </a>
+                    <p>
+                    		<a href="http://dx.doi.org/{{ article.identification }}" target="_blank">
+                        	{{ article.citation }}
+                    		</a>
+                    </p>
                 {% else %}
-                    {{ article.citation }}
+                    <p>
+                    		{{ article.citation }}
+                    </p>
                 {% endif %}
             </li>
         {% endfor %}
