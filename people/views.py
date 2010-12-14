@@ -110,11 +110,11 @@ def person_articles(request, nickname):
     person = get_person_or_404(nickname)
     context = {
         'person': person,
-        'papers_article': Article.objects.filter(author__person__human=person.human, type='ARTICLE'),
-        'papers_proceeding': Article.objects.filter(author__person__human=person.human, type='PROCEEDING'),
-        'papers_talk': Article.objects.filter(author__person__human=person.human, type='TALK'),
-        'papers_poster': Article.objects.filter(author__person__human=person.human, type='POSTER'),
-        'papers_book': Article.objects.filter(author__person__human=person.human, type='BOOK'),
+        'papers_article': Article.objects.filter(author__person__human=person.human, type='ARTICLE').order_by('-year'),
+        'papers_proceeding': Article.objects.filter(author__person__human=person.human, type='PROCEEDING').order_by('-year'),
+        'papers_talk': Article.objects.filter(author__person__human=person.human, type='TALK').order_by('-year'),
+        'papers_poster': Article.objects.filter(author__person__human=person.human, type='POSTER').order_by('-year'),
+        'papers_book': Article.objects.filter(author__person__human=person.human, type='BOOK').order_by('-year'),
     }
     return render_to_response('people/person/articles.html', context, RequestContext(request))
 
