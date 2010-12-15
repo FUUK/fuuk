@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response, get_object_or_404, get_list_or_
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.generic.list_detail import object_list
+from django.db.models import Q
 
 from people.models import Article, Human, Course, Person, Grant, Thesis
 
@@ -141,7 +142,8 @@ def person_grants(request, nickname):
     person = get_person_or_404(nickname)
     context = {
         'person': person,
-        'grants': get_list_or_404(Grant, author__human=person.human),
+        'grants': Grant.objects.filter(Q(author__human=person.human, end__gte=date.today().year) | Q(co_authors__human=person.human, end__gte=date.today().year)).order_by('-end', '-pk'),
+        'grants_finished': Grant.objects.filter(Q(author__human=person.human, end__gte=(date.today().year - 2), end__lt=date.today().year) | Q(co_authors__human=person.human, end__gte=(date.today().year - 2), end__lt=date.today().year)).order_by('-end', '-pk'),
     }
     return render_to_response('people/person/grants.html', context, RequestContext(request))
 
@@ -159,3 +161,11 @@ def thesis_defend_ext(request, ext):
         'thesis': Thesis.objects.filter(defended=True, year=ext),
     }
     return render_to_response('people/thesis_defend_ext_page.html', context, RequestContext(request))
+
+def thesis_detail(request, ids):
+    ids = int(ids)
+    context = {
+    'ids': ids,
+    'thesis': get_object_or_404(Thesis, id=ids),
+    }
+    return render_to_response('people/thesis_detail.html', context, RequestContext(request))

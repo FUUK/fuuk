@@ -8,9 +8,8 @@
    	<h1>{{ type.grouper }}</h1>
     	<ul>
       	{% for item in type.list %}
-      	<!-- Make inteligent href from title ... -->
-        		<li><b>{{ item.author.full_name }}:</b> {{ item.title }}<br />
-        		{% trans "Advisor" %}: {{ item.advisor.full_name }}</li>
+        		<li><p><a href="/people/thesis/id={{ item.id }}"><strong>{{ item.author.full_name }}:</strong> {{ item.title }}<br />
+        		{% trans "Advisor" %}: {{ item.advisor.full_name }}</a></p></li>
         {% endfor %}
     	</ul>   
 	{% endfor %}

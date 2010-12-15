@@ -30,7 +30,7 @@ class Article(models.Model):
     # journal for ARTICLE, PROCEEDING (required)
     # book title for BOOK (required)
     # abstract collection for TALK, POSTER (not required)
-    publication = models.CharField(max_length=50, blank=True, null=True)
+    publication = models.CharField(max_length=100, blank=True, null=True)
     # only ARTICLE
     volume = models.CharField(max_length=10, blank=True, null=True) #TODO: integer?
     # required for BOOK, ARTICLE, PROCEEDING
@@ -54,6 +54,20 @@ class Article(models.Model):
         unique_together = (
             ('year', 'publication', 'volume', 'page_from', 'page_to'),
         )
+    
+    def save(self):
+        """overriding save method so that we can save Null to database, instead of empty string (project requirement)"""
+        # get a list of all model fields (i.e. self._meta.fields)...
+        emptystringfields = [ field for field in self._meta.fields \
+                # ...that are of type CharField or Textfield...
+                if ((type(field) == models.CharField) or (type(field) == models.TextField)) \
+                # ...and that contain the empty string
+                and (getattr(self, field.name) == "") ]
+        # set each of these fields to None (which tells Django to save Null)
+        for field in emptystringfields:
+            setattr(self, field.name, None)
+        # call the super.save() method
+        super(Article, self).save()
 
     def __unicode__(self):
         return self.title
@@ -75,8 +89,8 @@ class Article(models.Model):
             if self.presenter:
                 raise ValidationError(_('Book can not have presenter.'))
         elif self.type == 'ARTICLE':
-#            if not self.identification:
-#                raise ValidationError(_('Article has to have DOI number.'))
+            if not self.identification:
+                raise ValidationError(_('Article has to have DOI number.'))
             if not self.publication:
                 raise ValidationError(_('Article has to have journal.'))
             if not self.volume:
@@ -134,10 +148,12 @@ class Article(models.Model):
             details.append(" %s" % self.publication)
         if self.volume:
             details.append(" %s" % self.volume)
-        details.append("%s" % self.year)
+        if self.place:
+            details.append("%s" % self.place)
+        details.append("(%s)" % self.year)
         if self.page_from and self.page_to:
             details.append("%s-%s" % (self.page_from, self.page_to))
-
+        
         return u"%s: %s. %s" % (
             ', '.join(authors),
             self.title,

@@ -21,7 +21,7 @@ class Department(models.Model):
 
 
 class Place(models.Model):
-    department = models.ForeignKey(Department)
+    department = models.ForeignKey(Department, blank=True, null=True)
     phone = models.CharField(max_length=20, unique=True, validators=[phone_validator])
 
     class Translation(multilingual.Translation):
@@ -31,4 +31,7 @@ class Place(models.Model):
         app_label = 'people'
 
     def __unicode__(self):
-        return u'%s %s' % (self.name, self.department)
+        if self.department:
+            return u'%s %s' % (self.name, self.department)
+        else:
+            return u'%s' % self.name
