@@ -13,7 +13,7 @@
                     <a class="strong" href="{% url person_articles person.human.nickname %}">{% trans "Articles" %} </a>
                 </li>
             {% endif %}
-            {% if students %}            
+            {% if person.student.all %}            
                 <li>
                     <a class="strong" href="{% url person_students person.human.nickname %}">{% trans "Students" %} </a>
                 </li>
@@ -23,7 +23,7 @@
                     <a class="strong" href="{% url person_courses person.human.nickname %}">{% trans "Courses" %} </a>
                 </li>
             {% endif %}
-            {% if person.grant_set.all or person.grant_related %}
+            {% if person.grant_set.all or person.grant_related.all %}
                 <li>
                     <a class="strong" href="{% url person_grants person.human.nickname %}">{% trans "Grants" %} </a>
                 </li>

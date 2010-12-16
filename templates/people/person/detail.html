@@ -33,24 +33,17 @@
 
     {% if person.human.interests %}
         <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
-            {% comment %}
-                TODO: use some markdown to render interests
-            {% endcomment %}
             {{ person.human.interests|safe }}
         <hr  size="3" width="100%"/>
     {% endif %}
     {% if person.human.stays %}
         <p class="strong" align="left">{% trans "Long term stays" %}:</p>
-            {% comment %}
-                TODO: use some markdown to render interests
-            {% endcomment %}                 {{ person.human.stays|safe }}             
+            {{ person.human.stays|safe }}             
         <hr  size="3" width="100%"/>
     {% endif %}
     {% if person.human.cv %}
         <p class="strong" align="left">{% trans "Curiculum vitae" %}:</p>
-            {% comment %}
-                TODO: use some markdown to render interests
-            {% endcomment %}                 {{ person.human.cv|safe }}             
+            {{ person.human.cv|safe }}             
         <hr  size="3" width="100%"/>
     {% endif %}
 {% endblock %}

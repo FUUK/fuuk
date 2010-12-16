@@ -38,6 +38,20 @@ class Human(models.Model):
     def __unicode__(self):
         return self.nickname
 
+    def save(self):
+        """overriding save method so that we can save Null to database, instead of empty string (project requirement)"""
+        # get a list of all model fields (i.e. self._meta.fields)...
+        emptystringfields = [ field for field in self._meta.fields \
+                # ...that are of type Emailfield...
+                if (type(field) == models.EmailField) \
+                # ...and that contain the empty string
+                and (getattr(self, field.name) == "") ]
+        # set each of these fields to None (which tells Django to save Null)
+        for field in emptystringfields:
+            setattr(self, field.name, None)
+        # call the super.save() method
+        super(Human, self).save()
+
 
 class Person(models.Model):
     # functional fields
