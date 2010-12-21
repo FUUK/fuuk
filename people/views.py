@@ -112,9 +112,7 @@ def person_articles(request, nickname):
     context = {
         'person': person,
         'papers_article': Article.objects.filter(author__person__human=person.human, type='ARTICLE').order_by('-year'),
-        'papers_proceeding': Article.objects.filter(author__person__human=person.human, type='PROCEEDING').order_by('-year'),
-        'papers_talk': Article.objects.filter(author__person__human=person.human, type='TALK').order_by('-year'),
-        'papers_poster': Article.objects.filter(author__person__human=person.human, type='POSTER').order_by('-year'),
+        'papers_presentation': Article.objects.filter(Q(author__person__human=person.human, type='POSTER') | Q(author__person__human=person.human, type='TALK')).order_by('-year'),
         'papers_book': Article.objects.filter(author__person__human=person.human, type='BOOK').order_by('-year'),
     }
     return render_to_response('people/person/articles.html', context, RequestContext(request))
@@ -142,8 +140,14 @@ def person_grants(request, nickname):
     person = get_person_or_404(nickname)
     context = {
         'person': person,
-        'grants': Grant.objects.filter(Q(author__human=person.human, end__gte=date.today().year) | Q(co_authors__human=person.human, end__gte=date.today().year)).order_by('-end', '-pk'),
-        'grants_finished': Grant.objects.filter(Q(author__human=person.human, end__gte=(date.today().year - 2), end__lt=date.today().year) | Q(co_authors__human=person.human, end__gte=(date.today().year - 2), end__lt=date.today().year)).order_by('-end', '-pk'),
+        'grants': Grant.objects.filter(pk__in =
+            Grant.objects.filter(author__human=person.human, end__gte=date.today().year).values_list('pk', flat=True) | 
+            Grant.objects.filter(co_authors__human=person.human, end__gte=date.today().year).values_list('pk', flat=True)
+        ).order_by('-end', '-pk'),
+        'grants_finished': Grant.objects.filter(pk__in =
+            Grant.objects.filter(author__human=person.human, end__gte=(date.today().year - 2), end__lt=date.today().year).values_list('pk', flat=True) | 
+            Grant.objects.filter(co_authors__human=person.human, end__gte=(date.today().year - 2), end__lt=date.today().year).values_list('pk', flat=True)
+        ).order_by('-end', '-pk'), 
     }
     return render_to_response('people/person/grants.html', context, RequestContext(request))
 

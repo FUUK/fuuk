@@ -26,15 +26,28 @@
             {% endfor %}
         </ol>
     {% endif %}
-
-    {% if papers_proceeding %}
-        <h1>{% trans "Conference proceedings" %}</h1>
-        <ol>
-            {% for article in papers_proceeding %}
-                <li>
-                    {{ article.citation }}
-                </li>
-            {% endfor %}
-        </ol>
+    {% if papers_presentation %}
+    		<h1>{% trans "Conference proceedings" %}</h1>
+    		<ol>
+					{% for article in papers_presentation %}
+						<li>
+							<p>
+								{{ article.citation }}
+							</p>						
+						</li> 
+					{% endfor %}   		
+    		</ol>
+    {% endif %}
+    {% if papers_book %}
+    		<h1>{% trans "Monography" %}</h1>
+    		<ol>
+					{% for article in papers_book %}
+						<li>
+							<p>
+								{{ article.citation }}
+							</p>						
+						</li> 
+					{% endfor %}   		
+    		</ol>
     {% endif %}
 {% endblock %}
