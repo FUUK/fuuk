@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^grants/(\d+)/$', 'people.views.grant_detail', name="grants"),
     url(r'^thesis_defend/$', 'people.views.thesis_defend', name="thesis_defend"),
     url(r'^thesis_defend/([0-9]{4})/$', 'people.views.thesis_defend_ext', name="thesis_defend"),
+    url(r'^thesis/id=(\d+)/$', 'people.views.thesis_detail'),
 
     # Staff menu
     url(r'^phd/$', 'people.views.phd_list', name="phd_list"),

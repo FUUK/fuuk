@@ -21,7 +21,7 @@ class Article(models.Model):
     ### ARTICLE INFO
     type = models.CharField(max_length=10, choices=ARTICLE_TYPES)
     # DOI for ARTICLE (required); ISBN for BOOK (required)
-    identification = models.CharField(max_length=25, blank=True, null=True, unique=True)
+    identification = models.CharField(max_length=100, blank=True, null=True, unique=True)
     year = models.SmallIntegerField(validators=[MinValueValidator(1990)])
     title = models.CharField(max_length=200)
 
@@ -29,7 +29,7 @@ class Article(models.Model):
     # journal for ARTICLE (required)
     # book title for BOOK (required)
     # abstract collection for TALK, POSTER (not required)
-    publication = models.CharField(max_length=50, blank=True, null=True)
+    publication = models.CharField(max_length=100, blank=True, null=True)
     # only ARTICLE
     volume = models.CharField(max_length=10, blank=True, null=True) #TODO: integer?
     # required for BOOK, ARTICLE
@@ -117,6 +117,8 @@ class Article(models.Model):
             details.append(u" %s" % self.publication)
         if self.volume:
             details.append(u" %s" % self.volume)
+        if self.place:
+            details.append(u"%s" % self.place)
         details.append(u"%s" % self.year)
         if self.page_from:
             if self.page_to:

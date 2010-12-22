@@ -6,8 +6,8 @@
     {% for people in object_list %}
         <div class="list-name">
             <a class="strong" href=/people/detail/{{ people.human.nickname }}>{{ people.full_name }}</a>
-            {% if people.subtitle %}
-                <span class="little"><strong> {{ people.subtitle }}</strong></span>
+            {% if people.human.subtitle %}
+                <span class="little"><strong> {{ people.human.subtitle }}</strong></span>
             {% endif %}
         </div>
         {% if people.human.email %}

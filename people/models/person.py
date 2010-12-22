@@ -58,9 +58,12 @@ class Person(models.Model):
         unique_together = (
             ('first_name', 'last_name', 'type'),
         )
+        ordering = (
+            'last_name',
+        )
 
     def __unicode__(self):
-        return u"%s %s (%s)" % (self.first_name, self.last_name, self.human or '')
+        return u"%s %s (%s)" % (self.last_name, self.first_name, self.human or '')
 
     def clean(self):
         #TODO: only one person per human can be active
