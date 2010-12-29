@@ -8,8 +8,7 @@ urlpatterns = patterns('',
     # TODO: grants by years
     url(r'^grants/$', 'people.views.grant_list', name="grants"),
     url(r'^grants/(\d+)/$', 'people.views.grant_detail', name="grants"),
-    url(r'^thesis_defend/$', 'people.views.thesis_defend', name="thesis_defend"),
-    url(r'^thesis_defend/([0-9]{4})/$', 'people.views.thesis_defend_ext', name="thesis_defend"),
+    url(r'^theses/$', 'people.views.thesis_list', name="theses"),
     url(r'^thesis/id=(\d+)/$', 'people.views.thesis_detail'),
 
     # Staff menu

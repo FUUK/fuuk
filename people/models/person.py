@@ -1,10 +1,13 @@
 # coding: utf-8
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
 
 import multilingual
 from people.models import Place
+
+nickname_validator = RegexValidator('^\w+$')
 
 PERSON_TYPES = (
     ('STAFF', _('Staff')),
@@ -19,7 +22,10 @@ class Human(models.Model):
     Collects persons for single human
     Used for history
     """
-    nickname = models.CharField(max_length=20, unique=True) # just for overview
+    nickname = models.CharField(
+        max_length=20, unique=True,
+        validators = [nickname_validator]
+    )
     birth_date = models.DateField(blank=True, null=True)
     birth_place = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=200, blank=True, null=True, unique=True)
@@ -58,17 +64,18 @@ class Person(models.Model):
         unique_together = (
             ('first_name', 'last_name', 'type'),
         )
-        ordering = (
-            'last_name',
-        )
 
     def __unicode__(self):
         return u"%s %s (%s)" % (self.last_name, self.first_name, self.human or '')
 
     def clean(self):
-        #TODO: only one person per human can be active
-        if self.type and not self.human:
-            raise ValidationError(_('Person with type must have human.'))
+        if self.human:
+            if self.is_active and Person.objects.exclude(pk=self.pk).filter(human=self.human, is_active=True):
+                    raise ValidationError(_('Only one person can be active per human.'))
+        else:
+            if self.type:
+                raise ValidationError(_('Person with type must have human.'))
+
         if self.type in ('PHD', 'MGR', 'BC') and not self.class_year:
             raise ValidationError(_('Students must have class year.'))
 
