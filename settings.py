@@ -94,7 +94,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'multilingual.middleware.DefaultLanguageMiddleware',
-#    'multilingual.flatpages.middleware.FlatpageFallbackMiddleware',
+    'multilingual.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -113,8 +113,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
+    'django.contrib.humanize',
     'multilingual',
-#    'multilingual.flatpages',
+    'multilingual.flatpages',
     'people',
 )
 

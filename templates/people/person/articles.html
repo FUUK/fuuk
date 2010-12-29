@@ -1,53 +1,36 @@
 {% extends "people/person/base.html" %}
-{% load i18n %}
+{% load i18n article %}
 
 {% block content %}
     {{ block.super }}
-    {% if papers_article %}
+    {% if articles %}
         <h1>{% trans "Articles" %}</h1>
         <ol>
-            {% for article in papers_article %}
-                {% comment %}
-                    TODO: make inclusive templatetag for this?
-                {% endcomment %}
+            {% for article in articles %}
                 <li>
-                    {% if article.identification %}
-                        <p>
-                        	<a href="http://dx.doi.org/{{ article.identification }}" target="_blank">
-                            	{{ article.citation }}
-                        	</a>
-                        </p>
-                    {% else %}
-                        <p>
-                        	{{ article.citation }}
-                        </p>
-                    {% endif %}
+                    {% citation article %}
                 </li>
             {% endfor %}
         </ol>
     {% endif %}
-    {% if papers_presentation %}
-    		<h1>{% trans "Conference proceedings" %}</h1>
-    		<ol>
-					{% for article in papers_presentation %}
-						<li>
-							<p>
-								{{ article.citation }}
-							</p>						
-						</li> 
-					{% endfor %}   		
-    		</ol>
+    {% if presentations %}
+        <h1>{% trans "Conference proceedings" %}</h1>
+        <ol>
+            {% for article in presentations %}
+                <li>
+                    {% citation article %}
+                </li> 
+            {% endfor %}
+        </ol>
     {% endif %}
-    {% if papers_book %}
-    		<h1>{% trans "Monography" %}</h1>
-    		<ol>
-					{% for article in papers_book %}
-						<li>
-							<p>
-								{{ article.citation }}
-							</p>						
-						</li> 
-					{% endfor %}   		
-    		</ol>
+    {% if books %}
+        <h1>{% trans "Monographies" %}</h1>
+        <ol>
+            {% for article in books %}
+                <li>
+                    {% citation article %}
+                </li> 
+            {% endfor %}
+        </ol>
     {% endif %}
 {% endblock %}

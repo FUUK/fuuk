@@ -5,7 +5,7 @@ from django.forms import CharField
 
 import multilingual
 from people.admin.forms import ArticleBookForm, ArticleArticleForm, ArticleTalkForm, ArticlePosterForm
-from people.models import Department, Place, Human, Person, Course, Attachment, Grant, Article, Author, Thesis
+from people.models import Person, Author
 
 
 class NullCharField(CharField):
@@ -40,9 +40,9 @@ class HumanAdmin(multilingual.MultilingualModelAdmin):
 
 
 class PersonAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'human', 'type', 'place')
-    list_filter = ('type',)
-    ordering = ('last_name',)
+    list_display = ('last_name', 'first_name', 'is_active', 'human', 'type', 'place')
+    list_filter = ('type', 'is_active')
+    ordering = ('human__nickname',)
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
@@ -66,19 +66,6 @@ class GrantAdmin(multilingual.MultilingualModelAdmin):
     filter_horizontal = ('co_authors',)
 
 
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'type', 'year')
-    list_filter = ('type', 'year')
-    formfield_overrides = {
-        models.CharField: {'form_class': NullCharField},
-    }
-
-
-class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('person', 'article', 'order')
-    list_filter = ('article',)
-
-
 class ThesisAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('type', 'title', 'author', 'advisor')
     filter_horizontal = ('consultants',)
@@ -87,7 +74,27 @@ class ThesisAdmin(multilingual.MultilingualModelAdmin):
     }
 
 
+class AuthorInlineAdmin(admin.TabularInline):
+    model = Author
+    extra = 3
+
+    def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
+        defaults = {
+            'queryset': Person.objects.order_by('-is_active', 'last_name', 'first_name')
+        }
+        defaults.update(kwargs)
+        return super(AuthorInlineAdmin, self).formfield_for_foreignkey(db_field, request, **defaults)
+
+
 ### Articles
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'type', 'year')
+    list_filter = ('type', 'year')
+    inlines = [AuthorInlineAdmin, ]
+    formfield_overrides = {
+        models.CharField: {'form_class': NullCharField},
+    }
+
 
 class ArticleBookAdmin(ArticleAdmin):
     form = ArticleBookForm

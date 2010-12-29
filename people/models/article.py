@@ -108,30 +108,6 @@ class Article(models.Model):
         if self.presenter and self.presenter not in self.author_set.all():
             raise ValidationError(_('Presenter must be among authors.'))
 
-    @property
-    def citation(self):
-        #TODO: would be inclusion tag better, when html tags will be used?
-        authors = [author.person.name for author in self.author_set.select_related('person').order_by('order')]
-        details = []
-        if self.publication:
-            details.append(u" %s" % self.publication)
-        if self.volume:
-            details.append(u" %s" % self.volume)
-        if self.place:
-            details.append(u"%s" % self.place)
-        details.append(u"%s" % self.year)
-        if self.page_from:
-            if self.page_to:
-                details.append(u"%s-%s" % (self.page_from, self.page_to))
-            else:
-                details.append(unicode(self.page_from))
-
-        return u"%s: %s. %s" % (
-            u', '.join(authors),
-            self.title,
-            u', '.join(details)
-        )
-
 
 class Author(models.Model):
     person = models.ForeignKey(Person)

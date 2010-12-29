@@ -1,0 +1,29 @@
+<p class="citation">
+    {% if identification %}
+        <a href="http://dx.doi.org/{{ identification }}" target="_blank">
+    {% endif %}
+
+    <i>
+    {% for author in authors %}
+        {{ author.person.name }}{% if not foorloop.last %},{% endif %}
+    {% endfor %}
+    </i>: {{ title }}.
+    {% if publication %}
+        <b>{{ publication }}</b>,
+    {% endif %}
+    {% if place %}
+        {{ place }},
+    {% endif %}
+    {% if editors %}
+        {% if type == "BOOK" %}
+            Publishers: {{ editors }},
+        {% else %}
+            Editors: {{ editors }},
+        {% endif %}
+    {% endif %}
+    {{ year }}{% if volume %}, vol.&nbsp;{{ volume }}{% endif %}{% if pages %}, p.&nbsp;{{ pages }}{% endif %}
+
+    {% if identification %}
+        </a>
+    {% endif%}
+</p>
