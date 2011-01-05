@@ -6,7 +6,7 @@ from django.http import Http404
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from django.views.generic.list_detail import object_list
+from django.views.generic.list_detail import object_list, object_detail
 from django.db.models import Q
 
 from people.models import Article, Human, Course, Person, Grant, Thesis
