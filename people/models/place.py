@@ -17,7 +17,7 @@ class Department(models.Model):
         app_label = 'people'
 
     def __unicode__(self):
-        return self.name
+        return self.name or u""
 
 
 class Place(models.Model):
@@ -34,4 +34,4 @@ class Place(models.Model):
         if self.department:
             return u'%s %s' % (self.name, self.department)
         else:
-            return u'%s' % self.name
+            return self.name or u""

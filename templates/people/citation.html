@@ -22,6 +22,9 @@
         {% endif %}
     {% endif %}
     {{ year }}{% if volume %}, vol.&nbsp;{{ volume }}{% endif %}{% if pages %}, p.&nbsp;{{ pages }}{% endif %}
+    {% if presenter %}
+        ({{ presenter.name }})
+    {% endif %}
 
     {% if identification %}
         </a>

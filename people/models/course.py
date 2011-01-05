@@ -20,7 +20,7 @@ class Course(models.Model):
         app_label = 'people'
 
     def __unicode__(self):
-        return self.name
+        return self.name or u""
 
 
 class Attachment(models.Model):
@@ -33,4 +33,4 @@ class Attachment(models.Model):
         unique_together = (('course', 'title'),)
 
     def __unicode__(self):
-        return self.title
+        return self.title or u""

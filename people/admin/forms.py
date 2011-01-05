@@ -4,8 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 
 class ArticleBookForm(forms.ModelForm):
     type = forms.ChoiceField(initial = 'BOOK', choices = (('BOOK', _('Book')),))
-    identification = forms.CharField(label=_('ISBN'), max_length=25)
-    publication = forms.CharField(label=_('Book title'), max_length=50)
+    identification = forms.CharField(label=_('ISBN'), max_length=100)
+    publication = forms.CharField(label=_('Book title'), max_length=100)
     page_from = forms.CharField(max_length=10)
     page_to = forms.CharField(max_length=10, required=False)
     editors = forms.CharField(label=_('Publishers'), max_length=200)
@@ -16,8 +16,8 @@ class ArticleBookForm(forms.ModelForm):
 
 class ArticleArticleForm(forms.ModelForm):
     type = forms.ChoiceField(initial = 'ARTICLE', choices = (('ARTICLE', _('Article')),))
-    identification = forms.CharField(label=_('DOI'), max_length=25)
-    publication = forms.CharField(label=_('Journal'), max_length=50)
+    identification = forms.CharField(label=_('DOI'), max_length=100)
+    publication = forms.CharField(label=_('Journal'), max_length=100)
     volume = forms.CharField(max_length=10)
     page_from = forms.CharField(max_length=10)
     page_to = forms.CharField(max_length=10, required=False)
@@ -30,7 +30,7 @@ class ArticleArticleForm(forms.ModelForm):
 
 class ArticleTalkForm(forms.ModelForm):
     type = forms.ChoiceField(initial = 'TALK', choices = (('TALK', _('Talk')),))
-    publication = forms.CharField(label=_('Abstract collection'), max_length=50, required=False)
+    publication = forms.CharField(label=_('Abstract collection'), max_length=100, required=False)
 
     class Meta:
         fields = ('type', 'year', 'title', 'length', 'presenter', # talk data
@@ -40,7 +40,7 @@ class ArticleTalkForm(forms.ModelForm):
 
 class ArticlePosterForm(forms.ModelForm):
     type = forms.ChoiceField(initial = 'POSTER', choices = (('POSTER', _('Poster')),))
-    publication = forms.CharField(label=_('Abstract collection'), max_length=50, required=False)
+    publication = forms.CharField(label=_('Abstract collection'), max_length=100, required=False)
 
     class Meta:
         fields = ('type', 'year', 'title', 'presenter', # talk data

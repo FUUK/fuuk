@@ -27,7 +27,7 @@ class Grant(models.Model):
         app_label = 'people'
 
     def __unicode__(self):
-        return self.title
+        return self.title or u""
 
     def clean(self):
         # Many-to-many fields can only be checked if instance is already saved

@@ -20,6 +20,7 @@ def citation(article):
         'year': article.year,
         'pages': pages,
         'type': article.type,
+        'presenter': article.presenter,
     }
     return tag_context
 

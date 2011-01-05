@@ -73,8 +73,10 @@ def thesis_list(request):
     else:
         queryset = queryset.none()
 
+    types = Thesis.objects.filter(defended=True).values_list('type', flat=True).annotate(Count('type')).order_by('-type')
+
     context = {
-        'types': Thesis.objects.filter(defended=True).values_list('type', flat=True).annotate(Count('type')).order_by('-type'),
+        'types': [(type, Thesis(type=type).get_type_display()) for type in types],
         'years': Thesis.objects.filter(defended=True).values_list('year', flat=True).annotate(Count('year')).order_by('-year'),
     }
     return object_list(

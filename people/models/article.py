@@ -54,7 +54,7 @@ class Article(models.Model):
         )
 
     def __unicode__(self):
-        return self.title
+        return self.title or u""
 
     def clean(self):
         if self.type == 'BOOK':
@@ -105,7 +105,7 @@ class Article(models.Model):
                 raise ValidationError(_('Page from must be filled if pages are specified.'))
             if self.length:
                 raise ValidationError(_('Poster can not have length.'))
-        if self.presenter and self.presenter not in self.author_set.all():
+        if self.presenter and not self.author_set.filter(person=self.presenter):
             raise ValidationError(_('Presenter must be among authors.'))
 
 

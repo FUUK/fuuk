@@ -42,7 +42,7 @@ class Human(models.Model):
         app_label = 'people'
 
     def __unicode__(self):
-        return self.nickname
+        return self.nickname or u""
 
 
 class Person(models.Model):
@@ -66,7 +66,7 @@ class Person(models.Model):
         )
 
     def __unicode__(self):
-        return u"%s %s (%s)" % (self.last_name, self.first_name, self.human or '')
+        return u"%s %s (%s)" % (self.last_name, self.first_name, self.human)
 
     def clean(self):
         if self.human:

@@ -33,7 +33,7 @@ class Thesis(models.Model):
         app_label = 'people'
 
     def __unicode__(self):
-        return self.title
+        return self.title or u""
 
     def clean(self):
         if self.advisor:
