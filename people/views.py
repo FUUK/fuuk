@@ -13,21 +13,22 @@ from people.models import Article, Human, Course, Person, Grant, Thesis
 
 
 def article_list(request, year=None):
-    queryset = Article.objects
-    if year is not None:
+    years = Article.objects.values_list('year', flat=True).annotate(Count('year')).order_by('-year')
+    if year is None:
+        year = years[0]
+    else:
         year = int(year)
-        queryset = queryset.filter(year=year)
-    queryset = queryset.order_by('-year', '-pk')
+    queryset = Article.objects.filter(year=year).order_by('-year', '-pk')
 
     context = {
         'year': year,
-        'years': Article.objects.values_list('year', flat=True).annotate(Count('year')).order_by('-year'),
+        'years': years,
     }
     return object_list(
         request,
         queryset,
         template_name='people/articles.html',
-        paginate_by=10,
+        paginate_by=50,
         extra_context=context,
     )
 
@@ -151,6 +152,10 @@ def get_common_context(nickname):
             Grant.objects.filter(author__human=person.human, end__gte=date.today().year).values_list('pk', flat=True)
             | Grant.objects.filter(co_authors__human=person.human, end__gte=date.today().year).values_list('pk', flat=True)
         ).order_by('-end', '-pk'),
+        'grants_finished': Grant.objects.filter(pk__in =
+            Grant.objects.filter(author__human=person.human, end__lt=date.today().year).values_list('pk', flat=True) | 
+            Grant.objects.filter(co_authors__human=person.human, end__lt=date.today().year).values_list('pk', flat=True)
+        ).order_by('-end', '-pk')
     }
     return context
 
@@ -190,12 +195,7 @@ def person_students(request, nickname):
 
 def person_grants(request, nickname):
     context = get_common_context(nickname)
-    if not context['grants']:
+    if not context['grants'] or not context['grants_finished']:
         raise Http404
-
-    context['grants_finished'] = Grant.objects.filter(pk__in =
-            Grant.objects.filter(author__human=context['person'].human, end__gte=(date.today().year - 2), end__lt=date.today().year).values_list('pk', flat=True) | 
-            Grant.objects.filter(co_authors__human=context['person'].human, end__gte=(date.today().year - 2), end__lt=date.today().year).values_list('pk', flat=True)
-        ).order_by('-end', '-pk')
 
     return render_to_response('people/person/grants.html', context, RequestContext(request))

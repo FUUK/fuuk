@@ -6,7 +6,7 @@
         <h1>{% trans "Current grants" %}</h1>
         <ul>
             {% for grant in object_list %}
-                <li><a href="{{ grant.id }}" class="strong">{{ grant.title }}</a></li><br />
+                <li><a href="{{ grant.id }}" class="strong">{{ grant.title }} ({{ grant.agency }})</a></li><br />
             {% endfor %}
         </ul>
     {% endif %}
@@ -15,7 +15,7 @@
         <h1>{% trans "Ended grants" %}</h1>
         <ul>
             {% for grant in grants_finished %}
-                <li><a href="{{ grant.id }}" class="strong">{{ grant.title }}</a></li><br />
+                <li><a href="{{ grant.id }}" class="strong">{{ grant.title }} ({{ grant.agency }})</a></li><br />
             {% endfor %}
         </ul>
     {% endif %}

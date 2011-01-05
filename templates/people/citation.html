@@ -5,9 +5,9 @@
 
     <i>
     {% for author in authors %}
-        {{ author.person.name }}{% if not forloop.last %},{% endif %}
+        {{ author.person.name }}{% if not forloop.last %},{% else %}:{% endif %}
     {% endfor %}
-    </i>: {{ title }}.
+    </i> {{ title }}.
     {% if publication %}
         <b>{{ publication }}</b>,
     {% endif %}
@@ -24,7 +24,7 @@
     {% comment %}
         TODO: this becomes highly unreadable, can spaceless tag be used to separate it to several lines?
     {% endcomment %}
-    {{ year }}{% if volume %}, vol.&nbsp;{{ volume }}{% endif %}{% if pages %}, p.&nbsp;{{ pages }}{% endif %}{% if presenter %}({{ presenter.name }}){% endif %}.
+    {{ year }}{% if volume %}, vol.&nbsp;{{ volume }}{% endif %}{% if pages %}, p.&nbsp;{{ pages }}{% endif %}{% if presenter %} ({{ presenter.name }}){% endif %}.
 
     {% if identification %}
         </a>

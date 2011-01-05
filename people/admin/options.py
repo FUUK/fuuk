@@ -89,7 +89,7 @@ class AuthorInlineAdmin(admin.TabularInline):
 ### Articles
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'type', 'year')
-    list_filter = ('type', 'year')
+    list_filter = ('year',)
     inlines = [AuthorInlineAdmin, ]
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},

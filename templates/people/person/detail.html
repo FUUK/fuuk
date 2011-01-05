@@ -18,7 +18,7 @@
                 {% if person.place %}
                     <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{{ person.place.department.name }}
                     <br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{{ person.place.name }}
-                    <br /><em><strong>Phone:</strong></em>&nbsp;&nbsp;{{ person.place.phone }}
+                    <br /><em><strong>{% trans "Phone" %}:</strong></em>&nbsp;&nbsp;{{ person.place.phone }}
                     <br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{{ person.place.department.fax }}
                 {% endif %}
                 {% if person.human.email %}
