@@ -5,12 +5,11 @@
     {{ block.super }}
     <table border="0">
         <tr>
-            {% comment %}
-                TODO: do not display if photo is missing
-            {% endcomment %}
-            <td align="center" valign="middle">
-                <img src="/media/{{ person.human.photo }}" width="120" height="154" vspace="0" hspace="30" alt="FOTO" />
-            </td>
+            {% if person.human.photo %}
+                <td align="center" valign="middle">
+                    <img src="/media/{{ person.human.photo }}" width="120" height="154" vspace="0" hspace="30" alt="FOTO" />
+                </td>
+            {% endif %}
             <td>
                 <h2>{{ person.full_name }}</h2>
                 {% if person.human.birth_date %}
@@ -52,6 +51,27 @@
                 TODO: use some markdown to render interests
             {% endcomment %}
             {{ person.human.cv|safe }}
+        <hr  size="3" width="100%"/>
+    {% endif %}
+    {% if theses %}
+        <p class="strong" align="left">{% trans "Defended thesis" %}:</p>
+            {% for thesis in theses %}
+                {% if thesis.type = 'BC' %}
+                    <b>{% trans "Defended bachelor thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
+                {% endif %}
+                {% if thesis.type = 'MGR' %}
+                    <b>{% trans "Defended master thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
+                {% endif %}
+                {% if thesis.type = 'PHD' %}
+                    <b>{% trans "Defended doctoral thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
+                {% endif %}
+                {% if thesis.type = 'RNDR' %}
+                    <b>{% trans "Defended rigorous thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
+                {% endif %}
+                {% if thesis.type = 'PROF' %}
+                    <b>{% trans "Defended professor thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
+                {% endif %}
+            {% endfor %}
         <hr  size="3" width="100%"/>
     {% endif %}
 {% endblock %}
