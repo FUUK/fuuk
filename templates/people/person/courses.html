@@ -23,7 +23,7 @@
                     		<em><strong>{% trans "Note" %}:</strong></em> {{ course.note }}<br />
                     {% endif %}
                     {% if course.attachment_set.all %}
-                    		{% trans "Attachments" %}: {% for a in course.attachment_set.all %}<a href="{{ a.file }}">{{ a.title }}</a>{% endfor %}               
+                    		{% trans "Attachments" %}: {% for a in course.attachment_set.all %}<a href="{{ a.file }}">{{ a.title }}</a>, {% endfor %}               
                     {% endif %}
                 </p>
             </li>
