@@ -5,7 +5,7 @@ from django.forms import CharField
 
 import multilingual
 from people.admin.forms import ArticleBookForm, ArticleArticleForm, ArticleConferenceForm
-from people.models import Person, Author
+from people.models import Attachment, Author
 
 
 class NullCharField(CharField):
@@ -48,17 +48,23 @@ class PersonAdmin(admin.ModelAdmin):
     }
 
 
+class AttachmentAdmin(admin.ModelAdmin):
+    list_display = ('course', 'title')
+
+
+class AttachmentInlineAdmin(admin.TabularInline):
+    model = Attachment
+    extra = 3
+
+
 class CourseAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('name', 'ls', 'zs', 'code')
+    inlines = [AttachmentInlineAdmin, ]
     filter_horizontal = ('lectors',)
     ordering = ('code',)
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
-
-
-class AttachmentAdmin(admin.ModelAdmin):
-    list_display = ('course', 'title')
 
 
 class GrantAdmin(multilingual.MultilingualModelAdmin):
@@ -80,37 +86,50 @@ class AuthorInlineAdmin(admin.TabularInline):
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         defaults = {
-            'queryset': Person.objects.order_by('-is_active', 'last_name', 'first_name')
+            'queryset': db_field.rel.to.objects.order_by('last_name', 'first_name')
         }
         defaults.update(kwargs)
         return super(AuthorInlineAdmin, self).formfield_for_foreignkey(db_field, request, **defaults)
 
 
 ### Articles
-class ArticleAdmin(admin.ModelAdmin):
+class BaseArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'type', 'year')
-    list_filter = ('type', 'year')
+    list_filter = ('year',)
     inlines = [AuthorInlineAdmin, ]
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
 
 
-class ArticleBookAdmin(ArticleAdmin):
+class ArticleAdmin(BaseArticleAdmin):
+    list_filter = ('type', 'year')
+
+    def has_add_permission(self, request):
+        return request.user.is_superuser
+
+    def has_change_permission(self, request, obj=None):
+        return request.user.is_superuser
+
+    def has_delete_permission(self, request, obj=None):
+        return request.user.is_superuser
+
+
+class ArticleBookAdmin(BaseArticleAdmin):
     form = ArticleBookForm
 
     def queryset(self, request):
         return super(ArticleBookAdmin, self).queryset(request).filter(type='BOOK')
 
 
-class ArticleArticleAdmin(ArticleAdmin):
+class ArticleArticleAdmin(BaseArticleAdmin):
     form = ArticleArticleForm
 
     def queryset(self, request):
         return super(ArticleArticleAdmin, self).queryset(request).filter(type='ARTICLE')
 
 
-class ArticleConferenceAdmin(ArticleAdmin):
+class ArticleConferenceAdmin(BaseArticleAdmin):
     form = ArticleConferenceForm
 
     def queryset(self, request):

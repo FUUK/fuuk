@@ -92,11 +92,9 @@ class Person(models.Model):
 
     @property
     def full_name(self):
-        return u"%s%s%s %s%s%s" % (
-            self.prefix,
-            self.prefix and ' ' or '',
+        return u"%s%s %s%s" % (
+            self.prefix and u"%s " % self.prefix or u"",
             self.first_name,
             self.last_name,
-            self.suffix and ', ' or '',
-            self.suffix
+            self.suffix and u", %s" % self.suffix or u"",
         )
