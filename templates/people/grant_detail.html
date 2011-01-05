@@ -9,7 +9,7 @@
         <p>
             <strong><em>{% trans "Grant agency" %}:</em></strong> {{ object.agency }}<br />
             <strong><em>{% trans "Identification number of grant" %}:</em></strong> {{ object.number }}<br />
-            <strong><em>{% trans "Head of the project" %}:</em></strong> {{ object.author.full_name }} {% if not object.author.type %}{{ object.author.place }}{% endif %}<br />
+            <strong><em>{% trans "Head of the project" %}:</em></strong> {{ object.author.full_name }} {% if not object.author.type %}({{ object.author.place }}){% endif %}<br />
             {% if object.co_authors.all %}
                 <strong><em>{% trans "Vice-head of the project" %}:</em></strong>
                 {% for co_author in object.co_authors.all %}

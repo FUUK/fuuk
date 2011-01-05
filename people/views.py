@@ -195,7 +195,7 @@ def person_students(request, nickname):
 
 def person_grants(request, nickname):
     context = get_common_context(nickname)
-    if not context['grants'] or not context['grants_finished']:
+    if not (context['grants'] or context['grants_finished']):
         raise Http404
 
     return render_to_response('people/person/grants.html', context, RequestContext(request))

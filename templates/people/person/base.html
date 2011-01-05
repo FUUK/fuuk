@@ -23,7 +23,7 @@
                     <a class="strong" href="{% url person_courses person.human.nickname %}">{% trans "Courses" %} </a>
                 </li>
             {% endif %}
-            {% if grants %}
+            {% if grants or grants_finished %}
                 <li>
                     <a class="strong" href="{% url person_grants person.human.nickname %}">{% trans "Grants" %} </a>
                 </li>
