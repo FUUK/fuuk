@@ -1,0 +1,37 @@
+- fields: {name: book, app_label: publications, model: articlebook}
+  model: contenttypes.contenttype
+  pk: NULL
+- fields: {name: article, app_label: publications, model: articlearticle}
+  model: contenttypes.contenttype
+  pk: NULL
+- fields: {name: conference, app_label: publications, model: articleconference}
+  model: contenttypes.contenttype
+  pk: NULL
+
+- fields: {codename: add_articlebook, name: "Can add book", content_type: ["publications", "articlebook"]}
+  model: auth.permission
+  pk: NULL
+- fields: {codename: change_articlebook, name: "Can change book", content_type: ["publications", "articlebook"]}
+  model: auth.permission
+  pk: NULL
+- fields: {codename: delete_articlebook, name: "Can delete book", content_type: ["publications", "articlebook"]}
+  model: auth.permission
+  pk: NULL
+- fields: {codename: add_articlearticle, name: "Can add article", content_type: ["publications", "articlearticle"]}
+  model: auth.permission
+  pk: NULL
+- fields: {codename: change_articlearticle, name: "Can change article", content_type: ["publications", "articlearticle"]}
+  model: auth.permission
+  pk: NULL
+- fields: {codename: delete_articlearticle, name: "Can delete article", content_type: ["publications", "articlearticle"]}
+  model: auth.permission
+  pk: NULL
+- fields: {codename: add_articleconference, name: "Can add conference", content_type: ["publications", "articleconference"]}
+  model: auth.permission
+  pk: NULL
+- fields: {codename: change_articleconference, name: "Can change conference", content_type: ["publications", "articleconference"]}
+  model: auth.permission
+  pk: NULL
+- fields: {codename: delete_articleconference, name: "Can delete conference", content_type: ["publications", "articleconference"]}
+  model: auth.permission
+  pk: NULL
