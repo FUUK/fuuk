@@ -5,7 +5,7 @@
 
     <i>
     {% for author in authors %}
-        {{ author.person.name }}{% if not foorloop.last %},{% endif %}
+        {{ author.person.name }}{% if not forloop.last %},{% endif %}
     {% endfor %}
     </i>: {{ title }}.
     {% if publication %}
@@ -21,7 +21,7 @@
             Editors: {{ editors }},
         {% endif %}
     {% endif %}
-    {{ year }}{% if volume %}, vol.&nbsp;{{ volume }}{% endif %}{% if pages %}, p.&nbsp;{{ pages }}{% endif %}
+    {{ year }}{% if volume %}, vol.&nbsp;{{ volume }}{% endif %}{% if pages %}, p.&nbsp;{{ pages }}{% endif %}.
 
     {% if identification %}
         </a>
