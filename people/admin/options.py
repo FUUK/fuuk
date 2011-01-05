@@ -4,7 +4,7 @@ from django.db import models
 from django.forms import CharField
 
 import multilingual
-from people.admin.forms import ArticleBookForm, ArticleArticleForm, ArticleTalkForm, ArticlePosterForm
+from people.admin.forms import ArticleBookForm, ArticleArticleForm, ArticleConferenceForm
 from people.models import Person, Author
 
 
@@ -110,15 +110,8 @@ class ArticleArticleAdmin(ArticleAdmin):
         return super(ArticleArticleAdmin, self).queryset(request).filter(type='ARTICLE')
 
 
-class ArticleTalkAdmin(ArticleAdmin):
-    form = ArticleTalkForm
+class ArticleConferenceAdmin(ArticleAdmin):
+    form = ArticleConferenceForm
 
     def queryset(self, request):
-        return super(ArticleTalkAdmin, self).queryset(request).filter(type='TALK')
-
-
-class ArticlePosterAdmin(ArticleAdmin):
-    form = ArticlePosterForm
-
-    def queryset(self, request):
-        return super(ArticlePosterAdmin, self).queryset(request).filter(type='POSTER')
+        return super(ArticleConferenceAdmin, self).queryset(request).filter(type__in=('TALK', 'INVITED', 'POSTER'))

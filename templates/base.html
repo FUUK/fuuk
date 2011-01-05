@@ -22,8 +22,8 @@
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css">
         {% block extrahead %}{% endblock %}
         {% if media %}{{ media }}{% endif %}
-        <script type="text/javascript" src="{{ MEDIA_URL }}css/js/cookie.js"></script> 
-        <script src="{{ MEDIA_URL }}css/js/scripts.js" type="text/javascript"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/cookie.js"></script> 
+        <script src="{{ MEDIA_URL }}js/scripts.js" type="text/javascript"></script>
         <script type="text/javascript"> 
                 window.onload = function () {
                     compactMenu('navlist',true,'&plusmn; ');
@@ -39,7 +39,7 @@
         <div id="container">
             <!-- Header -->
             <div id="header">
-                <div id="header-content" style='background: url(/media/css/img/logo.png) left no-repeat; width:800px; margin-left: 10px'>
+                <div id="header-content" style='background: url(/media/img/logo.png) left no-repeat; width:800px; margin-left: 10px'>
                     <div style='margin-left:100px;font-size:24px; font-weight:bold; color: #FFFFFF; text-align: center'>
                         {% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}
                     </div>

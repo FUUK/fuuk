@@ -56,22 +56,8 @@
     {% if theses %}
         <p class="strong" align="left">{% trans "Defended thesis" %}:</p>
             {% for thesis in theses %}
-                {% if thesis.type = 'BC' %}
-                    <b>{% trans "Defended bachelor thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
-                {% endif %}
-                {% if thesis.type = 'MGR' %}
-                    <b>{% trans "Defended master thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
-                {% endif %}
-                {% if thesis.type = 'PHD' %}
-                    <b>{% trans "Defended doctoral thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
-                {% endif %}
-                {% if thesis.type = 'RNDR' %}
-                    <b>{% trans "Defended rigorous thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
-                {% endif %}
-                {% if thesis.type = 'PROF' %}
-                    <b>{% trans "Defended professor thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
-                {% endif %}
+                <b>{% trans "Defended" %} {{ thesis.get_type_display }} {% trans "thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
             {% endfor %}
-        <hr  size="3" width="100%"/>
+        <hr size="3" width="100%"/>
     {% endif %}
 {% endblock %}

@@ -1,6 +1,8 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+from people.models import ARTICLE_TYPES
+
 
 class ArticleBookForm(forms.ModelForm):
     type = forms.ChoiceField(initial = 'BOOK', choices = (('BOOK', _('Book')),))
@@ -27,19 +29,10 @@ class ArticleArticleForm(forms.ModelForm):
 
 
 #TODO: narrow select for 'presenter' only to authors already added
+conference_choices = [(key, value) for key, value in ARTICLE_TYPES if key in ('TALK', 'INVITED', 'POSTER')]
 
-class ArticleTalkForm(forms.ModelForm):
-    type = forms.ChoiceField(initial = 'TALK', choices = (('TALK', _('Talk')),))
-    publication = forms.CharField(label=_('Abstract collection'), max_length=100, required=False)
-
-    class Meta:
-        fields = ('type', 'year', 'title', 'length', 'presenter', # talk data
-                  'publication', 'page_from', 'page_to', 'editors', 'place' # abstract collection data
-        )
-
-
-class ArticlePosterForm(forms.ModelForm):
-    type = forms.ChoiceField(initial = 'POSTER', choices = (('POSTER', _('Poster')),))
+class ArticleConferenceForm(forms.ModelForm):
+    type = forms.ChoiceField(choices = conference_choices)
     publication = forms.CharField(label=_('Abstract collection'), max_length=100, required=False)
 
     class Meta:

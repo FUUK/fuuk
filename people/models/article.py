@@ -9,7 +9,8 @@ from people.models import Person
 ARTICLE_TYPES = (
     ('BOOK', _('Book')),
     ('ARTICLE', _('Article')),
-    ('TALK', _('Talk')),
+    ('TALK', _('Lecture')),
+    ('INVITED', _('Invited lecture')), # almost same as TALK
     ('POSTER', _('Poster')),
 )
 
@@ -42,8 +43,6 @@ class Article(models.Model):
     place = models.CharField(max_length=200, blank=True, null=True)
 
     ### PRESENTATION INFO
-    # only TALK, in minutes
-    length = models.SmallIntegerField(blank=True, null=True)
     # only TALK, POSTER
     presenter = models.ForeignKey(Person, blank=True, null=True)
 
@@ -89,22 +88,13 @@ class Article(models.Model):
                 raise ValidationError(_('Article can not have length.'))
             if self.presenter:
                 raise ValidationError(_('Article can not have presenter.'))
-        elif self.type == 'TALK':
+        elif self.type in ('TALK', 'INVITED', 'POSTER'):
             if self.identification:
                 raise ValidationError(_('Talk can not have ISBN/DOI number.'))
             if self.volume:
                 raise ValidationError(_('Talk can not have volume.'))
             if not self.page_from and self.page_to:
                 raise ValidationError(_('Page from must be filled if pages are specified.'))
-        elif self.type == 'POSTER':
-            if self.identification:
-                raise ValidationError(_('Poster can not have ISBN/DOI number.'))
-            if self.volume:
-                raise ValidationError(_('Poster can not have volume.'))
-            if not self.page_from and self.page_to:
-                raise ValidationError(_('Page from must be filled if pages are specified.'))
-            if self.length:
-                raise ValidationError(_('Poster can not have length.'))
         if self.presenter and not self.author_set.filter(person=self.presenter):
             raise ValidationError(_('Presenter must be among authors.'))
 
@@ -148,17 +138,9 @@ class ArticleArticle(Article):
         verbose_name_plural = _('Articles')
 
 
-class ArticleTalk(Article):
+class ArticleConference(Article):
     class Meta:
         app_label = 'publications'
         proxy = True
-        verbose_name = _('Talk')
-        verbose_name_plural = _('Talks')
-
-
-class ArticlePoster(Article):
-    class Meta:
-        app_label = 'publications'
-        proxy = True
-        verbose_name = _('Poster')
-        verbose_name_plural = _('Posters')
+        verbose_name = _('Conference paper')
+        verbose_name_plural = _('Conference paper')
