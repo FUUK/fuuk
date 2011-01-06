@@ -22,7 +22,7 @@ margin: 0;
 height: 100px;
 padding: 0;
 /*border-bottom: 1px solid blue;*/
-background: url("img/mrizka.png") left repeat;
+background: url("../img/mrizka.png") left repeat;
 }
 
 #header-content
