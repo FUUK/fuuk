@@ -67,8 +67,6 @@ class Article(models.Model):
                 raise ValidationError(_('Book has to have page(s).'))
             if not self.editors:
                 raise ValidationError(_('Book has to have publishers.'))
-            if self.length:
-                raise ValidationError(_('Book can not have length.'))
             if self.presenter:
                 raise ValidationError(_('Book can not have presenter.'))
         elif self.type == 'ARTICLE':
@@ -84,8 +82,6 @@ class Article(models.Model):
                 raise ValidationError(_('Article can not have editors.'))
             if self.place:
                 raise ValidationError(_('Article can not have place.'))
-            if self.length:
-                raise ValidationError(_('Article can not have length.'))
             if self.presenter:
                 raise ValidationError(_('Article can not have presenter.'))
         elif self.type in ('TALK', 'INVITED', 'POSTER'):
