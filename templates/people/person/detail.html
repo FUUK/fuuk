@@ -56,7 +56,7 @@
     {% if theses %}
         <p class="strong" align="left">{% trans "Defended thesis" %}:</p>
             {% for thesis in theses %}
-                <b>{% trans "Defended" %} {{ thesis.get_type_display }} {% trans "thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
+                <b>{% trans "Defended" %} {{ thesis.get_type_display|lower }} {% trans "thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
             {% endfor %}
         <hr size="3" width="100%"/>
     {% endif %}

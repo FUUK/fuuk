@@ -6,7 +6,7 @@
 		<strong>{% trans "Author" %}:</strong> <a href="/people/detail/{{ thesis.author.human.nickname }}">{{ thesis.author.full_name }}</a><br />
 		<strong>{% trans "Supervisor" %}:</strong> {{ thesis.advisor.full_name }}<br />
 		<strong>{% trans "Type" %}:</strong> {{ thesis.get_type_display }}</p>
-		<p><strong>{% trans "Abstract" %}:</strong> {{ thesis.abstract }}</p>
+		<p><strong>{% trans "Abstract" %}:</strong> {{ thesis.abstract|safe }}</p>
 		<strong>{% trans "Keywords" %}:</strong> {{ thesis.keywords }}</p>
 		<hr size="1" width="100%" /> 
 	{{ block.super }}

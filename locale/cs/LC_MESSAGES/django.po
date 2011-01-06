@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FUUK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-05 10:35+0100\n"
-"PO-Revision-Date: 2011-01-05 14:44+0100\n"
+"POT-Creation-Date: 2011-01-06 12:42+0100\n"
+"PO-Revision-Date: 2011-01-06 12:43+0100\n"
 "Last-Translator: Tomáš Pazderka <pazderka@karlov.mff.cuni.cz>\n"
 "Language-Team:  <pazderka@karlov.mff.cuni.cz>\n"
 "MIME-Version: 1.0\n"
@@ -18,174 +18,159 @@ msgstr ""
 "X-Poedit-Language: Czech\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 
-#: people/views.py:99
+#: settings.py:118
+msgid "default"
+msgstr ""
+
+#: people/views.py:102
 #: people/models/person.py:13
-#: templates/base.html:78
+#: templates/base.html:77
 msgid "Staff"
 msgstr "Členové oddělení"
 
-#: people/views.py:112
-#: templates/base.html:79
+#: people/views.py:115
+#: templates/base.html:78
 msgid "PhD. students"
 msgstr "Doktorandi"
 
-#: people/admin/forms.py:6
+#: people/admin/forms.py:8
 #: people/models/article.py:10
-#: people/models/article.py:139
+#: people/models/article.py:129
 msgid "Book"
 msgstr "Kniha"
 
-#: people/admin/forms.py:7
+#: people/admin/forms.py:9
 msgid "ISBN"
 msgstr "ISBN"
 
-#: people/admin/forms.py:8
+#: people/admin/forms.py:10
 msgid "Book title"
 msgstr ""
 
-#: people/admin/forms.py:11
+#: people/admin/forms.py:13
 msgid "Publishers"
 msgstr ""
 
-#: people/admin/forms.py:18
+#: people/admin/forms.py:20
 #: people/models/article.py:11
-#: people/models/article.py:147
+#: people/models/article.py:137
 msgid "Article"
 msgstr "Článek"
 
-#: people/admin/forms.py:19
+#: people/admin/forms.py:21
 msgid "DOI"
 msgstr "DOI"
 
-#: people/admin/forms.py:20
+#: people/admin/forms.py:22
 msgid "Journal"
 msgstr ""
 
-#: people/admin/forms.py:32
-#: people/models/article.py:12
-#: people/models/article.py:155
-msgid "Talk"
-msgstr "Přednáška"
-
-#: people/admin/forms.py:33
-#: people/admin/forms.py:43
+#: people/admin/forms.py:36
 msgid "Abstract collection"
 msgstr ""
 
-#: people/admin/forms.py:42
+#: people/models/article.py:12
+msgid "Lecture"
+msgstr ""
+
 #: people/models/article.py:13
-#: people/models/article.py:163
+msgid "Invited lecture"
+msgstr ""
+
+#: people/models/article.py:14
 msgid "Poster"
 msgstr "Poster"
 
-#: people/models/article.py:62
+#: people/models/article.py:61
 msgid "Book has to have ISBN number."
 msgstr "Kniha musí mít ISBN."
 
-#: people/models/article.py:64
+#: people/models/article.py:63
 msgid "Book has to have book title."
 msgstr "Kniha musí mít název."
 
-#: people/models/article.py:66
+#: people/models/article.py:65
 msgid "Book can not have volume."
 msgstr "Kniha nemůže mít svazek."
 
-#: people/models/article.py:68
-#, fuzzy
+#: people/models/article.py:67
 msgid "Book has to have page(s)."
 msgstr "Kniha musí mít stránky."
 
-#: people/models/article.py:70
+#: people/models/article.py:69
 msgid "Book has to have publishers."
 msgstr "Kniha musí mít vydavatele."
 
-#: people/models/article.py:72
+#: people/models/article.py:71
 msgid "Book can not have length."
 msgstr "Kniha nemůže mít zadanou délku."
 
-#: people/models/article.py:74
+#: people/models/article.py:73
 msgid "Book can not have presenter."
 msgstr "Kniha nemůže mít přednášejícího."
 
-#: people/models/article.py:77
+#: people/models/article.py:76
 msgid "Article has to have DOI number."
 msgstr "Článek musí mít DOI."
 
-#: people/models/article.py:79
+#: people/models/article.py:78
 msgid "Article has to have journal."
 msgstr "Článek musí mít žurnál."
 
-#: people/models/article.py:81
+#: people/models/article.py:80
 msgid "Article has to have volume."
 msgstr "Článek musí mít svazek."
 
-#: people/models/article.py:83
-#, fuzzy
+#: people/models/article.py:82
 msgid "Article has to have page(s)."
 msgstr "Článek musí mít stránky."
 
-#: people/models/article.py:85
+#: people/models/article.py:84
 msgid "Article can not have editors."
 msgstr "Článek nemůže mít editory."
 
-#: people/models/article.py:87
+#: people/models/article.py:86
 msgid "Article can not have place."
 msgstr "Článek nemůže mít místo."
 
-#: people/models/article.py:89
+#: people/models/article.py:88
 msgid "Article can not have length."
 msgstr "Článek nemůže mít délku."
 
-#: people/models/article.py:91
+#: people/models/article.py:90
 msgid "Article can not have presenter."
 msgstr "Článek nemůže mít přednášejícího."
 
-#: people/models/article.py:94
+#: people/models/article.py:93
 msgid "Talk can not have ISBN/DOI number."
 msgstr ""
 
-#: people/models/article.py:96
+#: people/models/article.py:95
 msgid "Talk can not have volume."
 msgstr ""
 
-#: people/models/article.py:98
-#: people/models/article.py:105
+#: people/models/article.py:97
 msgid "Page from must be filled if pages are specified."
 msgstr ""
 
-#: people/models/article.py:101
-msgid "Poster can not have ISBN/DOI number."
-msgstr "Poster nemůže mít DOI/ISBN."
-
-#: people/models/article.py:103
-msgid "Poster can not have volume."
-msgstr "Poster nemůže mít svazek."
-
-#: people/models/article.py:107
-msgid "Poster can not have length."
-msgstr "Poster nemůže mít délku."
-
-#: people/models/article.py:109
+#: people/models/article.py:99
 msgid "Presenter must be among authors."
 msgstr "Přednášející musí být mezi autory."
 
-#: people/models/article.py:140
+#: people/models/article.py:130
 msgid "Books"
 msgstr "Knihy"
 
-#: people/models/article.py:148
+#: people/models/article.py:138
 #: templates/people/person/articles.html:7
 #: templates/people/person/base.html:13
 msgid "Articles"
 msgstr "Publikace v časopisech"
 
-#: people/models/article.py:156
-msgid "Talks"
-msgstr "Přednášky"
-
-#: people/models/article.py:164
-msgid "Posters"
-msgstr "Postery"
+#: people/models/article.py:145
+#: people/models/article.py:146
+msgid "Conference paper"
+msgstr "Konferenční příspěvky"
 
 #: people/models/person.py:14
 msgid "PhD. student"
@@ -264,65 +249,61 @@ msgstr "Nabídka prací"
 msgid "Defended thesis"
 msgstr "Obhájené práce"
 
-#: templates/base.html:73
-msgid "Summer school"
-msgstr "Letní škola"
-
-#: templates/base.html:76
+#: templates/base.html:75
 msgid "People"
 msgstr "Lidé"
 
-#: templates/base.html:80
+#: templates/base.html:79
 #: templates/people/students.html:5
 #: templates/people/person/base.html:18
 #: templates/people/person/students.html:6
 msgid "Students"
 msgstr "Studenti"
 
-#: templates/base.html:83
+#: templates/base.html:82
 msgid "Science"
 msgstr "Věda"
 
-#: templates/base.html:85
+#: templates/base.html:84
 msgid "Problematics"
 msgstr "Problematika"
 
-#: templates/base.html:86
+#: templates/base.html:85
 msgid "Publications"
 msgstr "Publikace"
 
-#: templates/base.html:87
+#: templates/base.html:86
 #: templates/people/grant_detail.html:6
 #: templates/people/person/base.html:28
 #: templates/people/person/grants.html:7
 msgid "Grants"
 msgstr "Granty"
 
-#: templates/base.html:88
+#: templates/base.html:87
 msgid "Labs"
 msgstr "Laboratoře"
 
-#: templates/base.html:89
+#: templates/base.html:88
 msgid "Cooperations"
 msgstr "Spolupráce"
 
-#: templates/base.html:92
+#: templates/base.html:91
 msgid "Gallery"
 msgstr "Galerie"
 
-#: templates/base.html:93
+#: templates/base.html:92
 msgid "How to find us"
 msgstr "Kde nás najdete"
 
-#: templates/base.html:110
+#: templates/base.html:109
 msgid "Contact"
 msgstr "S připomínkami a dotazy se obracejte na"
 
-#: templates/base.html:110
+#: templates/base.html:109
 msgid "webmasters"
 msgstr "správce"
 
-#: templates/base.html:110
+#: templates/base.html:109
 msgid "for any suggestion or more information."
 msgstr "stránek."
 
@@ -463,6 +444,10 @@ msgstr "Pracoviště"
 msgid "Room"
 msgstr "Místnost"
 
+#: templates/people/person/detail.html:21
+msgid "Phone"
+msgstr ""
+
 #: templates/people/person/detail.html:33
 msgid "Fields of interest and research experience"
 msgstr "Odborné zájmy"
@@ -475,27 +460,13 @@ msgstr "Dlouhodobé zahraniční pobyty"
 msgid "Curiculum vitae"
 msgstr "Odborný životopis"
 
-#: templates/people/person/detail.html:60
-msgid "Defended bachelor thesis"
-msgstr "Obhájené bakalářské práce"
+#: templates/people/person/detail.html:59
+msgid "Defended"
+msgstr "Obhájená"
 
-#: templates/people/person/detail.html:63
-msgid "Defended master thesis"
-msgstr "Obhájené magisterské práce"
-
-#: templates/people/person/detail.html:66
-msgid "Defended doctoral thesis"
-msgstr "Obhájené dizertační práce"
-
-#: templates/people/person/detail.html:69
-#, fuzzy
-msgid "Defended rigorous thesis"
-msgstr "Obhájené práce"
-
-#: templates/people/person/detail.html:72
-#, fuzzy
-msgid "Defended professor thesis"
-msgstr "Obhájené práce"
+#: templates/people/person/detail.html:59
+msgid "thesis"
+msgstr "práce"
 
 #: templates/people/person/grants.html:34
 msgid "Finished grants"
@@ -525,6 +496,34 @@ msgstr "rok PhD. studia"
 msgid "Disertation thesis"
 msgstr "Dizertační práce"
 
+#~ msgid "Talk"
+#~ msgstr "Přednáška"
+#~ msgid "Poster can not have ISBN/DOI number."
+#~ msgstr "Poster nemůže mít DOI/ISBN."
+#~ msgid "Poster can not have volume."
+#~ msgstr "Poster nemůže mít svazek."
+#~ msgid "Poster can not have length."
+#~ msgstr "Poster nemůže mít délku."
+#~ msgid "Talks"
+#~ msgstr "Přednášky"
+#~ msgid "Posters"
+#~ msgstr "Postery"
+#~ msgid "Summer school"
+#~ msgstr "Letní škola"
+#~ msgid "Defended bachelor thesis"
+#~ msgstr "Obhájené bakalářské práce"
+#~ msgid "Defended master thesis"
+#~ msgstr "Obhájené magisterské práce"
+#~ msgid "Defended doctoral thesis"
+#~ msgstr "Obhájené dizertační práce"
+
+#, fuzzy
+#~ msgid "Defended rigorous thesis"
+#~ msgstr "Obhájené práce"
+
+#, fuzzy
+#~ msgid "Defended professor thesis"
+#~ msgstr "Obhájené práce"
 #~ msgid "Proceeding"
 #~ msgstr "Konf. příspěvek"
 #~ msgid "Talk can not have pages."
