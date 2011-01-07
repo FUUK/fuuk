@@ -24,7 +24,7 @@ class Article(models.Model):
     # DOI for ARTICLE (required); ISBN for BOOK (required)
     identification = models.CharField(max_length=100, blank=True, null=True, unique=True)
     year = models.SmallIntegerField(validators=[MinValueValidator(1990)])
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=300)
 
     ### PUBLICATION INFO
     # journal for ARTICLE (required)
@@ -70,8 +70,8 @@ class Article(models.Model):
             if self.presenter:
                 raise ValidationError(_('Book can not have presenter.'))
         elif self.type == 'ARTICLE':
-            if not self.identification:
-                raise ValidationError(_('Article has to have DOI number.'))
+#            if not self.identification:
+#                raise ValidationError(_('Article has to have DOI number.'))
             if not self.publication:
                 raise ValidationError(_('Article has to have journal.'))
             if not self.volume:
@@ -110,10 +110,10 @@ class Author(models.Model):
     def __unicode__(self):
         return u'%s %s (%s)' % (self.person, self.article, self.order)
 
-    def clean(self):
-        if self.order > 1 \
-        and self.article.author_set.exclude(pk=self.pk).filter(order__lt=self.order).count() != (self.order - 1):
-            raise ValidationError('Authors must be added in order.')
+#    def clean(self):
+#        if self.order > 1 \
+#        and self.article.author_set.exclude(pk=self.pk).filter(order__lt=self.order).count() != (self.order - 1):
+#            raise ValidationError('Authors must be added in order.')
 
 
 ### Article proxy models

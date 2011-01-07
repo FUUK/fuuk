@@ -18,7 +18,7 @@ class ArticleBookForm(forms.ModelForm):
 
 class ArticleArticleForm(forms.ModelForm):
     type = forms.ChoiceField(initial = 'ARTICLE', choices = (('ARTICLE', _('Article')),))
-    identification = forms.CharField(label=_('DOI'), max_length=100)
+    identification = forms.CharField(label=_('DOI'), max_length=100, required=False)
     publication = forms.CharField(label=_('Journal'), max_length=100)
     volume = forms.CharField(max_length=10)
     page_from = forms.CharField(max_length=10)
