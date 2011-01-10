@@ -13,12 +13,16 @@ from people.models import Article, Human, Course, Person, Grant, Thesis
 
 
 def article_list(request, year=None):
-    years = Article.objects.values_list('year', flat=True).annotate(Count('year')).order_by('-year')
+    years = Article.objects.filter(pk__in =
+        Article.objects.filter(type='ARTICLE').values_list('pk', flat=True) |
+        Article.objects.filter(type='BOOK').values_list('pk', flat=True)).values_list('year', flat=True).annotate(Count('year')).order_by('-year')
     if year is None:
         year = years[0]
     else:
         year = int(year)
-    queryset = Article.objects.filter(year=year).order_by('-year', '-pk')
+    queryset = Article.objects.filter(pk__in =
+        Article.objects.filter(type='ARTICLE').values_list('pk', flat=True) |
+        Article.objects.filter(type='BOOK').values_list('pk', flat=True)).filter(year=year).order_by('-year', '-pk')
 
     context = {
         'year': year,
