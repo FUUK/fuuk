@@ -167,6 +167,7 @@ def get_common_context(nickname):
 def person_detail(request, nickname):
     context = get_common_context(nickname)
     context['theses'] = Thesis.objects.filter(author__human=context['person'].human, defended=True).order_by('-year')
+    context['theses_on'] = Thesis.objects.filter(author__human=context['person'].human, defended=False)
     return render_to_response('people/person/detail.html', context, RequestContext(request))
 
 

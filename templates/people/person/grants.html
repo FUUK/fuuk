@@ -1,6 +1,7 @@
 {% extends "people/person/base.html" %}
 {% load i18n %}
 
+
 {% block content %}
     {{ block.super }}
 	 {% if grants %}   
@@ -22,7 +23,10 @@
                         {% endif %}
                     </p>
                     <p>
-                        {{ grant.annotation }}
+                        <a href="#" onclick="toggle_visibility('{{ grant.id }}');">{% trans "Grant annotation" %}</a>
+                        	<div id="{{ grant.id }}" style='display:none';>
+                        		{{ grant.annotation }}
+                        	</div>
                     </p>
                     <hr size="3" width="100%" />
                 </p>
@@ -49,7 +53,10 @@
                         {% endif %}
                     </p>
                     <p>
-                        {{ grant.annotation }}
+                        <a href="#" onclick="toggle_visibility('{{ grant.id }}');">{% trans "Grant annotation" %}</a>
+                        	<div id="{{ grant.id }}" style='display:none';>
+                        		{{ grant.annotation }}
+                        	</div>
                     </p>
                     <hr size="3" width="100%" />
                 </p>
