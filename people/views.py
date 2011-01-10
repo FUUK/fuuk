@@ -13,16 +13,12 @@ from people.models import Article, Human, Course, Person, Grant, Thesis
 
 
 def article_list(request, year=None):
-    years = Article.objects.filter(pk__in =
-        Article.objects.filter(type='ARTICLE').values_list('pk', flat=True) |
-        Article.objects.filter(type='BOOK').values_list('pk', flat=True)).values_list('year', flat=True).annotate(Count('year')).order_by('-year')
+    years = Article.objects.filter(type__in = ('ARTICLE', 'BOOK')).values_list('year', flat=True).annotate(Count('year')).order_by('-year')
     if year is None:
         year = years[0]
     else:
         year = int(year)
-    queryset = Article.objects.filter(pk__in =
-        Article.objects.filter(type='ARTICLE').values_list('pk', flat=True) |
-        Article.objects.filter(type='BOOK').values_list('pk', flat=True)).filter(year=year).order_by('-year', '-pk')
+    queryset = Article.objects.filter(type__in = ('ARTICLE', 'BOOK'), year=year).order_by('-year', '-pk')
 
     context = {
         'year': year,
@@ -167,7 +163,7 @@ def get_common_context(nickname):
 def person_detail(request, nickname):
     context = get_common_context(nickname)
     context['theses'] = Thesis.objects.filter(author__human=context['person'].human, defended=True).order_by('-year')
-    context['theses_on'] = Thesis.objects.filter(author__human=context['person'].human, defended=False)
+    context['theses_ongoing'] = Thesis.objects.filter(author__human=context['person'].human, defended=False)
     return render_to_response('people/person/detail.html', context, RequestContext(request))
 
 

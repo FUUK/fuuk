@@ -53,11 +53,11 @@
             {{ person.human.cv|safe }}
         <hr  size="3" width="100%"/>
     {% endif %}
-    {% if theses_on %}
+    {% if theses_ongoing %}
         <p class="strong" align="left">{% trans "Current thesis" %}:</p>
-        		{% for thesis in theses_on %}
-        			 <b>{{ thesis.get_type_display }} {% trans "thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
-        		{% endfor %}
+            {% for thesis in theses_ongoing %}
+                 <b>{{ thesis.get_type_display }} {% trans "thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
+            {% endfor %}
         <hr size="3" width="100%"/>
     {% endif %}
     {% if theses %}

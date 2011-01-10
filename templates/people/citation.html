@@ -7,7 +7,7 @@
     {% for author in authors %}
         {{ author.person.name }}{% if not forloop.last %},{% else %}:{% endif %}
     {% endfor %}
-    </i> {{ title|safe }}.
+    </i> {{ title }}.
     {% if publication %}
         <b>{{ publication }}</b>,
     {% endif %}

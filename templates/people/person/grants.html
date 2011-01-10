@@ -23,8 +23,8 @@
                         {% endif %}
                     </p>
                     <p>
-                        <a href="#" onclick="toggle_visibility('{{ grant.id }}');">{% trans "Grant annotation" %}</a>
-                        	<div id="{{ grant.id }}" style='display:none';>
+                        <a href="#" onclick="toggle_visibility('grant_details_{{ grant.id }}');">{% trans "Grant annotation" %}</a>
+                        	<div id="grant_details_{{ grant.id }}" style='display:none';>
                         		{{ grant.annotation }}
                         	</div>
                     </p>
@@ -53,8 +53,8 @@
                         {% endif %}
                     </p>
                     <p>
-                        <a href="#" onclick="toggle_visibility('{{ grant.id }}');">{% trans "Grant annotation" %}</a>
-                        	<div id="{{ grant.id }}" style='display:none';>
+                        <a href="#" onclick="toggle_visibility('grant_details_{{ grant.id }}');">{% trans "Grant annotation" %}</a>
+                        	<div id="grant_details_{{ grant.id }}" style='display:none';>
                         		{{ grant.annotation }}
                         	</div>
                     </p>

@@ -1,20 +1,11 @@
 # coding: utf-8
 from django.contrib import admin
 from django.db import models
-from django.forms import CharField
 
 import multilingual
+from people.admin.fields import NullCharField
 from people.admin.forms import ArticleBookForm, ArticleArticleForm, ArticleConferenceForm
 from people.models import Attachment, Author
-
-
-class NullCharField(CharField):
-    def to_python(self, value):
-        "Returns Unicode or None. postpone to save?"
-        value = super(CharField, self).to_python(value)
-        if value == '':
-            return None
-        return value
 
 
 class DepartmentAdmin(multilingual.MultilingualModelAdmin):
@@ -83,6 +74,8 @@ class ThesisAdmin(multilingual.MultilingualModelAdmin):
 class AuthorInlineAdmin(admin.TabularInline):
     model = Author
     extra = 3
+    fields = ('order', 'person')
+    readonly_fields = ('order',)
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         defaults = {
@@ -91,6 +84,9 @@ class AuthorInlineAdmin(admin.TabularInline):
         defaults.update(kwargs)
         return super(AuthorInlineAdmin, self).formfield_for_foreignkey(db_field, request, **defaults)
 
+    def queryset(self, request):
+        # Return ordered authors
+        return super(AuthorInlineAdmin, self).queryset(request).order_by('order')
 
 ### Articles
 class BaseArticleAdmin(admin.ModelAdmin):

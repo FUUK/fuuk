@@ -23,10 +23,10 @@
                     		<em><strong>{% trans "Note" %}:</strong></em> {{ course.note }}<br />
                     {% endif %}
                     {% if course.attachment_set.all %}
-                    		<a href="#" onclick="toggle_visibility('{{ course.id }}');">{% trans "Attachments" %}:</a>
-                    			<div id="{{ course.id }}" style='display:none';>
-                    				{% for a in course.attachment_set.all %}
-                    					<a href="{{ a.file }}">{{ a.title }}</a><br />
+                    		<a href="#" onclick="toggle_visibility('attachments_{{ course.id }}');">{% trans "Attachments" %}:</a>
+                    			<div id="attachments_{{ course.id }}" style='display:none';>
+                    				{% for attachment in course.attachment_set.all %}
+                    					<a href="{{ attachment.file }}">{{ attachment.title }}</a><br />
                     				{% endfor %}
                     			</div>               
                     {% endif %}
