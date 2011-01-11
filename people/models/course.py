@@ -5,11 +5,15 @@ import multilingual
 from people.models import Person
 
 
+code_validator = RegexValidator(r'^[A-Z]{2}([A-Z]{2}[0-9]{3}|[0-9]{3}[A-Z][0-9]{2}[A-Z]?)$') # MFF | PrF
+hours_validator = RegexValidator(r'^[0-9]/[0-9] (Z|Zk|KZ|Zk/Z)$')
+
+
 class Course(models.Model):
     lectors = models.ManyToManyField(Person)
-    code = models.CharField(max_length=10, unique=True, validators=[RegexValidator(r'^[A-Z]{4}[0-9]{3}$')])
-    ls = models.CharField(max_length=8, blank=True, null=True, validators=[RegexValidator(r'^[0-9]/[0-9] (Z|Zk|KZ|Zk/Z)$')])
-    zs = models.CharField(max_length=8, blank=True, null=True, validators=[RegexValidator(r'^[0-9]/[0-9] (Z|Zk|KZ|Zk/Z)$')])
+    code = models.CharField(max_length=10, unique=True, validators=[code_validator])
+    ls = models.CharField(max_length=8, blank=True, null=True, validators=[hours_validator])
+    zs = models.CharField(max_length=8, blank=True, null=True, validators=[hours_validator])
 
     class Translation(multilingual.Translation):
         name = models.CharField(max_length=200)

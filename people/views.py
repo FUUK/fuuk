@@ -146,15 +146,15 @@ def get_common_context(nickname):
     context = {
         'person': person,
         'articles': Article.objects.filter(author__person__human=person.human, type='ARTICLE').order_by('-year'),
-        'courses': Course.objects.filter(lectors__human=person.human),
-        'students': Person.objects.filter(advisor__human=person.human, is_active=True),
+        'courses': Course.objects.filter(lectors__human=person.human).order_by('pk'),
+        'students': Person.objects.filter(advisor__human=person.human, is_active=True).order_by('last_name', 'first_name'),
         'grants': Grant.objects.filter(pk__in =
             Grant.objects.filter(author__human=person.human, end__gte=date.today().year).values_list('pk', flat=True)
             | Grant.objects.filter(co_authors__human=person.human, end__gte=date.today().year).values_list('pk', flat=True)
         ).order_by('-end', '-pk'),
         'grants_finished': Grant.objects.filter(pk__in =
-            Grant.objects.filter(author__human=person.human, end__lt=date.today().year).values_list('pk', flat=True) | 
-            Grant.objects.filter(co_authors__human=person.human, end__lt=date.today().year).values_list('pk', flat=True)
+            Grant.objects.filter(author__human=person.human, end__lt=date.today().year).values_list('pk', flat=True)
+            | Grant.objects.filter(co_authors__human=person.human, end__lt=date.today().year).values_list('pk', flat=True)
         ).order_by('-end', '-pk')
     }
     return context
@@ -163,7 +163,7 @@ def get_common_context(nickname):
 def person_detail(request, nickname):
     context = get_common_context(nickname)
     context['theses'] = Thesis.objects.filter(author__human=context['person'].human, defended=True).order_by('-year')
-    context['theses_ongoing'] = Thesis.objects.filter(author__human=context['person'].human, defended=False)
+    context['theses_ongoing'] = Thesis.objects.filter(author__human=context['person'].human, defended=False).order_by('-year')
     return render_to_response('people/person/detail.html', context, RequestContext(request))
 
 
