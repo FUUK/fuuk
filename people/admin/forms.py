@@ -10,7 +10,7 @@ class ArticleBookForm(forms.ModelForm):
     identification = NullCharField(label=_('ISBN'), max_length=100)
     publication = NullCharField(label=_('Book title'), max_length=100)
     page_from = NullCharField(max_length=10)
-    page_to = NullCharField(max_length=10, required=False)
+    page_to = NullCharField(max_length=10, required=False, help_text=_('Leave blank for one-paged chapters.'))
     editors = NullCharField(label=_('Publishers'), max_length=200)
 
     class Meta:
@@ -19,11 +19,11 @@ class ArticleBookForm(forms.ModelForm):
 
 class ArticleArticleForm(forms.ModelForm):
     type = forms.ChoiceField(initial = 'ARTICLE', choices = (('ARTICLE', _('Article')),))
-    identification = NullCharField(label=_('DOI'), max_length=100, required=False)
-    publication = NullCharField(label=_('Journal'), max_length=100)
+    identification = NullCharField(label=_('DOI'), help_text=_('Without leading http://dx.doi.org/'), max_length=100, required=False)
+    publication = NullCharField(label=_('Journal'), max_length=100, help_text=_('Please fill in a full name of journal.'))
     volume = NullCharField(max_length=10)
     page_from = NullCharField(max_length=10)
-    page_to = NullCharField(max_length=10, required=False)
+    page_to = NullCharField(max_length=10, required=False, help_text=_('Leave blank for one-paged articles.'))
 
     class Meta:
         fields = ('type', 'identification', 'year', 'title', 'publication', 'volume', 'page_from', 'page_to')

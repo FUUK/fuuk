@@ -17,7 +17,7 @@ THESIS_TYPES = (
 
 class Thesis(models.Model):
     type = models.CharField(max_length=5, choices=THESIS_TYPES)
-    year = models.SmallIntegerField(validators=[MinValueValidator(1990)])
+    year = models.SmallIntegerField(validators=[MinValueValidator(1990)], help_text=_('Year of thesis start or year of defence if already defended.'))
     author = models.ForeignKey(Person)
     advisor = models.ForeignKey(Person, related_name='thesis_lead', blank=True, null=True)
     consultants = models.ManyToManyField(Person, related_name='thesis_consulted', blank=True, null=True)
