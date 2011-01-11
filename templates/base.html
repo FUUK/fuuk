@@ -30,7 +30,7 @@
                     stateToFromStr('navlist',retrieveCookie('menuState'));
                 }
                 window.onunload = function () {
-                    setCookie('menuState',stateToFromStr('navlist'));
+                    setCookie('menuState',stateToFromStr('navlist'),0,'/');
                 }
             </script>
         <script type="text/javascript">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div id="lang">
-                    {% for lang in LANGUAGES reversed %}
+            	     {% for lang in LANGUAGES reversed %}
                         {% ifnotequal lang.0 LANGUAGE_CODE %}
                             <form method="POST" action="{% url set_language %}">
                                 <input type="hidden" name="language" value="{{ lang.0 }}" />

@@ -79,6 +79,8 @@ def thesis_list(request):
     context = {
         'types': [(type, Thesis(type=type).get_type_display()) for type in types],
         'years': Thesis.objects.filter(defended=True).values_list('year', flat=True).annotate(Count('year')).order_by('-year'),
+        'year': year,
+        'type': type,
     }
     return object_list(
         request,

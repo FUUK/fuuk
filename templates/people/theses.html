@@ -17,19 +17,32 @@
             {% endfor %}
         </ul>
     {% else %}
-        {% regroup object_list by type as thesis_groups %}
         {% if year %}
-            <h1>{% trans "Thesis defended in year" %} {{ year }}:</h1>
-        {% endif %}
-        {% for group in thesis_groups %}
-        <h1>{{ group.list.0.get_type_display }}</h1>
-            <ul>
-            {% for thesis in group.list %}
+            {% regroup object_list by type as thesis_groups %}
+            <h1>{% trans "Theses defended in year" %} {{ year }}:</h1>
+            {% for group in thesis_groups %}
+            <h1>{{ group.list.0.get_type_display }}</h1>
+                <ul>
+                {% for thesis in group.list %}
                     <li><p><a href="/people/thesis/id={{ thesis.id }}"><strong>{{ thesis.author.full_name }}:</strong> {{ thesis.title }}<br />
                     {% trans "Advisor" %}: {{ thesis.advisor.full_name }}</a></p></li>
+                {% endfor %}
+                </ul>
             {% endfor %}
-            </ul>
-        {% endfor %}
+        {% else %}
+            {% regroup object_list by year as thesis_groups %}
+            <h1>{% trans "Defended " %} {{ object_list.0.get_type_display|lower }} {% trans "theses" %}:</h1>
+            {% for group in thesis_groups %}
+            <h1>{{ group.grouper }}</h1>
+                <ul>
+                {% for thesis in group.list %}
+                    <li><p><a href="/people/thesis/id={{ thesis.id }}"><strong>{{ thesis.author.full_name }}:</strong> {{ thesis.title }}<br />
+                    {% trans "Advisor" %}: {{ thesis.advisor.full_name }}</a></p></li>
+                {% endfor %}
+                </ul>
+            {% endfor %}     
+        {% endif %}
+        
     {% endif %}
     {{ block.super }}
 {% endblock %}
