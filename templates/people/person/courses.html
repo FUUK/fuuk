@@ -24,11 +24,16 @@
                     {% endif %}
                     {% if course.attachment_set.all %}
                     		<a href="#" onclick="toggle_visibility('attachments_{{ course.id }}');">{% trans "Attachments" %}:</a>
-                    			<div id="attachments_{{ course.id }}" style='display:none';>
+                    			<div id="attachments_{{ course.id }}" style='display:block';>
                     				{% for attachment in course.attachment_set.all %}
                     					<a href="{{ attachment.file }}">{{ attachment.title }}</a><br />
                     				{% endfor %}
-                    			</div>               
+                    			</div>
+                    			<script type="text/javascript">
+                        	    <!--script
+                        	    toggle_visibility('grant_details_{{ grant.id }}');
+                        	    // -->
+                        	</script>               
                     {% endif %}
                 </p>
             </li>

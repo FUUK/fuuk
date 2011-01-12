@@ -55,16 +55,20 @@
     {% endif %}
     {% if theses_ongoing %}
         <p class="strong" align="left">{% trans "Current thesis" %}:</p>
+            <ul>
             {% for thesis in theses_ongoing %}
-                 <b>{{ thesis.get_type_display }} {% trans "thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
+                 <li>{{ thesis.get_type_display }} {% trans "thesis" %}: <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
             {% endfor %}
+            </ul>
         <hr size="3" width="100%"/>
     {% endif %}
     {% if theses %}
         <p class="strong" align="left">{% trans "Defended thesis" %}:</p>
+            <ul>
             {% for thesis in theses %}
-                <b>{% trans "Defended" %} {{ thesis.get_type_display|lower }} {% trans "thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a><br />
+                <li>{{ thesis.get_type_display }} {% trans "thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
             {% endfor %}
+            </ul>
         <hr size="3" width="100%"/>
     {% endif %}
 {% endblock %}

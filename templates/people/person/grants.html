@@ -24,9 +24,14 @@
                     </p>
                     <p>
                         <a href="#" onclick="toggle_visibility('grant_details_{{ grant.id }}');">{% trans "Grant annotation" %}</a>
-                        	<div id="grant_details_{{ grant.id }}" style='display:none';>
+                        	<div id="grant_details_{{ grant.id }}" style='display:block';>
                         		{{ grant.annotation }}
                         	</div>
+                        	<script type="text/javascript">
+                        	    <!--script
+                        	    toggle_visibility('grant_details_{{ grant.id }}');
+                        	    // -->
+                        	</script>
                     </p>
                     <hr size="3" width="100%" />
                 </p>
@@ -54,9 +59,14 @@
                     </p>
                     <p>
                         <a href="#" onclick="toggle_visibility('grant_details_{{ grant.id }}');">{% trans "Grant annotation" %}</a>
-                        	<div id="grant_details_{{ grant.id }}" style='display:none';>
+                        	<div id="grant_details_{{ grant.id }}" style='display:block';>
                         		{{ grant.annotation }}
                         	</div>
+                        	<script type="text/javascript">
+                        	    <!--script
+                        	    toggle_visibility('grant_details_{{ grant.id }}');
+                        	    // -->
+                        	</script>
                     </p>
                     <hr size="3" width="100%" />
                 </p>
