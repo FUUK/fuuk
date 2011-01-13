@@ -66,6 +66,7 @@ class GrantAdmin(multilingual.MultilingualModelAdmin):
 class ThesisAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('type', 'title', 'author', 'advisor')
     filter_horizontal = ('consultants',)
+    list_filter = ('type', 'year')
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
