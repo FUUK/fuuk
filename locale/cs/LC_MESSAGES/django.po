@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: FUUK\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-10 15:10+0100\n"
-"PO-Revision-Date: 2011-01-10 15:12+0100\n"
+"PO-Revision-Date: 2011-01-14 11:56+0100\n"
 "Last-Translator: Tomáš Pazderka <pazderka@karlov.mff.cuni.cz>\n"
 "Language-Team:  <pazderka@karlov.mff.cuni.cz>\n"
 "MIME-Version: 1.0\n"
@@ -67,11 +67,11 @@ msgstr ""
 
 #: people/models/article.py:12
 msgid "Lecture"
-msgstr ""
+msgstr "Přednáška"
 
 #: people/models/article.py:13
 msgid "Invited lecture"
-msgstr ""
+msgstr "Zvaná přednáška"
 
 #: people/models/article.py:14
 msgid "Poster"
@@ -406,7 +406,7 @@ msgstr "Rozsah v ZS"
 
 #: templates/people/person/courses.html:20
 msgid "Annotation"
-msgstr "Annotace"
+msgstr "Anotace"
 
 #: templates/people/person/courses.html:23
 msgid "Note"

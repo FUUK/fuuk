@@ -63,9 +63,9 @@ def thesis_list(request):
 
     queryset = Thesis.objects.filter(defended=True)
     if year:
-        queryset = queryset.filter(year=int(year))
+        queryset = queryset.filter(year=int(year)).order_by('-type')
     if type:
-        queryset = queryset.filter(type=type.upper())
+        queryset = queryset.filter(type=type.upper()).order_by('-year')
 
     # we got filter but no results
     if (year or type):
