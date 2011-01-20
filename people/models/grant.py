@@ -8,16 +8,27 @@ import multilingual
 from people.models import Person
 
 
+class Agency(models.Model):
+    class Translation(multilingual.Translation):
+        shortcut = models.CharField(max_length=10)
+        name = models.CharField(max_length=100)
+        
+    class Meta:
+        app_label = 'people'
+        
+    def __unicode__(self):
+        return self.shortcut or u""
+        
 class Grant(models.Model):
     author = models.ForeignKey(Person)
     number = models.CharField(max_length=20)
     start = models.SmallIntegerField(validators=[MinValueValidator(1990), MaxValueValidator(date.today().year + 1)])
     end = models.SmallIntegerField(validators=[MinValueValidator(1990), MaxValueValidator(date.today().year + 10)])
     co_authors = models.ManyToManyField(Person, related_name='grant_related', blank=True, null=True)
+    agency = models.ForeignKey(Agency, help_text='Contact administrators for different Grant Agency.')
 
     class Translation(multilingual.Translation):
         title = models.CharField(max_length=200)
-        agency = models.CharField(max_length=200)
         annotation = models.TextField()
 
         class Meta:

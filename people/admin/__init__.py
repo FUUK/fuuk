@@ -1,9 +1,9 @@
 from django.contrib import admin
 
 from people.admin.options import PlaceAdmin, DepartmentAdmin, PersonAdmin, HumanAdmin, CourseAdmin, AttachmentAdmin, \
-    GrantAdmin, ThesisAdmin, \
+    GrantAdmin, ThesisAdmin, AgencyAdmin, \
     ArticleAdmin, ArticleBookAdmin, ArticleArticleAdmin, ArticleConferenceAdmin
-from people.models import Department, Place, Human, Person, Course, Attachment, Grant, Article, Author, Thesis, \
+from people.models import Department, Place, Human, Person, Course, Attachment, Grant, Article, Author, Thesis, Agency, \
     ArticleBook, ArticleArticle, ArticleConference
 
 
@@ -16,6 +16,7 @@ admin.site.register(Attachment, AttachmentAdmin)
 admin.site.register(Grant, GrantAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Thesis, ThesisAdmin)
+admin.site.register(Agency, AgencyAdmin)
 
 # administration of publications - article proxy models
 admin.site.register(ArticleBook, ArticleBookAdmin)

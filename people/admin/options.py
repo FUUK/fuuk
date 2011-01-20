@@ -57,7 +57,10 @@ class CourseAdmin(multilingual.MultilingualModelAdmin):
         models.CharField: {'form_class': NullCharField},
     }
 
-
+class AgencyAdmin(multilingual.MultilingualModelAdmin):
+    list_display = ('shortcut', 'name')
+    
+    
 class GrantAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('author', 'number', 'title', 'start', 'end')
     filter_horizontal = ('co_authors',)
