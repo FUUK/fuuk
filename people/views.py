@@ -147,7 +147,7 @@ def get_common_context(nickname):
 
     context = {
         'person': person,
-        'articles': Article.objects.filter(author__person__human=person.human, type='ARTICLE').order_by('-year'),
+        'publications': Article.objects.filter(author__person__human=person.human).order_by('-year'),
         'courses': Course.objects.filter(lectors__human=person.human).order_by('pk'),
         'students': Person.objects.filter(advisor__human=person.human, is_active=True).order_by('last_name', 'first_name'),
         'grants': Grant.objects.filter(pk__in =
@@ -171,10 +171,11 @@ def person_detail(request, nickname):
 
 def person_articles(request, nickname):
     context = get_common_context(nickname)
-    if not context['articles']:
+    if not context['publications']:
         raise Http404
-
-    context['presentations'] = Article.objects.filter(author__person__human=context['person'].human, type__in = ['POSTER', 'TALK']).order_by('-year')
+    
+    context['articles'] = Article.objects.filter(author__person__human=context['person'].human, type='ARTICLE').order_by('-year')
+    context['presentations'] = Article.objects.filter(author__person__human=context['person'].human, type__in = ['POSTER', 'TALK', 'INVITED']).order_by('-year')
     context['books'] = Article.objects.filter(author__person__human=context['person'].human, type='BOOK').order_by('-year')
 
     return render_to_response('people/person/articles.html', context, RequestContext(request))

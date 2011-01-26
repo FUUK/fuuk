@@ -8,7 +8,7 @@
             <li>
                 <a class="title" href="{% url person_detail person.human.nickname %}">{{ person.name }}</a>
             </li>
-            {% if articles %}
+            {% if publications %}
                 <li>
                     <a class="strong" href="{% url person_articles person.human.nickname %}">{% trans "Articles" %} </a>
                 </li>
