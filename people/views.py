@@ -173,10 +173,10 @@ def person_articles(request, nickname):
     context = get_common_context(nickname)
     if not context['publications']:
         raise Http404
-    
-    context['articles'] = Article.objects.filter(author__person__human=context['person'].human, type='ARTICLE').order_by('-year')
-    context['presentations'] = Article.objects.filter(author__person__human=context['person'].human, type__in = ['POSTER', 'TALK', 'INVITED']).order_by('-year')
-    context['books'] = Article.objects.filter(author__person__human=context['person'].human, type='BOOK').order_by('-year')
+
+    context['articles'] = context['publications'].filter(type='ARTICLE')
+    context['presentations'] = context['publications'].filter(type__in = ['POSTER', 'TALK', 'INVITED'])
+    context['books'] = context['publications'].filter(type='BOOK')
 
     return render_to_response('people/person/articles.html', context, RequestContext(request))
 
