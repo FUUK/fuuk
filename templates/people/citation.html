@@ -1,5 +1,5 @@
 <p class="citation">
-    {% if identification %}
+    {% if identification and type == "ARTICLE" %}
         <a href="http://dx.doi.org/{{ identification }}" target="_blank">
     {% endif %}
 
@@ -24,9 +24,8 @@
     {% comment %}
         TODO: this becomes highly unreadable, can spaceless tag be used to separate it to several lines?
     {% endcomment %}
-    {{ year }}{% if volume %}, vol.&nbsp;{{ volume }}{% endif %}{% if pages %}, p.&nbsp;{{ pages }}{% endif %}{% if presenter %} ({{ presenter.name }}){% endif %}.
-
-    {% if identification %}
+    {{ year }}{% if volume %}, vol.&nbsp;{{ volume }}{% endif %}{% if pages %}, p.&nbsp;{{ pages }}{% endif %}{% if presenter %} ({{ type_verbose }} - {{ presenter.name }}){% endif %}.
+    {% if identification and type == "ARTICLE"%}
         </a>
     {% endif%}
 </p>
