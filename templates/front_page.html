@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 	<a href="http://www.cuni.cz/" target="_blank">Univerzita Karlova v Praze</a> &gt; 
@@ -15,4 +16,23 @@
 			<p>Řada pracovníků oddělení se také podílí na výuce v bakalářském studiu v oborech &quot;<a href="http://www.mff.cuni.cz/studium/bcmgr/ok/f1a2.htm"
 			target="_blank">Obecná fyzika</a>&quot; a &quot;<a href="http://www.mff.cuni.cz/studium/bcmgr/ok/f1a3.htm" target="_blank">Fyzika zaměřená na vzdělávání</a>
 			&quot; formou přednášek, cvičení, výuky v základním praktiku a vedením bakalářských prací.</p>
+    
+    {% if news_list %}
+    <div id="akt-new">
+        <h1>{% trans "News" %}:</h1>
+        {% for news in news_list %}
+            {% if news.hyperlink %}
+                <a href="http://{{ news.hyperlink }}" target=blank>
+            {% endif %}    
+            <b>{{ news.title }}</b><br />
+            {% if news.hyperlink %}
+                </a>
+            {% endif %}
+            {{ news.content }}
+            {% if not forloop.last %}
+                <hr id="akt" />
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
 {% endblock %}

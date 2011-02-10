@@ -3,13 +3,12 @@ from datetime import date
 
 from django.db.models import Count
 from django.http import Http404
-from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.generic.list_detail import object_list, object_detail
-from django.db.models import Q
 
-from people.models import Article, Human, Course, Person, Grant, Thesis
+from people.models import Article, Human, Course, Person, Grant, Thesis, News
 
 
 def article_list(request, year=None):
@@ -136,6 +135,11 @@ def student_list(request):
         extra_context=context,
     )
 
+def news(request):
+    context = {
+        'news_list': News.objects.filter(start__lte=date.today()).filter(end__gte=date.today())
+    }
+    return render_to_response('front_page.html', context, RequestContext(request))
 
 ### Person pages
 def get_common_context(nickname):

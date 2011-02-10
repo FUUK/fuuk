@@ -5,4 +5,5 @@ from people.models.course import Course, Attachment
 from people.models.grant import Grant, Agency
 from people.models.article import ARTICLE_TYPES, Article, Author, ArticleBook, ArticleArticle, ArticleConference
 from people.models.thesis import Thesis
+from people.models.news import News
 

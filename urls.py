@@ -9,8 +9,8 @@ from django.views.i18n import set_language
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    #TODO: homepage should only exist as flatpage?
-    url(r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'front_page.html'}, name="homepage"),
+    # homepage with news
+    url(r'^$', 'people.views.news', name="homepage"),
     # pages
     url(r'^people/', include('people.urls')),
     # admin

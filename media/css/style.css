@@ -87,6 +87,15 @@ margin:10px auto;
 padding: 1em;
 }
 
+#akt-new
+{
+display:block;
+border:1px solid #6A83C2;
+background-color:#FFE;
+padding:0.5em 1em;
+margin:0 200px 0 0;
+}
+
 /**********/
 /* FOOTER */
 

@@ -74,7 +74,12 @@ class ThesisAdmin(multilingual.MultilingualModelAdmin):
         models.CharField: {'form_class': NullCharField},
     }
 
-
+class NewsAdmin(multilingual.MultilingualModelAdmin):
+    list_display = ('title', 'hyperlink', 'start', 'end', 'content')
+    formfield_overrides = {
+        models.CharField: {'form_class': NullCharField},
+    }
+    
 class AuthorInlineAdmin(admin.TabularInline):
     model = Author
     extra = 3
