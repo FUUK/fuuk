@@ -17,10 +17,10 @@
                         <em><strong>{% trans "Range in winter semester" %}:</strong></em> {{ course.zs }}<br />
                     {% endif %}
                     {% if course.annotation %}
-                    		<em><strong>{% trans "Annotation" %}:</strong></em> {{ course.annotation|safe }}<br />
+                    	<em><strong>{% trans "Annotation" %}:</strong></em> {{ course.annotation|safe }}<br />
                     {% endif %}
                     {% if course.note %}
-                    		<em><strong>{% trans "Note" %}:</strong></em> {{ course.note }}<br />
+                    	<em><strong>{% trans "Note" %}:</strong></em> {{ course.note }}<br />
                     {% endif %}
                     {% if course.attachment_set.all %}
                     		<a href="#" onclick="toggle_visibility('attachments_{{ course.id }}');">{% trans "Attachments" %}:</a> (&copy; {% now "Y" %} {{ person.full_name }})
@@ -34,6 +34,23 @@
                         	    toggle_visibility('attachments_{{ course.id }}');
                         	    // -->
                         	</script>               
+                    {% endif %}
+                </p>
+            </li>
+        {% endfor %}
+        {% for course in courses_practical %}
+            <li>
+                <p>
+                    <a class="strong" href="http://is.cuni.cz/studium/predmety/index.php?do=predmet&kod={{ course.code }}" target="_blank">{{ course.name }} - {% trans "Practicals" %}</a><br />
+                    <em><strong>{% trans "Code" %}:</strong></em> {{ course.code }}<br />
+                    {% if course.ls %}
+                        <em><strong>{% trans "Range in summer semester" %}:</strong></em> {{ course.ls }}<br />
+                    {% endif %}
+                    {% if course.zs %}
+                        <em><strong>{% trans "Range in winter semester" %}:</strong></em> {{ course.zs }}<br />
+                    {% endif %}
+                    {% if course.annotation %}
+                        <em><strong>{% trans "Annotation" %}:</strong></em> {{ course.annotation|safe }}<br />
                     {% endif %}
                 </p>
             </li>

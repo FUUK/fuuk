@@ -35,16 +35,16 @@ class Article(models.Model):
     volume = models.CharField(max_length=10, blank=True, null=True) #TODO: integer?
     # required for BOOK, ARTICLE
     page_from = models.CharField(max_length=10, blank=True, null=True, validators=[page_validator])
-    page_to = models.CharField(max_length=10, blank=True, null=True, validators=[page_validator], help_text='Leave blank for one paged abstracts.')
+    page_to = models.CharField(max_length=10, blank=True, null=True, validators=[page_validator], help_text=_('Leave blank for one paged abstracts.'))
     # editors for TALK, POSTER (not required)
     # publishers for BOOK (required)
     editors = models.CharField(max_length=200, blank=True, null=True)
     # only BOOK, TALK, POSTER
-    place = models.CharField(max_length=200, blank=True, null=True)
+    place = models.CharField(max_length=200, blank=True, null=True, help_text=_('City, state, date.'))
 
     ### PRESENTATION INFO
     # only TALK, POSTER
-    presenter = models.ForeignKey(Person, blank=True, null=True)
+    presenter = models.ForeignKey(Person, blank=True, null=True, help_text=_('Before selecting a presenter fill authors and press "Save and continue editing".'))
 
     class Meta:
         app_label = 'people'
