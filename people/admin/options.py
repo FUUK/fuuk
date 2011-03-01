@@ -51,7 +51,7 @@ class AttachmentInlineAdmin(admin.TabularInline):
 class CourseAdmin(multilingual.MultilingualModelAdmin):
     list_display = ('name', 'ls', 'zs', 'code')
     inlines = [AttachmentInlineAdmin, ]
-    filter_horizontal = ('lectors', 'practical_lector')
+    filter_horizontal = ('lectors', 'practical_lectors')
     ordering = ('code',)
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},

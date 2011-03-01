@@ -8,7 +8,14 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.generic.list_detail import object_list, object_detail
 
-from people.models import Article, Human, Course, Person, Grant, Thesis, News
+from people.models import Article, Course, Person, Grant, Thesis, News
+
+
+def homepage(request):
+    context = {
+        'news_list': News.objects.filter(start__lte=date.today(), end__gte=date.today())
+    }
+    return render_to_response('front_page.html', context, RequestContext(request))
 
 
 def article_list(request, year=None):
@@ -135,11 +142,6 @@ def student_list(request):
         extra_context=context,
     )
 
-def news(request):
-    context = {
-        'news_list': News.objects.filter(start__lte=date.today()).filter(end__gte=date.today())
-    }
-    return render_to_response('front_page.html', context, RequestContext(request))
 
 ### Person pages
 def get_common_context(nickname):
@@ -153,7 +155,7 @@ def get_common_context(nickname):
         'person': person,
         'publications': Article.objects.filter(author__person__human=person.human).order_by('-year'),
         'courses': Course.objects.filter(lectors__human=person.human).order_by('pk'),
-        'courses_practical': Course.objects.filter(practical_lector__human=person.human).order_by('pk'),
+        'courses_practical': Course.objects.filter(practical_lectors__human=person.human).order_by('pk'),
         'students': Person.objects.filter(advisor__human=person.human, is_active=True).order_by('last_name', 'first_name'),
         'grants': Grant.objects.filter(pk__in =
             Grant.objects.filter(author__human=person.human, end__gte=date.today().year).values_list('pk', flat=True)

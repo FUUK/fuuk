@@ -76,6 +76,8 @@ class Article(models.Model):
                 raise ValidationError(_('Article has to have volume.'))
             if not self.page_from:
                 raise ValidationError(_('Article has to have page(s).'))
+            elif self.page_to and (self.page_to < self.page_from):
+                raise ValidationError(_('End page number must be bigger than start page number.'))
             if self.editors:
                 raise ValidationError(_('Article can not have editors.'))
             if self.place:
@@ -89,6 +91,8 @@ class Article(models.Model):
                 raise ValidationError(_('Talk can not have volume.'))
             if not self.page_from and self.page_to:
                 raise ValidationError(_('Page from must be filled if pages are specified.'))
+            elif self.page_to and (self.page_to < self.page_from):
+                raise ValidationError(_('End page number must be bigger than start page number.'))
         if self.presenter and not self.author_set.filter(person=self.presenter):
             raise ValidationError(_('Presenter must be among authors.'))
 

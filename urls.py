@@ -10,7 +10,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # homepage with news
-    url(r'^$', 'people.views.news', name="homepage"),
+    url(r'^$', 'people.views.homepage', name="homepage"),
     # pages
     url(r'^people/', include('people.urls')),
     # admin

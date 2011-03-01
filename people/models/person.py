@@ -40,7 +40,7 @@ class Human(models.Model):
 
     class Meta:
         app_label = 'people'
-        ordering = ['nickname',]
+        ordering = ('nickname',)
 
     def __unicode__(self):
         return self.nickname or u""
@@ -62,7 +62,7 @@ class Person(models.Model):
 
     class Meta:
         app_label = 'people'
-        ordering = ['last_name',]
+        ordering = ('last_name',)
         unique_together = (
             ('first_name', 'last_name', 'type'),
         )

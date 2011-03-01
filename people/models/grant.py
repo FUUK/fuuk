@@ -12,13 +12,13 @@ class Agency(models.Model):
     class Translation(multilingual.Translation):
         shortcut = models.CharField(max_length=10)
         name = models.CharField(max_length=100)
-        
+
     class Meta:
         app_label = 'people'
-        
+
     def __unicode__(self):
         return self.shortcut or u""
-        
+
 class Grant(models.Model):
     author = models.ForeignKey(Person)
     number = models.CharField(max_length=20)
@@ -31,11 +31,9 @@ class Grant(models.Model):
         title = models.CharField(max_length=200)
         annotation = models.TextField()
 
-        class Meta:
-            unique_together = (('number', 'agency'),)
-
     class Meta:
         app_label = 'people'
+        unique_together = (('number', 'agency'),)
 
     def __unicode__(self):
         return self.title or u""
