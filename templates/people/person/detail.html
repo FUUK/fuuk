@@ -1,5 +1,5 @@
 {% extends "people/person/base.html" %}
-{% load i18n humanize %}
+{% load i18n humanize markup %}
 
 {% block content %}
     {{ block.super }}
@@ -28,31 +28,23 @@
         </tr>
     </table>
     <hr  size="3" width="100%"/>
-
+    <div class="cv">
     {% if person.human.interests %}
         <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
-            {% comment %}
-                TODO: use some markdown to render interests
-            {% endcomment %}
-            {{ person.human.interests|safe }}
+            {{ person.human.interests|textile }}
         <hr  size="3" width="100%"/>
     {% endif %}
     {% if person.human.stays %}
         <p class="strong" align="left">{% trans "Long term stays" %}:</p>
-            {% comment %}
-                TODO: use some markdown to render interests
-            {% endcomment %}
-            {{ person.human.stays|safe }}
+            {{ person.human.stays|textile }}
         <hr  size="3" width="100%"/>
     {% endif %}
     {% if person.human.cv %}
         <p class="strong" align="left">{% trans "Curiculum vitae" %}:</p>
-            {% comment %}
-                TODO: use some markdown to render interests
-            {% endcomment %}
-            {{ person.human.cv|safe }}
+            {{ person.human.cv|textile }}
         <hr  size="3" width="100%"/>
     {% endif %}
+    </div>
     {% if theses_ongoing %}
         <p class="strong" align="left">{% trans "Current thesis" %}:</p>
             <ul>

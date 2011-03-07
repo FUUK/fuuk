@@ -16,10 +16,12 @@
 
     {% for article in object_list %}
         <div>
-            {{ first_on_page|add:forloop.counter0 }}.
+            <p class="citation_number">
+                {{ first_on_page|add:forloop.counter0 }}.
+            </p>
             {% citation article %}
         </div>
     {% endfor %}
-
+    <div style='clear:both;'></div>
     {{ block.super }}
 {% endblock %}
