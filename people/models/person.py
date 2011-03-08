@@ -50,13 +50,19 @@ class Human(models.Model):
 class Person(models.Model):
     # functional fields
     is_active = models.BooleanField(default=True)
-    human = models.ForeignKey(Human, blank=True, null=True, help_text=_('Only for staff or students. Do not fill in for others!')) #required if type != None
+    human = models.ForeignKey(Human, blank=True, null=True)
     type = models.CharField(max_length=10, blank=True, null=True, choices=PERSON_TYPES)
     advisor = models.ForeignKey('Person', related_name='student', blank=True, null=True)
-    place = models.ForeignKey(Place, blank=True, null=True, help_text=_('Only required for grant applicants/co-applicants or staff.'))
+    place = models.ForeignKey(
+        Place, blank=True, null=True,
+        help_text=_('Only used for grant (co-)applicants or staff.')
+    )
     # data fields
     prefix = models.CharField(max_length=20, blank=True, null=True)
-    first_name = models.CharField(max_length=50, help_text=_('Only first letter is required for article authors. In case of multiple first names, fill them separated by space.'))
+    first_name = models.CharField(
+        max_length=50,
+        help_text=_('Only first letter is required for article authors. In case of multiple first names, fill them separated by space.')
+    )
     last_name = models.CharField(max_length=50)
     suffix = models.CharField(max_length=20, blank=True, null=True)
     class_year = models.SmallIntegerField(blank=True, null=True)
@@ -69,7 +75,10 @@ class Person(models.Model):
         )
 
     def __unicode__(self):
-        return u"%s %s (%s)" % (self.last_name, self.first_name, self.type)
+        if self.type:
+            return u"%s %s (%s)" % (self.last_name, self.first_name, self.get_type_display())
+        else:
+            return u"%s %s" % (self.last_name, self.first_name)
 
     def clean(self):
         if self.human:
