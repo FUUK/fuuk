@@ -3,6 +3,7 @@ from datetime import date
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 import multilingual
 from people.models import Person
@@ -21,12 +22,12 @@ class Agency(models.Model):
 
 
 class Grant(models.Model):
-    author = models.ForeignKey(Person)
+    author = models.ForeignKey(Person, verbose_name=_('Applicant'))
     number = models.CharField(max_length=20)
     start = models.SmallIntegerField(validators=[MinValueValidator(1990), MaxValueValidator(date.today().year + 1)])
     end = models.SmallIntegerField(validators=[MinValueValidator(1990), MaxValueValidator(date.today().year + 10)])
-    co_authors = models.ManyToManyField(Person, related_name='grant_related', blank=True, null=True)
-    agency = models.ForeignKey(Agency, help_text='Contact administrators for different Grant Agency.')
+    co_authors = models.ManyToManyField(Person, related_name='grant_related', blank=True, null=True, verbose_name=_('Co-applicant'))
+    agency = models.ForeignKey(Agency, help_text=_('Contact administrators for different Grant Agency.'))
 
     class Translation(multilingual.Translation):
         title = models.CharField(max_length=200)

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 
+from django.core.urlresolvers import reverse  
 from django.db.models import Count
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -19,13 +20,20 @@ def homepage(request):
 
 
 def article_list(request, year=None):
-    years = Article.objects.filter(type__in = ('ARTICLE', 'BOOK')).values_list('year', flat=True).annotate(Count('year')).order_by('-year')
+    queryset = Article.objects.filter(type__in = ('ARTICLE', 'BOOK'))
+    if not queryset:
+        raise Http404
+    
+    years = queryset.values_list('year', flat=True).annotate(Count('year')).order_by('-year')
     if year is None:
         year = years[0]
     else:
         year = int(year)
-    queryset = Article.objects.filter(type__in = ('ARTICLE', 'BOOK'), year=year).order_by('-year', '-pk')
-
+    queryset = queryset.filter(year=year).order_by('-year', '-pk')
+    
+    if not queryset:
+        return HttpResponseRedirect(reverse('articles'))
+    
     context = {
         'year': year,
         'years': years,
