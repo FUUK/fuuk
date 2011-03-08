@@ -19,6 +19,7 @@ class Agency(models.Model):
     def __unicode__(self):
         return self.shortcut or u""
 
+
 class Grant(models.Model):
     author = models.ForeignKey(Person)
     number = models.CharField(max_length=20)

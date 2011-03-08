@@ -1,5 +1,6 @@
 # coding: utf-8
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
@@ -22,6 +23,7 @@ class Human(models.Model):
     Collects persons for single human
     Used for history
     """
+    user = models.OneToOneField(User, blank=True, null=True)
     nickname = models.CharField(
         max_length=20, unique=True,
         validators = [nickname_validator]
