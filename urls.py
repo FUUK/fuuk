@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls.defaults import patterns, url, include, handler404
 from django.contrib import admin
 from django.views.decorators.csrf import csrf_exempt
 from django.views.i18n import set_language
-
+from utils import handler500
 
 admin.autodiscover()
 
