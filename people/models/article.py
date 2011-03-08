@@ -32,15 +32,16 @@ class Article(models.Model):
     # abstract collection for TALK, POSTER (not required)
     publication = models.CharField(max_length=100, blank=True, null=True)
     # only ARTICLE
-    volume = models.CharField(max_length=10, blank=True, null=True) #TODO: integer?
+    volume = models.CharField(max_length=10, blank=True, null=True)
     # required for BOOK, ARTICLE
     page_from = models.CharField(max_length=10, blank=True, null=True, validators=[page_validator])
     page_to = models.CharField(max_length=10, blank=True, null=True, validators=[page_validator], help_text=_('Leave blank for one paged abstracts.'))
-    # editors for TALK, POSTER (not required)
-    # publishers for BOOK (required)
+    # optional for TALK, POSTER, BOOK
     editors = models.CharField(max_length=200, blank=True, null=True)
+    # required for BOOK
+    publishers = models.CharField(max_length=200, blank=True, null=True)
     # only BOOK, TALK, POSTER
-    place = models.CharField(max_length=200, blank=True, null=True, help_text=_('City, state, date.'))
+    place = models.CharField(max_length=200, blank=True, null=True)
 
     ### PRESENTATION INFO
     # only TALK, POSTER
@@ -65,7 +66,7 @@ class Article(models.Model):
                 raise ValidationError(_('Book can not have volume.'))
             if not self.page_from:
                 raise ValidationError(_('Book has to have page(s).'))
-            if not self.editors:
+            if not self.publishers:
                 raise ValidationError(_('Book has to have publishers.'))
             if self.presenter:
                 raise ValidationError(_('Book can not have presenter.'))
@@ -80,21 +81,25 @@ class Article(models.Model):
                 raise ValidationError(_('End page number must be bigger than start page number.'))
             if self.editors:
                 raise ValidationError(_('Article can not have editors.'))
+            if self.publishers:
+                raise ValidationError(_('Article can not have publishers.'))
             if self.place:
                 raise ValidationError(_('Article can not have place.'))
             if self.presenter:
                 raise ValidationError(_('Article can not have presenter.'))
         elif self.type in ('TALK', 'INVITED', 'POSTER'):
             if self.identification:
-                raise ValidationError(_('Talk can not have ISBN/DOI number.'))
+                raise ValidationError(_('Conference paper can not have ISBN/DOI number.'))
             if self.volume:
-                raise ValidationError(_('Talk can not have volume.'))
+                raise ValidationError(_('Conference paper can not have volume.'))
+            if self.publishers:
+                raise ValidationError(_('Conference paper can not have publishers.'))
             if not self.page_from and self.page_to:
                 raise ValidationError(_('Page from must be filled if pages are specified.'))
             elif self.page_to and (self.page_to < self.page_from):
                 raise ValidationError(_('End page number must be bigger than start page number.'))
         if self.presenter and not self.author_set.filter(person=self.presenter):
-            raise ValidationError(_('Presenter must be among authors.'))
+            raise ValidationError(_('Presenter must be one of authors.'))
 
 
 class Author(models.Model):

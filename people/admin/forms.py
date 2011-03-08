@@ -11,10 +11,12 @@ class ArticleBookForm(forms.ModelForm):
     publication = NullCharField(label=_('Book title'), max_length=100)
     page_from = NullCharField(max_length=10)
     page_to = NullCharField(max_length=10, required=False, help_text=_('Leave blank for one-paged chapters.'))
-    editors = NullCharField(label=_('Publishers'), max_length=200)
+    publishers = NullCharField(max_length=200)
 
     class Meta:
-        fields = ('type', 'identification', 'year', 'title', 'publication', 'page_from', 'page_to', 'editors', 'place')
+        fields = ('type', 'identification', 'year', 'title', 'publication', 'page_from', 'page_to',
+                  'editors', 'publishers', 'place'
+        )
 
 
 class ArticleArticleForm(forms.ModelForm):
@@ -35,8 +37,9 @@ conference_choices = [(key, value) for key, value in ARTICLE_TYPES if key in ('T
 class ArticleConferenceForm(forms.ModelForm):
     type = forms.ChoiceField(choices = conference_choices)
     publication = NullCharField(label=_('Abstract collection'), max_length=100, required=False)
+    place = NullCharField(max_length=200, required=False, help_text=_('City, state, date.'))
 
     class Meta:
         fields = ('type', 'year', 'title', 'presenter', # talk data
-                  'publication', 'page_from', 'page_to', 'editors', 'place' # abstract collection data
+                  'publication', 'volume', 'page_from', 'page_to', 'editors', 'place' # abstract collection data
         )
