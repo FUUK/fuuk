@@ -49,23 +49,14 @@
         <div id="container">
             <!-- Header -->
             <div id="header">
-                <div id="header-content" style='background: url(/media/img/logo.png) left no-repeat; width:900px; margin-left: 10px'>
-                    <div style='margin-left:200px;font-size:24px; font-weight:bold; color: #FFFFFF; text-align: center'>
+                <div id="header-content" style='background: url(/media/img/logo-stin.png) left no-repeat; width:900px; margin-left: 40px'>
+                    <div style='margin-left:140px;margin-top:10px;font-size:24px; font-weight:bold; color: #FFFFFF; text-shadow:rgba(0,0,0,.5) 0.1em 0.1em; text-align: left'>
                         {% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}
                     </div>
-                    <div style='margin-left:200px;margin-top:10px; font-size:12px; font-weight:bold; color: #FFFFFF'>
-                        {% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16, tel.: +420 221 911 345, fax: +420 224 922 797
+                    <div style='margin-left:140px;margin-top:10px; font-size:12px; font-weight:bold; color: #FFFFFF'>
+                        {% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16<br />
+                        tel.: +420 221 911 345, fax: +420 224 922 797
                     </div>
-                </div>
-                <div id="lang">
-            	     {% for lang in LANGUAGES reversed %}
-                        {% ifnotequal lang.0 LANGUAGE_CODE %}
-                            <form method="POST" action="{% url set_language %}">
-                                <input type="hidden" name="language" value="{{ lang.0 }}" />
-                                <input type="image" alt="{{ lang.1 }}" src="{{ MEDIA_URL }}img/{{ lang.0 }}.png" />
-                            </form>
-                        {% endifnotequal %}
-                    {% endfor %}
                 </div>
             </div>
             <!-- END Header -->
@@ -102,9 +93,18 @@
                             <li><a href="/path/">&bull;&nbsp;&nbsp;{% trans "How to find us" %}</a></li>
                         </ul>
                     </div>
+                    <div id="lang">
+                    {% for lang in LANGUAGES reversed %}
+                        {% ifnotequal lang.0 LANGUAGE_CODE %}
+                            <form method="POST" action="{% url set_language %}">
+                                <input type="hidden" name="language" value="{{ lang.0 }}" />
+                                <input type="image" alt="{{ lang.1 }}" src="{{ MEDIA_URL }}img/{{ lang.0 }}.png" />
+                            </form>
+                        {% endifnotequal %}
+                    {% endfor %}
+                    </div>
                 </div>
                 <!-- END Sidebar -->
-    
                 <!-- Content -->
                 <div id="main-panel">
                     <div id="main-content">

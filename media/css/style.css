@@ -20,7 +20,7 @@ color: #000000;
 {
 width: 100%;
 margin: 0;
-height: 100px;
+height: 120px;
 padding: 0;
 /*border-bottom: 1px solid blue;*/
 background: url("../img/mrizka.png") left repeat;
@@ -29,7 +29,7 @@ background: url("../img/mrizka.png") left repeat;
 #header-content
 {
 float: left;
-height: 100px;
+height: inherit;
 width: 498px;
 padding: 0;
 /*border-bottom: 1px solid blue;*/
@@ -38,9 +38,8 @@ padding: 0;
 
 #lang 
 {
-float: right;
+float: left;
 width: 80px;
-margin:0;
 padding:0;
 }
 
@@ -173,7 +172,7 @@ text-align: left;
 
 #navlist li a:link { color: #566a9d; }
 
-#navlist li a:hover #navlist li a:current
+#navlist li a:hover, #navlist li a.current
 {
 border-color: #6a83c2;
 color: #6a83c2;
