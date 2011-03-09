@@ -57,13 +57,12 @@ text-align: right;
 
 #container
 {
-background:#bdbdbd;
 }
 
 #container2
 {
 min-height: 450px;
-background: #b2cced;
+background: #E4ECED;
 }
 
 #sidebar
@@ -79,7 +78,6 @@ padding:0;
 margin: 0.4em 0 0 0;
 /*border: 1px solid grey;*/
 padding: 0.1em 0.5em;
-background: rgba(228, 236, 237, 1);
 }
 
 #ie-space
@@ -96,7 +94,9 @@ padding:0;
 #main-content
 {
 margin:10px auto;
+min-height: 425px;
 padding: 1em;
+background: white;
 }
 
 #akt-new
@@ -152,7 +152,6 @@ text-align: left;
 display: block;
 padding: 0.25em 0.5em 0.25em 0.25em;
 border-left: 1em solid #FFFFFF;
-background: #FFFFFF;
 text-decoration: none;
 }
 
@@ -292,15 +291,11 @@ div.list-phone {
 margin: -2em 0 0 50%;
 }
 
-
-
-/*tabulky*/
-td.date {
-vertical-align: top;
-text-align: center;
-white-space: nowrap;
-}
-td.top { 
+/*CV specific*/
+div.cv td {
+padding-left: 25px;
+padding-right: 5px;
+padding-bottom: 5px;
 vertical-align: top;
 }
 
