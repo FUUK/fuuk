@@ -5,11 +5,12 @@ navstivene: #6a83c2
 */
 body
 {
-width: 95%;
+max-width:1280px;
+min-width: 950px;
+width: 80%;
 margin:10px auto;
 padding:0;
 color: #000000;
-background:#ffffff;
 }
 
 /**********/
@@ -54,6 +55,17 @@ margin:1em auto;
 text-align: right;
 }
 
+#container
+{
+background:#bdbdbd;
+}
+
+#container2
+{
+min-height: 450px;
+background: #b2cced;
+}
+
 #sidebar
 {
 float: left;
@@ -67,7 +79,7 @@ padding:0;
 margin: 0.4em 0 0 0;
 /*border: 1px solid grey;*/
 padding: 0.1em 0.5em;
-background: #FFFFFF;
+background: rgba(228, 236, 237, 1);
 }
 
 #ie-space
@@ -161,12 +173,12 @@ text-align: left;
 }
 
 #navlist li a:link { color: #566a9d; }
-#navlist li a:visited { color: #566a9d; }
 
-#navlist li a:hover
+#navlist li a:hover #navlist li a:current
 {
 border-color: #6a83c2;
 color: #6a83c2;
+font-weight: bold;
 }
 
 /* Start Holly Hack, hidden from MacIE. \*/
@@ -216,6 +228,18 @@ border-bottom: 2px solid #6a83c2;
 background-color: #e3e6ed;
 vertical-align: middle;
 }
+
+p.citation
+{
+float:left;
+width:97%;
+}
+
+p.citation_number
+{
+float:left;
+width:3%;
+ }
 
 /********************************/
 /* JAZYK */
