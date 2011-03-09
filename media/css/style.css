@@ -11,8 +11,7 @@ width: 80%;
 margin:10px auto;
 padding:0;
 color: #000000;
-font-family: Helvetica CE, Verdana, Arial;
-font-size:10pt;
+background:#bdbdbd;
 }
 
 /**********/
@@ -22,9 +21,16 @@ font-size:10pt;
 {
 width: 100%;
 margin: 0;
-height: 140px;
+height: 120px;
 padding: 0;
-background: url("../img/mrizka.png") left repeat;
+/*border-bottom: 1px solid blue;*/
+/*background: url("../img/mrizka.png") left repeat;*/
+border:1px solid #4f51bd;
+background:#4f81bd;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+-khtml-border-radius: 5px;
+border-radius: 5px;
 }
 
 #header-content
@@ -33,12 +39,37 @@ float: left;
 height: inherit;
 width: 498px;
 padding: 0;
+/*border-bottom: 1px solid blue;*/
+/*background: url("./title.cz.png") left no-repeat;*/
+}
+
+#lang 
+{
+float: right;
+width: 80px;
+padding:0;
 }
 
 /***********/
 /* CONTENT */
 
+#container
+{
+background:#bdbdbd;
+}
+
 #container2
+{
+background: #b2cced;
+min-height: 450px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+-khtml-border-radius: 5px;
+border-radius: 5px;
+
+}
+
+#content
 {
 position:relative;
 min-height: 450px;
@@ -48,7 +79,7 @@ background: #E4ECED;
 #sidebar
 {
 float: left;
-width: 180px;
+width: 190px;
 margin: auto;
 padding:0;
 }
@@ -60,10 +91,21 @@ margin: 0.4em 0 0 0;
 padding: 0.1em 0.5em;
 }
 
+#ie-space
+{
+#margin:1.5em 0 0 0;
+}
+
 #main-panel
 {
-margin:0 0 0 180px;
+margin:0 0 0 190px;
 padding:0;
+background: white;
+min-height: 450px;
+-moz-border-radius:0 5px 5px 0;
+-webkit-border-radius: 0 5px 5px 0;
+-khtml-border-radius: 0 5px 5px 0;
+border-radius: 0 5px 5px 0;
 }
 
 #main-content
@@ -81,7 +123,19 @@ display:block;
 border:1px solid #6A83C2;
 background-color:#FFE;
 padding:0.5em 1em;
-margin-top:50px;
+margin:0 0px 0 0;
+}
+
+p.citation
+{
+float:left;
+width:97%;
+}
+
+p.citation_number
+{
+float:left;
+width:3%;
 }
 
 /**********/
@@ -95,7 +149,10 @@ font: 8px Verdana;
 text-align: center;
 /*border-top: 1px solid blue;*/
 background: white;
-font: 10px Verdana;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+-khtml-border-radius: 5px;
+border-radius: 5px;
 }
 
 #footer a{
@@ -127,7 +184,7 @@ text-align: left;
 {
 display: block;
 padding: 0.25em 0.5em 0.25em 0.25em;
-border-left: 1em solid #FFFFFF;
+border-left: 1em solid transparent;
 text-decoration: none;
 }
 
@@ -198,8 +255,15 @@ background-color: #e3e6ed;
 vertical-align: middle;
 }
 
-/* Articles */
-p.citation
+/********************************/
+/* JAZYK */
+#lang
+{
+margin: 5px 0 0 0;
+padding: 0px;
+}
+
+#lang ul
 {
 float:left;
 width:97%;
@@ -242,23 +306,12 @@ padding-bottom: 5px;
 vertical-align: top;
 }
 
-/*4F4*/
-div.branch table {
-border-collapse:collapse;
-border-color: black;
-}
-div.branch td{
-border: 1px solid black;
-padding:5px;
-text-align:center;
-}
-div.branch th{
-border: 1px solid black;
-padding:5px;
-}
+div.cv 
 
-a.list-name {
-margin: 1em 0 -1.5em 1em;
+/*Obrazky*/
+.floatright {
+    float: right;
+    margin: 10px 5px 10px 15px;
 }
 
 strong.list-phone {
@@ -282,6 +335,13 @@ border:none;
 
 img.right {
 float:right;
+}
+
+
+.shadow {
+-moz-box-shadow: 0px 0px 10px #000;
+-webkit-box-shadow: 0px 0px 10px #000;
+box-shadow: 0px 0px 10px #000;
 }
 
 /*********/
