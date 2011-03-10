@@ -20,9 +20,8 @@ color: #000000;
 {
 width: 100%;
 margin: 0;
-height: 120px;
+height: 140px;
 padding: 0;
-/*border-bottom: 1px solid blue;*/
 background: url("../img/mrizka.png") left repeat;
 }
 
@@ -32,15 +31,6 @@ float: left;
 height: inherit;
 width: 498px;
 padding: 0;
-/*border-bottom: 1px solid blue;*/
-/*background: url("./title.cz.png") left no-repeat;*/
-}
-
-#lang 
-{
-float: left;
-width: 80px;
-padding:0;
 }
 
 /***********/
@@ -104,7 +94,7 @@ display:block;
 border:1px solid #6A83C2;
 background-color:#FFE;
 padding:0.5em 1em;
-margin:0 200px 0 0;
+margin:0 0px 0 0;
 }
 
 /**********/
@@ -227,6 +217,7 @@ background-color: #e3e6ed;
 vertical-align: middle;
 }
 
+/* Articles */
 p.citation
 {
 float:left;
@@ -239,34 +230,14 @@ float:left;
 width:3%;
  }
 
-/********************************/
+/*******/
 /* JAZYK */
 #lang
 {
-margin: 0px;
+margin-left: 10px;
 padding: 0px;
-}
-
-#lang ul
-{
-margin: 0px;
-padding: 0px;
-margin-top: 0.6em;
-}
-
-
-#lang li
-{
-list-style: none;
-text-align: right;
-}
-
-#lang li a
-{
-display: block;
-/*padding: 0.1em 0.4em 0.0em 0.0em;*/
-margin: 5px 8px 3px 5px;
-text-decoration: none;
+float: left;
+width: 80px;
 }
 
 /*********/
