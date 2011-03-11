@@ -11,6 +11,8 @@ width: 80%;
 margin:10px auto;
 padding:0;
 color: #000000;
+font-family: Helvetica CE, Verdana, Arial;
+font-size:10pt;
 }
 
 /**********/
@@ -36,18 +38,6 @@ padding: 0;
 /***********/
 /* CONTENT */
 
-#content
-{
-width: 90%;
-margin:1em auto;
-/*border: 1px solid blue;*/
-text-align: right;
-}
-
-#container
-{
-}
-
 #container2
 {
 min-height: 450px;
@@ -69,11 +59,6 @@ margin: 0.4em 0 0 0;
 padding: 0.1em 0.5em;
 }
 
-#ie-space
-{
-#margin:1.5em 0 0 0;
-}
-
 #main-panel
 {
 margin:0 0 0 180px;
@@ -86,6 +71,7 @@ margin:10px auto;
 min-height: 425px;
 padding: 1em;
 background: white;
+text-align: justify
 }
 
 #akt-new
@@ -94,7 +80,7 @@ display:block;
 border:1px solid #6A83C2;
 background-color:#FFE;
 padding:0.5em 1em;
-margin:0 0px 0 0;
+margin-top:50px;
 }
 
 /**********/
@@ -102,17 +88,17 @@ margin:0 0px 0 0;
 
 #footer
 {
-padding: 10px;
+padding-top: 10px;
+margin-top: -10px;
 font: 8px Verdana;
 text-align: center;
 /*border-top: 1px solid blue;*/
-/*background: #dddddd;*/
+background: white;
+font: 10px Verdana;
 }
 
-hr.cleaner
-{
-clear:both;
-display: none
+#footer a{
+font: 10px Verdana;
 }
 
 /**********************/
@@ -169,12 +155,6 @@ color: #6a83c2;
 font-weight: bold;
 }
 
-/* Start Holly Hack, hidden from MacIE. \*/
-* html #menu_top ul li {
-height: 1%;
-}
-/* End Holly Hack. */
-
 #menu_top{
 margin: 10px auto 10px auto;
 background: url(../img/bod-fial.gif) repeat-x 0 50%;
@@ -208,7 +188,7 @@ text-decoration: none;
 vertical-align: middle;
 }
 
-#menu_top li a:hover, #menu_top li a#current {
+#menu_top li a:hover {
 color: #6a83c2;
 border: 1px solid #6a83c2;
 border-top: 2px solid #6a83c2;
@@ -240,14 +220,6 @@ float: left;
 width: 80px;
 }
 
-/*********/
-/*CODE*/
-code {
-font-family: courier, monospace;
-display: block;
-background-color: #eeeeee;
-}
-
 /*LIST-seznam*/
 div.list-name {
 margin: 1.5em 0 0 1em;
@@ -270,38 +242,16 @@ vertical-align: top;
 }
 
 /*Obrazky*/
-.floatright {
-    float: right;
-    margin: 10px 5px 10px 15px;
-}
-
 img {
 border:none;
 }
 
-img.space {
-margin: 1em 1em 1em 1em;
-border: 10px;
-}
-
-
 /*********/
 /* FONTY */
-
-body { 
-    font-family: Helvetica CE, Verdana, Arial; font-size:10pt; color: #000000;
-}
 
 h1 {color: #000000; font-size: 14pt;} 
 h2	{color: #000000; font-size: 12pt;} 
 h3	{color: #000000; font-size: 10pt;} 
-
-h2 a {
-	color: #566a9d; 
-	font-size:12pt; 
-	font-weight:bold;
-	text-decoration: none
-}
 
 a {
 	color: #566a9d; 
@@ -309,10 +259,12 @@ a {
 	font-weight:normal; 
 	text-decoration: none
 }
+
 a:active 	{ 
 color: #566a9d; 
 text-decoration: none 
-} 
+}
+
 a:hover     { 
 color: #6a83c2; 
 text-decoration: none 
@@ -328,35 +280,14 @@ a.strong 	{ color: #566a9d; font-size:10pt; font-weight:bold; text-decoration: n
 
 a.title 	{ color: #566a9d; font-size:16pt; font-weight:bold; text-decoration: none }    
 	a.title:active 	{ color: #566a9d; text-decoration: none }                                      
-	a.title:hover     { color: #6a83c2;; text-decoration: none }    
+	a.title:hover     { color: #6a83c2;; text-decoration: none }        
 	
-a.title2 	{ color: #566a9d; font-size:13pt; font-weight:normal; text-decoration: none }    
-	a.title2:active 	{ color: #566a9d; text-decoration: none }                                      
-	a.title2:hover     { color: #6a83c2; text-decoration: none }    
-
-a.little 	{ color: #566a9d; font-size:8pt; font-weight:normal; text-decoration: none}    
-	a.litle:active 	{ color: #566a9d; text-decoration: none }                                      
-	a.litle:hover     { color: #6a83c2; text-decoration: none }    
-	
-span.title	{ color: #000000; font-size:16pt}
 span.little	{ color: #000000; font-size:8pt}
 
 #akt-new {font-size: 80%}
 #akt-new a {font-size: 8pt}
 #akt-new  h1 	{color: #000000; font-size: 11pt} 
-#akt-new  h2	{color: #000000; font-size: 9pt} 
 
 /*justify*/
 p.justify { text-align: justify }
 p.center { text-align: center }
-#just { text-align: justify }
-
-#main-content { text-align: justify }
-
-#paticka {
-font: 10px Verdana;
-}
-
-#paticka a{
-font: 10px Verdana;
-}
