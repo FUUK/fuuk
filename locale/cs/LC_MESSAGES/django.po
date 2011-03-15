@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FUUK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-02 14:46+0100\n"
-"PO-Revision-Date: 2011-02-17 15:02+0100\n"
+"POT-Creation-Date: 2011-03-11 16:49+0100\n"
+"PO-Revision-Date: 2011-03-11 16:52+0100\n"
 "Last-Translator: Tomáš Pazderka <pazderka@karlov.mff.cuni.cz>\n"
 "Language-Team:  <pazderka@karlov.mff.cuni.cz>\n"
 "MIME-Version: 1.0\n"
@@ -18,307 +18,437 @@ msgstr ""
 "X-Poedit-Language: Czech\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 
-#: people/views.py:103 people/models/person.py:13 templates/base.html:88
+#: build/lib.linux-x86_64-2.6/people/views.py:118
+#: build/lib.linux-x86_64-2.6/people/models/person.py:14
+#: people/views.py:118
+#: people/models/person.py:14
+#: templates/base.html:75
 msgid "Staff"
 msgstr "Členové oddělení"
 
-#: people/views.py:116 templates/base.html:89
+#: build/lib.linux-x86_64-2.6/people/views.py:131
+#: people/views.py:131
+#: templates/base.html:76
 msgid "PhD. students"
 msgstr "Doktorandi"
 
-#: people/admin/forms.py:9 people/models/article.py:10
-#: people/models/article.py:123
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:9
+#: build/lib.linux-x86_64-2.6/people/models/article.py:10
+#: build/lib.linux-x86_64-2.6/people/models/article.py:132
+#: people/admin/forms.py:9
+#: people/models/article.py:10
+#: people/models/article.py:132
 msgid "Book"
 msgstr "Kniha"
 
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:10
 #: people/admin/forms.py:10
 msgid "ISBN"
 msgstr "ISBN"
 
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:11
 #: people/admin/forms.py:11
 msgid "Book title"
 msgstr ""
 
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:13
 #: people/admin/forms.py:13
 msgid "Leave blank for one-paged chapters."
 msgstr "Pro jednostránkové kapitoly ponechte prázdné."
 
-#: people/admin/forms.py:14
-msgid "Publishers"
-msgstr ""
-
-#: people/admin/forms.py:21 people/models/article.py:11
-#: people/models/article.py:131
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:23
+#: build/lib.linux-x86_64-2.6/people/models/article.py:11
+#: build/lib.linux-x86_64-2.6/people/models/article.py:140
+#: people/admin/forms.py:23
+#: people/models/article.py:11
+#: people/models/article.py:140
 msgid "Article"
 msgstr "Článek"
 
-#: people/admin/forms.py:22
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:24
+#: people/admin/forms.py:24
 msgid "DOI"
 msgstr "DOI"
 
-#: people/admin/forms.py:22
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:24
+#: people/admin/forms.py:24
 msgid "Without leading http://dx.doi.org/"
 msgstr ""
 
-#: people/admin/forms.py:23
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:25
+#: people/admin/forms.py:25
 msgid "Journal"
 msgstr ""
 
-#: people/admin/forms.py:23
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:25
+#: people/admin/forms.py:25
 msgid "Please fill in a full name of journal."
 msgstr ""
 
-#: people/admin/forms.py:25
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:27
+#: people/admin/forms.py:27
 msgid "For articles in press fill in X1."
 msgstr ""
 
-#: people/admin/forms.py:26
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:28
+#: people/admin/forms.py:28
 msgid "Leave blank for one-paged articles."
 msgstr "Pro jednostránkové články nechte prázdné."
 
-#: people/admin/forms.py:37
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:39
+#: people/admin/forms.py:39
 msgid "Abstract collection"
 msgstr ""
 
+#: build/lib.linux-x86_64-2.6/people/admin/forms.py:40
+#: people/admin/forms.py:40
+msgid "City, state, date."
+msgstr "Město, stát, datum."
+
+#: build/lib.linux-x86_64-2.6/people/models/article.py:12
 #: people/models/article.py:12
 msgid "Lecture"
 msgstr "Přednáška"
 
+#: build/lib.linux-x86_64-2.6/people/models/article.py:13
 #: people/models/article.py:13
 msgid "Invited lecture"
 msgstr "Zvaná přednáška"
 
+#: build/lib.linux-x86_64-2.6/people/models/article.py:14
 #: people/models/article.py:14
 msgid "Poster"
 msgstr "Poster"
 
+#: build/lib.linux-x86_64-2.6/people/models/article.py:38
 #: people/models/article.py:38
 msgid "Leave blank for one paged abstracts."
 msgstr "Pro jednostránkové abstrakty ponechte prázdné."
 
-#: people/models/article.py:43
-msgid "City, state, date."
-msgstr "Město, stát, datum."
+#: build/lib.linux-x86_64-2.6/people/models/article.py:48
+#: people/models/article.py:48
+msgid "Before selecting a presenter fill authors and press \"Save and continue editing\"."
+msgstr "Před zadáním přednášejícího zadejte autory a dejte \"Uložit a pokračovat v úpravách\"."
 
-#: people/models/article.py:47
-msgid ""
-"Before selecting a presenter fill authors and press \"Save and continue "
-"editing\"."
-msgstr ""
-"Před zadáním přednášejícího zadejte autory a dejte \"Uložit a pokračovat v "
-"úpravách\"."
-
-#: people/models/article.py:61
+#: build/lib.linux-x86_64-2.6/people/models/article.py:62
+#: people/models/article.py:62
 msgid "Book has to have ISBN number."
 msgstr "Kniha musí mít ISBN."
 
-#: people/models/article.py:63
+#: build/lib.linux-x86_64-2.6/people/models/article.py:64
+#: people/models/article.py:64
 msgid "Book has to have book title."
 msgstr "Kniha musí mít název."
 
-#: people/models/article.py:65
+#: build/lib.linux-x86_64-2.6/people/models/article.py:66
+#: people/models/article.py:66
 msgid "Book can not have volume."
 msgstr "Kniha nemůže mít svazek."
 
-#: people/models/article.py:67
+#: build/lib.linux-x86_64-2.6/people/models/article.py:68
+#: people/models/article.py:68
 msgid "Book has to have page(s)."
 msgstr "Kniha musí mít stránky."
 
-#: people/models/article.py:69
+#: build/lib.linux-x86_64-2.6/people/models/article.py:70
+#: people/models/article.py:70
 msgid "Book has to have publishers."
 msgstr "Kniha musí mít vydavatele."
 
-#: people/models/article.py:71
+#: build/lib.linux-x86_64-2.6/people/models/article.py:72
+#: people/models/article.py:72
 msgid "Book can not have presenter."
 msgstr "Kniha nemůže mít přednášejícího."
 
-#: people/models/article.py:74
+#: build/lib.linux-x86_64-2.6/people/models/article.py:75
+#: people/models/article.py:75
 msgid "Article has to have journal."
 msgstr "Článek musí mít žurnál."
 
-#: people/models/article.py:76
+#: build/lib.linux-x86_64-2.6/people/models/article.py:77
+#: people/models/article.py:77
 msgid "Article has to have volume."
 msgstr "Článek musí mít svazek."
 
-#: people/models/article.py:78
+#: build/lib.linux-x86_64-2.6/people/models/article.py:79
+#: people/models/article.py:79
 msgid "Article has to have page(s)."
 msgstr "Článek musí mít stránky."
 
-#: people/models/article.py:80
+#: build/lib.linux-x86_64-2.6/people/models/article.py:81
+#: build/lib.linux-x86_64-2.6/people/models/article.py:100
+#: people/models/article.py:81
+#: people/models/article.py:100
+msgid "End page number must be bigger than start page number."
+msgstr ""
+
+#: build/lib.linux-x86_64-2.6/people/models/article.py:83
+#: people/models/article.py:83
 msgid "Article can not have editors."
 msgstr "Článek nemůže mít editory."
 
-#: people/models/article.py:82
+#: build/lib.linux-x86_64-2.6/people/models/article.py:85
+#: people/models/article.py:85
+#, fuzzy
+msgid "Article can not have publishers."
+msgstr "Článek nemůže mít místo."
+
+#: build/lib.linux-x86_64-2.6/people/models/article.py:87
+#: people/models/article.py:87
 msgid "Article can not have place."
 msgstr "Článek nemůže mít místo."
 
-#: people/models/article.py:84
+#: build/lib.linux-x86_64-2.6/people/models/article.py:89
+#: people/models/article.py:89
 msgid "Article can not have presenter."
 msgstr "Článek nemůže mít přednášejícího."
 
-#: people/models/article.py:87
-msgid "Talk can not have ISBN/DOI number."
-msgstr ""
+#: build/lib.linux-x86_64-2.6/people/models/article.py:92
+#: people/models/article.py:92
+#, fuzzy
+msgid "Conference paper can not have ISBN/DOI number."
+msgstr "Poster nemůže mít DOI/ISBN."
 
-#: people/models/article.py:89
-msgid "Talk can not have volume."
-msgstr ""
+#: build/lib.linux-x86_64-2.6/people/models/article.py:94
+#: people/models/article.py:94
+#, fuzzy
+msgid "Conference paper can not have volume."
+msgstr "Poster nemůže mít svazek."
 
-#: people/models/article.py:91
+#: build/lib.linux-x86_64-2.6/people/models/article.py:96
+#: people/models/article.py:96
+#, fuzzy
+msgid "Conference paper can not have publishers."
+msgstr "Kniha musí mít vydavatele."
+
+#: build/lib.linux-x86_64-2.6/people/models/article.py:98
+#: people/models/article.py:98
 msgid "Page from must be filled if pages are specified."
 msgstr ""
 
-#: people/models/article.py:93
-msgid "Presenter must be among authors."
+#: build/lib.linux-x86_64-2.6/people/models/article.py:102
+#: people/models/article.py:102
+#, fuzzy
+msgid "Presenter must be one of authors."
 msgstr "Přednášející musí být mezi autory."
 
-#: people/models/article.py:124
+#: build/lib.linux-x86_64-2.6/people/models/article.py:133
+#: people/models/article.py:133
 msgid "Books"
 msgstr "Knihy"
 
-#: people/models/article.py:132 templates/people/person/articles.html:7
+#: build/lib.linux-x86_64-2.6/people/models/article.py:141
+#: people/models/article.py:141
+#: templates/people/person/articles.html:7
 #: templates/people/person/base.html:13
 msgid "Articles"
 msgstr "Publikace v časopisech"
 
-#: people/models/article.py:139 people/models/article.py:140
+#: build/lib.linux-x86_64-2.6/people/models/article.py:148
+#: build/lib.linux-x86_64-2.6/people/models/article.py:149
+#: people/models/article.py:148
+#: people/models/article.py:149
 msgid "Conference paper"
 msgstr "Konferenční příspěvky"
 
-#: people/models/person.py:14
+#: build/lib.linux-x86_64-2.6/people/models/grant.py:25
+#: people/models/grant.py:25
+msgid "Applicant"
+msgstr ""
+
+#: build/lib.linux-x86_64-2.6/people/models/grant.py:29
+#: people/models/grant.py:29
+msgid "Co-applicant"
+msgstr ""
+
+#: build/lib.linux-x86_64-2.6/people/models/grant.py:30
+#: people/models/grant.py:30
+msgid "Contact administrators for different Grant Agency."
+msgstr ""
+
+#: build/lib.linux-x86_64-2.6/people/models/person.py:15
+#: people/models/person.py:15
 msgid "PhD. student"
 msgstr "Doktorand"
 
-#: people/models/person.py:15
+#: build/lib.linux-x86_64-2.6/people/models/person.py:16
+#: people/models/person.py:16
 msgid "Mgr. student"
 msgstr "Diplomant"
 
-#: people/models/person.py:16
+#: build/lib.linux-x86_64-2.6/people/models/person.py:17
+#: people/models/person.py:17
 msgid "Bc. student"
 msgstr "Bakalář"
 
-#: people/models/person.py:75
+#: build/lib.linux-x86_64-2.6/people/models/person.py:39
+#: people/models/person.py:39
+msgid "Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &# 8209; for endash."
+msgstr ""
+
+#: build/lib.linux-x86_64-2.6/people/models/person.py:58
+#: people/models/person.py:58
+msgid "Only used for grant (co-)applicants or staff."
+msgstr ""
+
+#: build/lib.linux-x86_64-2.6/people/models/person.py:64
+#: people/models/person.py:64
+msgid "Only first letter is required for article authors. In case of multiple first names, fill them separated by space."
+msgstr ""
+
+#: build/lib.linux-x86_64-2.6/people/models/person.py:86
+#: people/models/person.py:86
 msgid "Only one person can be active per human."
 msgstr ""
 
-#: people/models/person.py:78
+#: build/lib.linux-x86_64-2.6/people/models/person.py:89
+#: people/models/person.py:89
 msgid "Person with type must have human."
 msgstr "Osoba s typem musí být \"human\"."
 
-#: people/models/person.py:81
+#: build/lib.linux-x86_64-2.6/people/models/person.py:92
+#: people/models/person.py:92
 msgid "Students must have class year."
 msgstr "Studenti musí mít ročník."
 
+#: build/lib.linux-x86_64-2.6/people/models/thesis.py:10
 #: people/models/thesis.py:10
 msgid "Bachelor"
 msgstr "Bakalářská"
 
+#: build/lib.linux-x86_64-2.6/people/models/thesis.py:11
 #: people/models/thesis.py:11
 msgid "Master"
 msgstr "Magisterská"
 
+#: build/lib.linux-x86_64-2.6/people/models/thesis.py:12
 #: people/models/thesis.py:12
 msgid "Doctoral"
 msgstr "Dizertační"
 
+#: build/lib.linux-x86_64-2.6/people/models/thesis.py:13
 #: people/models/thesis.py:13
 msgid "Rigorous"
 msgstr "Rigorózní"
 
+#: build/lib.linux-x86_64-2.6/people/models/thesis.py:14
 #: people/models/thesis.py:14
 msgid "Professor"
 msgstr "Profesorská"
 
+#: build/lib.linux-x86_64-2.6/people/models/thesis.py:20
 #: people/models/thesis.py:20
 msgid "Year of thesis start or year of defence if already defended."
 msgstr ""
 
-#: templates/base.html:20
-msgid ""
-"Division of Biomolecular Physics, Institute of Physics at Charles University "
-"in Prague"
+#: templates/404.html:5
+msgid "File not found"
+msgstr ""
+
+#: templates/404.html:6
+msgid "File not found."
+msgstr ""
+
+#: templates/500.html:5
+msgid "Server error (500)"
+msgstr ""
+
+#: templates/500.html:6
+msgid "There's been an error. It's been reported to the site administrators via e-mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: templates/base.html:17
+msgid "Division of Biomolecular Physics, Institute of Physics at Charles University in Prague"
 msgstr "MFF UK: Oddělení fyziky biomolekul"
 
-#: templates/base.html:54
+#: templates/base.html:51
 msgid "Division of Biomolecular Physics"
 msgstr "Oddělení fyziky biomolekul"
 
-#: templates/base.html:54
+#: templates/base.html:51
 msgid "Institute of Physics"
 msgstr "Fyzikální ústav UK"
 
-#: templates/base.html:57
+#: templates/base.html:54
 msgid "Charles University, Ke Karlovu 5, Prague 2,"
 msgstr "MFF UK, Ke Karlovu 5, Praha 2,"
 
-#: templates/base.html:78
+#: templates/base.html:66
 msgid "Welcome"
 msgstr "Vítejte"
 
-#: templates/base.html:79
+#: templates/base.html:67
 msgid "Education"
 msgstr "Studium"
 
-#: templates/base.html:82
+#: templates/base.html:69
 msgid "Thesis offer"
 msgstr "Nabídka prací"
 
-#: templates/base.html:83 templates/people/person/detail.html:57
+#: templates/base.html:70
+#: templates/people/person/detail.html:58
 msgid "Defended thesis"
 msgstr "Obhájené práce"
 
-#: templates/base.html:86
+#: templates/base.html:73
 msgid "People"
 msgstr "Lidé"
 
-#: templates/base.html:90 templates/people/students.html:5
+#: templates/base.html:77
+#: templates/people/students.html:5
 #: templates/people/person/base.html:18
 #: templates/people/person/students.html:6
 msgid "Students"
 msgstr "Studenti"
 
-#: templates/base.html:93
+#: templates/base.html:80
 msgid "Science"
 msgstr "Věda"
 
-#: templates/base.html:95
+#: templates/base.html:82
 msgid "Problematics"
 msgstr "Problematika"
 
-#: templates/base.html:96
+#: templates/base.html:83
 msgid "Publications"
 msgstr "Publikace"
 
-#: templates/base.html:97 templates/people/grant_detail.html:6
-#: templates/people/person/base.html:28 templates/people/person/grants.html:8
+#: templates/base.html:84
+#: templates/people/grant_detail.html:6
+#: templates/people/person/base.html:28
+#: templates/people/person/grants.html:8
 msgid "Grants"
 msgstr "Granty"
 
-#: templates/base.html:98
+#: templates/base.html:85
 msgid "Labs"
 msgstr "Laboratoře"
 
-#: templates/base.html:99
+#: templates/base.html:86
 msgid "Cooperations"
 msgstr "Spolupráce"
 
-#: templates/base.html:102
+#: templates/base.html:87
+msgid "Software"
+msgstr ""
+
+#: templates/base.html:90
 msgid "Gallery"
 msgstr "Galerie"
 
-#: templates/base.html:103
+#: templates/base.html:91
 msgid "How to find us"
 msgstr "Kde nás najdete"
 
-#: templates/base.html:120
+#: templates/base.html:112
 msgid "Contact"
 msgstr "S připomínkami a dotazy se obracejte na"
 
-#: templates/base.html:120
+#: templates/base.html:112
 msgid "webmasters"
 msgstr "správce"
 
-#: templates/base.html:120
+#: templates/base.html:112
 msgid "for any suggestion or more information."
 msgstr "stránek."
 
@@ -390,7 +520,8 @@ msgstr "Podle roku obhájení"
 msgid "Theses defended in year"
 msgstr "Práce obhájené v roce"
 
-#: templates/people/theses.html:28 templates/people/theses.html.py:40
+#: templates/people/theses.html:28
+#: templates/people/theses.html.py:40
 msgid "Advisor"
 msgstr "Vedoucí"
 
@@ -436,7 +567,8 @@ msgstr "Konferenční příspěvky"
 msgid "Monographies"
 msgstr ""
 
-#: templates/people/person/base.html:23 templates/people/person/courses.html:6
+#: templates/people/person/base.html:23
+#: templates/people/person/courses.html:6
 msgid "Courses"
 msgstr "Výuka"
 
@@ -495,12 +627,12 @@ msgstr "Dlouhodobé zahraniční pobyty"
 msgid "Curiculum vitae"
 msgstr "Odborný životopis"
 
-#: templates/people/person/detail.html:48
+#: templates/people/person/detail.html:49
 msgid "Current thesis"
 msgstr "Současná práce"
 
-#: templates/people/person/detail.html:51
-#: templates/people/person/detail.html:60
+#: templates/people/person/detail.html:52
+#: templates/people/person/detail.html:61
 msgid "thesis"
 msgstr "práce"
 
@@ -539,40 +671,24 @@ msgstr "Dizertační práce"
 
 #~ msgid "Book can not have length."
 #~ msgstr "Kniha nemůže mít zadanou délku."
-
 #~ msgid "Article has to have DOI number."
 #~ msgstr "Článek musí mít DOI."
-
 #~ msgid "Article can not have length."
 #~ msgstr "Článek nemůže mít délku."
-
 #~ msgid "Talk"
 #~ msgstr "Přednáška"
-
-#~ msgid "Poster can not have ISBN/DOI number."
-#~ msgstr "Poster nemůže mít DOI/ISBN."
-
-#~ msgid "Poster can not have volume."
-#~ msgstr "Poster nemůže mít svazek."
-
 #~ msgid "Poster can not have length."
 #~ msgstr "Poster nemůže mít délku."
-
 #~ msgid "Talks"
 #~ msgstr "Přednášky"
-
 #~ msgid "Posters"
 #~ msgstr "Postery"
-
 #~ msgid "Summer school"
 #~ msgstr "Letní škola"
-
 #~ msgid "Defended bachelor thesis"
 #~ msgstr "Obhájené bakalářské práce"
-
 #~ msgid "Defended master thesis"
 #~ msgstr "Obhájené magisterské práce"
-
 #~ msgid "Defended doctoral thesis"
 #~ msgstr "Obhájené dizertační práce"
 
@@ -583,18 +699,14 @@ msgstr "Dizertační práce"
 #, fuzzy
 #~ msgid "Defended professor thesis"
 #~ msgstr "Obhájené práce"
-
 #~ msgid "Proceeding"
 #~ msgstr "Konf. příspěvek"
-
 #~ msgid "Talk can not have pages."
 #~ msgstr "Přednáška nemůže mít stránky."
-
 #~ msgid "Poster can not have pages."
 #~ msgstr "Poster nemůže mít stránky."
-
 #~ msgid "MFF UK, Prague: Division of biomolecular physics"
 #~ msgstr "MFF UK: Oddělení fyziky biomolekul"
-
 #~ msgid "Papers"
 #~ msgstr "Publikace"
+

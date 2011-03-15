@@ -29,7 +29,39 @@ class HumanAdmin(MultilingualModelAdmin):
         models.CharField: {'form_class': NullCharField},
     }
 
+    def get_readonly_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return self.readonly_fields
 
+        fields = list(self.readonly_fields)
+        fields.extend(['user', 'nickname', 'subtitle', 'birth_place', 'birth_date', 'email'])
+        return tuple(fields)
+    
+    def has_change_permission(self, request, obj=None):
+        """
+        If `obj` is None, this should return True if the given request has
+        permission to delete *any* object of the given type.
+        """
+        if request.user.is_superuser:
+            return True
+
+        if obj:
+            if request.user == getattr(obj, 'user', None):
+                return True
+            return False
+
+        return super(HumanAdmin, self).has_change_permission(request, obj)
+
+    def queryset(self, request):
+        queryset = super(HumanAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return queryset
+
+        human = request.user.human
+        return queryset.filter(
+            pk=human.pk
+        )
+    
 class PersonAdmin(ModelAdmin):
     list_display = ('last_name', 'first_name', 'is_active', 'type', 'place')
     list_filter = ('type', 'is_active')

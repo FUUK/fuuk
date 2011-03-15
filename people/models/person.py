@@ -36,7 +36,7 @@ class Human(models.Model):
     class Translation(multilingual.Translation):
         subtitle = models.CharField(max_length=200, blank=True, null=True)
         cv = models.TextField(blank=True, null=True)
-        interests = models.TextField(blank=True, null=True, help_text=_('Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &# 8209; for endash.'))
+        interests = models.TextField(blank=True, null=True, help_text=_('Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &amp;#8209; for endash.'))
         stays = models.TextField(blank=True, null=True)
 
     class Meta:
