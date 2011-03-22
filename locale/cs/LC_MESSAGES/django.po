@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FUUK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-11 16:49+0100\n"
-"PO-Revision-Date: 2011-03-11 16:52+0100\n"
+"POT-Creation-Date: 2011-03-22 15:22+0100\n"
+"PO-Revision-Date: 2011-03-22 15:25+0100\n"
 "Last-Translator: Tomáš Pazderka <pazderka@karlov.mff.cuni.cz>\n"
 "Language-Team:  <pazderka@karlov.mff.cuni.cz>\n"
 "MIME-Version: 1.0\n"
@@ -73,17 +73,17 @@ msgstr "DOI"
 #: build/lib.linux-x86_64-2.6/people/admin/forms.py:24
 #: people/admin/forms.py:24
 msgid "Without leading http://dx.doi.org/"
-msgstr ""
+msgstr "Bez počátečního http://dx.doi.org/"
 
 #: build/lib.linux-x86_64-2.6/people/admin/forms.py:25
 #: people/admin/forms.py:25
 msgid "Journal"
-msgstr ""
+msgstr "Časopis"
 
 #: build/lib.linux-x86_64-2.6/people/admin/forms.py:25
 #: people/admin/forms.py:25
 msgid "Please fill in a full name of journal."
-msgstr ""
+msgstr "Vyplňujte, prosím, celé jméno časopisu."
 
 #: build/lib.linux-x86_64-2.6/people/admin/forms.py:27
 #: people/admin/forms.py:27
@@ -189,9 +189,8 @@ msgstr "Článek nemůže mít editory."
 
 #: build/lib.linux-x86_64-2.6/people/models/article.py:85
 #: people/models/article.py:85
-#, fuzzy
 msgid "Article can not have publishers."
-msgstr "Článek nemůže mít místo."
+msgstr "Článek nemůže mít vydavatele."
 
 #: build/lib.linux-x86_64-2.6/people/models/article.py:87
 #: people/models/article.py:87
@@ -205,21 +204,18 @@ msgstr "Článek nemůže mít přednášejícího."
 
 #: build/lib.linux-x86_64-2.6/people/models/article.py:92
 #: people/models/article.py:92
-#, fuzzy
 msgid "Conference paper can not have ISBN/DOI number."
-msgstr "Poster nemůže mít DOI/ISBN."
+msgstr "Konferenční příspěvek nemůže mít DOI/ISBN."
 
 #: build/lib.linux-x86_64-2.6/people/models/article.py:94
 #: people/models/article.py:94
-#, fuzzy
 msgid "Conference paper can not have volume."
-msgstr "Poster nemůže mít svazek."
+msgstr "Konferenční příspěvek nemůže mít svazek."
 
 #: build/lib.linux-x86_64-2.6/people/models/article.py:96
 #: people/models/article.py:96
-#, fuzzy
 msgid "Conference paper can not have publishers."
-msgstr "Kniha musí mít vydavatele."
+msgstr "Konferenční příspěvek nemůže mít vydavatele."
 
 #: build/lib.linux-x86_64-2.6/people/models/article.py:98
 #: people/models/article.py:98
@@ -228,7 +224,6 @@ msgstr ""
 
 #: build/lib.linux-x86_64-2.6/people/models/article.py:102
 #: people/models/article.py:102
-#, fuzzy
 msgid "Presenter must be one of authors."
 msgstr "Přednášející musí být mezi autory."
 
@@ -282,7 +277,6 @@ msgid "Bc. student"
 msgstr "Bakalář"
 
 #: build/lib.linux-x86_64-2.6/people/models/person.py:39
-#: people/models/person.py:39
 msgid "Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &# 8209; for endash."
 msgstr ""
 
@@ -341,13 +335,17 @@ msgstr "Profesorská"
 msgid "Year of thesis start or year of defence if already defended."
 msgstr ""
 
+#: people/models/person.py:39
+msgid "Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &amp;#8209; for endash."
+msgstr ""
+
 #: templates/404.html:5
 msgid "File not found"
-msgstr ""
+msgstr "Soubor nenalezen"
 
 #: templates/404.html:6
 msgid "File not found."
-msgstr ""
+msgstr "Soubor nenalezen."
 
 #: templates/500.html:5
 msgid "Server error (500)"
@@ -355,13 +353,14 @@ msgstr ""
 
 #: templates/500.html:6
 msgid "There's been an error. It's been reported to the site administrators via e-mail and should be fixed shortly. Thanks for your patience."
-msgstr ""
+msgstr "Vyskytla se chyba. Administrátorům byla nahlášena emailem a měla by být brzy opravena. Děkujeme za trpělivost."
 
 #: templates/base.html:17
 msgid "Division of Biomolecular Physics, Institute of Physics at Charles University in Prague"
 msgstr "MFF UK: Oddělení fyziky biomolekul"
 
 #: templates/base.html:51
+#: templates/front_page.html:8
 msgid "Division of Biomolecular Physics"
 msgstr "Oddělení fyziky biomolekul"
 
@@ -430,7 +429,7 @@ msgstr "Spolupráce"
 
 #: templates/base.html:87
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 #: templates/base.html:90
 msgid "Gallery"
@@ -452,7 +451,35 @@ msgstr "správce"
 msgid "for any suggestion or more information."
 msgstr "stránek."
 
-#: templates/front_page.html:22
+#: templates/front_page.html:9
+msgid ""
+"\n"
+"\t\t\t<p>The Division of Biomolecular Physics carries out fundamental research in molecular biophysics with focus on physical and chemical properties,\n"
+"            structure and interactions of biomolecules, especially nucleic acids, proteins, porphyrins and their biologically important analogs.\n"
+"            The major research methods include Raman, infrared and UV&ndash;VIS absorption spectroscopy. Experimental studies are supported by\n"
+"            quantum chemistry calculations and molecular dynamics simulations.</p>\n"
+"            <p>The Division of Biomolecular Physics also provides training in Biophysics and chemical physics. The Institute of Physics is the guarantee for\n"
+"            master's program &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1b8.htm\" target=\"_blank\">Biophysics and chemical physics</a>&quot;\n"
+"            at the Faculty of Mathematics and Physics at Charles University in Prague. The department actively participates in lecturing,\n"
+"            laboratory training and diploma thesis supervision. Additionally, some employees provide lecturing and training in bachelor's programs\n"
+"            &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1a2.htm\" target=\"_blank\">General Physics</a>&quot; and\n"
+"            &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1a3.htm\" target=\"_blank\">Physics directed towards education.</a>&quot;</p>\n"
+"            "
+msgstr ""
+"\n"
+"\t\t\t<p>Oddělení fyziky biomolekul (OFB) se zabývá základním výzkumem v oblasti molekulární biofyziky zaměřeným na studium fyzikálně&ndash;chemických vlastností,\n"
+"            struktury a interakcí biomolekul, především nukleových kyselin, proteinů a porfyrinů a jejich biologicky významných analog. Při studiu, které probíhá za spolupráce s\n"
+"            dalšími českými a zahraničními skupinami, je používán komplexní přístup zahrnující metody Ramanovy, infračervené a UV&ndash;VIS absorpční spektroskopie,\n"
+"            kvantově&ndash;chemické výpočty a molekulárně&ndash;dynamické modelování. </p> \n"
+"             <p>Oddělení fyziky biomolekul se významným způsobem podílí na výuce v oboru &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1b8.htm\" target=\"_blank\">Biofyzika\n"
+"            a chemická fyzika</a>&quot; navazujícího magisterského studia fyziky na Matematicko&ndash;fyzikální fakultě UK formou přednášek, laboratorních cvičení a vedení\n"
+"            diplomových prací. Fyzikální ústav UK je také garantujícím pracovištěm tohoto studijního oboru.</p>\n"
+"             <p>Řada pracovníků oddělení se také podílí na výuce v bakalářském studiu v oborech &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1a2.htm\"\n"
+"            target=\"_blank\">Obecná fyzika</a>&quot; a &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1a3.htm\" target=\"_blank\">Fyzika zaměřená na vzdělávání</a>\n"
+"             &quot; formou přednášek, cvičení, výuky v základním praktiku a vedením bakalářských prací.</p> \n"
+"            "
+
+#: templates/front_page.html:23
 msgid "News"
 msgstr "Novinky"
 
@@ -668,45 +695,4 @@ msgstr "rok PhD. studia"
 #: templates/people/person/students.html:21
 msgid "Disertation thesis"
 msgstr "Dizertační práce"
-
-#~ msgid "Book can not have length."
-#~ msgstr "Kniha nemůže mít zadanou délku."
-#~ msgid "Article has to have DOI number."
-#~ msgstr "Článek musí mít DOI."
-#~ msgid "Article can not have length."
-#~ msgstr "Článek nemůže mít délku."
-#~ msgid "Talk"
-#~ msgstr "Přednáška"
-#~ msgid "Poster can not have length."
-#~ msgstr "Poster nemůže mít délku."
-#~ msgid "Talks"
-#~ msgstr "Přednášky"
-#~ msgid "Posters"
-#~ msgstr "Postery"
-#~ msgid "Summer school"
-#~ msgstr "Letní škola"
-#~ msgid "Defended bachelor thesis"
-#~ msgstr "Obhájené bakalářské práce"
-#~ msgid "Defended master thesis"
-#~ msgstr "Obhájené magisterské práce"
-#~ msgid "Defended doctoral thesis"
-#~ msgstr "Obhájené dizertační práce"
-
-#, fuzzy
-#~ msgid "Defended rigorous thesis"
-#~ msgstr "Obhájené práce"
-
-#, fuzzy
-#~ msgid "Defended professor thesis"
-#~ msgstr "Obhájené práce"
-#~ msgid "Proceeding"
-#~ msgstr "Konf. příspěvek"
-#~ msgid "Talk can not have pages."
-#~ msgstr "Přednáška nemůže mít stránky."
-#~ msgid "Poster can not have pages."
-#~ msgstr "Poster nemůže mít stránky."
-#~ msgid "MFF UK, Prague: Division of biomolecular physics"
-#~ msgstr "MFF UK: Oddělení fyziky biomolekul"
-#~ msgid "Papers"
-#~ msgstr "Publikace"
 

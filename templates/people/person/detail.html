@@ -27,22 +27,22 @@
             </td>
         </tr>
     </table>
-    <hr  size="3" width="100%"/>
+    <hr  style='size:3;width:100%'/>
     <div class="cv">
     {% if person.human.interests %}
         <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
             {{ person.human.interests|textile }}
-        <hr  size="3" width="100%"/>
+        <hr  style='size:3;width:100%'/>
     {% endif %}
     {% if person.human.stays %}
         <p class="strong" align="left">{% trans "Long term stays" %}:</p>
             {{ person.human.stays|textile }}
-        <hr  size="3" width="100%"/>
+        <hr  style='size:3;width:100%'/>
     {% endif %}
     {% if person.human.cv %}
         <p class="strong" align="left">{% trans "Curiculum vitae" %}:</p>
             {{ person.human.cv|textile }}
-        <hr  size="3" width="100%"/>
+        <hr  style='size:3;width:100%'/>
     {% endif %}
     </div>
     {% if theses_ongoing %}
@@ -52,7 +52,7 @@
                  <li>{{ thesis.get_type_display }} {% trans "thesis" %}: <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
             {% endfor %}
             </ul>
-        <hr size="3" width="100%"/>
+        <hr  style='size:3;width:100%'/>
     {% endif %}
     {% if theses %}
         <p class="strong" align="left">{% trans "Defended thesis" %}:</p>
@@ -61,6 +61,6 @@
                 <li>{{ thesis.get_type_display }} {% trans "thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
             {% endfor %}
             </ul>
-        <hr size="3" width="100%"/>
+        <hr  style='size:3;width:100%'/>
     {% endif %}
 {% endblock %}

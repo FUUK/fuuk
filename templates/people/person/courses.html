@@ -8,7 +8,7 @@
         {% for course in courses %}
             <li>
                 <p>
-                    <a class="strong" href="http://is.cuni.cz/studium/predmety/index.php?do=predmet&kod={{ course.code }}" target="_blank">{{ course.name }}</a><br />
+                    <a class="strong" href="http://is.cuni.cz/studium/predmety/index.php?do=predmet&amp;kod={{ course.code }}" target="blank">{{ course.name }}</a><br />
                     <em><strong>{% trans "Code" %}:</strong></em> {{ course.code }}<br />
                     {% if course.ls %}
                         <em><strong>{% trans "Range in summer semester" %}:</strong></em> {{ course.ls }}<br />
@@ -41,7 +41,7 @@
         {% for course in courses_practical %}
             <li>
                 <p>
-                    <a class="strong" href="http://is.cuni.cz/studium/predmety/index.php?do=predmet&kod={{ course.code }}" target="_blank">{{ course.name }} - {% trans "Practicals" %}</a><br />
+                    <a class="strong" href="http://is.cuni.cz/studium/predmety/index.php?do=predmet&ampkod={{ course.code }}" target="blank">{{ course.name }} - {% trans "Practicals" %}</a><br />
                     <em><strong>{% trans "Code" %}:</strong></em> {{ course.code }}<br />
                     {% if course.ls %}
                         <em><strong>{% trans "Range in summer semester" %}:</strong></em> {{ course.ls }}<br />

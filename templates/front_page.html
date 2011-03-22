@@ -2,27 +2,28 @@
 {% load i18n %}
 
 {% block content %}
-	<a href="http://www.cuni.cz/" target="_blank">Univerzita Karlova v Praze</a> &gt; 
-	<a href="http://www.mff.cuni.cz/" target="_blank">Matematicko&ndash;fyzikální fakulta</a> &gt; 
-	<a href="http://www.mff.cuni.cz/fakulta/struktura/fuuk.htm" target="_blank">Fyzikální ústav</a> 
-		<h2>Oddělení fyziky biomolekul</h2> 
-			<p>Oddělení fyziky biomolekul (OFB) se zabývá základním výzkumem v oblasti molekulární biofyziky zaměřeným na studium fyzikálně&ndash;chemických vlastností,
-			struktury a interakcí biomolekul, především nukleových kyselin, proteinů a porfyrinů a jejich biologicky významných analog. Při studiu, které probíhá za spolupráce s
-			dalšími českými a zahraničními skupinami, je používán komplexní přístup zahrnující metody Ramanovy, infračervené a UV&ndash;VIS absorpční spektroskopie,
-			kvantově&ndash;chemické výpočty a molekulárně&ndash;dynamické modelování. </p> 
-			<p>Oddělení fyziky biomolekul se významným způsobem podílí na výuce v oboru &quot;<a href="http://www.mff.cuni.cz/studium/bcmgr/ok/f1b8.htm" target="_blank">Biofyzika
-			a chemická fyzika</a>&quot; navazujícího magisterského studia fyziky na Matematicko&ndash;fyzikální fakultě UK formou přednášek, laboratorních cvičení a vedení
-			diplomových prací. Fyzikální ústav UK je také garantujícím pracovištěm tohoto studijního oboru.</p> 
-			<p>Řada pracovníků oddělení se také podílí na výuce v bakalářském studiu v oborech &quot;<a href="http://www.mff.cuni.cz/studium/bcmgr/ok/f1a2.htm"
-			target="_blank">Obecná fyzika</a>&quot; a &quot;<a href="http://www.mff.cuni.cz/studium/bcmgr/ok/f1a3.htm" target="_blank">Fyzika zaměřená na vzdělávání</a>
-			&quot; formou přednášek, cvičení, výuky v základním praktiku a vedením bakalářských prací.</p>
-    
+	<a href="http://www.cuni.cz/" target="blank">Univerzita Karlova v Praze</a> &gt; 
+	<a href="http://www.mff.cuni.cz/" target="blank">Matematicko&ndash;fyzikální fakulta</a> &gt; 
+	<a href="http://www.mff.cuni.cz/fakulta/struktura/fuuk.htm" target="blank">Fyzikální ústav</a> 
+		<h2>{% trans "Division of Biomolecular Physics" %}</h2> 
+            {% blocktrans %}
+			<p>The Division of Biomolecular Physics carries out fundamental research in molecular biophysics with focus on physical and chemical properties,
+            structure and interactions of biomolecules, especially nucleic acids, proteins, porphyrins and their biologically important analogs.
+            The major research methods include Raman, infrared and UV&ndash;VIS absorption spectroscopy. Experimental studies are supported by
+            quantum chemistry calculations and molecular dynamics simulations.</p>
+            <p>The Division of Biomolecular Physics also provides training in Biophysics and chemical physics. The Institute of Physics is the guarantee for
+            master's program &quot;<a href="http://www.mff.cuni.cz/studium/bcmgr/ok/f1b8.htm" target="_blank">Biophysics and chemical physics</a>&quot;
+            at the Faculty of Mathematics and Physics at Charles University in Prague. The department actively participates in lecturing,
+            laboratory training and diploma thesis supervision. Additionally, some employees provide lecturing and training in bachelor's programs
+            &quot;<a href="http://www.mff.cuni.cz/studium/bcmgr/ok/f1a2.htm" target="_blank">General Physics</a>&quot; and
+            &quot;<a href="http://www.mff.cuni.cz/studium/bcmgr/ok/f1a3.htm" target="_blank">Physics directed towards education.</a>&quot;</p>
+            {% endblocktrans %}
     {% if news_list %}
     <div id="akt-new">
         <h1>{% trans "News" %}:</h1>
         {% for news in news_list %}
             {% if news.hyperlink %}
-                <a href="http://{{ news.hyperlink }}" target=blank>
+                <a href="http://{{ news.hyperlink }}" target="blank">
             {% endif %}    
             <b>{{ news.title }}</b><br />
             {% if news.hyperlink %}
@@ -30,7 +31,7 @@
             {% endif %}
             {{ news.content }}
             {% if not forloop.last %}
-                <hr id="akt" />
+                <hr />
             {% endif %}
         {% endfor %}
     </div>

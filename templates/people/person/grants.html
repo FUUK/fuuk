@@ -24,7 +24,7 @@
                     </p>
                     <p>
                         <a href="#" onclick="toggle_visibility('grant_details_{{ grant.id }}');">{% trans "Grant annotation" %}</a>
-                        	<div id="grant_details_{{ grant.id }}" style='display:block';>
+                        	<div id="grant_details_{{ grant.id }}" style='display:block'>
                         		{{ grant.annotation }}
                         	</div>
                         	<script type="text/javascript">
@@ -33,7 +33,7 @@
                         	    // -->
                         	</script>
                     </p>
-                    <hr size="3" width="100%" />
+                    <hr style='size:3;width=100%' />
                 </p>
             </li>
         {% endfor %}
@@ -68,7 +68,7 @@
                         	    // -->
                         	</script>
                     </p>
-                    <hr size="3" width="100%" />
+                    <hr style='size:3;width=100%' />
                 </p>
             </li>
         	{% endfor %}
