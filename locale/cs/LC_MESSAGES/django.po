@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FUUK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-22 15:22+0100\n"
-"PO-Revision-Date: 2011-03-22 15:25+0100\n"
+"POT-Creation-Date: 2011-03-29 09:46+0200\n"
+"PO-Revision-Date: 2011-03-29 09:49+0100\n"
 "Last-Translator: Tomáš Pazderka <pazderka@karlov.mff.cuni.cz>\n"
 "Language-Team:  <pazderka@karlov.mff.cuni.cz>\n"
 "MIME-Version: 1.0\n"
@@ -20,15 +20,16 @@ msgstr ""
 
 #: build/lib.linux-x86_64-2.6/people/views.py:118
 #: build/lib.linux-x86_64-2.6/people/models/person.py:14
-#: people/views.py:118
+#: people/views.py:117
 #: people/models/person.py:14
 #: templates/base.html:75
 msgid "Staff"
 msgstr "Členové oddělení"
 
 #: build/lib.linux-x86_64-2.6/people/views.py:131
-#: people/views.py:131
+#: people/views.py:130
 #: templates/base.html:76
+#: templates/flatpages/base4F4.html:70
 msgid "PhD. students"
 msgstr "Doktorandi"
 
@@ -365,10 +366,12 @@ msgid "Division of Biomolecular Physics"
 msgstr "Oddělení fyziky biomolekul"
 
 #: templates/base.html:51
+#: templates/front_page.html:7
 msgid "Institute of Physics"
 msgstr "Fyzikální ústav UK"
 
 #: templates/base.html:54
+#: templates/flatpages/base4F4.html:54
 msgid "Charles University, Ke Karlovu 5, Prague 2,"
 msgstr "MFF UK, Ke Karlovu 5, Praha 2,"
 
@@ -440,16 +443,28 @@ msgid "How to find us"
 msgstr "Kde nás najdete"
 
 #: templates/base.html:112
+#: templates/flatpages/base4F4.html:96
 msgid "Contact"
 msgstr "S připomínkami a dotazy se obracejte na"
 
 #: templates/base.html:112
+#: templates/flatpages/base4F4.html:96
 msgid "webmasters"
 msgstr "správce"
 
 #: templates/base.html:112
+#: templates/flatpages/base4F4.html:96
 msgid "for any suggestion or more information."
 msgstr "stránek."
+
+#: templates/front_page.html:5
+#: templates/flatpages/base4F4.html:17
+msgid "Charles University in Prague"
+msgstr "Univerzita Karlova v Praze"
+
+#: templates/front_page.html:6
+msgid "Faculty of Mathematics and Physics"
+msgstr "Matematicko-fyzikální fakulta"
 
 #: templates/front_page.html:9
 msgid ""
@@ -463,7 +478,7 @@ msgid ""
 "            at the Faculty of Mathematics and Physics at Charles University in Prague. The department actively participates in lecturing,\n"
 "            laboratory training and diploma thesis supervision. Additionally, some employees provide lecturing and training in bachelor's programs\n"
 "            &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1a2.htm\" target=\"_blank\">General Physics</a>&quot; and\n"
-"            &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1a3.htm\" target=\"_blank\">Physics directed towards education.</a>&quot;</p>\n"
+"            &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1a4.htm\" target=\"_blank\">Physics directed towards education.</a>&quot;</p>\n"
 "            "
 msgstr ""
 "\n"
@@ -475,7 +490,7 @@ msgstr ""
 "            a chemická fyzika</a>&quot; navazujícího magisterského studia fyziky na Matematicko&ndash;fyzikální fakultě UK formou přednášek, laboratorních cvičení a vedení\n"
 "            diplomových prací. Fyzikální ústav UK je také garantujícím pracovištěm tohoto studijního oboru.</p>\n"
 "             <p>Řada pracovníků oddělení se také podílí na výuce v bakalářském studiu v oborech &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1a2.htm\"\n"
-"            target=\"_blank\">Obecná fyzika</a>&quot; a &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1a3.htm\" target=\"_blank\">Fyzika zaměřená na vzdělávání</a>\n"
+"            target=\"_blank\">Obecná fyzika</a>&quot; a &quot;<a href=\"http://www.mff.cuni.cz/studium/bcmgr/ok/f1a4.htm\" target=\"_blank\">Fyzika zaměřená na vzdělávání</a>\n"
 "             &quot; formou přednášek, cvičení, výuky v základním praktiku a vedením bakalářských prací.</p> \n"
 "            "
 
@@ -490,6 +505,41 @@ msgstr "Podle typu práce"
 #: templates/thesis_defend_page.html:15
 msgid "According to years"
 msgstr "Podle roku obhájení"
+
+#: templates/flatpages/base4F4.html:51
+msgid "4F4 Branch Board"
+msgstr "Oborová rada 4F4"
+
+#: templates/flatpages/base4F4.html:51
+msgid "Biophysics, Chemical and Macromolecular Physics"
+msgstr "Biofyzika, chemická a makromolekulární fyzika"
+
+#: templates/flatpages/base4F4.html:66
+#: templates/people/thesis_detail.html:13
+#: templates/people/person/courses.html:20
+#: templates/people/person/courses.html:53
+msgid "Annotation"
+msgstr "Anotace"
+
+#: templates/flatpages/base4F4.html:67
+msgid "Structure"
+msgstr "Struktura"
+
+#: templates/flatpages/base4F4.html:68
+msgid "Nursery"
+msgstr "Pracoviště"
+
+#: templates/flatpages/base4F4.html:69
+msgid "Themes"
+msgstr "Témata"
+
+#: templates/flatpages/base4F4.html:71
+msgid "Week of doctoral students"
+msgstr "Doktorandský týden"
+
+#: templates/flatpages/base4F4.html:72
+msgid "Contacts"
+msgstr "Kontakty"
 
 #: templates/people/articles.html:14
 msgid "Year"
@@ -579,12 +629,6 @@ msgstr "Abstrakt"
 #: templates/people/thesis_detail.html:11
 msgid "Keywords"
 msgstr "Klíčová slova"
-
-#: templates/people/thesis_detail.html:13
-#: templates/people/person/courses.html:20
-#: templates/people/person/courses.html:53
-msgid "Annotation"
-msgstr "Anotace"
 
 #: templates/people/person/articles.html:18
 msgid "Conference proceedings"
