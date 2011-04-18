@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FUUK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-29 09:46+0200\n"
-"PO-Revision-Date: 2011-03-29 09:49+0100\n"
+"POT-Creation-Date: 2011-04-18 09:35+0200\n"
+"PO-Revision-Date: 2011-04-18 09:37+0100\n"
 "Last-Translator: Tomáš Pazderka <pazderka@karlov.mff.cuni.cz>\n"
 "Language-Team:  <pazderka@karlov.mff.cuni.cz>\n"
 "MIME-Version: 1.0\n"
@@ -20,14 +20,14 @@ msgstr ""
 
 #: build/lib.linux-x86_64-2.6/people/views.py:118
 #: build/lib.linux-x86_64-2.6/people/models/person.py:14
-#: people/views.py:117
+#: people/views.py:118
 #: people/models/person.py:14
 #: templates/base.html:75
 msgid "Staff"
 msgstr "Členové oddělení"
 
 #: build/lib.linux-x86_64-2.6/people/views.py:131
-#: people/views.py:130
+#: people/views.py:131
 #: templates/base.html:76
 #: templates/flatpages/base4F4.html:70
 msgid "PhD. students"
@@ -522,8 +522,8 @@ msgid "Annotation"
 msgstr "Anotace"
 
 #: templates/flatpages/base4F4.html:67
-msgid "Structure"
-msgstr "Struktura"
+msgid "Members of the branch board"
+msgstr "Členové oborové rady"
 
 #: templates/flatpages/base4F4.html:68
 msgid "Nursery"

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
     <head>
-        {% load i18n %}
+        {% load i18n markup %}
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         {% comment %}
             Copyright ??
@@ -64,7 +64,7 @@
                     <div id="sidebar-content">
                         <ul id="navlist">
                             <li id="active"><a href="/4F4/" id="current">{% trans "Annotation" %}</a></li>
-                            <li><a href="/4F4/structure/">{% trans "Structure" %}</a></li>
+                            <li><a href="/4F4/structure/">{% trans "Members of the branch board" %}</a></li>
                             <li><a href="/4F4/nursery/">{% trans "Nursery" %}</a></li>
                             <li><a href="/4F4/themes/">{% trans "Themes" %}</a></li>
                             <li><a href="/4F4/students/">{% trans "PhD. students" %}</a></li>
@@ -89,7 +89,7 @@
                     <div id="main-content">
                         <h1>{{ flatpage.title }}</h1>
                         <p>
-                            {{ flatpage.content }}
+                            {{ flatpage.content|textile }}
                         </p>
                     </div>
                     <div id="footer">
