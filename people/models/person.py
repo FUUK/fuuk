@@ -32,6 +32,7 @@ class Human(models.Model):
     birth_place = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=200, blank=True, null=True, unique=True)
     photo = models.ImageField(max_length=200, blank=True, null=True, upload_to='img/person')
+    display_posters = models.BooleanField(default=True)
 
     class Translation(multilingual.Translation):
         subtitle = models.CharField(max_length=200, blank=True, null=True)

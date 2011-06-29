@@ -189,8 +189,12 @@ def person_articles(request, nickname):
     if not context['publications']:
         raise Http404
 
+    if context['person'].human.display_posters:
+        presentation_types = ['POSTER', 'TALK', 'INVITED']
+    else:
+        presentation_types = ['TALK', 'INVITED']
     context['articles'] = context['publications'].filter(type='ARTICLE')
-    context['presentations'] = context['publications'].filter(type__in = ['POSTER', 'TALK', 'INVITED'])
+    context['presentations'] = context['publications'].filter(type__in=presentation_types)
     context['books'] = context['publications'].filter(type='BOOK')
 
     return render_to_response('people/person/articles.html', context, RequestContext(request))
