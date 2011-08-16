@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, url, handler404
+from django.conf.urls.defaults import patterns, url
 
 
 urlpatterns = patterns('',
