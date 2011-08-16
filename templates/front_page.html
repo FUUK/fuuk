@@ -23,7 +23,7 @@
         <h1>{% trans "News" %}:</h1>
         {% for news in news_list %}
             {% if news.hyperlink %}
-                <a href="http://{{ news.hyperlink }}" target="blank">
+                <a href="{{ news.hyperlink }}" target="blank">
             {% endif %}    
             <b>{{ news.title }}</b><br />
             {% if news.hyperlink %}
