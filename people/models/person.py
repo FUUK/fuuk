@@ -32,7 +32,8 @@ class Human(models.Model):
     birth_place = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=200, blank=True, null=True, unique=True)
     photo = models.ImageField(max_length=200, blank=True, null=True, upload_to='img/person')
-    display_posters = models.BooleanField(default=True)
+    display_posters = models.BooleanField(default=True, help_text=_('Uncheck to hide posters on your personal page.'))
+    display_talks = models.BooleanField(default=True, help_text=_('Uncheck to hide talks not presented by you on your personal page.'))
 
     class Translation(multilingual.Translation):
         subtitle = models.CharField(max_length=200, blank=True, null=True)

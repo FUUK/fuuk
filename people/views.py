@@ -194,7 +194,10 @@ def person_articles(request, nickname):
     else:
         presentation_types = ['TALK', 'INVITED']
     context['articles'] = context['publications'].filter(type='ARTICLE')
-    context['presentations'] = context['publications'].filter(type__in=presentation_types)
+    if context['person'].human.display_talks:
+        context['presentations'] = context['publications'].filter(type__in=presentation_types)
+    else:
+        context['presentations'] = context['publications'].filter(type__in=presentation_types).filter(presenter__human=context['person'].human)
     context['books'] = context['publications'].filter(type='BOOK')
 
     return render_to_response('people/person/articles.html', context, RequestContext(request))
