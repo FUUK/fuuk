@@ -14,7 +14,7 @@ ARTICLE_TYPES = (
     ('POSTER', _('Poster')),
 )
 
-page_validator = RegexValidator(r'^[A-Z]*[0-9]+$') # numbers or form 'AA1857'
+page_validator = RegexValidator(r'^[A-Z]*[0-9]+(-[0-9]+)?$') # numbers or forms 'AA1857', '1857-5', 'AA1857-5
 
 
 class Article(models.Model):

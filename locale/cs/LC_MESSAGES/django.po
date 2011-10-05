@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FUUK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-18 09:35+0200\n"
-"PO-Revision-Date: 2011-04-18 09:37+0100\n"
+"POT-Creation-Date: 2011-08-22 14:26+0200\n"
+"PO-Revision-Date: 2011-08-22 14:26+0100\n"
 "Last-Translator: Tomáš Pazderka <pazderka@karlov.mff.cuni.cz>\n"
 "Language-Team:  <pazderka@karlov.mff.cuni.cz>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -282,27 +283,27 @@ msgid "Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and 
 msgstr ""
 
 #: build/lib.linux-x86_64-2.6/people/models/person.py:58
-#: people/models/person.py:58
+#: people/models/person.py:60
 msgid "Only used for grant (co-)applicants or staff."
 msgstr ""
 
 #: build/lib.linux-x86_64-2.6/people/models/person.py:64
-#: people/models/person.py:64
+#: people/models/person.py:66
 msgid "Only first letter is required for article authors. In case of multiple first names, fill them separated by space."
 msgstr ""
 
 #: build/lib.linux-x86_64-2.6/people/models/person.py:86
-#: people/models/person.py:86
+#: people/models/person.py:88
 msgid "Only one person can be active per human."
 msgstr ""
 
 #: build/lib.linux-x86_64-2.6/people/models/person.py:89
-#: people/models/person.py:89
+#: people/models/person.py:91
 msgid "Person with type must have human."
 msgstr "Osoba s typem musí být \"human\"."
 
 #: build/lib.linux-x86_64-2.6/people/models/person.py:92
-#: people/models/person.py:92
+#: people/models/person.py:94
 msgid "Students must have class year."
 msgstr "Studenti musí mít ročník."
 
@@ -336,7 +337,15 @@ msgstr "Profesorská"
 msgid "Year of thesis start or year of defence if already defended."
 msgstr ""
 
-#: people/models/person.py:39
+#: people/models/person.py:35
+msgid "Uncheck to hide posters on your personal page."
+msgstr ""
+
+#: people/models/person.py:36
+msgid "Uncheck to hide talks not presented by you on your personal page."
+msgstr ""
+
+#: people/models/person.py:41
 msgid "Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &amp;#8209; for endash."
 msgstr ""
 
@@ -408,7 +417,7 @@ msgid "Science"
 msgstr "Věda"
 
 #: templates/base.html:82
-msgid "Problematics"
+msgid "Topics"
 msgstr "Problematika"
 
 #: templates/base.html:83
@@ -739,4 +748,3 @@ msgstr "rok PhD. studia"
 #: templates/people/person/students.html:21
 msgid "Disertation thesis"
 msgstr "Dizertační práce"
-
