@@ -1,3 +1,4 @@
+{% load markup %}
 <p class="citation">
     {% if identification and type == "ARTICLE" %}
         <a href="http://dx.doi.org/{{ identification }}" target="blank">
@@ -7,7 +8,7 @@
     {% for author in authors %}
         {{ author.person.name }}{% if not forloop.last %},{% else %}:{% endif %}
     {% endfor %}
-    </i> {{ title }}.
+    </i> {{ title|textile }}.
     {% if publication %}
         <b>{{ publication }}</b>,
     {% endif %}
