@@ -144,10 +144,8 @@ width:3%;
 #footer
 {
 padding-top: 10px;
-margin-top: -10px;
 font: 8px Verdana;
 text-align: center;
-/*border-top: 1px solid blue;*/
 background: white;
 -moz-border-radius: 5px;
 -webkit-border-radius: 5px;
