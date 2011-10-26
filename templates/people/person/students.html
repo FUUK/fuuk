@@ -7,7 +7,7 @@
     <ul>
         {% for student in students %}
             <li>
-                <p align="justify"><a href="/people/detail/{{ student.human.nickname }}" class="strong">{{ student.full_name }}</a><br />
+                <p align="justify"><a href="{% url person_detail student.human.nickname %}" class="strong">{{ student.full_name }}</a><br />
                     {% if student.type = 'BC' %}
                         {{ student.class_year|ordinal }} {% trans "year of Bc. study" %}<br />
                         <strong>{% trans "Bachelor thesis" %}:</strong> {{ student.thesis_set.all.0.title }}

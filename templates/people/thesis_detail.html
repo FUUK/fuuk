@@ -3,7 +3,7 @@
 
 {% block content %}
 	<h2>{{ thesis.title }}</h2>
-		<strong>{% trans "Author" %}:</strong> <a href="/people/detail/{{ thesis.author.human.nickname }}">{{ thesis.author.full_name }}</a><br />
+		<strong>{% trans "Author" %}:</strong> <a href="{% url person_detail thesis.author.human.nickname %}">{{ thesis.author.full_name }}</a><br />
 		<strong>{% trans "Supervisor" %}:</strong> {{ thesis.advisor.full_name }}<br />
 		<strong>{% trans "Type" %}:</strong> {{ thesis.get_type_display }}</p>
 		{% if thesis.defended %}
