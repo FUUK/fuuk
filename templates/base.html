@@ -16,7 +16,7 @@
 
         <title>{% block title %}{% trans "Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" %}{% endblock %}</title>
 
-        <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" />
         {% block extrahead %}{% endblock %}
         {% if media %}{{ media }}{% endif %}
         <script type="text/javascript" src="{{ MEDIA_URL }}js/cookie.js"></script> 
@@ -94,7 +94,7 @@
                     <div id="lang">
                     {% for lang in LANGUAGES reversed %}
                         {% ifnotequal lang.0 LANGUAGE_CODE %}
-                            <form method="POST" action="{% url set_language %}">
+                            <form method="post" action="{% url set_language %}">
                                 <input type="hidden" name="language" value="{{ lang.0 }}" />
                                 <input type="image" alt="{{ lang.1 }}" src="{{ MEDIA_URL }}img/{{ lang.0 }}.png" />
                             </form>
@@ -114,7 +114,6 @@
                 </div>
                 <!-- END Content + Footer -->
             </div>
-            
         </div>
     </body>
 </html>

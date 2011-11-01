@@ -40,6 +40,7 @@ padding: 0;
 
 #container2
 {
+position:relative;
 min-height: 450px;
 background: #E4ECED;
 }
@@ -241,9 +242,46 @@ padding-bottom: 5px;
 vertical-align: top;
 }
 
+/*4F4*/
+div.branch table {
+border-collapse:collapse;
+border-color: black;
+}
+div.branch td{
+border: 1px solid black;
+padding:5px;
+text-align:center;
+}
+div.branch th{
+border: 1px solid black;
+padding:5px;
+}
+
+a.list-name {
+margin: 1em 0 -1.5em 1em;
+}
+
+strong.list-phone {
+position:absolute;
+left:60%;
+font-size:8pt;
+}
+span.list-mail {
+margin-left:8em;
+font-size:8pt;
+}
+span.list-phone {
+position:absolute;
+left:60%;
+font-size:8pt;
+}
 /*Obrazky*/
 img {
 border:none;
+}
+
+img.right {
+float:right;
 }
 
 /*********/
