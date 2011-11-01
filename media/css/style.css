@@ -1,7 +1,7 @@
 /* BODY */
 /*barvy:
 header: #156790
-navlist: #f6f6f6
+navlist: #edf5f9
 */
 body
 {
@@ -54,7 +54,7 @@ margin-left: 40px;
 #container2
 {
 border: 1px solid #56781c;
-background: #f6f6f6;
+background: #edf5f9;
 -webkit-border-top-left-radius: 5px;
 -webkit-border-top-right-radius: 5px;
 -moz-border-radius-topleft: 5px;
@@ -210,7 +210,7 @@ border: 1px solid #156790;
 #menu_top li a:hover {
 border-top: 2px solid #156790;
 border-bottom: 2px solid #156790;
-background-color: #f6f6f6;
+background-color: #edf5f9;
 }
 
 /********************************/
