@@ -29,7 +29,7 @@ border-radius: 5px;
 #header
 {
 margin: 0;
-height: 120px;
+height: 140px;
 padding: 0;
 background:#156790;
 -webkit-border-top-left-radius: 4.5px;
@@ -44,8 +44,8 @@ border-top-right-radius: 4.5px;
 {
 float: left;
 height: inherit;
-width: 498px;
-padding: 0;
+width:550px;
+margin-left: 40px;
 }
 
 /***********/
