@@ -44,10 +44,11 @@
 
     <body>
         <div id="container">
+            <div id="container2" class="shadow">
             <!-- Header -->
-            <div id="header" class="shadow" >
-                <div id="header-content" style='background: url(/media/img/logo-stin.png) left no-repeat; width:800px; margin-left: 30px'>
-                    <div style='margin-left:150px;margin-top:20px;font-size:24px; font-weight:bold; color: #FFFFFF;text-shadow:rgba(0,0,0,.5) 0.1em 0.1em;text-align: left'>
+            <div id="header">
+                <div id="header-content" style='background: url(/media/img/logo-stin.png) left no-repeat; width:800px; margin-left: 40px'>
+                    <div style='margin-left:150px;margin-top:10px;font-size:24px; font-weight:bold; color: #FFFFFF;text-shadow:rgba(0,0,0,.5) 0.1em 0.1em;text-align: left'>
                         {% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}
                     </div>
                     <div style='margin-left:150px; width:800px; margin-top:10px; font-size:12px; font-weight:bold; color: #FFFFFF'>
@@ -66,10 +67,8 @@
                 </div>
             </div>
             <!-- END Header -->
-            <div id="container2" class="shadow">
                 <!-- Sidebar -->
                 <div id="sidebar">
-                    <div id="ie-space"></div>
                     <div id="sidebar-content">
                         <ul id="navlist" >
                             <li id="active"><a href="{% url homepage %}" id="current">&bull;&nbsp;&nbsp;{% trans "Welcome" %}</a></li>
@@ -103,7 +102,7 @@
                     <div id="lang">
                     {% for lang in LANGUAGES reversed %}
                         {% ifnotequal lang.0 LANGUAGE_CODE %}
-                            <form method="POST" action="{% url set_language %}">
+                            <form method="post" action="{% url set_language %}">
                                 <input type="hidden" name="language" value="{{ lang.0 }}" />
                                 <input type="image" alt="{{ lang.1 }}" src="{{ MEDIA_URL }}img/{{ lang.0 }}.png" />
                             </form>

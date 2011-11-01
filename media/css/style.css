@@ -1,7 +1,7 @@
 /* BODY */
 /*barvy:
-odkazy: #485883
-navstivene: #6a83c2
+header: #086fa1
+navlist: #d6effb
 */
 body
 {
@@ -12,8 +12,13 @@ margin:10px auto;
 padding:0;
 color: #000000;
 background:#bdbdbd;
-font-family: Helvetica CE, Verdana, Arial;
+font-family: "Helvetica CE", Verdana, Arial;
 font-size: 10pt;
+}
+
+#container
+{
+background:#bdbdbd;
 }
 
 /**********/
@@ -21,11 +26,10 @@ font-size: 10pt;
 
 #header
 {
-/*width: 100%;*/
 margin: 0;
 height: 120px;
 padding: 0;
-background:#4f81bd;
+background:#086fa1;
 -webkit-border-top-left-radius: 5px;
 -webkit-border-top-right-radius: 5px;
 -moz-border-radius-topleft: 5px;
@@ -42,32 +46,18 @@ width: 498px;
 padding: 0;
 }
 
-#lang 
-{
-float: right;
-width: 80px;
-padding:0;
-}
-
 /***********/
 /* CONTENT */
 
-#container
-{
-background:#bdbdbd;
-}
-
 #container2
 {
-background: #b2cced;
-min-height: 450px;
-}
-
-#content
-{
-position:relative;
-min-height: 450px;
-background: #E4ECED;
+background: #d6effb;
+-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
 }
 
 #sidebar
@@ -84,11 +74,6 @@ margin: 0.4em 0 0 0;
 padding: 0.1em 0.5em;
 }
 
-#ie-space
-{
-#margin:1.5em 0 0 0;
-}
-
 #main-panel
 {
 margin:0 0 0 190px;
@@ -99,32 +84,11 @@ min-height: 450px;
 
 #main-content
 {
-margin:10px auto;
+margin-bottom: 10px;
 min-height: 425px;
 padding: 1em;
 background: white;
 text-align: justify
-}
-
-#akt-new
-{
-display:block;
-border:1px solid #6A83C2;
-background-color:#FFE;
-padding:0.5em 1em;
-margin:0 0px 0 0;
-}
-
-p.citation
-{
-float:left;
-width:97%;
-}
-
-p.citation_number
-{
-float:left;
-width:3%;
 }
 
 /**********/
@@ -175,33 +139,29 @@ text-align: left;
 display: block;
 padding: 0.25em 0.5em 0.25em 0.25em;
 border-left: 1em solid transparent;
-text-decoration: none;
+font-weight: normal;
 }
 
 #navlist li ul
 {
 list-style: none;
-margin: 0;
 padding: 0 0 0 1em;
-text-align: left;
 }
 
 #navlist li ul li
 {
 list-style: none;
-margin: 0;
-border-bottom: 0px #566a9d solid;
-text-align: left;
+border-bottom: 0px #086fa1 solid;
 }
-
-#navlist li a:link { color: #566a9d; }
 
 #navlist li a:hover, #navlist li a.current
 {
-border-color: #6a83c2;
-color: #6a83c2;
+border-color: #086fa1;
 font-weight: bold;
 }
+
+/************/
+/* TOP MENU */
 
 #menu_top{
 margin: 10px auto 10px auto;
@@ -214,7 +174,6 @@ z-index: 1;
 #menu_top ul {
 list-style-type: none;
 text-align: left;
-vertical-align: middle;
 margin: 0px auto 0px 10px;
 padding: 0px;
 z-index: 2;
@@ -223,34 +182,27 @@ z-index: 2;
 #menu_top li {
 display: inline;
 text-align: center;
-vertical-align: middle;
 margin: 0px 5px;
 }
 
 #menu_top li a {
 padding: 1px 5px;
-color: #566a9d;
 background-color: #ffffff;
-border: 1px solid #566a9d;
-text-decoration: none;
-vertical-align: middle;
+border: 1px solid #086fa1;
 }
 
 #menu_top li a:hover {
-color: #6a83c2;
-border: 1px solid #6a83c2;
-border-top: 2px solid #6a83c2;
-border-bottom: 2px solid #6a83c2;
-background-color: #e3e6ed;
-vertical-align: middle;
+border-top: 2px solid #086fa1;
+border-bottom: 2px solid #086fa1;
+background-color: #d6effb;
 }
 
 /********************************/
 /* JAZYK */
 #lang
 {
-margin: 5px 0 0 0;
-padding: 0px;
+float:left;
+width:97%;
 }
 
 #lang ul
@@ -263,10 +215,10 @@ p.citation_number
 {
 float:left;
 width:3%;
- }
+}
 
-/*******/
-/* JAZYK */
+/********/
+/* LANG */
 #lang
 {
 margin-left: 10px;
@@ -275,7 +227,7 @@ float: left;
 width: 80px;
 }
 
-/*LIST-seznam*/
+/* LIST */
 div.list-name {
 margin: 1.5em 0 0 1em;
 }
@@ -295,30 +247,9 @@ padding-right: 5px;
 padding-bottom: 5px;
 vertical-align: top;
 }
+/**********/
+/* IMAGES */
 
-div.cv 
-
-/*Obrazky*/
-.floatright {
-    float: right;
-    margin: 10px 5px 10px 15px;
-}
-
-strong.list-phone {
-position:absolute;
-left:60%;
-font-size:8pt;
-}
-span.list-mail {
-margin-left:8em;
-font-size:8pt;
-}
-span.list-phone {
-position:absolute;
-left:60%;
-font-size:8pt;
-}
-/*Obrazky*/
 img {
 border:none;
 }
@@ -327,12 +258,14 @@ img.right {
 float:right;
 }
 
-
 .shadow {
 -moz-box-shadow: 0px 0px 10px #000;
 -webkit-box-shadow: 0px 0px 10px #000;
 box-shadow: 0px 0px 10px #000;
 }
+
+p.little    { color: #000000; font-size:8pt;}
+p.strong    { color: #000000; font-size:10pt; font-weight:bold;}
 
 /*********/
 /* FONTY */
@@ -341,41 +274,41 @@ h1 {color: #000000; font-size: 14pt;}
 h2	{color: #000000; font-size: 12pt;} 
 h3	{color: #000000; font-size: 10pt;} 
 
-a {
-	color: #566a9d; 
-	font-size:10pt; 
-	font-weight:normal; 
-	text-decoration: none
+/*********/
+/* LINKS */
+
+a
+{
+color: #086fa1;
+text-decoration: none;
 }
 
-a:active 	{ 
-color: #566a9d; 
-text-decoration: none 
+a:hover     {color: #034769;}
+
+a.strong    {font-weight:bold;}
+a.strong:hover     {color: #034769;}
+
+a.title     {font-size:16pt; font-weight:bold;}
+a.title:hover      {color: #034769;}
+
+span.little     { color: #000000; font-size:8pt}
+
+/********/
+/* NEWS */
+
+#akt-new
+{
+font-size: 80%;
+display:block;
+border:1px solid #6A83C2;
+background-color:#FFE;
+padding:0.5em 1em;
+margin:0 0px 0 0;
 }
 
-a:hover     { 
-color: #6a83c2; 
-text-decoration: none 
-}  
-	
-
-p.little 	{ color: #000000; font-size:8pt }
-p.strong	{ color: #000000; font-size:10pt; font-weight:bold }
-
-a.strong 	{ color: #566a9d; font-size:10pt; font-weight:bold; text-decoration: none }    
-	a.strong:active 	{ color: #566a9d; text-decoration: none }                                      
-	a.strong:hover     { color: #6a83c2; text-decoration: none }    
-
-a.title 	{ color: #566a9d; font-size:16pt; font-weight:bold; text-decoration: none }    
-	a.title:active 	{ color: #566a9d; text-decoration: none }                                      
-	a.title:hover     { color: #6a83c2;; text-decoration: none }        
-	
-span.little	{ color: #000000; font-size:8pt}
-
-#akt-new {font-size: 80%}
-#akt-new a {font-size: 8pt}
-#akt-new  h1 	{color: #000000; font-size: 11pt} 
+#akt-new a  {font-size: 8pt}
+#akt-new h1    {color: #000000; font-size: 11pt} 
 
 /*justify*/
-p.justify { text-align: justify }
-p.center { text-align: center }
+p.justify {text-align: justify}
+p.center {text-align: center}
