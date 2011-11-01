@@ -23,15 +23,10 @@ background:#bdbdbd;
 border-radius: 5px;
 }
 
-/**********/
-/* HEADER */
-
-#header
+#header_1
 {
-margin: 0;
-height: 140px;
-padding: 0;
-background:#156790;
+background:#262a26;
+height:15px;
 -webkit-border-top-left-radius: 4.5px;
 -webkit-border-top-right-radius: 4.5px;
 -moz-border-radius-topleft: 4.5px;
@@ -40,12 +35,23 @@ border-top-left-radius: 4.5px;
 border-top-right-radius: 4.5px;
 }
 
+/**********/
+/* HEADER */
+
+#header
+{
+margin: 0;
+height: 120px;
+padding: 0;
+background:#156790;
+}
+
 #header-content
 {
 float: left;
 height: inherit;
 width:580px;
-margin-left: 25px;
+margin-left: 15px;
 }
 
 /***********/
@@ -113,7 +119,7 @@ height: 6px;
 padding: 5px 0px;
 font-size: 9px;
 text-align: center;
-background: black;
+background: #262a26;
 color: white;
 -webkit-border-bottom-right-radius: 5px;
 -webkit-border-bottom-left-radius: 5px;
