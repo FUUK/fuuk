@@ -47,11 +47,11 @@
             <!-- Header -->
             <div id="header" class="shadow" >
                 <div id="header-content" style='background: url(/media/img/logo-stin.png) left no-repeat; width:800px; margin-left: 30px'>
-                    <div style='margin-left:150px;margin-top:20px;font-size:24px; font-weight:bold; font-family:Tahoma;color: #FFFFFF;text-shadow:rgba(0,0,0,.5) 0.1em 0.1em;text-align: left'>
+                    <div style='margin-left:150px;margin-top:20px;font-size:24px; font-weight:bold; color: #FFFFFF;text-shadow:rgba(0,0,0,.5) 0.1em 0.1em;text-align: left'>
                         {% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}
                     </div>
-                    <div style='margin-left:150px; width:800px; margin-top:10px; font-size:14px; font-weight:bold; font-family:Tahoma; color: #FFFFFF'>
-                        {% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16, tel.: +420 221 911 345, fax: +420 224 922 797
+                    <div style='margin-left:150px; width:800px; margin-top:10px; font-size:12px; font-weight:bold; color: #FFFFFF'>
+                        {% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16<br/>tel.: +420 221 911 345, fax: +420 224 922 797
                     </div>
                 </div>
                 <div id="lang">
@@ -89,7 +89,7 @@
                             </li>
                             <li>{% trans "Science" %}
                                 <ul>
-                                    <li><a href="/problems/">&nbsp;&nbsp;{% trans "Problematics" %}</a></li>
+                                    <li><a href="/problems/">&nbsp;&nbsp;{% trans "Topics" %}</a></li>
                                     <li><a href="{% url articles %}">&nbsp;&nbsp;{% trans "Publications" %}</a></li>
                                     <li><a href="{% url grants %}">&nbsp;&nbsp;{% trans "Grants" %}</a></li>
                                     <li><a href="/labs/">&nbsp;&nbsp;{% trans "Labs" %}</a></li>
@@ -99,6 +99,16 @@
                             <li><a href="/gallery/">&bull;&nbsp;&nbsp;{% trans "Gallery" %}</a></li>
                             <li><a href="/path/">&bull;&nbsp;&nbsp;{% trans "How to find us" %}</a></li>
                         </ul>
+                    </div>
+                    <div id="lang">
+                    {% for lang in LANGUAGES reversed %}
+                        {% ifnotequal lang.0 LANGUAGE_CODE %}
+                            <form method="POST" action="{% url set_language %}">
+                                <input type="hidden" name="language" value="{{ lang.0 }}" />
+                                <input type="image" alt="{{ lang.1 }}" src="{{ MEDIA_URL }}img/{{ lang.0 }}.png" />
+                            </form>
+                        {% endifnotequal %}
+                    {% endfor %}
                     </div>
                 </div>
                 <!-- END Sidebar -->
