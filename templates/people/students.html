@@ -7,7 +7,7 @@
         <h2>{% trans "Master study students" %}:</h2>
         <ul>
             {% for people in object_list %}
-                <li><a class="normal" href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></li>
+                <li><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}
@@ -18,7 +18,7 @@
         <h2>{% trans "Bachelor study students" %}:</h2>
         <ul>
             {% for people in bachelors %}
-                <li><a class="normal" href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></li>
+                <li><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}

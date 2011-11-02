@@ -2,11 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
     <head>
         {% load i18n %}
+        {% block meta %}
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta lang="cs" name="keywords" content="Oddělení fyziky biomolekul, Fyzikální ústav Univerzity Karlovy, Praha" />
         <meta lang="en" name="keywords" content="Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" />
         <meta lang="cs" name="description" content="Oddělení fyziky biomolekul, Fyzikální ústav Univerzity Karlovy, Praha" />
         <meta lang="en" name="description" content="Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" />
+        {% endblock %}
 
         <link rel='shortcut icon' type='image/x-icon' href='{{ MEDIA_URL }}img/favicon.ico' />
 
@@ -45,6 +47,7 @@
             <div id="header_1"></div>
             <div id="stripe"></div>
             <div id="header">
+                {% block header %}
                 <img src="{{ MEDIA_URL }}img/protein.png" height=120px class="right" />
                 <div id="header-content">
                     <img src="{{ MEDIA_URL }}img/logo.png" height=110px style="float:left;padding-top:5px" />
@@ -55,16 +58,7 @@
                         {% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16<br/>tel.: +420 221 911 345, fax: +420 224 922 797
                     </div>
                 </div>
-                <div id="lang">
-                {% for lang in LANGUAGES reversed %}
-                    {% ifnotequal lang.0 LANGUAGE_CODE %}
-                        <form method="post" action="{% url set_language %}">
-                            <input type="hidden" name="language" value="{{ lang.0 }}" />
-                            <input type="image" alt="{{ lang.1 }}" src="{{ MEDIA_URL }}img/{{ lang.0 }}.png" />
-                        </form>
-                    {% endifnotequal %}
-                {% endfor %}
-                </div>
+                {% endblock %}
             </div>
             <div id="stripe"></div>
             <!-- END Header -->
@@ -72,6 +66,7 @@
                 <div id="sidebar">
                     <div id="sidebar-content">
                         <ul id="navlist" >
+                            {% block sidebar %}
                             <li id="active"><a href="{% url homepage %}" id="current">&bull;&nbsp;&nbsp;{% trans "Welcome" %}</a></li>
                             <li>{% trans "Education" %}
                                 <ul>
@@ -98,6 +93,7 @@
                             </li>
                             <li><a href="/gallery/">&bull;&nbsp;&nbsp;{% trans "Gallery" %}</a></li>
                             <li><a href="/path/">&bull;&nbsp;&nbsp;{% trans "How to find us" %}</a></li>
+                            {% endblock %}
                         </ul>
                     </div>
                     <div id="lang">

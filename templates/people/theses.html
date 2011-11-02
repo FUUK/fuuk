@@ -6,14 +6,14 @@
         <h1>{% trans "By thesis type" %}</h1>
         <ul>
             {% for type, verbose_type in types %}
-                <li><a href="?type={{ type }}" class="strong">{{ verbose_type }}</a></li>
+                <li><strong><a href="?type={{ type }}">{{ verbose_type }}</a></strong></li>
             {% endfor %}
         </ul>
 
         <h1>{% trans "By year" %}</h1>
         <ul>
             {% for year in years %}
-                <li><a href="?year={{ year }}" class="strong">{{ year }}</a></li>
+                <li><strong><a href="?year={{ year }}">{{ year }}</a></strong></li>
             {% endfor %}
         </ul>
     {% else %}
