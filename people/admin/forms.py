@@ -7,28 +7,31 @@ from people.models import ARTICLE_TYPES
 
 class ArticleBookForm(forms.ModelForm):
     type = forms.ChoiceField(initial = 'BOOK', choices = (('BOOK', _('Book')),))
-    identification = NullCharField(label=_('ISBN'), max_length=100)
+    identification = NullCharField(label=_('ISBN'), max_length=100, required=False)
     publication = NullCharField(label=_('Book title'), max_length=100)
-    page_from = NullCharField(max_length=10)
     page_to = NullCharField(max_length=10, required=False, help_text=_('Leave blank for one-paged chapters.'))
-    publishers = NullCharField(max_length=200)
 
     class Meta:
-        fields = ('type', 'identification', 'year', 'title', 'publication', 'page_from', 'page_to',
-                  'editors', 'publishers', 'place'
+        fields = (
+            'type', 'accepted', 'identification', 'year', 'title', 'publication', 'page_from', 'page_to',
+            'editors', 'publishers', 'place'
         )
 
 
 class ArticleArticleForm(forms.ModelForm):
     type = forms.ChoiceField(initial = 'ARTICLE', choices = (('ARTICLE', _('Article')),))
-    identification = NullCharField(label=_('DOI'), help_text=_('Without leading http://dx.doi.org/'), max_length=100, required=False)
-    publication = NullCharField(label=_('Journal'), max_length=100, help_text=_('Please fill in a full name of journal.'))
+    identification = NullCharField(max_length=100, required=False, label=_('DOI'),
+                                   help_text=_('Without leading http://dx.doi.org/'))
+    publication = NullCharField(max_length=100, label=_('Journal'), help_text=_('Full name of journal'))
     volume = NullCharField(max_length=10)
     page_from = NullCharField(max_length=10, help_text=_('For articles in press fill in X1.'))
     page_to = NullCharField(max_length=10, required=False, help_text=_('Leave blank for one-paged articles.'))
 
     class Meta:
-        fields = ('type', 'identification', 'year', 'title', 'publication', 'volume', 'page_from', 'page_to')
+        fields = (
+            'type', 'accepted', 'identification', 'year', 'title', 'publication',
+            'volume', 'issue', 'page_from', 'page_to'
+        )
 
 
 #TODO: narrow select for 'presenter' only to authors already added

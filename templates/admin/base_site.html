@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'FUUK administration' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'FUUK administration' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block userlinks %}
+    {% for lang in LANGUAGES %}
+        {% ifnotequal lang.0 LANGUAGE_CODE %}
+            <form method="POST" action="{% url set_language %}" style="display:inline">
+                <input type="hidden" name="language" value="{{ lang.0 }}" />
+                <input type="image" alt="{{ lang.1 }}" src="{{ MEDIA_URL }}img/{{ lang.0 }}.png" />
+            </form>
+        {% endifnotequal %}
+    {% endfor %}
+
+    {{ block.super }}
+{% endblock %}
