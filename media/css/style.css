@@ -109,7 +109,7 @@ text-align: justify
 #stripe
 {
 background: #89bf2d;
-height: 5px;
+height: 3px;
 }
 
 /**********/
@@ -143,7 +143,6 @@ font-size: 9px;
 padding: 0px 1px 1px;
 margin-top: 10px;
 margin-left: 0;
-font-weight: bold;
 width: 100%;
 border-top: 1px #566a9d solid;
 }
@@ -151,34 +150,27 @@ border-top: 1px #566a9d solid;
 #navlist li
 {
 list-style: none;
-margin: 0;
 border-bottom: 1px #566a9d solid;
-text-align: left;
 }
 
 #navlist li a
 {
 display: block;
-padding: 0.25em 0.5em 0.25em 0.25em;
-border-left: 1em solid transparent;
-font-weight: normal;
+padding: 0.25em 0.5em;
 }
 
 #navlist li ul
 {
-list-style: none;
 padding: 0 0 0 1em;
 }
 
 #navlist li ul li
 {
-list-style: none;
-border-bottom: 0px #156790 solid;
+border-bottom: 0px;
 }
 
 #navlist li a:hover, #navlist li a.current
 {
-border-color: #156790;
 font-weight: bold;
 }
 
@@ -261,10 +253,6 @@ vertical-align: top;
 
 img {
 border:none;
-}
-
-img.right {
-float:right;
 }
 
 .shadow {
@@ -353,7 +341,3 @@ position:absolute;
 left:60%;
 font-size:8pt;
 }
-
-/*justify*/
-p.justify {text-align: justify}
-p.center {text-align: center}

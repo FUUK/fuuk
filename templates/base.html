@@ -9,7 +9,6 @@
         <meta lang="cs" name="description" content="Oddělení fyziky biomolekul, Fyzikální ústav Univerzity Karlovy, Praha" />
         <meta lang="en" name="description" content="Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" />
         {% endblock %}
-
         <link rel='shortcut icon' type='image/x-icon' href='{{ MEDIA_URL }}img/favicon.ico' />
 
         <title>{% block title %}{% trans "Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" %}{% endblock %}</title>
@@ -30,16 +29,16 @@
                 }
         </script>
         <script type="text/javascript">
-	     		function toggle_visibility(id) {
-       			var e = document.getElementById(id);
-       			if(e.style.display == 'block')
-          			e.style.display = 'none';
-       			else
-          			e.style.display = 'block';
-    			}
-		</script> 
+                function toggle_visibility(id) {
+                    var e = document.getElementById(id);
+                    if(e.style.display == 'block')
+                        e.style.display = 'none';
+                    else
+                        e.style.display = 'block';
+                }
+        </script> 
     </head>
-
+    
     <body>
         <div id="container" class="shadow">
             <div id="container2">
@@ -48,10 +47,10 @@
             <div id="stripe"></div>
             <div id="header">
                 {% block header %}
-                <img src="{{ MEDIA_URL }}img/protein.png" height=120px class="right" />
+                <img src="{{ MEDIA_URL }}img/protein.png" height=120px width=283px class="right" />
                 <div id="header-content">
-                    <img src="{{ MEDIA_URL }}img/logo.png" height=110px style="float:left;padding-top:5px" />
-                    <div id="banner" style='font-size:24px; text-shadow:rgba(38,42,38,.5) 0.1em 0.1em'>
+                    <img src="{{ MEDIA_URL }}img/logo.png" height=110px width=112px style="float:left;padding-top:5px" />
+                    <div id="banner" style='font-size:24px; text-shadow:rgba(38,42,38,.7) 0.1em 0.1em'>
                         {% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}
                     </div>
                     <div id="banner" style='font-size:12px'>
@@ -115,7 +114,7 @@
                         {% block content %}{% endblock %}
                     </div>
                 </div>
-                <div id="stripe"></div>
+                <div id="stripe" style="height:4px"></div>
                 <!-- END Content -->
             </div>
             <!-- Footer -->
