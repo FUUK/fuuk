@@ -84,6 +84,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'multilingual.context_processors.multilingual',
+    'people.context_processors.news_list',
 )
 
 MIDDLEWARE_CLASSES = (

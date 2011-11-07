@@ -10,8 +10,6 @@ from utils import handler500
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # homepage with news
-    url(r'^$', 'people.views.homepage', name="homepage"),
     # admin
     url(r'^admin/', include(admin.site.urls)),
     # languages

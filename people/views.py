@@ -12,12 +12,6 @@ from django.views.generic.list_detail import object_list, object_detail
 from people.models import Article, Course, Person, Grant, Thesis, News
 
 
-def homepage(request):
-    context = {
-        'news_list': News.objects.filter(start__lte=date.today(), end__gte=date.today())
-    }
-    return render_to_response('front_page.html', context, RequestContext(request))
-
 
 def article_list(request, year=None):
     queryset = Article.objects.filter(type__in = ('ARTICLE', 'BOOK'))
