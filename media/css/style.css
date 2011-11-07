@@ -17,7 +17,7 @@ font-size: 10pt;
 
 #container
 {
-background:#bdbdbd;
+background:white;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;
@@ -54,7 +54,7 @@ width:580px;
 margin-left: 15px;
 }
 
-#banner
+#subheader
 {
 margin:10px 0px 0px 120px;
 font-weight:bold;
@@ -67,7 +67,6 @@ color: #FFFFFF;
 #container2
 {
 border: 1px solid #56781c;
-background: #edf5f9;
 -webkit-border-top-left-radius: 5px;
 -webkit-border-top-right-radius: 5px;
 -moz-border-radius-topleft: 5px;
@@ -84,17 +83,10 @@ margin: auto;
 padding:0;
 }
 
-#sidebar-content
-{
-margin: 0.4em 0 0 0;
-padding: 0.1em 0.5em;
-}
-
 #main-panel
 {
 margin:0 0 0 190px;
 padding:0;
-background: white;
 min-height: 450px;
 }
 
@@ -222,9 +214,8 @@ width:3%;
 /* LANG */
 #lang
 {
-margin-left: 10px;
+margin: 10px;
 padding: 0px;
-float: left;
 width: 80px;
 }
 
@@ -301,6 +292,9 @@ border:1px solid #89bf2d;
 background:#f4fed5;
 padding:0.5em 1em;
 margin:0 0px 0 0;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
 }
 
 #akt-new a  {font-size: 8pt}
