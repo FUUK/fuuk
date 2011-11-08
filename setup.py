@@ -2,6 +2,17 @@
 import os
 
 from distutils.core import setup
+from subprocess import check_output
+
+
+VERSION = '1.0.0'
+
+
+def get_git_version():
+    version = check_output(['git', 'describe', '--tags'])
+    if version[-1] == '\n':
+        version = version[:-1]
+    return version
 
 
 def get_data_files(directories):
@@ -16,9 +27,10 @@ def get_data_files(directories):
 
 
 def main():
+    version = get_git_version() or VERSION
     setup(
         name = 'Web OBF FUUK',
-        version = '1.0.0',
+        version=version,
         author = 'Vlastimil Zíma',
         author_email = 'vlastimil.zima@gmail.com',
         description = 'Web for Division of Biomolecular Physics at Institute of Physics at Charles University',
