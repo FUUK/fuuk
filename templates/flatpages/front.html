@@ -14,10 +14,11 @@
             {% if news.hyperlink %}
                 <a href="{{ news.hyperlink }}" target="blank">
             {% endif %}
-            <b>{{ news.title }}</b><br />
+            <b>{{ news.title }}</b>
             {% if news.hyperlink %}
                 </a>
             {% endif %}
+            <br />
             {{ news.content }}
             {% if not forloop.last %}
             <br /><br />
