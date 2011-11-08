@@ -24,7 +24,7 @@ def main():
         description = 'Web for Division of Biomolecular Physics at Institute of Physics at Charles University',
         packages = [
             '',
-            'people', 'people.admin', 'people.models', 'people.templatetags',
+            'people', 'people.admin', 'people.models', 'people.templatetags','people.context_processors',
         ],
         data_files = get_data_files(('locale', 'media', 'people/fixtures', 'templates', 'sql_update')),
     )
