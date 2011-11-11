@@ -6,6 +6,7 @@ from distutils.core import setup
 try:
     from subprocess import check_output
 except ImportError:
+    import subprocess
     def check_output(*popenargs, **kwargs):
         if 'stdout' in kwargs:
             raise ValueError('stdout argument not allowed, it will be overridden.')
@@ -35,7 +36,7 @@ def get_data_files(directories):
         walks.extend(os.walk(directory))
 
     return [
-        (path, map(lambda x: os.path.join(path, x), files)) 
+        (path, map(lambda x: os.path.join(path, x), files))
         for path, dir, files in walks
     ]
 
