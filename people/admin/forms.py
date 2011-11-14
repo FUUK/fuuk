@@ -23,7 +23,6 @@ class ArticleArticleForm(forms.ModelForm):
     identification = NullCharField(max_length=100, required=False, label=_('DOI'),
                                    help_text=_('Without leading http://dx.doi.org/'))
     publication = NullCharField(max_length=100, label=_('Journal'), help_text=_('Full name of journal'))
-    volume = NullCharField(max_length=10)
     page_to = NullCharField(max_length=10, required=False, help_text=_('Leave blank for one-paged articles.'))
 
     class Meta:
