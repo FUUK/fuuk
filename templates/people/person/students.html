@@ -10,16 +10,18 @@
                 <p align="justify"><a href="{% url person_detail student.human.nickname %}" class="strong">{{ student.full_name }}</a><br />
                     {% if student.type = 'BC' %}
                         {{ student.class_year|ordinal }} {% trans "year of Bc. study" %}<br />
-                        <strong>{% trans "Bachelor thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
                     {% endif %}
                     {% if student.type = 'MGR' %}
                         {{ student.class_year|ordinal }} {% trans "year of Mgr. study" %}<br />
-                        <strong>{% trans "Master thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
                     {% endif %}
                     {% if student.type = 'PHD' %}
                         {{ student.class_year|ordinal }} {% trans "year of PhD. study" %}<br />
-                        <strong>{% trans "Disertation thesis" %}:</strong> {{ student.thesis_set.all.0.title }}
                     {% endif %}
+                    {% for thesis in student.thesis_set.all %}
+                        {% if thesis.type = student.type %}
+                            <strong>{{ thesis.get_type_display }} {% trans "thesis" %}:</strong> {{ thesis.title }}
+                        {% endif %}
+                    {% endfor %}
                 </p>
             </li>
         {% endfor %}
