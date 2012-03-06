@@ -15,10 +15,12 @@
         {{ place }},
     {% endif %}
     {% if editors %}
-        {% if type == "BOOK" %}
-            Publishers: {{ editors }},
-        {% else %}
-            Editors: {{ editors }},
+        Editors: {{ editors }},
+    {% endif %}
+    {% if type == "BOOK" %}
+        ISBN: {{ identification }},
+        {% if publishers %}
+            Publishers: {{ publishers }},
         {% endif %}
     {% endif %}
     {% comment %}

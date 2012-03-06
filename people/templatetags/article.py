@@ -22,6 +22,8 @@ def citation(article):
         'type': article.type,
         'presenter': article.presenter,
         'type_verbose': article.get_type_display(),
+        'editors': article.editors,
+        'publishers': article.publishers,
     }
     return tag_context
 
