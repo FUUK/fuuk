@@ -17,7 +17,7 @@ ARTICLE_TYPES = (
 doi_validator = RegexValidator(r'^10\.[0-9]{4}.*$')
 # 978 (code for book publishing), group id, publisher code, title code, checksum, separated by dash or space
 # see ISBN at wikipedia for more info :)
-isbn_validator = RegexValidator(r'^(978[- ])?[0-9]{1,5}[- ][0-9]{1-6}[- ][0-9]{1-7}[- ][0-9]$')
+isbn_validator = RegexValidator(r'^(978[- ])?[0-9]{1,5}[- ][0-9]{1,6}[- ][0-9]{1,7}[- ][0-9]$')
 page_validator = RegexValidator(r'^[A-Z]{0,2}[0-9]+(-[0-9]+)?$') # numbers or form 'AA1857'
 volume_issue_validator = RegexValidator(r'^[A-Z]?[0-9]{1,4}([-/][0-9]{1,4})?$') # numbers with slashes or dashes
 
