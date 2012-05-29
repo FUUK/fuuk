@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load i18n %}
+
+{% block meta %}
+<meta lang="cs" name="keywords" content="Oddìlení fyziky biomolekul, Fyzikální ústav Univerzity Karlovy, Praha" />
+<meta lang="en" name="keywords" content="Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" />
+<meta lang="cs" name="description" content="Oddìlení fyziky biomolekul, Fyzikální ústav Univerzity Karlovy, Praha" />
+<meta lang="en" name="description" content="Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" />
+{% endblock %}
+
+{% block title %}{% trans "Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" %}{% endblock %}
+
+{% block header %}
+<img src="{{ MEDIA_URL }}img/protein.png" height=120px width=283px class="right" />
+<div id="header-content">
+	<img src="{{ MEDIA_URL }}img/logo.png" height=110px width=112px style="float:left;padding-top:5px" />
+	<div id="subheader" style='font-size:24px; text-shadow:rgba(38,42,38,.7) 0.1em 0.1em'>
+		{% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}
+	</div>
+	<div id="subheader" style='font-size:12px'>
+		{% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16<br/>tel.: +420 221 911 345, fax: +420 224 922 797
+	</div>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block content %}
+<h1>{{ flatpage.title }}</h1>
+<p>
+    {{ flatpage.content|textile }}
+</p>
+{% endblock %}

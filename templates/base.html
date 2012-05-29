@@ -2,16 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
     <head>
         {% load i18n %}
-        {% block meta %}
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta lang="cs" name="keywords" content="Oddělení fyziky biomolekul, Fyzikální ústav Univerzity Karlovy, Praha" />
-        <meta lang="en" name="keywords" content="Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" />
-        <meta lang="cs" name="description" content="Oddělení fyziky biomolekul, Fyzikální ústav Univerzity Karlovy, Praha" />
-        <meta lang="en" name="description" content="Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" />
+        {% block meta %}
         {% endblock %}
         <link rel='shortcut icon' type='image/x-icon' href='{{ MEDIA_URL }}img/favicon.ico' />
 
-        <title>{% block title %}{% trans "Division of Biomolecular Physics, Institute of Physics at Charles University in Prague" %}{% endblock %}</title>
+        <title>{% block title %}{% endblock %}</title>
 
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" />
         {% block extrahead %}{% endblock %}
@@ -47,16 +43,6 @@
             <div id="stripe"></div>
             <div id="header">
                 {% block header %}
-                <img src="{{ MEDIA_URL }}img/protein.png" height=120px width=283px class="right" />
-                <div id="header-content">
-                    <img src="{{ MEDIA_URL }}img/logo.png" height=110px width=112px style="float:left;padding-top:5px" />
-                    <div id="subheader" style='font-size:24px; text-shadow:rgba(38,42,38,.7) 0.1em 0.1em'>
-                        {% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}
-                    </div>
-                    <div id="subheader" style='font-size:12px'>
-                        {% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16<br/>tel.: +420 221 911 345, fax: +420 224 922 797
-                    </div>
-                </div>
                 {% endblock %}
             </div>
             <div id="stripe" style="position:relative;z-index:2"></div>
@@ -75,7 +61,6 @@
                     {% endfor %}
                     </div>
                     <ul id="navlist" >
-                        {% block sidebar %}
                         <li id="active"><a href="/" id="current">&bull;&nbsp;&nbsp;{% trans "Welcome" %}</a></li>
                         <li>{% trans "Education" %}
                             <ul>
@@ -103,6 +88,7 @@
                         </li>
                         <li><a href="/gallery/">&bull;&nbsp;&nbsp;{% trans "Gallery" %}</a></li>
                         <li><a href="/path/">&bull;&nbsp;&nbsp;{% trans "How to find us" %}</a></li>
+                        {% block sidebar %}
                         {% endblock %}
                     </ul>
                 </div>
