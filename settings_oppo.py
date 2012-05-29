@@ -15,9 +15,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'fuuk',                      # Or path to database file if using sqlite3.
+        'NAME': 'test',                      # Or path to database file if using sqlite3.
         'USER': 'fuuk',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
+        'PASSWORD': 'test',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -79,7 +79,7 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',

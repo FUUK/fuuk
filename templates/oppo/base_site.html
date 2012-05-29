@@ -3,23 +3,25 @@
 {% load i18n %}
 
 {% block meta %}
-<meta lang="cs" name="keywords" content="Oddìlení polovodièù a polovodièové optoelektroniky, Fyzikální ústav Univerzity Karlovy, Praha" />
+<meta lang="cs" name="keywords" content="OddÄ›lenÃ­ polovodiÄÅ¯ a polovodiÄovÃ© optoelektroniky, FyzikÃ¡lnÃ­ Ãºstav Univerzity Karlovy, Praha" />
 <meta lang="en" name="keywords" content="Department of Semiconductors and Semiconductor Optoelectronics, Institute of Physics at Charles University in Prague" />
-<meta lang="cs" name="description" content="Oddìlení polovodièù a polovodièové optoelektroniky, Fyzikální ústav Univerzity Karlovy, Praha" />
+<meta lang="cs" name="description" content="OddÄ›lenÃ­ polovodiÄÅ¯ a polovodiÄovÃ© optoelektroniky, FyzikÃ¡lnÃ­ Ãºstav Univerzity Karlovy, Praha" />
 <meta lang="en" name="description" content="Department of Semiconductors and Semiconductor Optoelectronics, Institute of Physics at Charles University in Prague" />
 {% endblock %}
 
 {% block title %}{% trans "Department of Semiconductors and Semiconductor Optoelectronics, Institute of Physics at Charles University in Prague" %}{% endblock %}
 
 {% block header %}
-<img src="{{ MEDIA_URL }}img/protein.png" height=120px width=283px class="right" />
-<div id="header-content">
-	<img src="{{ MEDIA_URL }}img/logo.png" height=110px width=112px style="float:left;padding-top:5px" />
-	<div id="subheader" style='font-size:24px; text-shadow:rgba(38,42,38,.7) 0.1em 0.1em'>
-		{% trans "Department of Semiconductors and Semiconductor Optoelectronics" %} <br /> {% trans "Institute of Physics" %}
-	</div>
-	<div id="subheader" style='font-size:12px'>
-		{% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16<br/>tel.: +420 221 911 331, fax: +420 224 922 797
+<div id="header" style='height:150px'>
+	<img src="{{ MEDIA_URL }}img/protein.png" height=120px width=283px class="right" />
+	<div id="header-content" style='width:600px'>
+		<img src="{{ MEDIA_URL }}img/logo.png" height=110px width=112px style="float:left;padding-top:5px" />
+		<div id="subheader" style='font-size:24px; text-shadow:rgba(38,42,38,.7) 0.1em 0.1em'>
+			{% trans "Department of Semiconductors and Semiconductor Optoelectronics" %} <br /> {% trans "Institute of Physics" %}
+		</div>
+		<div id="subheader" style='font-size:12px'>
+			{% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16<br/>tel.: +420 221 911 331, fax: +420 224 922 797
+		</div>
 	</div>
 </div>
 {% endblock %}
