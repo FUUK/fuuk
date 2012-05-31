@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load markup %}
 {% load i18n %}
+{% load staticfiles %}
 
 {% block meta %}
 <meta lang="cs" name="keywords" content="Oborová rada 4F4, Fyzikální ústav Univerzity Karlovy, Praha" />
@@ -13,7 +14,7 @@
 
 {% block header %}
 <div id="header-content" style="width:800px">
-    <img src="{{ MEDIA_URL }}img/logo.png" height=110px style="float:left;padding-top:5px" />
+    <img src="{% static "img/logo.png" %}" height=110px style="float:left;padding-top:5px" />
     <div id="subheader" style='font-size:24px; text-shadow:rgba(0,0,0,.7) 0.1em 0.1em'>
         {% trans "4F4 Branch Board" %} <br /> {% trans "Biophysics, Chemical and Macromolecular Physics" %}
     </div>

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load markup %}
 {% load i18n %}
+{% load staticfiles %}
 
 {% block meta %}
 <meta lang="cs" name="keywords" content="Oddělení fyziky biomolekul, Fyzikální ústav Univerzity Karlovy, Praha" />
@@ -13,9 +14,9 @@
 
 {% block header %}
 <div id="header">
-	<img src="{{ MEDIA_URL }}img/protein.png" height=120px width=283px class="right" />
+	<img src="{% static "img/protein.png" %}" height=120px width=283px class="right" />
 	<div id="header-content">
-		<img src="{{ MEDIA_URL }}img/logo.png" height=110px width=112px style="float:left;padding-top:5px" />
+		<img src="{% static "img/logo.png" %}" height=110px width=112px style="float:left;padding-top:5px" />
 		<div id="subheader" style='font-size:24px; text-shadow:rgba(38,42,38,.7) 0.1em 0.1em'>
 			{% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}
 		</div>
