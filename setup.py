@@ -53,7 +53,7 @@ def main():
             '',
             'people', 'people.admin', 'people.models', 'people.templatetags','people.context_processors',
         ],
-        data_files = get_data_files(('locale', 'media', 'people/fixtures', 'templates', 'sql_update')),
+        data_files = get_data_files(('locale', 'static', 'people/fixtures', 'templates', 'sql_update')),
     )
 
 
