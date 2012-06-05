@@ -15,6 +15,8 @@ PERSON_TYPES = (
     ('PHD', _('PhD. student')),
     ('MGR', _('Mgr. student')),
     ('BC', _('Bc. student')),
+    ('GRAD', _('Graduate')),
+    ('STUDENT', _('Student')),
 )
 
 
