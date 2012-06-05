@@ -15,7 +15,7 @@
         {% ifnotequal lang.0 LANGUAGE_CODE %}
             <form method="POST" action="{% url set_language %}" style="display:inline">
                 <input type="hidden" name="language" value="{{ lang.0 }}" />
-                <input type="image" alt="{{ lang.1 }}" src="{% static "img/{{ lang.0 }}.png" %}" />
+                <input type="image" alt="{{ lang.1 }}" src="{% static "img/" %}{{ lang.0 }}.png" />
             </form>
         {% endifnotequal %}
     {% endfor %}
