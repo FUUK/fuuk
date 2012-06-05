@@ -64,7 +64,6 @@ msgid "Journal"
 msgstr "Časopis"
 
 #: .\people\admin\forms.py:25
-#, fuzzy
 msgid "Full name of journal"
 msgstr "Vyplňujte, prosím, celé jméno časopisu."
 

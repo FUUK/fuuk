@@ -22,6 +22,15 @@
             {% endfor %}
         </ul>
     {% endif %}
+    
+    {% if students %}
+        <h2>{% trans "ROCNIK study students" %}:</h2>
+        <ul>
+            {% for people in students %}
+                <li><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     {{ block.super }}
 {% endblock %}

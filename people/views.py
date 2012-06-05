@@ -106,6 +106,23 @@ def thesis_detail(request, object_id):
     return render_to_response('people/thesis_detail.html', context, RequestContext(request))
 
 
+def course_list(request):
+    queryset = Course.objects.order_by('pk')
+    return object_list(
+        request,
+        queryset,
+        template_name='courses.html',
+    )
+
+
+def download_list(request):
+    queryset = Course.objects.filter(attachment__isnull=False).order_by('pk')
+    return object_list(
+        request,
+        queryset,
+        template_name='downloads.html',
+        )
+
 def staff_list(request):
     queryset = Person.objects.filter(type='STAFF', is_active=True).order_by('last_name')
     context = {
@@ -135,12 +152,26 @@ def phd_list(request):
 def student_list(request):
     queryset = Person.objects.filter(type='MGR', is_active=True).order_by('last_name')
     context = {
-        'bachelors': Person.objects.filter(type='BC', is_active=True).order_by('last_name')
+        'bachelors': Person.objects.filter(type='BC', is_active=True).order_by('last_name'),
+        'students': Person.objects.filter(type='STUDENT', is_active=True).order_by('last_name'),
     }
     return object_list(
         request,
         queryset,
         template_name='people/students.html',
+        extra_context=context,
+    )
+
+
+def graduate_list(request):
+    queryset = Person.objects.filter(type='GRAD', is_active=True).order_by('last_name')
+    context = {
+        "title": _('Graduate')
+    }
+    return object_list(
+        request,
+        queryset,
+        template_name='people/people.html',
         extra_context=context,
     )
 

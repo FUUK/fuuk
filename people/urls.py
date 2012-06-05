@@ -10,11 +10,14 @@ urlpatterns = patterns('',
     url(r'^grants/(\d+)/$', 'people.views.grant_detail', name="grants"),
     url(r'^theses/$', 'people.views.thesis_list', name="theses"),
     url(r'^thesis/id=(\d+)/$', 'people.views.thesis_detail'),
+    url(r'^courses/$', 'people.views.course_list', name="courses"),
+    url(r'^downloads/$', 'people.views.download_list', name="downloads"),
 
     # Staff menu
     url(r'^phd/$', 'people.views.phd_list', name="phd_list"),
     url(r'^staff/$', 'people.views.staff_list', name="staff_list"),
     url(r'^students/$', 'people.views.student_list', name="student_list"),
+    url(r'^graduates/$', 'people.views.graduate_list', name="graduate_list"),
 )
 
 human_patterns = patterns('',

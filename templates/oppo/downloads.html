@@ -1,0 +1,18 @@
+{% extends "people/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    {% if object_list %}
+        <h1>{% trans "Downloads" %}</h1>
+        <ul>
+            {% for course in object_list %}
+            <li><strong>{{ course.name }}:</strong>
+                {% for attachment in course.attachment_set.all %}
+                    <a href="/{{ attachment.file }}">{{ attachment.title }}</a><br />
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    {{ block.super }}
+{% endblock %}
