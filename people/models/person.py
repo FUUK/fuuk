@@ -11,7 +11,8 @@ from people.models import Place
 nickname_validator = RegexValidator('^\w+$')
 
 PERSON_TYPES = (
-    ('STAFF', _('Staff')),
+    ('STAFF', _('Academic staff')),
+    ('OTHER', _('Other staff'))
     ('PHD', _('PhD. student')),
     ('MGR', _('Mgr. student')),
     ('BC', _('Bc. student')),

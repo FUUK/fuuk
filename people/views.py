@@ -134,6 +134,19 @@ def staff_list(request):
         template_name='people/people.html',
         extra_context=context,
     )
+    
+    
+def other_list(request):
+    queryset = Person.objects.filter(type='OTHER', is_active=True).order_by('last_name')
+    context = {
+        "title": _('Other workers')
+    }
+    return object_list(
+        request,
+        queryset,
+        template_name='people/people.html',
+        extra_context=context,
+    )
 
 
 def phd_list(request):
@@ -166,7 +179,7 @@ def student_list(request):
 def graduate_list(request):
     queryset = Person.objects.filter(type='GRAD', is_active=True).order_by('last_name')
     context = {
-        "title": _('Graduate')
+        "title": _('Graduate students')
     }
     return object_list(
         request,
@@ -176,6 +189,18 @@ def graduate_list(request):
     )
 
 
+def retired_list(request):
+    queryset = Person.objects.filter(type='STAFF', is_actice=False).order_by('last_name') | Person.objects.filter(type='OTHER', is_active=False).order_by('last_name')
+    context = {
+        "title": _('Retired workers')
+    }
+    return object_list(
+        request,
+        queryset,
+        template_name='people/people.html',
+        extra_context=context,
+    )
+    
 ### Person pages
 def get_common_context(nickname):
     try:
