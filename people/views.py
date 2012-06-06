@@ -190,7 +190,7 @@ def graduate_list(request):
 
 
 def retired_list(request):
-    queryset = Person.objects.filter(type='STAFF', is_actice=False).order_by('last_name') | Person.objects.filter(type='OTHER', is_active=False).order_by('last_name')
+    queryset = Person.objects.filter(type='STAFF', is_active=False).order_by('last_name') | Person.objects.filter(type='OTHER', is_active=False).order_by('last_name')
     context = {
         "title": _('Retired workers')
     }

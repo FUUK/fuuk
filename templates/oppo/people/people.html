@@ -1,0 +1,17 @@
+{% extends "people/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <table cellspacing="10">
+    {% for people in object_list %}
+    <tr>
+        <td><strong><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></strong></td>
+        <td>{% if people.human.email %}<strong>E-mail:</strong> {{ people.human.email }}{% endif %}</td>
+        <td>{% if people.place.phone %}<strong>Tel.:</strong> {{ people.place.phone }}{% endif %}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
+    {{ block.super }}
+{% endblock %}

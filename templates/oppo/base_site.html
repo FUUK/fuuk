@@ -40,10 +40,12 @@
 </li>
 <li>{% trans "People" %}
     <ul>
-        <li><a href="{% url staff_list %}">&nbsp;&nbsp;{% trans "Staff" %}</a></li>
+        <li><a href="{% url staff_list %}">&nbsp;&nbsp;{% trans "Academic staff" %}</a></li>
+        <li><a href="{% url other_list %}">&nbsp;&nbsp;{% trans "Other staff" %}</a></li>
         <li><a href="{% url phd_list %}">&nbsp;&nbsp;{% trans "PhD. students" %}</a></li>
         <li><a href="{% url student_list %}">&nbsp;&nbsp;{% trans "Students" %}</a></li>
         <li><a href="{% url graduate_list%}">&nbsp;&nbsp;{% trans "Graduates" %}</a></li>
+        <li><a href="{% url retired_list %}">&nbsp;&nbsp;{% trans "Retired staff" %}</a></li>
     </ul>
 </li>
 <li>{% trans "Science" %}

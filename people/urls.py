@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     # Staff menu
     url(r'^phd/$', 'people.views.phd_list', name="phd_list"),
     url(r'^staff/$', 'people.views.staff_list', name="staff_list"),
-    url(r'^other/$', 'people.views.other_list', name="other_list")
+    url(r'^other/$', 'people.views.other_list', name="other_list"),
     url(r'^students/$', 'people.views.student_list', name="student_list"),
     url(r'^graduates/$', 'people.views.graduate_list', name="graduate_list"),
     url(r'^retired/$', 'people.views.retired_list', name="retired_list"),
