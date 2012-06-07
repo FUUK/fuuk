@@ -24,6 +24,9 @@
                 {% if person.human.email %}
                     <br /><strong><em>E-mail:</em>&nbsp;&nbsp;<a href="mailto:{{ person.human.email }}">{{ person.human.email }}</a></strong>
                 {% endif %}
+                {% if person.human.homepage %}
+                    <br /><strong><em>Homepage:</em>&nbsp;&nbsp;<a href="{{ person.human.homepage }}">{{ person.human.homepage }}</a></strong>
+                {% endif %}
             </td>
         </tr>
     </table>

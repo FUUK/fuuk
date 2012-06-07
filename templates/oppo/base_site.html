@@ -29,15 +29,6 @@
 
 {% block sidebar %}
 <li id="active"><a href="/" id="current">&bull;&nbsp;&nbsp;{% trans "Welcome" %}</a></li>
-<li>{% trans "Education" %}
-    <ul>
-        {% comment %} nasty hack with &nbsp;&nbsp; dig into js to avoid that{% endcomment %}
-        <li><a href="/thesis_offer/">&nbsp;&nbsp;{% trans "Thesis offer" %}</a></li>
-        <li><a href="{% url theses %}">&nbsp;&nbsp;{% trans "Defended thesis" %}</a></li>
-        <li><a href="{% url courses %}">&nbsp;&nbsp;{% trans "Courses" %}</a></li>
-        <li><a href="{% url downloads %}">&nbsp;&nbsp;{% trans "Downloads" %}</a></li>
-    </ul>
-</li>
 <li>{% trans "People" %}
     <ul>
         <li><a href="{% url staff_list %}">&nbsp;&nbsp;{% trans "Academic staff" %}</a></li>
@@ -46,6 +37,15 @@
         <li><a href="{% url student_list %}">&nbsp;&nbsp;{% trans "Students" %}</a></li>
         <li><a href="{% url graduate_list%}">&nbsp;&nbsp;{% trans "Graduates" %}</a></li>
         <li><a href="{% url retired_list %}">&nbsp;&nbsp;{% trans "Retired staff" %}</a></li>
+    </ul>
+</li>
+<li>{% trans "Education" %}
+    <ul>
+        {% comment %} nasty hack with &nbsp;&nbsp; dig into js to avoid that{% endcomment %}
+        <li><a href="/thesis_offer/">&nbsp;&nbsp;{% trans "Thesis offer" %}</a></li>
+        <li><a href="{% url theses %}">&nbsp;&nbsp;{% trans "Defended thesis" %}</a></li>
+        <li><a href="{% url courses %}">&nbsp;&nbsp;{% trans "Courses" %}</a></li>
+        <li><a href="{% url downloads %}">&nbsp;&nbsp;{% trans "Downloads" %}</a></li>
     </ul>
 </li>
 <li>{% trans "Science" %}

@@ -37,6 +37,12 @@ class Human(models.Model):
     photo = models.ImageField(max_length=200, blank=True, null=True, upload_to='img/person')
     display_posters = models.BooleanField(default=True, help_text=_('Uncheck to hide posters on your personal page.'))
     display_talks = models.BooleanField(default=True, help_text=_('Uncheck to hide talks not presented by you on your personal page.'))
+    homepage = models.URLField(
+        max_length=255,
+        blank=True, null=True,
+        verify_exists=True,
+        help_text='Fill in form of www.link.com/subpage'
+    )
 
     class Translation(multilingual.Translation):
         subtitle = models.CharField(max_length=200, blank=True, null=True)

@@ -22,6 +22,7 @@ class Thesis(models.Model):
     advisor = models.ForeignKey(Person, related_name='thesis_lead', blank=True, null=True)
     consultants = models.ManyToManyField(Person, related_name='thesis_consulted', blank=True, null=True)
     defended = models.BooleanField(default=False)
+    thesis_file = models.FileField(max_length=200, blank=True, upload_to='thesis')
 
     class Translation(multilingual.Translation):
         title = models.CharField(max_length=200)
