@@ -56,6 +56,7 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
+MEDIA_ROOT = '/home/.../production/media'
 STATIC_ROOT = '/home/.../production/static'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -64,7 +65,7 @@ STATIC_ROOT = '/home/.../production/static'
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
-STATIC_DIRS = (
+STATICFILES_DIRS = (
     os.path.normpath(os.path.join(os.path.dirname(__file__), 'static')),
 )
 
