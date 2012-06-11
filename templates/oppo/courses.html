@@ -17,7 +17,7 @@
            <td><a class="strong" href="http://is.cuni.cz/studium/predmety/index.php?do=predmet&amp;kod={{ course.code }}" target="blank">{{ course.name }}</a></td>
            <td>
            {% for lector in course.lectors.all %}
-               {{ lector.full_name }}{% if not forloop.last %},{% endif %}
+               {{ lector.full_name }}{% if not forloop.last %},<br>{% endif %}
            {% endfor %}
            </td>
            <td>
