@@ -64,7 +64,7 @@ class Person(models.Model):
     human = models.ForeignKey(Human, blank=True, null=True)
     type = models.CharField(max_length=10, blank=True, null=True, choices=PERSON_TYPES)
     advisor = models.ForeignKey('Person', related_name='student', blank=True, null=True)
-    place = models.ForeignKey(
+    place = models.ManyToManyField(
         Place, blank=True, null=True,
         help_text=_('Only used for grant (co-)applicants or staff.')
     )

@@ -63,9 +63,10 @@ class HumanAdmin(MultilingualModelAdmin):
         )
     
 class PersonAdmin(ModelAdmin):
-    list_display = ('last_name', 'first_name', 'is_active', 'type', 'place')
+    list_display = ('last_name', 'first_name', 'is_active', 'type')
     list_filter = ('type', 'is_active')
     ordering = ('human__nickname',)
+    filter_horizontal = ('place',)
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
