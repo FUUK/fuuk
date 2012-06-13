@@ -15,11 +15,11 @@
                 {% if person.human.birth_date %}
                     <em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ person.human.birth_date }}{% if person.human.birth_place %}, {{ person.human.birth_place }}{% endif %}
                 {% endif %}
-                {% if person.place %}
-                    <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{{ person.place.department.name }}
-                    <br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{{ person.place.name }}
-                    <br /><em><strong>{% trans "Phone" %}:</strong></em>&nbsp;&nbsp;{{ person.place.phone }}
-                    <br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{{ person.place.department.fax }}
+                {% if person.place.all %}
+                    <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{% for i in person.place.all %}{{ i.department.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{% for i in person.place.all %}{{ i.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <br /><em><strong>{% trans "Phone" %}:</strong></em>&nbsp;&nbsp;{% for i in person.place.all %}{{ i.phone }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{% for i in person.place.all %}{{ i.department.fax }}{% if not forloop.last %}, {% endif %}{% endfor %}
                 {% endif %}
                 {% if person.human.email %}
                     <br /><strong><em>E-mail:</em>&nbsp;&nbsp;<a href="mailto:{{ person.human.email }}">{{ person.human.email }}</a></strong>
