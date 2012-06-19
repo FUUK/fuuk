@@ -13,7 +13,7 @@
             {% if object.co_authors.all %}
                 <strong><em>{% trans "Vice-head of the project" %}:</em></strong>
                 {% for co_author in object.co_authors.all %}
-                    {{ co_author.full_name }}{% if not co_author.type %} ({{ co_author.place }}){% endif %}{% if not forloop.last %},{% endif %}
+                    {{ co_author.full_name }}{% if not co_author.type %} ({{ co_author.place.all.0 }}){% endif %}{% if not forloop.last %},{% endif %}
                 {% endfor %}<br />
             {% endif %}
         </p>

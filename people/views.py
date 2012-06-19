@@ -9,7 +9,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.generic.list_detail import object_list, object_detail
 
-from people.models import Article, Course, Person, Grant, Thesis, News
+from people.models import Article, Course, Person, Grant, Thesis, News, Place, Department
 
 
 
@@ -222,7 +222,9 @@ def get_common_context(nickname):
         'grants_finished': Grant.objects.filter(pk__in =
             Grant.objects.filter(author__human=person.human, end__lt=date.today().year).values_list('pk', flat=True)
             | Grant.objects.filter(co_authors__human=person.human, end__lt=date.today().year).values_list('pk', flat=True)
-        ).order_by('-end', '-pk')
+        ).order_by('-end', '-pk'),
+        'department': Department.objects.filter(place__person=person).annotate(Count('id')),
+        'place': Place.objects.filter(person=person).annotate(Count('id')),
     }
     return context
 
