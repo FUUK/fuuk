@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 import multilingual
 
@@ -24,3 +25,7 @@ class News(models.Model):
 
     def __unicode__(self):
         return self.title or u""
+    
+    def clean(self):
+        if self.start > self.end:
+            raise ValidationError('The event cant end before it starts.')

@@ -5,6 +5,9 @@
     <h2>{{ thesis.title }}</h2>
         <strong>{% trans "Author" %}:</strong> <a href="{% url person_detail thesis.author.human.nickname %}">{{ thesis.author.full_name }}</a><br />
         <strong>{% trans "Supervisor" %}:</strong> {{ thesis.advisor.full_name }}<br />
+        {% if thesis.consultants %}
+            <strong>{% trans "Consultants"%}:</strong> {% for i in thesis.consultants.all %}{{ i.full_name }}{% if not forloop.last %}, {% endif %}{% endfor %}<br />
+        {% endif %}
         <strong>{% trans "Type" %}:</strong> {{ thesis.get_type_display }}</p>
         {% if thesis.defended %}
             <p><strong>{% trans "Abstract" %}:</strong> {{ thesis.abstract|safe }}</p>
