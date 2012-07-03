@@ -152,7 +152,7 @@ def other_list(request):
 def phd_list(request):
     queryset = Person.objects.filter(type='PHD', is_active=True).order_by('last_name')
     context = {
-        "title": _('PhD. students')
+        "title": _('PhD students')
     }
     return object_list(
         request,
