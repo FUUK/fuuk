@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-import os
-
 from distutils.core import setup
+
 
 try:
     from subprocess import check_output
@@ -20,7 +19,17 @@ except ImportError:
             raise subprocess.CalledProcessError(retcode, cmd, output=output)
         return output
 
+
 VERSION = '1.0.0'
+
+
+PACKAGES = ('fuuk', 'fuuk.people', 'fuuk.people.admin', 'fuuk.people.context_processors', 'fuuk.people.management',
+            'fuuk.people.management.commands', 'fuuk.people.models', 'fuuk.people.templatetags')
+
+PACKAGE_DATA = {'fuuk': ['locale/cs/LC_MESSAGES/*', 'people/fixtures/*.yaml' 'static/css/*', 'static/img/*',
+                         'static/js/*', 'templates/*.html', 'templates/admin/*', 'templates/flatpages/*.html',
+                         'templates/ofb/*.html', 'templates/oppo/*.html', 'templates/oppo/people/*.html',
+                         'templates/people/*.html', 'templates/people/person/*.html']}
 
 
 def get_git_version():
@@ -30,31 +39,15 @@ def get_git_version():
     return version
 
 
-def get_data_files(directories):
-    walks = []
-    for directory in directories:
-        walks.extend(os.walk(directory))
-
-    return [
-        (path, map(lambda x: os.path.join(path, x), files))
-        for path, dir, files in walks
-    ]
-
-
 def main():
     version = get_git_version() or VERSION
-    setup(
-        name = 'Web OBF FUUK',
-        version=version,
-        author = 'Vlastimil Zíma',
-        author_email = 'vlastimil.zima@gmail.com',
-        description = 'Web for Division of Biomolecular Physics at Institute of Physics at Charles University',
-        packages = [
-            '',
-            'people', 'people.admin', 'people.models', 'people.templatetags','people.context_processors',
-        ],
-        data_files = get_data_files(('locale', 'static', 'people/fixtures', 'templates', 'sql_update')),
-    )
+    setup(name='Web OBF FUUK',
+          version=version,
+          author = 'Vlastimil Zíma',
+          author_email = 'vlastimil.zima@gmail.com',
+          description = 'Web for Division of Biomolecular Physics at Institute of Physics at Charles University',
+          packages=PACKAGES,
+          package_data=PACKAGE_DATA)
 
 
 if __name__ == '__main__':

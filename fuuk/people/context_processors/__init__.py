@@ -1,0 +1,1 @@
+from fuuk.people.context_processors.news import news_list

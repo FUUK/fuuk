@@ -1,0 +1,40 @@
+{% extends "people/person/base.html" %}
+{% load i18n article %}
+
+{% block content %}
+    {{ block.super }}
+    {% if articles %}
+        <h1>{% trans "Articles" %}</h1>
+        {% for article in articles %}
+            <div>
+                <p class="citation_number">
+                    {{ forloop.counter }}.
+                </p>
+                {% citation article %}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if presentations %}
+        <h1>{% trans "Conference proceedings" %}</h1>
+        {% for article in presentations %}
+            <div>
+                <p class="citation_number">
+                    {{ forloop.counter }}.
+                </p>
+                {% citation article %}
+            </div>
+        {% endfor %}
+        <div style='clear:both;'></div>
+    {% endif %}
+    {% if books %}
+        <h1>{% trans "Monographies" %}</h1>
+        {% for article in books %}
+            <div>
+                <p class="citation_number">
+                    {{ forloop.counter }}.
+                </p>
+                {% citation article %}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

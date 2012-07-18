@@ -1,0 +1,47 @@
+{% extends "people/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    {% if not object_list %}
+        <h1>{% trans "By thesis type" %}</h1>
+        <ul>
+            {% for type, verbose_type in types %}
+                <li><strong><a href="?type={{ type }}">{{ verbose_type }}</a></strong></li>
+            {% endfor %}
+        </ul>
+
+        <h1>{% trans "By year" %}</h1>
+        <ul>
+            {% for year in years %}
+                <li><strong><a href="?year={{ year }}">{{ year }}</a></strong></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% if year %}
+            {% regroup object_list by type as thesis_groups %}
+            <h1>{% trans "Theses defended in year" %} {{ year }}:</h1>
+            {% for group in thesis_groups %}
+            <h1>{{ group.list.0.get_type_display }}</h1>
+                <ul>
+                {% for thesis in group.list %}
+                    <li><p><a href="/people/thesis/id={{ thesis.id }}"><strong>{{ thesis.author.full_name }}:</strong> {{ thesis.title }}<br />
+                    {% trans "Advisor" %}: {{ thesis.advisor.full_name }}</a></p></li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+        {% else %}
+            {% regroup object_list by year as thesis_groups %}
+            <h1>{% trans "Defended " %} {{ object_list.0.get_type_display|lower }} {% trans "theses" %}:</h1>
+            {% for group in thesis_groups %}
+            <h1>{{ group.grouper }}</h1>
+                <ul>
+                {% for thesis in group.list %}
+                    <li><p><a href="/people/thesis/id={{ thesis.id }}"><strong>{{ thesis.author.full_name }}:</strong> {{ thesis.title }}<br />
+                    {% trans "Advisor" %}: {{ thesis.advisor.full_name }}</a></p></li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+    {{ block.super }}
+{% endblock %}

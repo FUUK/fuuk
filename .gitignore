@@ -1,0 +1,3 @@
+/fuuk_cfg/*.py
+!/fuuk_cfg/__init__.py
+*.pyc
