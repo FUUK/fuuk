@@ -1,0 +1,32 @@
+<p class="citation">
+    {% if identification and type == "ARTICLE" %}
+        <a href="http://dx.doi.org/{{ identification }}" target="blank">
+    {% endif %}
+
+    {% for author in authors %}
+        {{ author.person.name_reversed }},
+    {% endfor %}
+    "{{ title }}",
+    {% if publication %}
+        {{ publication }}
+    {% endif %}
+    {% if place %}
+        , {{ place }},
+    {% endif %}
+    {% if editors %}
+        Editors: {{ editors }},
+    {% endif %}
+    {% if type == "BOOK" %}
+        ISBN: {{ identification }},
+        {% if publishers %}
+            Publishers: {{ publishers }},
+        {% endif %}
+    {% endif %}
+    {% comment %}
+        TODO: this becomes highly unreadable, can spaceless tag be used to separate it to several lines?
+    {% endcomment %}
+    {% if volume %}{{ volume }} {% endif %}({{ year }}) {% if pages %} {{ pages }}{% endif %}{% if presenter %} ({{ type_verbose }} - {{ presenter.name }}){% endif %}.
+    {% if identification and type == "ARTICLE"%}
+        </a>
+    {% endif%}
+</p>

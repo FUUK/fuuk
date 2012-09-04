@@ -27,7 +27,7 @@ class Article(models.Model):
     type = models.CharField(max_length=10, choices=ARTICLE_TYPES)
     # DOI for ARTICLE (not required); ISBN for BOOK (required)
     identification = models.CharField(max_length=100, blank=True, null=True, unique=True)
-    year = models.SmallIntegerField(validators=[MinValueValidator(1990)])
+    year = models.SmallIntegerField(validators=[MinValueValidator(1979)])
     title = models.CharField(max_length=300)
     accepted = models.BooleanField(help_text=_('Mark this article as accepted only. No volume and pages has to be filled in.'))
 

@@ -114,6 +114,15 @@ class Person(models.Model):
         )
 
     @property
+    def name_reversed(self):
+        # for articles
+        first_names = self.first_name.split(' ')
+        first_names = ['%s.' % name[0] for name in first_names]
+        return u"%s %s" % (
+            ''.join(first_names), self.last_name
+        )
+
+    @property
     def full_name(self):
         return u"%s%s %s%s" % (
             self.prefix and u"%s " % self.prefix or u"",
