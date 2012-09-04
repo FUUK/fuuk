@@ -12,6 +12,9 @@
             {% endif %}
             <td>
                 <h2>{{ person.full_name }}</h2>
+                {% if person.human.subtitle %}
+                    <strong>{{ person.human.subtitle }}</strong><br>
+                {% endif %}
                 {% if person.human.birth_date %}
                     <em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ person.human.birth_date }}{% if person.human.birth_place %}, {{ person.human.birth_place }}{% endif %}
                 {% endif %}

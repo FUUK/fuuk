@@ -10,6 +10,7 @@
         <td>{% if people.human.email %}<strong>E-mail:</strong> {{ people.human.email }}{% endif %}</td>
         <td>{% if people.place.all %}<strong>Tel.:</strong> {% for i in people.place.all %}{{ i.phone }}{% if not forloop.last %},<br />{% endif %}{% endfor %}{% endif %}</td>
     </tr>
+    {% if people.human.subtitle %}<tr><td><strong>{{ people.human.subtitle }}</strong></td></tr>{% endif %}
     {% endfor %}
     </table>
 
