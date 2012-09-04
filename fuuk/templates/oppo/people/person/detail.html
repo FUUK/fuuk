@@ -1,0 +1,72 @@
+{% extends "people/person/base.html" %}
+{% load i18n humanize markup %}
+
+{% block content %}
+    {{ block.super }}
+    <table border="0">
+        <tr>
+            {% if person.human.photo %}
+                <td align="center" valign="middle">
+                    <img src="/media/{{ person.human.photo }}" width="154" height="154" vspace="0" hspace="30" alt="FOTO" />
+                </td>
+            {% endif %}
+            <td>
+                <h2>{{ person.full_name }}</h2>
+                {% if person.human.subtitle %}
+                    <strong>{{ person.human.subtitle }}</strong><br>
+                {% endif %}
+                {% if person.human.birth_date %}
+                    <em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ person.human.birth_date }}{% if person.human.birth_place %}, {{ person.human.birth_place }}{% endif %}
+                {% endif %}
+                {% if person.place.all %}
+                    <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{% for i in department %}{{ i.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{% for i in place %}{{ i.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <br /><em><strong>{% trans "Phone" %}:</strong></em>&nbsp;&nbsp;{% for i in place %}{{ i.phone }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{% for i in department %}{{ i.fax }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                {% endif %}
+                {% if person.human.email %}
+                    <br /><strong><em>E-mail:</em>&nbsp;&nbsp;<a href="mailto:{{ person.human.email }}">{{ person.human.email }}</a></strong>
+                {% endif %}
+                {% if person.human.homepage %}
+                    <br /><strong><em>Homepage:</em>&nbsp;&nbsp;<a href="{{ person.human.homepage }}">{{ person.human.homepage }}</a></strong>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <hr  style='size:3;width:100%'/>
+    <div class="cv">
+    {% if person.human.interests %}
+        <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
+            {{ person.human.interests|textile }}
+        <hr  style='size:3;width:100%'/>
+    {% endif %}
+    {% if person.human.stays %}
+        <p class="strong" align="left">{% trans "Long term stays" %}:</p>
+            {{ person.human.stays|textile }}
+        <hr  style='size:3;width:100%'/>
+    {% endif %}
+    {% if person.human.cv %}
+        <p class="strong" align="left">{% trans "Curiculum vitae" %}:</p>
+            {{ person.human.cv|textile }}
+        <hr  style='size:3;width:100%'/>
+    {% endif %}
+    </div>
+    {% if theses_ongoing %}
+        <p class="strong" align="left">{% trans "Current thesis" %}:</p>
+            <ul>
+            {% for thesis in theses_ongoing %}
+                 <li>{{ thesis.get_type_display }}{% trans "'s thesis" %}: <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
+            {% endfor %}
+            </ul>
+        <hr  style='size:3;width:100%'/>
+    {% endif %}
+    {% if theses %}
+        <p class="strong" align="left">{% trans "Defended thesis" %}:</p>
+            <ul>
+            {% for thesis in theses %}
+                <li>{{ thesis.get_type_display }}{% trans "'s thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
+            {% endfor %}
+            </ul>
+        <hr  style='size:3;width:100%'/>
+    {% endif %}
+{% endblock %}
