@@ -16,7 +16,7 @@
             <p><strong>{% trans "Annotation" %}:</strong> {{ thesis.annotation|safe }}</p>
         {% endif %}
         {% if thesis.thesis_file %}
-            <p><strong>{% trans "Download" %}:</strong> <a href="/{{ thesis.thesis_file }}">{{ thesis.title }}</a>
+            <p><strong>{% trans "Download" %}:</strong> <a href="{{ thesis.thesis_file.url }}">{{ thesis.title }}</a>
         {% endif %}
         <hr size="1" width="100%" />
     {{ block.super }}
