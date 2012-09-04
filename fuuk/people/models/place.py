@@ -17,7 +17,10 @@ class Department(models.Model):
         app_label = 'people'
 
     def __unicode__(self):
-        return self.name_any or u""
+        if self.fax:
+            return u'%s %s' % (self.name_any, self.fax)
+        else:
+            return self.name_any or u""
 
 
 class Place(models.Model):

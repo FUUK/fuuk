@@ -204,7 +204,7 @@ def retired_list(request):
 ### Person pages
 def get_common_context(nickname):
     try:
-        person = Person.objects.filter(human__nickname=nickname).order_by('pk')[0]
+        person = Person.objects.filter(human__nickname=nickname).order_by('-is_active')[0]
     except (Person.DoesNotExist, IndexError):
         # (nickname is invalid, no person exist)
         raise Http404
