@@ -19,8 +19,8 @@
                     <em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ person.human.birth_date }}{% if person.human.birth_place %}, {{ person.human.birth_place }}{% endif %}
                 {% endif %}
                 {% if person.place.all %}
-                    <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{% for i in department %}{{ i.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
-                    <br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{% for i in place %}{{ i.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{% for i in department %}{{ i.name_any }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{% for i in place %}{{ i.name_any }}{% if not forloop.last %}, {% endif %}{% endfor %}
                     <br /><em><strong>{% trans "Phone" %}:</strong></em>&nbsp;&nbsp;{% for i in place %}{{ i.phone }}{% if not forloop.last %}, {% endif %}{% endfor %}
                     <br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{% for i in department %}{{ i.fax }}{% if not forloop.last %}, {% endif %}{% endfor %}
                 {% endif %}
@@ -49,6 +49,9 @@
         <p class="strong" align="left">{% trans "Curiculum vitae" %}:</p>
             {{ person.human.cv|textile }}
         <hr  style='size:3;width:100%'/>
+    {% endif %}
+    {% if person.human.cv_file %}
+        <p class="strong" align="left"><a href="{{ person.human.cv_file.url }}">{% trans "Download curiculum vitae" %}</a></p>
     {% endif %}
     </div>
     {% if theses_ongoing %}

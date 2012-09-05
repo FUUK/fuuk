@@ -43,6 +43,7 @@ class Human(models.Model):
         verify_exists=True,
         help_text='Fill in form of www.link.com/subpage'
     )
+    cv_file = models.FileField(max_length=200, blank=True, upload_to='cv')
 
     class Translation(multilingual.Translation):
         subtitle = models.CharField(max_length=200, blank=True, null=True)
