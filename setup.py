@@ -29,6 +29,7 @@ PACKAGES = ('fuuk', 'fuuk.people', 'fuuk.people.admin', 'fuuk.people.context_pro
 PACKAGE_DATA = {'fuuk': ['locale/cs/LC_MESSAGES/*', 'people/fixtures/*.yaml' 'static/css/*', 'static/img/*',
                          'static/js/*', 'templates/*.html', 'templates/admin/*', 'templates/flatpages/*.html',
                          'templates/ofb/*.html', 'templates/oppo/*.html', 'templates/oppo/people/*.html',
+                         'templates/oppo/people/person/*.html',
                          'templates/people/*.html', 'templates/people/person/*.html']}
 
 
