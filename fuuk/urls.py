@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     # media
     url(r'^%s(?P<path>.*)$' % settings.MEDIA_URL[1:], 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     # pages
-    url(r'^', include('people.urls')),
+    url(r'^', include('fuuk.people.urls')),
 )
