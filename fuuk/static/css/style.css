@@ -78,14 +78,14 @@ border-top-right-radius: 5px;
 #sidebar
 {
 float: left;
-width: 170px;
+width: 200px;
 margin-left: 10px;
 padding:0;
 }
 
 #main-panel
 {
-margin:0 0 0 190px;
+margin:0 0 0 220px;
 padding:0;
 min-height: 450px;
 }
