@@ -51,7 +51,7 @@
         <hr  style='size:3;width:100%'/>
     {% endif %}
     {% if person.human.cv_file %}
-        <p class="strong" align="left"><a href="{{ person.human.cv_file.url }}">{% trans "Download curiculum vitae" %}</a></p>
+        <p class="strong" align="left"><a href="{{ person.human.cv_file.url }}" style="text-decoration:underline">{% trans "Download curiculum vitae" %}</a></p>
     {% endif %}
     </div>
     {% if theses_ongoing %}

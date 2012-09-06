@@ -50,12 +50,15 @@
             {{ person.human.cv|textile }}
         <hr  style='size:3;width:100%'/>
     {% endif %}
+    {% if person.human.cv_file %}
+        <p class="strong" align="left"><a href="{{ person.human.cv_file.url }}" style="text-decoration:underline">{% trans "Download curiculum vitae" %}</a></p>
+    {% endif %}
     </div>
     {% if theses_ongoing %}
         <p class="strong" align="left">{% trans "Current thesis" %}:</p>
             <ul>
             {% for thesis in theses_ongoing %}
-                 <li>{{ thesis.get_type_display }}{% trans "'s thesis" %}: <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
+                 <li>{{ thesis.get_type_display }} {% trans "'s thesis" %}: <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
             {% endfor %}
             </ul>
         <hr  style='size:3;width:100%'/>
@@ -64,7 +67,7 @@
         <p class="strong" align="left">{% trans "Defended thesis" %}:</p>
             <ul>
             {% for thesis in theses %}
-                <li>{{ thesis.get_type_display }}{% trans "'s thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
+                <li>{{ thesis.get_type_display }} {% trans "'s thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
             {% endfor %}
             </ul>
         <hr  style='size:3;width:100%'/>
