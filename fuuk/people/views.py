@@ -277,3 +277,15 @@ def person_grants(request, nickname):
         raise Http404
 
     return render_to_response('people/person/grants.html', context, RequestContext(request))
+
+
+def papers(request):
+    queryset = Article.objects.filter(type__in = ('ARTICLE', 'BOOK')).order_by('-year')
+    if not queryset:
+        raise Http404
+
+    return object_list(
+        request,
+        queryset,
+        template_name='people/papers.html',
+    )

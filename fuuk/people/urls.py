@@ -5,6 +5,7 @@ urlpatterns = patterns('',
     # Global pages
     url(r'^articles/$', 'people.views.article_list', name="articles"),
     url(r'^articles/([0-9]{4})/$', 'people.views.article_list', name="articles"),
+    url(r'^papers/$', 'people.views.papers'),
     # TODO: grants by years
     url(r'^grants/$', 'people.views.grant_list', name="grants"),
     url(r'^grants/(\d+)/$', 'people.views.grant_detail', name="grants"),
