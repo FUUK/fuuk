@@ -23,12 +23,12 @@ class ArticleArticleForm(forms.ModelForm):
     identification = NullCharField(max_length=100, required=False, label=_('DOI'),
                                    help_text=_('Without leading http://dx.doi.org/'))
     publication = NullCharField(max_length=100, label=_('Journal'), help_text=_('Full name of journal'))
-    page_to = NullCharField(max_length=10, required=False, help_text=_('Leave blank for one-paged articles.'))
+    page_to = NullCharField(max_length=10, required=False, help_text=_('Leave blank for one-paged articles. Fill number of pages if using article number.'))
 
     class Meta:
         fields = (
             'type', 'accepted', 'identification', 'year', 'title', 'publication',
-            'volume', 'issue', 'page_from', 'page_to'
+            'volume', 'issue', 'page_from', 'article_number', 'page_to'
         )
 
 

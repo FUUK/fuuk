@@ -25,7 +25,7 @@
     {% comment %}
         TODO: this becomes highly unreadable, can spaceless tag be used to separate it to several lines?
     {% endcomment %}
-    {% if volume %}{{ volume }} {% endif %}({{ year }}) {% if pages %} {{ pages }}{% endif %}{% if presenter %} ({{ type_verbose }} - {{ presenter.name }}){% endif %}.
+    {% if volume %}{{ volume }} {% endif %}({{ year }}) {% if pages %} {{ pages }}{% if article_number %} pages){% endif %}{% endif %}{% if presenter %} ({{ type_verbose }} - {{ presenter.name }}){% endif %}.
     {% if identification and type == "ARTICLE"%}
         </a>
     {% endif%}

@@ -43,6 +43,7 @@ class Article(models.Model):
 
     # required for BOOK, ARTICLE
     page_from = models.CharField(max_length=10, blank=True, null=True, validators=[page_validator])
+    article_number = models.BooleanField(help_text=_('Check if the journal is using article numbers instead of pages'))
     page_to = models.CharField(max_length=10, blank=True, null=True, validators=[page_validator],
                                help_text=_('Leave blank for one paged abstracts.'))
 
@@ -118,7 +119,7 @@ class Article(models.Model):
                 raise ValidationError(_('Article has to have volume.'))
             if not self.page_from:
                 raise ValidationError(_('Article has to have page(s).'))
-            elif self.page_to and (self.page_to < self.page_from):
+            elif not self.article_number and self.page_to and (self.page_to < self.page_from):
                 raise ValidationError(_('End page number must be bigger than start page number.'))
         elif self.type in ('TALK', 'INVITED', 'POSTER'):
             if self.accepted:
