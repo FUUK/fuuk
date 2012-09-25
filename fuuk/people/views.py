@@ -212,6 +212,7 @@ def get_common_context(nickname):
     context = {
         'person': person,
         'publications': Article.objects.filter(author__person__human=person.human).order_by('-year'),
+        'publications_first': Article.objects.filter(author__order=1, author__person__human=person.human).order_by('-year'),
         'courses': Course.objects.filter(lectors__human=person.human).order_by('pk'),
         'courses_practical': Course.objects.filter(practical_lectors__human=person.human).order_by('pk'),
         'students': Person.objects.filter(advisor__human=person.human, is_active=True).order_by('last_name', 'first_name'),
@@ -236,7 +237,7 @@ def person_detail(request, nickname):
     return render_to_response('people/person/detail.html', context, RequestContext(request))
 
 
-def person_articles(request, nickname):
+def person_articles(request, nickname, first=False):
     context = get_common_context(nickname)
     if not context['publications']:
         raise Http404
@@ -245,7 +246,10 @@ def person_articles(request, nickname):
         presentation_types = ['POSTER', 'TALK', 'INVITED']
     else:
         presentation_types = ['TALK', 'INVITED']
-    context['articles'] = context['publications'].filter(type='ARTICLE')
+    if first:
+        context['articles'] = context['publications_first'].filter(type='ARTICLE')
+    else:
+        context['articles'] = context['publications'].filter(type='ARTICLE')
     if context['person'].human.display_talks:
         context['presentations'] = context['publications'].filter(type__in=presentation_types)
     else:

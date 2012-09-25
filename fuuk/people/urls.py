@@ -27,6 +27,7 @@ human_patterns = patterns('',
     # Human details
     url(r'^(\w+)/$', 'people.views.person_detail', name="person_detail"),
     url(r'^(\w+)/papers/$', 'people.views.person_articles', name="person_articles"),
+    url(r'^(\w+)/papers/(first)/$', 'people.views.person_articles', name="person_articles"),
     url(r'^(\w+)/courses/$', 'people.views.person_courses', name="person_courses"),
     url(r'^(\w+)/students/$', 'people.views.person_students', name="person_students"),
     url(r'^(\w+)/grants/$', 'people.views.person_grants', name="person_grants"),
