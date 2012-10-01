@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load markup %}
 {% load i18n %}
-{% load staticfiles %}
+{% load staticfiles analytics %}
 
 {% block meta %}
 <meta lang="cs" name="keywords" content="Oddělení polovodičů a polovodičové optoelektroniky, Fyzikální ústav Univerzity Karlovy, Praha" />
@@ -50,11 +50,11 @@
 <li>{% trans "Science" %}
     <ul>
         <li><a href="/problems/">&nbsp;&nbsp;{% trans "Topics" %}</a></li>
-        <li><a href="{% url articles %}">&nbsp;&nbsp;{% trans "Publications" %}</a></li>
         <li><a href="/coop/">&nbsp;&nbsp;{% trans "Cooperations" %}</a></li>
         <li><a href="/soft/">&nbsp;&nbsp;{% trans "Software" %}</a></li>
     </ul>
 </li>
+<li><a href="{% url articles %}">&bull;&nbsp;&nbsp;{% trans "Publications" %}</a></li>
 <li><a href="{% url grants %}">&bull;&nbsp;&nbsp;{% trans "Grants" %}</a></li>
 <li><a href="/labs/">&bull;&nbsp;&nbsp;{% trans "Labs" %}</a></li>
 <li><a href="/services/">&bull;&nbsp;&nbsp;{% trans "Services" %}</a></li>
@@ -70,5 +70,5 @@
 {% endblock %}
 
 {% block analytics %}
-{% analytics "UA-xxxxxx-x" %}
+{% analytics "" %}
 {% endblock %}
