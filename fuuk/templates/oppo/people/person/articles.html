@@ -3,9 +3,9 @@
 
 {% block content %}
     {{ block.super }}
-    <div id="menu-top">
-    	<a id="menu-item" class="title" href="/{{ person.human.nickname }}/papers/first"><span>{% trans "1st author" %}</span></a>
-    	<a id="menu-item" class="title" href="/{{ person.human.nickname }}/papers"><span>{% trans "All papers" %}</span></a>
+    <div id="menu_top">
+    	<a id="menu_item" class="title" href="/{{ person.human.nickname }}/papers/first"><span>{% trans "1st author" %}</span></a>
+    	<a id="menu_item" class="title" href="/{{ person.human.nickname }}/papers"><span>{% trans "All papers" %}</span></a>
     </div>
     {% if articles %}
         <h1>{% trans "Articles" %}</h1>
