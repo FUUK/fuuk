@@ -293,9 +293,10 @@ border-radius: 3px;
 
 /**********/
 /* Tables */
-td
+.people td,.people th
 {
 vertical-align: top;
+padding: 5px 20px;
 }
 
 /*******/
