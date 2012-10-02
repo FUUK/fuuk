@@ -8,7 +8,7 @@
             {% for course in object_list %}
             <li><strong>{{ course.name }}:</strong>
                 {% for attachment in course.attachment_set.all %}
-                    <a href="/{{ attachment.file }}" style="text-decoration:underline">{{ attachment.title }} ({{ course.lectors.all.0 }})</a><br />
+                    <a href="/{{ attachment.file }}" style="text-decoration:underline">{{ attachment.title }} ({{ course.lectors.all.0.full_name }})</a><br />
                 {% endfor %}
             {% endfor %}
         </ul>
