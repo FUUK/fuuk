@@ -115,7 +115,7 @@ def course_list(request):
 
 
 def download_list(request):
-    queryset = Course.objects.filter(attachment__isnull=False).order_by('pk')
+    queryset = Course.objects.exclude(attachment__isnull=True).order_by('pk')
     return object_list(
         request,
         queryset,
