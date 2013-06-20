@@ -10,7 +10,6 @@ class News(models.Model):
     hyperlink = models.URLField(
         max_length=255,
         blank=True, null=True,
-        verify_exists=True,
         help_text='This hyperlink will be added to the news title. Fill in form of www.link.com'
     )
 

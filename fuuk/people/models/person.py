@@ -40,7 +40,6 @@ class Human(models.Model):
     homepage = models.URLField(
         max_length=255,
         blank=True, null=True,
-        verify_exists=True,
         help_text='Fill in form of www.link.com/subpage'
     )
     cv_file = models.FileField(max_length=200, blank=True, upload_to='cv')

@@ -109,7 +109,7 @@ class Article(models.Model):
             if self.identification:
                 try:
                     doi_validator(self.identification)
-                    URLValidator(verify_exists=True)('http://dx.doi.org/%s' % self.identification)
+                    URLValidator('http://dx.doi.org/%s' % self.identification)
                 except ValidationError:
                     raise ValidationError('Enter valid DOI.')
 
