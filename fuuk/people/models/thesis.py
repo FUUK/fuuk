@@ -7,6 +7,7 @@ import multilingual
 from fuuk.people.models import Person
 
 THESIS_TYPES = (
+    ('STUD', _('Student project')), 
     ('BC', _('Bachelor')),
     ('MGR', _('Master')),
     ('PHD', _('Doctoral')),
