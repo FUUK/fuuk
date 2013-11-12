@@ -16,7 +16,7 @@ except ImportError:
             cmd = kwargs.get("args")
             if cmd is None:
                 cmd = popenargs[0]
-            raise subprocess.CalledProcessError(retcode, cmd, output=output)
+            raise subprocess.CalledProcessError(retcode, cmd)
         return output
 
 
@@ -26,15 +26,16 @@ VERSION = '1.0.0'
 PACKAGES = ('fuuk', 'fuuk.people', 'fuuk.people.admin', 'fuuk.people.context_processors', 'fuuk.people.management',
             'fuuk.people.management.commands', 'fuuk.people.models', 'fuuk.people.templatetags')
 
-PACKAGE_DATA = {'fuuk': ['locale/cs/LC_MESSAGES/*', 'people/fixtures/*.yaml' 'static/css/*', 'static/img/*',
-                         'static/js/*', 'templates/*.html', 'templates/admin/*', 'templates/flatpages/*.html',
+PACKAGE_DATA = {'fuuk': ['locale/cs/LC_MESSAGES/*', 'templates/*.html', 'templates/admin/*',
+                         'templates/flatpages/*.html',
                          'templates/ofb/*.html', 'templates/oppo/*.html', 'templates/oppo/people/*.html',
                          'templates/oppo/people/person/*.html',
-                         'templates/people/*.html', 'templates/people/person/*.html']}
+                         'templates/people/*.html', 'templates/people/person/*.html'],
+                'fuuk.people': ['fixtures/*.yaml', 'static/css/*', 'static/img/*', 'static/js/*']}
 
 
 def get_git_version():
-    version = check_output(['git', 'describe', '--tags'])
+    version = check_output(['git', 'describe', '--tags', '--always'])
     if version[-1] == '\n':
         version = version[:-1]
     return version
