@@ -30,7 +30,7 @@ PACKAGE_DATA = {'fuuk': ['locale/cs/LC_MESSAGES/*', 'templates/*.html', 'templat
                          'templates/flatpages/*.html',
                          'templates/ofb/*.html', 'templates/oppo/*.html', 'templates/oppo/people/*.html',
                          'templates/oppo/people/person/*.html',
-                         'templates/people/*.html', 'templates/people/person/*.html'],
+                         'templates/people/*.html', 'templates/people/person/*.html', 'templates/theory/*.html'],
                 'fuuk.people': ['fixtures/*.yaml', 'static/css/*', 'static/img/*', 'static/js/*']}
 
 
