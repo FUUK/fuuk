@@ -27,7 +27,7 @@ PACKAGES = ('fuuk', 'fuuk.people', 'fuuk.people.admin', 'fuuk.people.context_pro
             'fuuk.people.management.commands', 'fuuk.people.models', 'fuuk.people.templatetags')
 
 PACKAGE_DATA = {'fuuk': ['locale/cs/LC_MESSAGES/*', 'templates/*.html', 'templates/admin/*',
-                         'templates/flatpages/*.html',
+                         'templates/flatpages/*.html', 'templates/magnet/*.html',
                          'templates/ofb/*.html', 'templates/oppo/*.html', 'templates/oppo/people/*.html',
                          'templates/oppo/people/person/*.html',
                          'templates/people/*.html', 'templates/people/person/*.html', 'templates/theory/*.html'],
