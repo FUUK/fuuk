@@ -20,7 +20,7 @@ def main():
           version=__version__,
           author='Vlastimil Zíma',
           author_email='vlastimil.zima@gmail.com',
-          description='Web for Institute of Physics at Charles University',
+          description='Web of Institute of Physics at Charles University',
           packages=PACKAGES,
           package_data=PACKAGE_DATA)
 
