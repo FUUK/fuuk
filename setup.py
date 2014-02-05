@@ -1,26 +1,7 @@
 # -*- coding: utf-8 -*-
 from distutils.core import setup
 
-
-try:
-    from subprocess import check_output
-except ImportError:
-    import subprocess
-    def check_output(*popenargs, **kwargs):
-        if 'stdout' in kwargs:
-            raise ValueError('stdout argument not allowed, it will be overridden.')
-        process = subprocess.Popen(stdout=subprocess.PIPE, *popenargs, **kwargs)
-        output, unused_err = process.communicate()
-        retcode = process.poll()
-        if retcode:
-            cmd = kwargs.get("args")
-            if cmd is None:
-                cmd = popenargs[0]
-            raise subprocess.CalledProcessError(retcode, cmd)
-        return output
-
-
-VERSION = '1.0.0'
+from fuuk import __version__
 
 
 PACKAGES = ('fuuk', 'fuuk.people', 'fuuk.people.admin', 'fuuk.people.context_processors', 'fuuk.people.management',
@@ -34,20 +15,12 @@ PACKAGE_DATA = {'fuuk': ['locale/cs/LC_MESSAGES/*', 'templates/*.html', 'templat
                 'fuuk.people': ['fixtures/*.yaml', 'static/css/*', 'static/img/*', 'static/js/*']}
 
 
-def get_git_version():
-    version = check_output(['git', 'describe', '--tags', '--always'])
-    if version[-1] == '\n':
-        version = version[:-1]
-    return version
-
-
 def main():
-    version = get_git_version() or VERSION
-    setup(name='Web OBF FUUK',
-          version=version,
-          author = 'Vlastimil Zíma',
-          author_email = 'vlastimil.zima@gmail.com',
-          description = 'Web for Division of Biomolecular Physics at Institute of Physics at Charles University',
+    setup(name='Web FUUK',
+          version=__version__,
+          author='Vlastimil Zíma',
+          author_email='vlastimil.zima@gmail.com',
+          description='Web for Institute of Physics at Charles University',
           packages=PACKAGES,
           package_data=PACKAGE_DATA)
 
