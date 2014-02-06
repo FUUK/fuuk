@@ -30,12 +30,12 @@
 <li id="active"><a href="/welcome/" id="current">&bull;&nbsp;&nbsp;{% trans "Welcome" %}</a></li>
 <li>{% trans "People" %}
     <ul>
-        <li><a href="{% url staff_list %}">&nbsp;&nbsp;{% trans "Academic staff" %}</a></li>
-        <li><a href="{% url other_list %}">&nbsp;&nbsp;{% trans "Other staff" %}</a></li>
-        <li><a href="{% url phd_list %}">&nbsp;&nbsp;{% trans "PhD. students" %}</a></li>
-        <li><a href="{% url student_list %}">&nbsp;&nbsp;{% trans "Students" %}</a></li>
-        <li><a href="{% url graduate_list%}">&nbsp;&nbsp;{% trans "Graduates" %}</a></li>
-        <li><a href="{% url retired_list %}">&nbsp;&nbsp;{% trans "Former members" %}</a></li>
+        <li><a href="{% url "staff_list" %}">&nbsp;&nbsp;{% trans "Academic staff" %}</a></li>
+        <li><a href="{% url "other_list" %}">&nbsp;&nbsp;{% trans "Other staff" %}</a></li>
+        <li><a href="{% url "phd_list" %}">&nbsp;&nbsp;{% trans "PhD. students" %}</a></li>
+        <li><a href="{% url "student_list" %}">&nbsp;&nbsp;{% trans "Students" %}</a></li>
+        <li><a href="{% url "graduate_list" %}">&nbsp;&nbsp;{% trans "Graduates" %}</a></li>
+        <li><a href="{% url "retired_list" %}">&nbsp;&nbsp;{% trans "Former members" %}</a></li>
     </ul>
 </li>
 <li>{% trans "Education" %}
@@ -43,9 +43,9 @@
         {% comment %} nasty hack with &nbsp;&nbsp; dig into js to avoid that{% endcomment %}
         <li><a href="/thesis_offer/">&nbsp;&nbsp;{% trans "Thesis offer" %}</a></li>
         <li><a href="/student_activities">&nbsp;&nbsp;{% trans "Student activities" %}</a></li>
-        <li><a href="{% url theses %}">&nbsp;&nbsp;{% trans "Defended thesis" %}</a></li>
-        <li><a href="{% url courses %}">&nbsp;&nbsp;{% trans "Courses" %}</a></li>
-        <li><a href="{% url downloads %}">&nbsp;&nbsp;{% trans "Downloads" %}</a></li>
+        <li><a href="{% url "theses" %}">&nbsp;&nbsp;{% trans "Defended thesis" %}</a></li>
+        <li><a href="{% url "courses" %}">&nbsp;&nbsp;{% trans "Courses" %}</a></li>
+        <li><a href="{% url "downloads" %}">&nbsp;&nbsp;{% trans "Downloads" %}</a></li>
     </ul>
 </li>
 <li>{% trans "Science" %}
@@ -55,8 +55,8 @@
         <li><a href="/soft/">&nbsp;&nbsp;{% trans "Software" %}</a></li>
     </ul>
 </li>
-<li><a href="{% url articles %}">&bull;&nbsp;&nbsp;{% trans "Publications" %}</a></li>
-<li><a href="{% url grants %}">&bull;&nbsp;&nbsp;{% trans "Grants" %}</a></li>
+<li><a href="{% url "articles" %}">&bull;&nbsp;&nbsp;{% trans "Publications" %}</a></li>
+<li><a href="{% url "grants" %}">&bull;&nbsp;&nbsp;{% trans "Grants" %}</a></li>
 <li><a href="/labs/">&bull;&nbsp;&nbsp;{% trans "Labs" %}</a></li>
 <li><a href="/services/">&bull;&nbsp;&nbsp;{% trans "Services" %}</a></li>
 <li><a href="/gallery/">&bull;&nbsp;&nbsp;{% trans "Gallery" %}</a></li>

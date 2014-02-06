@@ -5,7 +5,7 @@
     <h1>{{ title }}</h1>
     {% for people in object_list %}
         <div class="list-name">
-            <strong><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></strong>
+            <strong><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></strong>
             {% if people.human.subtitle %}
                 <span class="little"><strong> {{ people.human.subtitle }}</strong></span>
             {% endif %}

@@ -32,21 +32,21 @@
     <ul>
         {% comment %} nasty hack with &nbsp;&nbsp; dig into js to avoid that{% endcomment %}
         <li><a href="/thesis_offer/">&nbsp;&nbsp;{% trans "Thesis offer" %}</a></li>
-        <li><a href="{% url theses %}">&nbsp;&nbsp;{% trans "Defended thesis" %}</a></li>
+        <li><a href="{% url "theses" %}">&nbsp;&nbsp;{% trans "Defended thesis" %}</a></li>
     </ul>
 </li>
 <li>{% trans "People" %}
     <ul>
-        <li><a href="{% url staff_list %}">&nbsp;&nbsp;{% trans "Staff" %}</a></li>
-        <li><a href="{% url phd_list %}">&nbsp;&nbsp;{% trans "PhD. students" %}</a></li>
-        <li><a href="{% url student_list %}">&nbsp;&nbsp;{% trans "Students" %}</a></li>
+        <li><a href="{% url "staff_list" %}">&nbsp;&nbsp;{% trans "Staff" %}</a></li>
+        <li><a href="{% url "phd_list" %}">&nbsp;&nbsp;{% trans "PhD. students" %}</a></li>
+        <li><a href="{% url "student_list" %}">&nbsp;&nbsp;{% trans "Students" %}</a></li>
     </ul>
 </li>
 <li>{% trans "Science" %}
     <ul>
         <li><a href="/problems/">&nbsp;&nbsp;{% trans "Topics" %}</a></li>
-        <li><a href="{% url articles %}">&nbsp;&nbsp;{% trans "Publications" %}</a></li>
-        <li><a href="{% url grants %}">&nbsp;&nbsp;{% trans "Grants" %}</a></li>
+        <li><a href="{% url "articles" %}">&nbsp;&nbsp;{% trans "Publications" %}</a></li>
+        <li><a href="{% url "grants" %}">&nbsp;&nbsp;{% trans "Grants" %}</a></li>
         <li><a href="/labs/">&nbsp;&nbsp;{% trans "Labs" %}</a></li>
         <li><a href="/coop/">&nbsp;&nbsp;{% trans "Cooperations" %}</a></li>
         <li><a href="/soft/">&nbsp;&nbsp;{% trans "Software" %}</a></li>

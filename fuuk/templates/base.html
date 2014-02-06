@@ -52,7 +52,7 @@
                     <div id="lang">
                     {% for lang in LANGUAGES reversed %}
                         {% ifnotequal lang.0 LANGUAGE_CODE %}
-                            <form method="post" action="{% url set_language %}">
+                            <form method="post" action="{% url "set_language" %}">
                                 <input type="hidden" name="language" value="{{ lang.0 }}" />
                                 <input type="image" alt="{{ lang.1 }}" src="{% static "img/" %}{{ lang.0 }}.png" />
                             </form>
