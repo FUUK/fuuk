@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load markup %}
 {% load i18n %}
-{% load staticfiles analytics %}
+{% load staticfiles %}
 
 {% block meta %}
 <meta lang="cs" name="keywords" content="Oddělení polovodičů a polovodičové optoelektroniky, Fyzikální ústav Univerzity Karlovy, Praha" />
@@ -68,8 +68,4 @@
 <p>
     {{ flatpage.content|textile }}
 </p>
-{% endblock %}
-
-{% block analytics %}
-{% analytics "" %}
 {% endblock %}
