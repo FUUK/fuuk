@@ -28,6 +28,7 @@ INSTALLED_APPS = ('django.contrib.admin',
                   'django.contrib.staticfiles',
                   'multilingual',
                   'multilingual.flatpages',
+                  'fuuk.common',
                   'fuuk.people')
 
 LANGUAGE_CODE = 'cs'
