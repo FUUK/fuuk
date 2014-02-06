@@ -5,18 +5,18 @@
 {% block content %}
     {{ block.super }}
     <div id="menu_top">
-                <a id="menu_item" class="title" href="{% url "person_detail" person.human.nickname %}"><span>{{ person.name }}</span></a>
+                <a id="menu_item" class="title" href="{% url "person_detail" human.nickname %}"><span>{{ person.name }}</span></a>
             {% if publications %}
-                    <a id="menu_item" class="title" href="{% url "person_articles" person.human.nickname %}"><span>{% trans "Articles" %}</span></a>
+                    <a id="menu_item" class="title" href="{% url "person_articles" human.nickname %}"><span>{% trans "Articles" %}</span></a>
             {% endif %}
             {% if students %}
-                    <a id="menu_item" class="title" href="{% url "person_students" person.human.nickname %}"><span>{% trans "Students" %}</span></a>
+                    <a id="menu_item" class="title" href="{% url "person_students" human.nickname %}"><span>{% trans "Students" %}</span></a>
             {% endif %}
             {% if courses %}
-                    <a id="menu_item" class="title" href="{% url "person_courses" person.human.nickname %}"><span>{% trans "Courses" %}</span></a>
+                    <a id="menu_item" class="title" href="{% url "person_courses" human.nickname %}"><span>{% trans "Courses" %}</span></a>
             {% endif %}
             {% if grants or grants_finished %}
-                    <a id="menu_item" class="title" href="{% url "person_grants" person.human.nickname %}"><span>{% trans "Grants" %}</span></a>
+                    <a id="menu_item" class="title" href="{% url "person_grants" human.nickname %}"><span>{% trans "Grants" %}</span></a>
             {% endif %}
     </div>
 {% endblock %}

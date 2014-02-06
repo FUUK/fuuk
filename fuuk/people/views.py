@@ -7,289 +7,220 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from django.views.generic.list_detail import object_list, object_detail
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
-from fuuk.people.models import Article, Course, Person, Grant, Thesis, News, Place, Department
-
-
-def article_list(request, year=None):
-    queryset = Article.objects.filter(type__in = ('ARTICLE', 'BOOK'))
-    if not queryset:
-        raise Http404
-
-    years = queryset.values_list('year', flat=True).annotate(Count('year')).order_by('-year')
-    if year is None:
-        year = years[0]
-    else:
-        year = int(year)
-    queryset = queryset.filter(year=year).order_by('-year', '-pk')
-
-    if not queryset:
-        return HttpResponseRedirect(reverse('articles'))
-
-    context = {
-        'year': year,
-        'years': years,
-    }
-    return object_list(
-        request,
-        queryset,
-        template_name='people/articles.html',
-        paginate_by=50,
-        extra_context=context,
-    )
+from fuuk.people.models import Article, Course, Person, Grant, Thesis, News, Place, Department, Human
 
 
-def grant_list(request):
-    queryset = Grant.objects.filter(end__gte=date.today().year).order_by('-end', '-pk')
-    grants_finished = Grant.objects.filter(end__gte=(date.today().year - 2), end__lt=date.today().year).order_by('-end', '-pk')
-    context = {
-        'grants_finished': grants_finished,
-    }
-    return object_list(
-        request,
-        queryset,
-        template_name='people/grants.html',
-        extra_context=context,
-    )
+class ArticleList(ListView):
+    
+    template_name = 'people/articles.html'
+    paginate_by = 50
+    allow_empty = False
+    
+    def get_queryset(self):
+        queryset = Article.objects.filter(type__in = ('ARTICLE', 'BOOK'))
+        self.years = queryset.values_list('year', flat=True).annotate(Count('year')).order_by('-year')
+        try:
+            self.year = int(self.kwargs['year'])
+        except (ValueError, KeyError):
+            self.year = self.years[0]
+        return queryset.filter(year=self.year).order_by('-year', '-pk')
+        
+    def get_context_data(self, **kwargs):
+        context = super(ArticleList, self).get_context_data(**kwargs)
+        context['year'] = self.year
+        context['years'] = self.years
+        return context
 
 
-def grant_detail(request, object_id):
-    queryset = Grant.objects
-    return object_detail(
-        request,
-        queryset,
-        object_id=object_id,
-        template_name='people/grant_detail.html',
-    )
+class GrantList(ListView):
+    
+    template_name='people/grants.html'
+
+    def get_queryset(self):
+        return Grant.objects.filter(end__gte=date.today().year).order_by('-end', '-pk')
+    
+    def get_context_data(self, **kwargs):
+        context = super(GrantList, self).get_context_data(**kwargs)
+        context['grants_finished'] = Grant.objects.filter(end__gte=(date.today().year - 2), end__lt=date.today().year).order_by('-end', '-pk')
+        return context
 
 
-def thesis_list(request):
-    year = request.GET.get('year', None)
-    type = request.GET.get('type', None)
+class ThesisList(ListView):
+    
+    template_name = 'people/theses.html'
+    
+    def get_queryset(self):
+        self.year = self.request.GET.get('year', None)
+        self.type = self.request.GET.get('type', None)
 
-    queryset = Thesis.objects.filter(defended=True)
-    if year:
-        queryset = queryset.filter(year=int(year)).order_by('-type')
-    if type:
-        queryset = queryset.filter(type=type.upper()).order_by('-year')
+        queryset = Thesis.objects.filter(defended=True)
+        
+        if self.year:
+            queryset = queryset.filter(year=int(self.year)).order_by('-type')
+        if self.type:
+            queryset = queryset.filter(type=self.type.upper()).order_by('-year')
+        self.types = Thesis.objects.filter(defended=True).values_list('type', flat=True).annotate(Count('type')).order_by('-type')
 
-    # we got filter but no results
-    if (year or type):
-        if not queryset:
-            raise Http404
-    else:
-        queryset = queryset.none()
-
-    types = Thesis.objects.filter(defended=True).values_list('type', flat=True).annotate(Count('type')).order_by('-type')
-
-    context = {
-        'types': [(type, Thesis(type=type).get_type_display()) for type in types],
-        'years': Thesis.objects.filter(defended=True).values_list('year', flat=True).annotate(Count('year')).order_by('-year'),
-        'year': year,
-        'type': type,
-    }
-    return object_list(
-        request,
-        queryset,
-        template_name='people/theses.html',
-        extra_context=context,
-    )
-
-
-def thesis_detail(request, object_id):
-    object_id = int(object_id)
-    context = {
-        'thesis': get_object_or_404(Thesis, pk=object_id),
-    }
-    return render_to_response('people/thesis_detail.html', context, RequestContext(request))
+        # we got filter but no results
+        if (self.year or self.type):
+            if not queryset:
+                raise Http404
+        else:
+            queryset = queryset.none()
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super(ThesisList, self).get_context_data(**kwargs)
+        context['types'] =  [(type, Thesis(type=type).get_type_display()) for type in self.types]
+        context['years'] = Thesis.objects.filter(defended=True).values_list('year', flat=True).annotate(Count('year')).order_by('-year')
+        context['year'] = self.year
+        context['type'] = self.type
+        return context
 
 
-def course_list(request):
-    queryset = Course.objects.order_by('pk')
-    return object_list(
-        request,
-        queryset,
-        template_name='courses.html',
-    )
+class PeopleList(ListView):
+
+    template_name='people/people.html'
+    people_type= 'PHD'
+    title = _('PhD students')
+    
+    def get_context_data(self, **kwargs):
+        context = super(PeopleList, self).get_context_data(**kwargs)
+        context['title'] = self.title
+        return context
+
+    def get_queryset(self):
+        return Person.objects.filter(type=self.people_type, is_active=True).order_by('last_name')
 
 
-def download_list(request):
-    queryset = Course.objects.exclude(attachment__isnull=True).order_by('pk')
-    return object_list(
-        request,
-        queryset,
-        template_name='downloads.html',
-        )
-
-def staff_list(request):
-    queryset = Person.objects.filter(type='STAFF', is_active=True).order_by('last_name')
-    context = {
-        "title": _('Staff')
-    }
-    return object_list(
-        request,
-        queryset,
-        template_name='people/people.html',
-        extra_context=context,
-    )
-
-
-def other_list(request):
-    queryset = Person.objects.filter(type='OTHER', is_active=True).order_by('last_name')
-    context = {
-        "title": _('Other workers')
-    }
-    return object_list(
-        request,
-        queryset,
-        template_name='people/people.html',
-        extra_context=context,
-    )
-
-
-def phd_list(request):
-    queryset = Person.objects.filter(type='PHD', is_active=True).order_by('last_name')
-    context = {
-        "title": _('PhD students')
-    }
-    return object_list(
-        request,
-        queryset,
-        template_name='people/people.html',
-        extra_context=context,
-    )
-
-
-def student_list(request):
+class StudentList(ListView):
+    
+    template_name = 'people/students.html'
     queryset = Person.objects.filter(type='MGR', is_active=True).order_by('last_name')
-    context = {
-        'bachelors': Person.objects.filter(type='BC', is_active=True).order_by('last_name'),
-        'students': Person.objects.filter(type='STUDENT', is_active=True).order_by('last_name'),
-    }
-    return object_list(
-        request,
-        queryset,
-        template_name='people/students.html',
-        extra_context=context,
-    )
+    
+    def get_context_data(self, **kwargs):
+        context = super(StudentList, self).get_context_data(**kwargs)
+        context['bachelors'] = Person.objects.filter(type='BC', is_active=True).order_by('last_name')
+        context['students'] = Person.objects.filter(type='STUDENT', is_active=True).order_by('last_name')
+        return context
 
 
-def graduate_list(request):
-    queryset = Person.objects.filter(type='GRAD', is_active=True).order_by('last_name')
-    context = {
-        "title": _('Graduate students')
-    }
-    return object_list(
-        request,
-        queryset,
-        template_name='people/people.html',
-        extra_context=context,
-    )
-
-
-def retired_list(request):
+class RetiredList(ListView):
+    
+    template_name='people/people.html'
     queryset = Person.objects.filter(type='STAFF', is_active=False).order_by('last_name') | Person.objects.filter(type='OTHER', is_active=False).order_by('last_name')
-    context = {
-        "title": _('Former members')
-    }
-    return object_list(
-        request,
-        queryset,
-        template_name='people/people.html',
-        extra_context=context,
-    )
+    
+    def get_context_data(self, **kwargs):
+        context = super(RetiredList, self).get_context_data(**kwargs)
+        context['title'] = _('Former members')
+        return context
 
 
 ### Person pages
-def get_common_context(nickname):
-    try:
-        person = Person.objects.filter(human__nickname=nickname).order_by('-is_active')[0]
-    except (Person.DoesNotExist, IndexError):
-        # (nickname is invalid, no person exist)
-        raise Http404
+class PersonMixin(object):
+    allow_empty = False
+    def get_context_data(self, **kwargs):
+        context = super(PersonMixin, self).get_context_data(**kwargs)
+        human = Human.objects.get(nickname=self.kwargs['slug'])
 
-    context = {
-        'person': person,
-        'publications': Article.objects.filter(author__person__human=person.human).order_by('-year'),
-        'publications_first': Article.objects.filter(author__order=1, author__person__human=person.human).order_by('-year'),
-        'courses': Course.objects.filter(lectors__human=person.human).order_by('pk'),
-        'courses_practical': Course.objects.filter(practical_lectors__human=person.human).order_by('pk'),
-        'students': Person.objects.filter(advisor__human=person.human, is_active=True).order_by('last_name', 'first_name'),
-        'grants': Grant.objects.filter(pk__in =
-            Grant.objects.filter(author__human=person.human, end__gte=date.today().year).values_list('pk', flat=True)
-            | Grant.objects.filter(co_authors__human=person.human, end__gte=date.today().year).values_list('pk', flat=True)
-        ).order_by('-end', '-pk'),
-        'grants_finished': Grant.objects.filter(pk__in =
-            Grant.objects.filter(author__human=person.human, end__lt=date.today().year).values_list('pk', flat=True)
-            | Grant.objects.filter(co_authors__human=person.human, end__lt=date.today().year).values_list('pk', flat=True)
-        ).order_by('-end', '-pk'),
-        'department': Department.objects.filter(place__person=person).annotate(Count('id')),
-        'place': Place.objects.filter(person=person).annotate(Count('id')),
-    }
-    return context
+        context.update({
+            'human': human,
+            'person': human.person_set.order_by('-is_active')[0],
+            'publications': Article.objects.filter(author__person__human=human).order_by('-year'),
+            'publications_first': Article.objects.filter(author__order=1, author__person__human=human).order_by('-year'),
+            'courses': Course.objects.filter(lectors__human=human).order_by('pk'),
+            'courses_practical': Course.objects.filter(practical_lectors__human=human).order_by('pk'),
+            'students': Person.objects.filter(advisor__human=human, is_active=True).order_by('last_name', 'first_name'),
+            'grants': Grant.objects.filter(pk__in =
+                Grant.objects.filter(author__human=human, end__gte=date.today().year).values_list('pk', flat=True)
+                | Grant.objects.filter(co_authors__human=human, end__gte=date.today().year).values_list('pk', flat=True)
+            ).order_by('-end', '-pk'),
+            'grants_finished': Grant.objects.filter(pk__in =
+                Grant.objects.filter(author__human=human, end__lt=date.today().year).values_list('pk', flat=True)
+                | Grant.objects.filter(co_authors__human=human, end__lt=date.today().year).values_list('pk', flat=True)
+            ).order_by('-end', '-pk')
+        })
+        return context
 
+class PersonListView(ListView):
+    slug_field = None
 
-def person_detail(request, nickname):
-    context = get_common_context(nickname)
-    context['theses'] = Thesis.objects.filter(author__human=context['person'].human, defended=True).order_by('-year')
-    context['theses_ongoing'] = Thesis.objects.filter(author__human=context['person'].human, defended=False).order_by('-year')
-    return render_to_response('people/person/detail.html', context, RequestContext(request))
-
-
-def person_articles(request, nickname, first=False):
-    context = get_common_context(nickname)
-    if not context['publications']:
-        raise Http404
-
-    if context['person'].human.display_posters:
-        presentation_types = ['POSTER', 'TALK', 'INVITED']
-    else:
-        presentation_types = ['TALK', 'INVITED']
-    if first:
-        context['articles'] = context['publications_first'].filter(type='ARTICLE')
-    else:
-        context['articles'] = context['publications'].filter(type='ARTICLE')
-    if context['person'].human.display_talks:
-        context['presentations'] = context['publications'].filter(type__in=presentation_types)
-    else:
-        context['presentations'] = context['publications'].filter(type__in=presentation_types).filter(presenter__human=context['person'].human)
-    context['books'] = context['publications'].filter(type='BOOK')
-
-    return render_to_response('people/person/articles.html', context, RequestContext(request))
+    def get_queryset(self):
+        query = {self.slug_field: self.kwargs['slug']}
+        queryset = super(PersonListView, self).get_queryset().filter(**query)
+        if self.get_allow_empty() and not queryset.exists():
+            raise Http404
+        return queryset
 
 
-def person_courses(request, nickname):
-    context = get_common_context(nickname)
-    if not context['courses']:
-        raise Http404
+class PersonDetail(PersonMixin, DetailView):
+    
+    template_name = 'people/person/detail.html'
+    model = Person
+    slug_field = 'human__nickname'
 
-    return render_to_response('people/person/courses.html', context, RequestContext(request))
-
-
-def person_students(request, nickname):
-    context = get_common_context(nickname)
-    if not context['students']:
-        raise Http404
-
-    return render_to_response('people/person/students.html', context, RequestContext(request))
+    def get_context_data(self, **kwargs):
+        context = super(PersonDetail, self).get_context_data(**kwargs)
+        context['theses'] = Thesis.objects.filter(author__human=self.object.human, defended=True).order_by('-year')
+        context['theses_ongoing'] = Thesis.objects.filter(author__human=self.object.human, defended=False).order_by('-year')
+        context['place'] = self.object.place.all()
+        return context
 
 
-def person_grants(request, nickname):
-    context = get_common_context(nickname)
-    if not (context['grants'] or context['grants_finished']):
-        raise Http404
+class PersonArticles(PersonMixin, ListView):
+    '''
+    Get people articles
+    
+    @ivar first: If only papers with Person as a first author shoudl be displayed
+    '''
+    template_name = 'people/person/articles.html'
+    model = Article
+    
+    def get_context_data(self, **kwargs):
+        context = super(PersonArticles, self).get_context_data(**kwargs)
+        # List only papers with first author
+        first = 'first' in self.kwargs
+        if context['human'].display_posters:
+            presentation_types = ['POSTER', 'TALK', 'INVITED']
+        else:
+            presentation_types = ['TALK', 'INVITED']
+        if first:
+            context['articles'] = context['publications_first'].filter(type='ARTICLE')
+        else:
+            context['articles'] = context['publications'].filter(type='ARTICLE')
+        if context['human'].display_talks:
+            context['presentations'] = context['publications'].filter(type__in=presentation_types)
+        else:
+            context['presentations'] = context['publications'].filter(type__in=presentation_types).filter(presenter__human=context['person'].human)
+        context['books'] = context['publications'].filter(type='BOOK')
+        return context
 
-    return render_to_response('people/person/grants.html', context, RequestContext(request))
+
+class PersonCourses(PersonMixin, PersonListView):
+    
+    template_name = 'people/person/courses.html'
+    model = Course
+    slug_field = 'lectors__human__nickname'
 
 
-def papers(request):
+class PersonStudents(PersonMixin, PersonListView):
+    
+    template_name = 'people/person/students.html'
+    model = Person
+    slug_field = 'advisor__human__nickname'
+
+
+class PersonGrants(PersonMixin, PersonListView):
+    
+    template_name = 'people/person/grants.html'
+    model = Grant
+    slug_field = 'author__human__nickname'
+
+
+class Papers(PersonMixin, ListView):
+    
+    template_name='people/papers.html'
     queryset = Article.objects.filter(type__in = ('ARTICLE', 'BOOK')).order_by('-year')
-    if not queryset:
-        raise Http404
-
-    return object_list(
-        request,
-        queryset,
-        template_name='people/papers.html',
-    )

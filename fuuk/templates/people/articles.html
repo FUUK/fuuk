@@ -15,7 +15,7 @@
     {% for article in object_list %}
         <div>
             <p class="citation_number">
-                {{ first_on_page|add:forloop.counter0 }}.
+                {{ forloop.counter }}.
             </p>
             {% citation article %}
         </div>
