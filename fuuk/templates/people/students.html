@@ -1,5 +1,6 @@
 {% extends "people/base.html" %}
 {% load i18n %}
+{% load url from future %}
 
 {% block content %}
     <h1>{% trans "Students" %}</h1>
@@ -7,7 +8,7 @@
         <h2>{% trans "Master study students" %}:</h2>
         <ul>
             {% for people in object_list %}
-                <li><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></li>
+                <li><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}
@@ -18,7 +19,7 @@
         <h2>{% trans "Bachelor study students" %}:</h2>
         <ul>
             {% for people in bachelors %}
-                <li><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></li>
+                <li><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}
@@ -27,7 +28,7 @@
         <h2>{% trans "ROCNIK study students" %}:</h2>
         <ul>
             {% for people in students %}
-                <li><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></li>
+                <li><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}

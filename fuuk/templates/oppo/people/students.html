@@ -1,5 +1,6 @@
 {% extends "people/base.html" %}
 {% load i18n %}
+{% load url from future %}
 
 {% block content %}
     <h1>{% trans "Students" %}</h1>
@@ -8,7 +9,7 @@
         <table>
         {% for people in object_list %}
             <tr>
-                <td style="width:200px"><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></td>
+                <td style="width:200px"><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></td>
                 <td style="width:300px">{% if people.human.email %}<strong>E-mail:</strong> {{ people.human.email }}{% endif %}</td>
             </tr>
         {% endfor %}
@@ -22,7 +23,7 @@
         <table>
         {% for people in bachelors %}
             <tr>
-                <td style="width:200px"><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></td>
+                <td style="width:200px"><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></td>
                 <td style="width:300px">{% if people.human.email %}<strong>E-mail:</strong> {{ people.human.email }}{% endif %}</td>
             </tr>
         {% endfor %}
@@ -34,7 +35,7 @@
         <table>
         {% for people in students %}
             <tr>
-                <td style="width:200px"><a href="{% url person_detail people.human.nickname %}">{{ people.full_name }}</a></td>
+                <td style="width:200px"><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></td>
                 <td style="width:300px">{% if people.human.email %}<strong>E-mail:</strong> {{ people.human.email }}{% endif %}</td>
             </tr>
         {% endfor %}
