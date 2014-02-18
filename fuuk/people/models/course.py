@@ -1,7 +1,7 @@
 from django.core.validators import RegexValidator
 from django.db import models
+from multilingual import MultilingualModel
 
-import multilingual
 from fuuk.people.models import Person
 
 
@@ -9,14 +9,14 @@ code_validator = RegexValidator(r'^[A-Z]{2}([A-Z]{2}[0-9]{3}|[0-9]{3}[A-Z][0-9]{
 hours_validator = RegexValidator(r'^[0-9]/[0-9] (Z|Zk|KZ|Zk/Z)$')
 
 
-class Course(models.Model):
+class Course(MultilingualModel):
     lectors = models.ManyToManyField(Person)
     practical_lectors = models.ManyToManyField(Person, blank=True, null=True, related_name='practical_course_set')
     code = models.CharField(max_length=10, unique=True, validators=[code_validator])
     ls = models.CharField(max_length=8, blank=True, null=True, validators=[hours_validator])
     zs = models.CharField(max_length=8, blank=True, null=True, validators=[hours_validator])
 
-    class Translation(multilingual.Translation):
+    class Translation:
         name = models.CharField(max_length=200)
         annotation = models.CharField(max_length=500, blank=True, null=True)
         note = models.CharField(max_length=200, blank=True, null=True)

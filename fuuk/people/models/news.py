@@ -1,10 +1,9 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from multilingual import MultilingualModel
 
-import multilingual
 
-
-class News(models.Model):
+class News(MultilingualModel):
     start = models.DateField()
     end = models.DateField()
     hyperlink = models.URLField(
@@ -13,7 +12,7 @@ class News(models.Model):
         help_text='This hyperlink will be added to the news title. Fill in form of www.link.com'
     )
 
-    class Translation(multilingual.Translation):
+    class Translation:
         title = models.CharField(max_length=255)
         content = models.TextField()
 

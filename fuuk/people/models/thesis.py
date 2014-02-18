@@ -2,8 +2,8 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from multilingual import MultilingualModel
 
-import multilingual
 from fuuk.people.models import Person
 
 THESIS_TYPES = (
@@ -16,7 +16,7 @@ THESIS_TYPES = (
 )
 
 
-class Thesis(models.Model):
+class Thesis(MultilingualModel):
     type = models.CharField(max_length=5, choices=THESIS_TYPES)
     year = models.SmallIntegerField(validators=[MinValueValidator(1990)], help_text=_('Year of thesis start or year of defence if already defended.'))
     author = models.ForeignKey(Person)
@@ -25,7 +25,7 @@ class Thesis(models.Model):
     defended = models.BooleanField(default=False)
     thesis_file = models.FileField(max_length=200, blank=True, upload_to='thesis')
 
-    class Translation(multilingual.Translation):
+    class Translation:
         title = models.CharField(max_length=200)
         annotation = models.TextField(blank=True, null=True)
         abstract = models.TextField(blank=True, null=True)

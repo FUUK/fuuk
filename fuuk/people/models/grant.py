@@ -4,13 +4,13 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from multilingual import MultilingualModel
 
-import multilingual
 from fuuk.people.models import Person
 
 
-class Agency(models.Model):
-    class Translation(multilingual.Translation):
+class Agency(MultilingualModel):
+    class Translation:
         shortcut = models.CharField(max_length=10)
         name = models.CharField(max_length=100)
 
@@ -21,7 +21,7 @@ class Agency(models.Model):
         return self.shortcut or u""
 
 
-class Grant(models.Model):
+class Grant(MultilingualModel):
     author = models.ForeignKey(Person, verbose_name=_('Applicant'))
     number = models.CharField(max_length=20)
     start = models.SmallIntegerField(validators=[MinValueValidator(1990), MaxValueValidator(date.today().year + 1)])
@@ -29,7 +29,7 @@ class Grant(models.Model):
     co_authors = models.ManyToManyField(Person, related_name='grant_related', blank=True, null=True, verbose_name=_('Co-applicant'))
     agency = models.ForeignKey(Agency, help_text=_('Contact administrators for different Grant Agency.'))
 
-    class Translation(multilingual.Translation):
+    class Translation:
         title = models.CharField(max_length=200)
         annotation = models.TextField()
 

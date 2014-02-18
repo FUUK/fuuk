@@ -1,16 +1,15 @@
 # coding: utf-8
 from django.core.validators import RegexValidator
 from django.db import models
-
-import multilingual
+from multilingual import MultilingualModel
 
 phone_validator = RegexValidator(r'^\+420( [0-9]{3}){3}$')
 
 
-class Department(models.Model):
+class Department(MultilingualModel):
     fax = models.CharField(max_length=20, blank=True, null=True, unique=True, validators=[phone_validator])
 
-    class Translation(multilingual.Translation):
+    class Translation:
         name = models.CharField(max_length=200)
 
     class Meta:
@@ -23,11 +22,11 @@ class Department(models.Model):
             return self.name_any or u""
 
 
-class Place(models.Model):
+class Place(MultilingualModel):
     department = models.ForeignKey(Department, blank=True, null=True)
     phone = models.CharField(max_length=20, unique=True, validators=[phone_validator])
 
-    class Translation(multilingual.Translation):
+    class Translation:
         name = models.CharField(max_length=200)
 
     class Meta:
