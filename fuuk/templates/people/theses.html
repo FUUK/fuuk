@@ -32,7 +32,7 @@
             {% endfor %}
         {% else %}
             {% regroup object_list by year as thesis_groups %}
-            <h1>{% trans "Defended " %} {{ object_list.0.get_type_display|lower }} {% trans "theses" %}:</h1>
+            <h1>{% trans "Defended" %} {{ object_list.0.get_type_display|lower }} {% trans "theses" %}:</h1>
             {% for group in thesis_groups %}
             <h1>{{ group.grouper }}</h1>
                 <ul>

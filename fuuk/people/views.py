@@ -25,8 +25,11 @@ class ArticleList(ListView):
         try:
             self.year = int(self.kwargs['year'])
         except (ValueError, KeyError):
-            self.year = self.years[0]
-        return queryset.filter(year=self.year).order_by('-year', '-pk')
+            if self.years.exists():
+                self.year = self.years[0]
+            else:
+                raise Http404
+        return queryset.filter(year=self.year).order_by('-year', 'title')
         
     def get_context_data(self, **kwargs):
         context = super(ArticleList, self).get_context_data(**kwargs)
@@ -111,8 +114,8 @@ class StudentList(ListView):
 class RetiredList(ListView):
     
     template_name='people/people.html'
-    queryset = Person.objects.filter(type='STAFF', is_active=False).order_by('last_name') | Person.objects.filter(type='OTHER', is_active=False).order_by('last_name')
-    
+    queryset = Person.objects.filter(type__in=('STAFF', 'OTHER'), is_active=False).order_by('last_name')
+
     def get_context_data(self, **kwargs):
         context = super(RetiredList, self).get_context_data(**kwargs)
         context['title'] = _('Former members')
@@ -129,7 +132,7 @@ class PersonMixin(object):
         context.update({
             'human': human,
             'person': human.person_set.order_by('-is_active')[0],
-            'publications': Article.objects.filter(author__person__human=human).order_by('-year'),
+            'publications': Article.objects.filter(author__person__human=human).order_by('-year','title'),
             'publications_first': Article.objects.filter(author__order=1, author__person__human=human).order_by('-year'),
             'courses': Course.objects.filter(lectors__human=human).order_by('pk'),
             'courses_practical': Course.objects.filter(practical_lectors__human=human).order_by('pk'),
@@ -178,16 +181,15 @@ class PersonArticles(PersonMixin, ListView):
     '''
     template_name = 'people/person/articles.html'
     model = Article
+    first = False
     
     def get_context_data(self, **kwargs):
         context = super(PersonArticles, self).get_context_data(**kwargs)
-        # List only papers with first author
-        first = 'first' in self.kwargs
         if context['human'].display_posters:
             presentation_types = ['POSTER', 'TALK', 'INVITED']
         else:
             presentation_types = ['TALK', 'INVITED']
-        if first:
+        if self.first:
             context['articles'] = context['publications_first'].filter(type='ARTICLE')
         else:
             context['articles'] = context['publications'].filter(type='ARTICLE')
