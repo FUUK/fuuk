@@ -1,76 +1,69 @@
 # -*- coding: utf-8 -*-
 import os
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+SECRET_KEY = None
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-
-ADMINS = ()
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': ''
-    }
-}
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = ('django.contrib.admin',
                   'django.contrib.auth',
                   'django.contrib.contenttypes',
                   'django.contrib.humanize',
-                  'django.contrib.markup',
                   'django.contrib.messages',
                   'django.contrib.sessions',
                   'django.contrib.sites',
                   'django.contrib.staticfiles',
                   'multilingual',
-                  'multilingual.flatpages',
+                  'multilingual.mlflatpages',
                   'fuuk.common',
                   'fuuk.people')
-
-LANGUAGE_CODE = 'cs'
-LANGUAGES = (('en', u'English'),
-             ('cs', u'Česky'))
-
-LOCALE_PATHS = (os.path.normpath(os.path.join(os.path.dirname(__file__), '../oportunit/locale')), )
-
-MEDIA_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), '../media'))
-MEDIA_URL = '/media/'
-
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
-
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'multilingual.flatpages.middleware.FlatpageFallbackMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'multilingual.mlflatpages.middleware.FlatpageFallbackMiddleware',
 )
-
-ROOT_URLCONF = 'fuuk.urls'
-SECRET_KEY = None
-SITE_ID = 1
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.normpath(os.path.join(os.path.dirname(__file__), '../fuuk/static')),
-                    os.path.normpath(os.path.join(os.path.dirname(__file__), '../media')))
-
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
     'multilingual.context_processors.multilingual',
     'fuuk.people.context_processors.news_list',
 )
-TEMPLATE_DIRS = (os.path.normpath(os.path.join(os.path.dirname(__file__), '../fuuk/templates')), )
 
+ROOT_URLCONF = 'fuuk.urls'
+
+SITE_ID = 1
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': '/tmp/fuuk.db',
+    }
+}
+
+LANGUAGE_CODE = 'cs'
+LANGUAGES = (('en', u'English'),
+             ('cs', u'Česky'))
 TIME_ZONE = 'Europe/Prague'
-
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+#XXX: Remove these
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'fuuk/locale'), )
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'fuuk/templates'), )
