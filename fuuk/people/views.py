@@ -14,13 +14,12 @@ from fuuk.people.models import Article, Course, Person, Grant, Thesis, News, Pla
 
 
 class ArticleList(ListView):
-    
-    template_name = 'people/articles.html'
+
     paginate_by = 50
     allow_empty = False
-    
+
     def get_queryset(self):
-        queryset = Article.objects.filter(type__in = ('ARTICLE', 'BOOK'))
+        queryset = Article.objects.filter(type__in=('ARTICLE', 'BOOK'))
         self.years = queryset.values_list('year', flat=True).annotate(Count('year')).order_by('-year')
         try:
             self.year = int(self.kwargs['year'])
@@ -30,7 +29,7 @@ class ArticleList(ListView):
             else:
                 raise Http404
         return queryset.filter(year=self.year).order_by('-year', 'title')
-        
+
     def get_context_data(self, **kwargs):
         context = super(ArticleList, self).get_context_data(**kwargs)
         context['year'] = self.year
@@ -39,28 +38,25 @@ class ArticleList(ListView):
 
 
 class GrantList(ListView):
-    
-    template_name='people/grants.html'
 
     def get_queryset(self):
         return Grant.objects.filter(end__gte=date.today().year).order_by('-end', '-pk')
-    
+
     def get_context_data(self, **kwargs):
         context = super(GrantList, self).get_context_data(**kwargs)
-        context['grants_finished'] = Grant.objects.filter(end__gte=(date.today().year - 2), end__lt=date.today().year).order_by('-end', '-pk')
+        context['grants_finished'] = Grant.objects.filter(end__gte=(date.today().year - 2),
+                                                          end__lt=date.today().year).order_by('-end', '-pk')
         return context
 
 
 class ThesisList(ListView):
-    
-    template_name = 'people/theses.html'
-    
+
     def get_queryset(self):
         self.year = self.request.GET.get('year', None)
         self.type = self.request.GET.get('type', None)
 
         queryset = Thesis.objects.filter(defended=True)
-        
+
         if self.year:
             queryset = queryset.filter(year=int(self.year)).order_by('-type')
         if self.type:
@@ -74,10 +70,10 @@ class ThesisList(ListView):
         else:
             queryset = queryset.none()
         return queryset
-    
+
     def get_context_data(self, **kwargs):
         context = super(ThesisList, self).get_context_data(**kwargs)
-        context['types'] =  [(type, Thesis(type=type).get_type_display()) for type in self.types]
+        context['types'] = [(type, Thesis(type=type).get_type_display()) for type in self.types]
         context['years'] = Thesis.objects.filter(defended=True).values_list('year', flat=True).annotate(Count('year')).order_by('-year')
         context['year'] = self.year
         context['type'] = self.type
@@ -86,10 +82,9 @@ class ThesisList(ListView):
 
 class PeopleList(ListView):
 
-    template_name='people/people.html'
-    people_type= 'PHD'
+    people_type = 'PHD'
     title = _('PhD students')
-    
+
     def get_context_data(self, **kwargs):
         context = super(PeopleList, self).get_context_data(**kwargs)
         context['title'] = self.title
@@ -100,10 +95,10 @@ class PeopleList(ListView):
 
 
 class StudentList(ListView):
-    
+
     template_name = 'people/students.html'
     queryset = Person.objects.filter(type='MGR', is_active=True).order_by('last_name')
-    
+
     def get_context_data(self, **kwargs):
         context = super(StudentList, self).get_context_data(**kwargs)
         context['bachelors'] = Person.objects.filter(type='BC', is_active=True).order_by('last_name')
@@ -112,9 +107,8 @@ class StudentList(ListView):
 
 
 class RetiredList(ListView):
-    
-    template_name='people/people.html'
-    queryset = Person.objects.filter(type__in=('STAFF', 'OTHER'), is_active=False).order_by('last_name')
+
+    queryset = Person.objects.filter(type='STAFF', is_active=False).order_by('last_name') | Person.objects.filter(type='OTHER', is_active=False).order_by('last_name')
 
     def get_context_data(self, **kwargs):
         context = super(RetiredList, self).get_context_data(**kwargs)
@@ -132,16 +126,16 @@ class PersonMixin(object):
         context.update({
             'human': human,
             'person': human.person_set.order_by('-is_active')[0],
-            'publications': Article.objects.filter(author__person__human=human).order_by('-year','title'),
+            'publications': Article.objects.filter(author__person__human=human).order_by('-year', 'title'),
             'publications_first': Article.objects.filter(author__order=1, author__person__human=human).order_by('-year'),
             'courses': Course.objects.filter(lectors__human=human).order_by('pk'),
             'courses_practical': Course.objects.filter(practical_lectors__human=human).order_by('pk'),
             'students': Person.objects.filter(advisor__human=human, is_active=True).order_by('last_name', 'first_name'),
-            'grants': Grant.objects.filter(pk__in =
+            'grants': Grant.objects.filter(pk__in=
                 Grant.objects.filter(author__human=human, end__gte=date.today().year).values_list('pk', flat=True)
                 | Grant.objects.filter(co_authors__human=human, end__gte=date.today().year).values_list('pk', flat=True)
             ).order_by('-end', '-pk'),
-            'grants_finished': Grant.objects.filter(pk__in =
+            'grants_finished': Grant.objects.filter(pk__in=
                 Grant.objects.filter(author__human=human, end__lt=date.today().year).values_list('pk', flat=True)
                 | Grant.objects.filter(co_authors__human=human, end__lt=date.today().year).values_list('pk', flat=True)
             ).order_by('-end', '-pk')
@@ -160,7 +154,7 @@ class PersonListView(ListView):
 
 
 class PersonDetail(PersonMixin, DetailView):
-    
+
     template_name = 'people/person/detail.html'
     model = Person
     slug_field = 'human__nickname'
@@ -176,13 +170,13 @@ class PersonDetail(PersonMixin, DetailView):
 class PersonArticles(PersonMixin, ListView):
     '''
     Get people articles
-    
+
     @ivar first: If only papers with Person as a first author shoudl be displayed
     '''
     template_name = 'people/person/articles.html'
     model = Article
     first = False
-    
+
     def get_context_data(self, **kwargs):
         context = super(PersonArticles, self).get_context_data(**kwargs)
         if context['human'].display_posters:
@@ -202,27 +196,27 @@ class PersonArticles(PersonMixin, ListView):
 
 
 class PersonCourses(PersonMixin, PersonListView):
-    
+
     template_name = 'people/person/courses.html'
     model = Course
     slug_field = 'lectors__human__nickname'
 
 
 class PersonStudents(PersonMixin, PersonListView):
-    
+
     template_name = 'people/person/students.html'
     model = Person
     slug_field = 'advisor__human__nickname'
 
 
 class PersonGrants(PersonMixin, PersonListView):
-    
+
     template_name = 'people/person/grants.html'
     model = Grant
     slug_field = 'author__human__nickname'
 
 
 class Papers(PersonMixin, ListView):
-    
-    template_name='people/papers.html'
-    queryset = Article.objects.filter(type__in = ('ARTICLE', 'BOOK')).order_by('-year')
+
+    template_name = 'people/papers.html'
+    queryset = Article.objects.filter(type__in=('ARTICLE', 'BOOK')).order_by('-year')

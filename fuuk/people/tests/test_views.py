@@ -5,9 +5,7 @@ import os
 import datetime
 
 from mock import Mock, patch
-from datetime import date
 from django.test import TestCase
-from django.test.client import Client
 from django.utils.translation import deactivate_all
 from django.test.utils import override_settings
 
