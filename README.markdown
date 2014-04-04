@@ -6,3 +6,4 @@ Web of Institute of Physics at Charles University
   * django >= 1.4
   * django-multilingual-ds9
   * python-textile
+  * django-email-obfuscator (PIP package)
