@@ -26,7 +26,7 @@
                             <a href="#" onclick="toggle_visibility('attachments_{{ course.id }}');">{% trans "Attachments" %}:</a> (&copy; {% now "Y" %} {{ person.full_name }})
                                 <div id="attachments_{{ course.id }}" style='display:block';>
                                     {% for attachment in course.attachment_set.all %}
-                                        <a href="/{{ attachment.file }}">{{ attachment.title }}</a><br />
+                                        <a href="{{ attachment.file.url }}">{{ attachment.title }}</a><br />
                                     {% endfor %}
                                 </div>
                                 <script type="text/javascript">

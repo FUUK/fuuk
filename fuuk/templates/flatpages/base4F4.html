@@ -2,6 +2,7 @@
 {% load markup %}
 {% load i18n %}
 {% load staticfiles %}
+{% load url from future %}
 
 {% block meta %}
 <meta lang="cs" name="keywords" content="Oborová rada 4F4, Fyzikální ústav Univerzity Karlovy, Praha" />
@@ -26,13 +27,13 @@
 {% endblock %}
 
 {% block sidebar %}
-<li id="active"><a href="/4F4/" id="current">{% trans "Annotation" %}</a></li>
-<li><a href="/4F4/structure/">{% trans "Members of the branch board" %}</a></li>
-<li><a href="/4F4/nursery/">{% trans "Nursery" %}</a></li>
-<li><a href="/4F4/themes/">{% trans "Themes" %}</a></li>
-<li><a href="/4F4/students/">{% trans "PhD. students" %}</a></li>
-<li><a href="/4F4/wds/">{% trans "Week of doctoral students" %}</a></li>
-<li><a href="/4F4/contacts/">{% trans "Contacts" %}</a></li>
+<li id="active"><a href="{% url "flatpage" "4F4/" %}" id="current">{% trans "Annotation" %}</a></li>
+<li><a href="{% url "flatpage" "4F4/structure/" %}">{% trans "Members of the branch board" %}</a></li>
+<li><a href="{% url "flatpage" "4F4/nursery/" %}">{% trans "Nursery" %}</a></li>
+<li><a href="{% url "flatpage" "4F4/themes/" %}">{% trans "Themes" %}</a></li>
+<li><a href="{% url "flatpage" "4F4/students/" %}">{% trans "PhD. students" %}</a></li>
+<li><a href="{% url "flatpage" "4F4/wds/" %}">{% trans "Week of doctoral students" %}</a></li>
+<li><a href="{% url "flatpage" "4F4/contacts/" %}">{% trans "Contacts" %}</a></li>
 {% endblock %}
 
 {% block content %}

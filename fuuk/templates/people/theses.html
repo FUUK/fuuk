@@ -1,5 +1,6 @@
 {% extends "people/base.html" %}
 {% load i18n %}
+{% load url from future %}
 
 {% block content %}
     {% if not object_list %}
@@ -24,7 +25,7 @@
             <h1>{{ group.list.0.get_type_display }}</h1>
                 <ul>
                 {% for thesis in group.list %}
-                    <li><p><a href="/people/thesis/id={{ thesis.id }}"><strong>{{ thesis.author.full_name }}:</strong> {{ thesis.title }}<br />
+                    <li><p><a href="{% url "theses_detail" thesis.id %}"><strong>{{ thesis.author.full_name }}:</strong> {{ thesis.title }}<br />
                     {% trans "Advisor" %}: {{ thesis.advisor.full_name }}</a></p></li>
                 {% endfor %}
                 </ul>
@@ -36,7 +37,7 @@
             <h1>{{ group.grouper }}</h1>
                 <ul>
                 {% for thesis in group.list %}
-                    <li><p><a href="/people/thesis/id={{ thesis.id }}"><strong>{{ thesis.author.full_name }}:</strong> {{ thesis.title }}<br />
+                    <li><p><a href="{% url "theses_detail" thesis.id %}"><strong>{{ thesis.author.full_name }}:</strong> {{ thesis.title }}<br />
                     {% trans "Advisor" %}: {{ thesis.advisor.full_name }}</a></p></li>
                 {% endfor %}
                 </ul>

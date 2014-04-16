@@ -1,6 +1,7 @@
 {% extends "people/person/base.html" %}
 {% load i18n humanize markup %}
 {% load email_obfuscator %}
+{% load url from future %}
 
 {% block content %}
     {{ block.super }}
@@ -59,7 +60,7 @@
         <p class="strong" align="left">{% trans "Current thesis" %}:</p>
             <ul>
             {% for thesis in theses_ongoing %}
-                 <li>{{ thesis.get_type_display }}{% trans "'s thesis" %}: <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
+                 <li>{{ thesis.get_type_display }}{% trans "'s thesis" %}: <a href="{% url "theses_detail" thesis.id %}">{{ thesis.title }}</a></li>
             {% endfor %}
             </ul>
         <hr  style='size:3;width:100%'/>
@@ -68,7 +69,7 @@
         <p class="strong" align="left">{% trans "Defended thesis" %}:</p>
             <ul>
             {% for thesis in theses %}
-                <li>{{ thesis.get_type_display }}{% trans "'s thesis" %}:</b> <a href="/people/thesis/id={{ thesis.id }}/">{{ thesis.title }}</a></li>
+                <li>{{ thesis.get_type_display }}{% trans "'s thesis" %}:</b> <a href="{% url "theses_detail" thesis.id %}">{{ thesis.title }}</a></li>
             {% endfor %}
             </ul>
         <hr  style='size:3;width:100%'/>

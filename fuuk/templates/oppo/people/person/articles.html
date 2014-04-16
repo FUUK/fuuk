@@ -1,11 +1,12 @@
 {% extends "people/person/base.html" %}
 {% load i18n article %}
+{% load url from future %}
 
 {% block content %}
     {{ block.super }}
     <div id="menu_top">
-    	<a id="menu_item" class="title" href="/{{ person.human.nickname }}/papers/first"><span>{% trans "1st author" %}</span></a>
-    	<a id="menu_item" class="title" href="/{{ person.human.nickname }}/papers"><span>{% trans "All papers" %}</span></a>
+        <a id="menu_item" class="title" href="{% url "person_articles_first" person.human.nickname %}"><span>{% trans "1st author" %}</span></a>
+        <a id="menu_item" class="title" href="{% url "person_articles" person.human.nickname %}"><span>{% trans "All papers" %}</span></a>
     </div>
     {% if articles %}
         <h1>{% trans "Articles" %}</h1>

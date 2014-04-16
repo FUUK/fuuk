@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^%s(?P<path>.*)$' % settings.MEDIA_URL[1:], 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     # pages
     url(r'^', include('fuuk.people.urls')),
+    url(r'^(?P<url>.*)$', 'multilingual.mlflatpages.views.flatpage', name='flatpage'),
 )
