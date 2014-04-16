@@ -4,6 +4,7 @@
         {% load i18n %}
         {% load staticfiles %}
         {% load url from future %}
+        {% load email_obfuscator %}
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         {% block meta %}
         {% endblock %}
@@ -79,7 +80,7 @@
             <!-- Footer -->
             <div id="footer">
                 <div id="paticka">
-                    {% trans "Contact" %} <a href="mailto:profant@karlov.mff.cuni.cz,pazderka@karlov.mff.cuni.cz">{% trans "webmasters" %}</a> {% trans  "for any suggestion or more information." %}
+                    {% trans "Contact" %} {{ 'alma-adm@karlov.mff.cuni.cz'|obfuscate_mailto:_("webmasters") }} {% trans  "for any suggestion or more information." %}
                 </div>
                 <!-- END Content + Footer -->
             </div>

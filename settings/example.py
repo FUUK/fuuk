@@ -19,6 +19,7 @@ INSTALLED_APPS = ('django.contrib.admin',
                   'django.contrib.staticfiles',
                   'multilingual',
                   'multilingual.mlflatpages',
+                  'email_obfuscator',
                   'fuuk.common',
                   'fuuk.people')
 MIDDLEWARE_CLASSES = (

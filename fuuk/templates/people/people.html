@@ -1,6 +1,7 @@
 {% extends "people/base.html" %}
 {% load i18n %}
 {% load url from future %}
+{% load email_obfuscator %}
 
 {% block content %}
     <h1>{{ title }}</h1>
@@ -14,7 +15,7 @@
         {% if people.human.email %}
             <div class="list-mail">
                 <p class="little">
-                    <strong>E-mail:</strong> {{ people.human.email }}
+                    <strong>E-mail:</strong> {{ people.human.email|obfuscate }}
                 </p>
             </div>
         {% endif %}

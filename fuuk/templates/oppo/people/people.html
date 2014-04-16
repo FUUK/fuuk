@@ -1,6 +1,7 @@
 {% extends "people/base.html" %}
 {% load i18n %}
 {% load url from future %}
+{% load email_obfuscator %}
 
 {% block content %}
     <h1>{{ title }}</h1>
@@ -13,7 +14,7 @@
     {% for people in object_list %}
     <tr>
         <th><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a>{% if people.human.subtitle %}<br />{{ people.human.subtitle }}{% endif %}</th>
-        <td>{% if people.human.email %}{{ people.human.email }}{% endif %}</td>
+        <td>{% if people.human.email %}{{ people.human.email|obfuscate }}{% endif %}</td>
         <td>{% if people.place.all %}{% for i in people.place.all %}{{ i.phone }}{% if not forloop.last %}<br />{% endif %}{% endfor %}{% endif %}</td>
     </tr>
     {% endfor %}
