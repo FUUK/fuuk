@@ -1,10 +1,11 @@
 {% extends "people/base.html" %}
 {% load i18n article %}
+{% load url from future %}
 
 {% block content %}
     <div id="menu_top">
             {% for year in years %}
-                <a href="/people/articles/{{ year }}/" id="menu_item"><span>{{ year }}</span></a>
+                <a href="{% url "articles" year %}" id="menu_item"><span>{{ year }}</span></a>
             {% endfor %}
     </div>
     {% if year %}

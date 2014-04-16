@@ -28,7 +28,7 @@
 {% endblock %}
 
 {% block sidebar %}
-<li id="active"><a href="/welcome/" id="current">&bull;&nbsp;&nbsp;{% trans "Welcome" %}</a></li>
+<li id="active"><a href="{% url "flatpage" "welcome/" %}" id="current">&bull;&nbsp;&nbsp;{% trans "Welcome" %}</a></li>
 <li>{% trans "People" %}
     <ul>
         <li><a href="{% url "staff_list" %}">&nbsp;&nbsp;{% trans "Academic staff" %}</a></li>
@@ -42,8 +42,8 @@
 <li>{% trans "Education" %}
     <ul>
         {% comment %} nasty hack with &nbsp;&nbsp; dig into js to avoid that{% endcomment %}
-        <li><a href="/thesis_offer/">&nbsp;&nbsp;{% trans "Thesis offer" %}</a></li>
-        <li><a href="/student_activities">&nbsp;&nbsp;{% trans "Student activities" %}</a></li>
+        <li><a href="{% url "flatpage" "thesis_offer/" %}">&nbsp;&nbsp;{% trans "Thesis offer" %}</a></li>
+        <li><a href="{% url "flatpage" "student_activities/" %}">&nbsp;&nbsp;{% trans "Student activities" %}</a></li>
         <li><a href="{% url "theses" %}">&nbsp;&nbsp;{% trans "Defended thesis" %}</a></li>
         <li><a href="{% url "courses" %}">&nbsp;&nbsp;{% trans "Courses" %}</a></li>
         <li><a href="{% url "downloads" %}">&nbsp;&nbsp;{% trans "Downloads" %}</a></li>
@@ -51,17 +51,17 @@
 </li>
 <li>{% trans "Science" %}
     <ul>
-        <li><a href="/problems/">&nbsp;&nbsp;{% trans "Topics" %}</a></li>
-        <li><a href="/coop/">&nbsp;&nbsp;{% trans "Cooperations" %}</a></li>
-        <li><a href="/soft/">&nbsp;&nbsp;{% trans "Software" %}</a></li>
+        <li><a href="{% url "flatpage" "problems/" %}">&nbsp;&nbsp;{% trans "Topics" %}</a></li>
+        <li><a href="{% url "flatpage" "coop/" %}">&nbsp;&nbsp;{% trans "Cooperations" %}</a></li>
+        <li><a href="{% url "flatpage" "soft/" %}">&nbsp;&nbsp;{% trans "Software" %}</a></li>
     </ul>
 </li>
 <li><a href="{% url "articles" %}">&bull;&nbsp;&nbsp;{% trans "Publications" %}</a></li>
 <li><a href="{% url "grants" %}">&bull;&nbsp;&nbsp;{% trans "Grants" %}</a></li>
-<li><a href="/labs/">&bull;&nbsp;&nbsp;{% trans "Labs" %}</a></li>
-<li><a href="/services/">&bull;&nbsp;&nbsp;{% trans "Services" %}</a></li>
-<li><a href="/gallery/">&bull;&nbsp;&nbsp;{% trans "Gallery" %}</a></li>
-<li><a href="/path/">&bull;&nbsp;&nbsp;{% trans "How to find us" %}</a></li>
+<li><a href="{% url "flatpage" "labs/" %}">&bull;&nbsp;&nbsp;{% trans "Labs" %}</a></li>
+<li><a href="{% url "flatpage" "services/" %}">&bull;&nbsp;&nbsp;{% trans "Services" %}</a></li>
+<li><a href="{% url "flatpage" "gallery/" %}">&bull;&nbsp;&nbsp;{% trans "Gallery" %}</a></li>
+<li><a href="{% url "flatpage" "path/" %}">&bull;&nbsp;&nbsp;{% trans "How to find us" %}</a></li>
 {% endblock %}
 
 {% block content %}
