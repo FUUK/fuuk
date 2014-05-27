@@ -9,7 +9,7 @@
         <tr>
             {% if person.human.photo %}
                 <td align="center" valign="middle">
-                    <img src="/media/{{ person.human.photo }}" width="154" height="154" vspace="0" hspace="30" alt="FOTO" />
+                    <img src="{{ person.human.photo.url }}" width="154" height="154" vspace="0" hspace="30" alt="FOTO" />
                 </td>
             {% endif %}
             <td>
