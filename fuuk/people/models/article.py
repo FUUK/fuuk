@@ -123,7 +123,7 @@ class Article(models.Model):
                 raise ValidationError(_('End page number must be bigger than start page number.'))
         elif self.type in ('TALK', 'INVITED', 'POSTER'):
             if self.accepted:
-                raise ValidationError(_('Conference paper can be accepted.'))
+                raise ValidationError(_('Conference paper can not be accepted.'))
             if self.identification:
                 raise ValidationError(_('Conference paper can not have ISBN/DOI number.'))
             if self.volume:

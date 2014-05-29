@@ -1,4 +1,4 @@
-    # SOME DESCRIPTIVE TITLE.
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -7,20 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FUUK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-04 08:41+0200\n"
-"PO-Revision-Date: 2012-09-04 08:47+0100\n"
+"POT-Creation-Date: 2014-05-29 17:35+0200\n"
+"PO-Revision-Date: 2014-05-29 17:39+0100\n"
 "Last-Translator: Tomáš Pazderka <pazderka@karlov.mff.cuni.cz>\n"
 "Language-Team:  <pazderka@karlov.mff.cuni.cz>\n"
-"Language: \n"
+"Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n>1 && n<5 ? 1 : 2;\n"
-"X-Poedit-Language: Czech\n"
-"X-Poedit-Country: CZECH REPUBLIC\n"
+"X-Generator: Poedit 1.5.4\n"
 
-#: people/views.py:128
-#: templates/ofb/base_site.html:42
+#: people/views.py:128 templates/magnet/base_site.html:42
+#: templates/ofb/base_site.html:43 templates/theory/base_site.html:42
 msgid "Staff"
 msgstr "Členové oddělení"
 
@@ -36,14 +35,12 @@ msgstr "Doktorandi"
 msgid "Graduate students"
 msgstr "Bývalí studenti"
 
-#: people/views.py:194
-#: templates/oppo/base_site.html:38
+#: people/views.py:194 templates/oppo/base_site.html:39
 msgid "Former members"
 msgstr "Bývalí pracovníci"
 
-#: people/admin/forms.py:9
-#: people/models/article.py:10
-#: people/models/article.py:167
+#: people/admin/forms.py:9 people/models/article.py:10
+#: people/models/article.py:168
 msgid "Book"
 msgstr "Kniha"
 
@@ -59,9 +56,8 @@ msgstr ""
 msgid "Leave blank for one-paged chapters."
 msgstr "Pro jednostránkové kapitoly ponechte prázdné."
 
-#: people/admin/forms.py:22
-#: people/models/article.py:11
-#: people/models/article.py:175
+#: people/admin/forms.py:22 people/models/article.py:11
+#: people/models/article.py:176
 msgid "Article"
 msgstr "Článek"
 
@@ -82,8 +78,12 @@ msgid "Full name of journal"
 msgstr "Vyplňujte, prosím, celé jméno časopisu."
 
 #: people/admin/forms.py:26
-msgid "Leave blank for one-paged articles."
-msgstr "Pro jednostránkové články nechte prázdné."
+msgid ""
+"Leave blank for one-paged articles. Fill number of pages if using article "
+"number."
+msgstr ""
+"Pro jednostránkové články nechte prázdné. Pokud používáte číslo článku, "
+"vyplňte počet stránek."
 
 #: people/admin/forms.py:40
 msgid "Abstract collection"
@@ -106,111 +106,117 @@ msgid "Poster"
 msgstr "Poster"
 
 #: people/models/article.py:32
-msgid "Mark this article as accepted only. No volume and pages has to be filled in."
+msgid ""
+"Mark this article as accepted only. No volume and pages has to be filled in."
 msgstr ""
 
-#: people/models/article.py:47
+#: people/models/article.py:46
+msgid "Check if the journal is using article numbers instead of pages"
+msgstr ""
+
+#: people/models/article.py:48
 msgid "Leave blank for one paged abstracts."
 msgstr "Pro jednostránkové abstrakty ponechte prázdné."
 
-#: people/models/article.py:60
-msgid "Before selecting a presenter fill authors and press \"Save and continue editing\"."
-msgstr "Před zadáním přednášejícího zadejte autory a dejte \"Uložit a pokračovat v úpravách\"."
+#: people/models/article.py:61
+msgid ""
+"Before selecting a presenter fill authors and press \"Save and continue "
+"editing\"."
+msgstr ""
+"Před zadáním přednášejícího zadejte autory a dejte \"Uložit a pokračovat v "
+"úpravách\"."
 
-#: people/models/article.py:74
+#: people/models/article.py:75
 msgid "Book can not have presenter."
 msgstr "Kniha nemůže mít přednášejícího."
 
-#: people/models/article.py:76
+#: people/models/article.py:77
 msgid "Book can not have volume."
 msgstr "Kniha nemůže mít svazek."
 
-#: people/models/article.py:87
+#: people/models/article.py:88
 msgid "Book has to have ISBN number."
 msgstr "Kniha musí mít ISBN."
 
-#: people/models/article.py:90
+#: people/models/article.py:91
 msgid "Book has to have book title."
 msgstr "Kniha musí mít název."
 
-#: people/models/article.py:92
+#: people/models/article.py:93
 msgid "Book has to have page(s)."
 msgstr "Kniha musí mít stránky."
 
-#: people/models/article.py:94
+#: people/models/article.py:95
 msgid "Book has to have publishers."
 msgstr "Kniha musí mít vydavatele."
 
-#: people/models/article.py:97
+#: people/models/article.py:98
 msgid "Article can not have editors."
 msgstr "Článek nemůže mít editory."
 
-#: people/models/article.py:99
+#: people/models/article.py:100
 msgid "Article can not have publishers."
 msgstr "Článek nemůže mít vydavatele."
 
-#: people/models/article.py:101
+#: people/models/article.py:102
 msgid "Article can not have place."
 msgstr "Článek nemůže mít místo."
 
-#: people/models/article.py:103
+#: people/models/article.py:104
 msgid "Article can not have presenter."
 msgstr "Článek nemůže mít přednášejícího."
 
-#: people/models/article.py:116
+#: people/models/article.py:117
 msgid "Article has to have journal."
 msgstr "Článek musí mít žurnál."
 
-#: people/models/article.py:118
+#: people/models/article.py:119
 msgid "Article has to have volume."
 msgstr "Článek musí mít svazek."
 
-#: people/models/article.py:120
+#: people/models/article.py:121
 msgid "Article has to have page(s)."
 msgstr "Článek musí mít stránky."
 
-#: people/models/article.py:122
-#: people/models/article.py:135
+#: people/models/article.py:123 people/models/article.py:136
 msgid "End page number must be bigger than start page number."
 msgstr ""
 
-#: people/models/article.py:125
-#, fuzzy
-msgid "Conference paper can be accepted."
-msgstr "Konferenční příspěvek nemůže mít svazek."
+#: people/models/article.py:126
+msgid "Conference paper can not be accepted."
+msgstr "Konferenční příspěvek nemůže být přijat."
 
-#: people/models/article.py:127
+#: people/models/article.py:128
 msgid "Conference paper can not have ISBN/DOI number."
 msgstr "Konferenční příspěvek nemůže mít DOI/ISBN."
 
-#: people/models/article.py:129
+#: people/models/article.py:130
 msgid "Conference paper can not have volume."
 msgstr "Konferenční příspěvek nemůže mít svazek."
 
-#: people/models/article.py:131
+#: people/models/article.py:132
 msgid "Conference paper can not have publishers."
 msgstr "Konferenční příspěvek nemůže mít vydavatele."
 
-#: people/models/article.py:133
+#: people/models/article.py:134
 msgid "Page from must be filled if pages are specified."
 msgstr ""
 
-#: people/models/article.py:137
+#: people/models/article.py:138
 msgid "Presenter must be one of authors."
 msgstr "Přednášející musí být mezi autory."
 
-#: people/models/article.py:168
+#: people/models/article.py:169
 msgid "Books"
 msgstr "Knihy"
 
-#: people/models/article.py:176
+#: people/models/article.py:177 templates/oppo/people/person/articles.html:12
 #: templates/people/person/articles.html:7
-#: templates/people/person/base.html:9
+#: templates/people/person/base.html:10
 msgid "Articles"
 msgstr "Publikace v časopisech"
 
-#: people/models/article.py:183
-#: people/models/article.py:184
+#: people/models/article.py:184 people/models/article.py:185
 msgid "Conference paper"
 msgstr "Konferenční příspěvky"
 
@@ -226,13 +232,11 @@ msgstr "Spoluřešitel"
 msgid "Contact administrators for different Grant Agency."
 msgstr "Pro jiné grantové agentury kontaktujte správce."
 
-#: people/models/person.py:14
-#: templates/oppo/base_site.html:33
+#: people/models/person.py:14 templates/oppo/base_site.html:34
 msgid "Academic staff"
 msgstr "Akademičtí pracovníci"
 
-#: people/models/person.py:15
-#: templates/oppo/base_site.html:34
+#: people/models/person.py:15 templates/oppo/base_site.html:35
 msgid "Other staff"
 msgstr "Ostatní pracovníci"
 
@@ -253,9 +257,8 @@ msgid "Graduate"
 msgstr "Bývalí studenti"
 
 #: people/models/person.py:20
-#, fuzzy
 msgid "Student"
-msgstr "Studenti"
+msgstr "Student"
 
 #: people/models/person.py:38
 msgid "Uncheck to hide posters on your personal page."
@@ -266,7 +269,9 @@ msgid "Uncheck to hide talks not presented by you on your personal page."
 msgstr ""
 
 #: people/models/person.py:50
-msgid "Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &amp;#8209; for endash."
+msgid ""
+"Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and "
+"&amp;#8209; for endash."
 msgstr ""
 
 #: people/models/person.py:69
@@ -274,7 +279,9 @@ msgid "Only used for grant (co-)applicants or staff."
 msgstr ""
 
 #: people/models/person.py:75
-msgid "Only first letter is required for article authors. In case of multiple first names, fill them separated by space."
+msgid ""
+"Only first letter is required for article authors. In case of multiple first "
+"names, fill them separated by space."
 msgstr ""
 
 #: people/models/person.py:97
@@ -290,26 +297,30 @@ msgid "Students must have class year."
 msgstr "Studenti musí mít ročník."
 
 #: people/models/thesis.py:10
+msgid "Student project"
+msgstr "Studentské projekty"
+
+#: people/models/thesis.py:11
 msgid "Bachelor"
 msgstr "Bakalářská"
 
-#: people/models/thesis.py:11
+#: people/models/thesis.py:12
 msgid "Master"
 msgstr "Magisterská"
 
-#: people/models/thesis.py:12
+#: people/models/thesis.py:13
 msgid "Doctoral"
 msgstr "Dizertační"
 
-#: people/models/thesis.py:13
+#: people/models/thesis.py:14
 msgid "Rigorous"
 msgstr "Rigorózní"
 
-#: people/models/thesis.py:14
+#: people/models/thesis.py:15
 msgid "Professor"
 msgstr "Profesorská"
 
-#: people/models/thesis.py:20
+#: people/models/thesis.py:21
 msgid "Year of thesis start or year of defence if already defended."
 msgstr ""
 
@@ -326,18 +337,22 @@ msgid "Server error (500)"
 msgstr ""
 
 #: templates/500.html:6
-msgid "There's been an error. It's been reported to the site administrators via e-mail and should be fixed shortly. Thanks for your patience."
-msgstr "Vyskytla se chyba. Administrátorům byla nahlášena emailem a měla by být brzy opravena. Děkujeme za trpělivost."
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+"Vyskytla se chyba. Administrátorům byla nahlášena emailem a měla by být brzy "
+"opravena. Děkujeme za trpělivost."
 
-#: templates/base.html:81
+#: templates/base.html:83
 msgid "Contact"
 msgstr "S připomínkami a dotazy se obracejte na"
 
-#: templates/base.html:81
+#: templates/base.html:83
 msgid "webmasters"
 msgstr "správce"
 
-#: templates/base.html:81
+#: templates/base.html:83
 msgid "for any suggestion or more information."
 msgstr "stránek."
 
@@ -349,60 +364,57 @@ msgstr "Podle typu práce"
 msgid "According to years"
 msgstr "Podle roku obhájení"
 
-#: templates/admin/base_site.html:5
-#: templates/admin/base_site.html.py:8
+#: templates/admin/base_site.html:6 templates/admin/base_site.html.py:9
 msgid "FUUK administration"
 msgstr ""
 
-#: templates/flatpages/base4F4.html:13
-#: templates/flatpages/front.html:4
+#: templates/flatpages/base4F4.html:14 templates/flatpages/front.html:4
 msgid "Charles University in Prague"
 msgstr "Univerzita Karlova v Praze"
 
-#: templates/flatpages/base4F4.html:19
+#: templates/flatpages/base4F4.html:20
 msgid "4F4 Branch Board"
 msgstr "Oborová rada 4F4"
 
-#: templates/flatpages/base4F4.html:19
+#: templates/flatpages/base4F4.html:20
 msgid "Biophysics, Chemical and Macromolecular Physics"
 msgstr "Biofyzika, chemická a makromolekulární fyzika"
 
-#: templates/flatpages/base4F4.html:22
-#: templates/ofb/base_site.html:24
-#: templates/oppo/base_site.html:23
+#: templates/flatpages/base4F4.html:23 templates/magnet/base_site.html:24
+#: templates/ofb/base_site.html:25 templates/oppo/base_site.html:24
+#: templates/theory/base_site.html:24
 msgid "Charles University, Ke Karlovu 5, Prague 2,"
 msgstr "MFF UK, Ke Karlovu 5, Praha 2,"
 
-#: templates/flatpages/base4F4.html:29
-#: templates/people/thesis_detail.html:16
+#: templates/flatpages/base4F4.html:30 templates/people/thesis_detail.html:17
 #: templates/people/person/courses.html:20
 #: templates/people/person/courses.html:53
 msgid "Annotation"
 msgstr "Anotace"
 
-#: templates/flatpages/base4F4.html:30
+#: templates/flatpages/base4F4.html:31
 msgid "Members of the branch board"
 msgstr "Členové oborové rady"
 
-#: templates/flatpages/base4F4.html:31
+#: templates/flatpages/base4F4.html:32
 msgid "Nursery"
 msgstr "Pracoviště"
 
-#: templates/flatpages/base4F4.html:32
+#: templates/flatpages/base4F4.html:33
 msgid "Themes"
 msgstr "Témata"
 
-#: templates/flatpages/base4F4.html:33
-#: templates/ofb/base_site.html:43
-#: templates/oppo/base_site.html:35
+#: templates/flatpages/base4F4.html:34 templates/magnet/base_site.html:43
+#: templates/ofb/base_site.html:44 templates/oppo/base_site.html:36
+#: templates/theory/base_site.html:43
 msgid "PhD. students"
 msgstr "Doktorandi"
 
-#: templates/flatpages/base4F4.html:34
+#: templates/flatpages/base4F4.html:35
 msgid "Week of doctoral students"
 msgstr "Doktorandský týden"
 
-#: templates/flatpages/base4F4.html:35
+#: templates/flatpages/base4F4.html:36
 msgid "Contacts"
 msgstr "Kontakty"
 
@@ -410,9 +422,9 @@ msgstr "Kontakty"
 msgid "Faculty of Mathematics and Physics"
 msgstr "Matematicko-fyzikální fakulta"
 
-#: templates/flatpages/front.html:6
-#: templates/ofb/base_site.html:21
-#: templates/oppo/base_site.html:20
+#: templates/flatpages/front.html:6 templates/magnet/base_site.html:21
+#: templates/ofb/base_site.html:22 templates/oppo/base_site.html:21
+#: templates/theory/base_site.html:21
 msgid "Institute of Physics"
 msgstr "Fyzikální ústav UK"
 
@@ -420,127 +432,141 @@ msgstr "Fyzikální ústav UK"
 msgid "News"
 msgstr "Novinky"
 
-#: templates/ofb/base_site.html:13
-msgid "Division of Biomolecular Physics, Institute of Physics at Charles University in Prague"
-msgstr "MFF UK: Oddělení fyziky biomolekul"
+#: templates/magnet/base_site.html:14
+msgid ""
+"Division of magnetooptics, Institute of Physics at Charles University in "
+"Prague"
+msgstr "Oddělení magnetooptiky, Fyzikální ústav Univerzity Karlovy v Praze"
 
-#: templates/ofb/base_site.html:21
-msgid "Division of Biomolecular Physics"
-msgstr "Oddělení fyziky biomolekul"
+#: templates/magnet/base_site.html:21
+msgid "Division of magnetooptics"
+msgstr "Oddělení magnetooptiky"
 
-#: templates/ofb/base_site.html:31
-#: templates/oppo/base_site.html:30
+#: templates/magnet/base_site.html:31 templates/ofb/base_site.html:32
+#: templates/oppo/base_site.html:31 templates/theory/base_site.html:31
 msgid "Welcome"
 msgstr "Vítejte"
 
-#: templates/ofb/base_site.html:32
-#: templates/oppo/base_site.html:41
+#: templates/magnet/base_site.html:32 templates/ofb/base_site.html:33
+#: templates/oppo/base_site.html:42 templates/theory/base_site.html:32
 msgid "Education"
 msgstr "Studium"
 
-#: templates/ofb/base_site.html:36
-#: templates/oppo/base_site.html:45
+#: templates/magnet/base_site.html:36 templates/ofb/base_site.html:37
+#: templates/oppo/base_site.html:46 templates/theory/base_site.html:36
 msgid "Thesis offer"
 msgstr "Nabídka prací"
 
-#: templates/ofb/base_site.html:37
-#: templates/oppo/base_site.html:46
-#: templates/people/person/detail.html:61
+#: templates/magnet/base_site.html:37 templates/ofb/base_site.html:38
+#: templates/oppo/base_site.html:48
+#: templates/oppo/people/person/detail.html:69
+#: templates/people/person/detail.html:69 templates/theory/base_site.html:37
 msgid "Defended thesis"
 msgstr "Obhájené práce"
 
-#: templates/ofb/base_site.html:40
-#: templates/oppo/base_site.html:31
+#: templates/magnet/base_site.html:40 templates/ofb/base_site.html:41
+#: templates/oppo/base_site.html:32 templates/theory/base_site.html:40
 msgid "People"
 msgstr "Lidé"
 
-#: templates/ofb/base_site.html:44
-#: templates/oppo/base_site.html:36
-#: templates/oppo/people/students.html:5
-#: templates/people/students.html:5
-#: templates/people/person/base.html:12
-#: templates/people/person/students.html:6
+#: templates/magnet/base_site.html:44 templates/ofb/base_site.html:45
+#: templates/oppo/base_site.html:37 templates/oppo/people/students.html:7
+#: templates/people/students.html:6 templates/people/person/base.html:13
+#: templates/people/person/students.html:7 templates/theory/base_site.html:44
 msgid "Students"
 msgstr "Studenti"
 
-#: templates/ofb/base_site.html:47
-#: templates/oppo/base_site.html:51
+#: templates/magnet/base_site.html:47 templates/ofb/base_site.html:48
+#: templates/oppo/base_site.html:53 templates/theory/base_site.html:47
 msgid "Science"
 msgstr "Věda"
 
-#: templates/ofb/base_site.html:49
-#: templates/oppo/base_site.html:53
+#: templates/magnet/base_site.html:49 templates/ofb/base_site.html:50
+#: templates/oppo/base_site.html:55 templates/theory/base_site.html:49
 msgid "Topics"
 msgstr "Problematika"
 
-#: templates/ofb/base_site.html:50
-#: templates/oppo/base_site.html:54
+#: templates/magnet/base_site.html:50 templates/ofb/base_site.html:51
+#: templates/oppo/base_site.html:60 templates/theory/base_site.html:50
 msgid "Publications"
 msgstr "Publikace"
 
-#: templates/ofb/base_site.html:51
-#: templates/oppo/base_site.html:59
-#: templates/people/grant_detail.html:6
-#: templates/people/person/base.html:18
-#: templates/people/person/grants.html:7
+#: templates/magnet/base_site.html:51 templates/ofb/base_site.html:52
+#: templates/oppo/base_site.html:61 templates/people/grant_detail.html:6
+#: templates/people/person/base.html:19 templates/people/person/grants.html:7
+#: templates/theory/base_site.html:51
 msgid "Grants"
 msgstr "Granty"
 
-#: templates/ofb/base_site.html:52
-#: templates/oppo/base_site.html:60
+#: templates/magnet/base_site.html:52 templates/ofb/base_site.html:53
+#: templates/oppo/base_site.html:62 templates/theory/base_site.html:52
 msgid "Labs"
 msgstr "Laboratoře"
 
-#: templates/ofb/base_site.html:53
-#: templates/oppo/base_site.html:55
+#: templates/magnet/base_site.html:53 templates/ofb/base_site.html:54
+#: templates/oppo/base_site.html:56 templates/theory/base_site.html:53
 msgid "Cooperations"
 msgstr "Spolupráce"
 
-#: templates/ofb/base_site.html:54
-#: templates/oppo/base_site.html:56
+#: templates/magnet/base_site.html:54 templates/ofb/base_site.html:55
+#: templates/oppo/base_site.html:57 templates/theory/base_site.html:54
 msgid "Software"
 msgstr "Software"
 
-#: templates/ofb/base_site.html:57
-#: templates/oppo/base_site.html:62
+#: templates/magnet/base_site.html:57 templates/ofb/base_site.html:58
+#: templates/oppo/base_site.html:64 templates/theory/base_site.html:57
 msgid "Gallery"
 msgstr "Galerie"
 
-#: templates/ofb/base_site.html:58
-#: templates/oppo/base_site.html:63
+#: templates/magnet/base_site.html:58 templates/ofb/base_site.html:59
+#: templates/oppo/base_site.html:65 templates/theory/base_site.html:58
 msgid "How to find us"
 msgstr "Kde nás najdete"
 
-#: templates/oppo/base_site.html:13
-msgid "Department of Semiconductors and Semiconductor Optoelectronics, Institute of Physics at Charles University in Prague"
-msgstr "Oddělení polovodičů a polovodičové optoelektroniky, Fyzikální ústav Univerzity Karlovy v Praze"
+#: templates/ofb/base_site.html:14
+msgid ""
+"Division of Biomolecular Physics, Institute of Physics at Charles University "
+"in Prague"
+msgstr "MFF UK: Oddělení fyziky biomolekul"
 
-#: templates/oppo/base_site.html:20
+#: templates/ofb/base_site.html:22
+msgid "Division of Biomolecular Physics"
+msgstr "Oddělení fyziky biomolekul"
+
+#: templates/oppo/base_site.html:14
+msgid ""
+"Department of Semiconductors and Semiconductor Optoelectronics, Institute of "
+"Physics at Charles University in Prague"
+msgstr ""
+"Oddělení polovodičů a polovodičové optoelektroniky, Fyzikální ústav "
+"Univerzity Karlovy v Praze"
+
+#: templates/oppo/base_site.html:21
 msgid "Department of Semiconductors and Semiconductor Optoelectronics"
 msgstr "Oddělení polovodičů a polovodičové optoelektroniky"
 
-#: templates/oppo/base_site.html:37
+#: templates/oppo/base_site.html:38
 msgid "Graduates"
 msgstr "Bývalí studenti"
 
 #: templates/oppo/base_site.html:47
-#: templates/oppo/courses.html:6
-#: templates/people/person/base.html:15
-#: templates/people/person/courses.html:6
+msgid "Student activities"
+msgstr "Studentské aktivitz"
+
+#: templates/oppo/base_site.html:49 templates/oppo/courses.html:6
+#: templates/people/person/base.html:16 templates/people/person/courses.html:6
 msgid "Courses"
 msgstr "Výuka"
 
-#: templates/oppo/base_site.html:48
-#: templates/oppo/downloads.html:6
+#: templates/oppo/base_site.html:50 templates/oppo/downloads.html:6
 msgid "Downloads"
 msgstr "Ke stažení"
 
-#: templates/oppo/base_site.html:61
+#: templates/oppo/base_site.html:63
 msgid "Services"
 msgstr "Služby"
 
-#: templates/oppo/courses.html:9
-#: templates/people/person/courses.html:12
+#: templates/oppo/courses.html:9 templates/people/person/courses.html:12
 #: templates/people/person/courses.html:45
 msgid "Code"
 msgstr "Kód"
@@ -557,21 +583,89 @@ msgstr "Přednášející"
 msgid "Semester"
 msgstr "Semestr"
 
-#: templates/oppo/people/students.html:7
-#: templates/people/students.html:7
+#: templates/oppo/people/students.html:9
 msgid "Master study students"
 msgstr "Studenti magisterského studia"
 
-#: templates/oppo/people/students.html:21
-#: templates/people/students.html:18
+#: templates/oppo/people/students.html:23
 msgid "Bachelor study students"
 msgstr "Studenti bakalářského studia"
 
-#: templates/oppo/people/students.html:33
+#: templates/oppo/people/students.html:35 templates/people/students.html:28
 msgid "Other students"
 msgstr "Ostatní studenti"
 
-#: templates/people/articles.html:11
+#: templates/oppo/people/person/articles.html:8
+msgid "1st author"
+msgstr "První autor"
+
+#: templates/oppo/people/person/articles.html:9
+msgid "All papers"
+msgstr "Všechny publikace"
+
+#: templates/oppo/people/person/articles.html:23
+#: templates/people/person/articles.html:18
+msgid "Conference proceedings"
+msgstr "Konferenční příspěvky"
+
+#: templates/oppo/people/person/articles.html:35
+#: templates/people/person/articles.html:30
+msgid "Monographies"
+msgstr "Monografie"
+
+#: templates/oppo/people/person/detail.html:21
+#: templates/people/person/detail.html:21
+msgid "Born"
+msgstr "Narozen"
+
+#: templates/oppo/people/person/detail.html:24
+#: templates/people/person/detail.html:24
+msgid "Affiliation"
+msgstr "Pracoviště"
+
+#: templates/oppo/people/person/detail.html:25
+#: templates/people/person/detail.html:25
+msgid "Room"
+msgstr "Místnost"
+
+#: templates/oppo/people/person/detail.html:26
+#: templates/people/person/detail.html:26
+msgid "Phone"
+msgstr "Telefon"
+
+#: templates/oppo/people/person/detail.html:41
+#: templates/people/person/detail.html:41
+msgid "Fields of interest and research experience"
+msgstr "Odborné zájmy"
+
+#: templates/oppo/people/person/detail.html:46
+#: templates/people/person/detail.html:46
+msgid "Long term stays"
+msgstr "Dlouhodobé zahraniční pobyty"
+
+#: templates/oppo/people/person/detail.html:51
+#: templates/people/person/detail.html:51
+msgid "Curiculum vitae"
+msgstr "Odborný životopis"
+
+#: templates/oppo/people/person/detail.html:56
+#: templates/people/person/detail.html:56
+msgid "Download curiculum vitae"
+msgstr "Odborný životopis ke stažení"
+
+#: templates/oppo/people/person/detail.html:60
+#: templates/people/person/detail.html:60
+msgid "Current thesis"
+msgstr "Současná práce"
+
+#: templates/oppo/people/person/detail.html:63
+#: templates/oppo/people/person/detail.html:72
+#: templates/people/person/detail.html:63
+#: templates/people/person/detail.html:72
+msgid "'s thesis"
+msgstr "práce"
+
+#: templates/people/articles.html:12
 msgid "Year"
 msgstr "Rok"
 
@@ -607,71 +701,65 @@ msgstr "Běžící granty"
 msgid "Ended grants"
 msgstr "Ukončené granty"
 
-#: templates/people/students.html:27
-#, fuzzy
-msgid "ROCNIK study students"
+#: templates/people/students.html:8
+msgid "Master's students"
 msgstr "Studenti magisterského studia"
 
-#: templates/people/theses.html:6
+#: templates/people/students.html:19
+msgid "Bachelor's students"
+msgstr "Studenti bakalářského studia"
+
+#: templates/people/theses.html:7
 msgid "By thesis type"
 msgstr "Podle typu práce"
 
-#: templates/people/theses.html:13
+#: templates/people/theses.html:14
 msgid "By year"
 msgstr "Podle roku obhájení"
 
-#: templates/people/theses.html:22
+#: templates/people/theses.html:23
 msgid "Theses defended in year"
 msgstr "Práce obhájené v roce"
 
-#: templates/people/theses.html:28
-#: templates/people/theses.html.py:40
+#: templates/people/theses.html:29 templates/people/theses.html.py:41
 msgid "Advisor"
 msgstr "Vedoucí"
 
-#: templates/people/theses.html:34
+#: templates/people/theses.html:35
 msgid "Defended "
 msgstr "Obhájená"
 
-#: templates/people/theses.html:34
+#: templates/people/theses.html:35
 msgid "theses"
 msgstr "práce"
 
-#: templates/people/thesis_detail.html:6
+#: templates/people/thesis_detail.html:7
 msgid "Author"
 msgstr "Autor"
 
-#: templates/people/thesis_detail.html:7
+#: templates/people/thesis_detail.html:8
 msgid "Supervisor"
 msgstr "Vedoucí práce"
 
-#: templates/people/thesis_detail.html:9
+#: templates/people/thesis_detail.html:10
 msgid "Consultants"
 msgstr "Konzultanti"
 
-#: templates/people/thesis_detail.html:11
+#: templates/people/thesis_detail.html:12
 msgid "Type"
 msgstr "Typ"
 
-#: templates/people/thesis_detail.html:13
+#: templates/people/thesis_detail.html:14
 msgid "Abstract"
 msgstr "Abstrakt"
 
-#: templates/people/thesis_detail.html:14
+#: templates/people/thesis_detail.html:15
 msgid "Keywords"
 msgstr "Klíčová slova"
 
-#: templates/people/thesis_detail.html:19
+#: templates/people/thesis_detail.html:20
 msgid "Download"
 msgstr "Ke stažení"
-
-#: templates/people/person/articles.html:18
-msgid "Conference proceedings"
-msgstr "Konferenční příspěvky"
-
-#: templates/people/person/articles.html:30
-msgid "Monographies"
-msgstr ""
 
 #: templates/people/person/courses.html:14
 #: templates/people/person/courses.html:47
@@ -695,43 +783,6 @@ msgstr "Přílohy"
 msgid "Practicals"
 msgstr "Cvičení"
 
-#: templates/people/person/detail.html:16
-msgid "Born"
-msgstr "Narozen"
-
-#: templates/people/person/detail.html:19
-msgid "Affiliation"
-msgstr "Pracoviště"
-
-#: templates/people/person/detail.html:20
-msgid "Room"
-msgstr "Místnost"
-
-#: templates/people/person/detail.html:21
-msgid "Phone"
-msgstr "Telefon"
-
-#: templates/people/person/detail.html:36
-msgid "Fields of interest and research experience"
-msgstr "Odborné zájmy"
-
-#: templates/people/person/detail.html:41
-msgid "Long term stays"
-msgstr "Dlouhodobé zahraniční pobyty"
-
-#: templates/people/person/detail.html:46
-msgid "Curiculum vitae"
-msgstr "Odborný životopis"
-
-#: templates/people/person/detail.html:52
-msgid "Current thesis"
-msgstr "Současná práce"
-
-#: templates/people/person/detail.html:55
-#: templates/people/person/detail.html:64
-msgid "'s thesis"
-msgstr "práce"
-
 #: templates/people/person/grants.html:23
 #: templates/people/person/grants.html:55
 msgid "Grant annotation"
@@ -741,19 +792,31 @@ msgstr "Annotace grantu"
 msgid "Finished grants"
 msgstr "Ukončené granty"
 
-#: templates/people/person/students.html:12
+#: templates/people/person/students.html:13
 msgid "year of Bc. study"
 msgstr "rok Bc. studia"
 
-#: templates/people/person/students.html:15
+#: templates/people/person/students.html:16
 msgid "year of Mgr. study"
 msgstr "rok Mgr. studia"
 
-#: templates/people/person/students.html:18
+#: templates/people/person/students.html:19
 msgid "year of PhD. study"
 msgstr "rok PhD. studia"
 
-#: templates/people/person/students.html:22
+#: templates/people/person/students.html:23
 msgid "thesis"
 msgstr "práce"
 
+#: templates/theory/base_site.html:14
+msgid ""
+"Theoretical division, Institute of Physics at Charles University in Prague"
+msgstr "MFF UK: Teoretické oddělení"
+
+#: templates/theory/base_site.html:21
+msgid "Theoretical division"
+msgstr "Teoretické oddělení"
+
+#, fuzzy
+#~ msgid "ROCNIK study students"
+#~ msgstr "Studenti magisterského studia"

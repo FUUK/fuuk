@@ -5,7 +5,7 @@
 {% block content %}
     <h1>{% trans "Students" %}</h1>
     {% if object_list %}
-        <h2>{% trans "Master study students" %}:</h2>
+        <h2>{% trans "Master's students" %}:</h2>
         <ul>
             {% for people in object_list %}
                 <li><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></li>
@@ -16,7 +16,7 @@
     <hr style='size:1;width=100%' />
 
     {% if bachelors %}
-        <h2>{% trans "Bachelor study students" %}:</h2>
+        <h2>{% trans "Bachelor's students" %}:</h2>
         <ul>
             {% for people in bachelors %}
                 <li><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></li>
@@ -25,7 +25,7 @@
     {% endif %}
 
     {% if students %}
-        <h2>{% trans "ROCNIK study students" %}:</h2>
+        <h2>{% trans "Other students" %}:</h2>
         <ul>
             {% for people in students %}
                 <li><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></li>
