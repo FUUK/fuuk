@@ -29,7 +29,8 @@ class Article(models.Model):
     identification = models.CharField(max_length=100, blank=True, null=True, unique=True)
     year = models.SmallIntegerField(validators=[MinValueValidator(1979)])
     title = models.CharField(max_length=300)
-    accepted = models.BooleanField(help_text=_('Mark this article as accepted only. No volume and pages has to be filled in.'))
+    accepted = models.BooleanField(help_text=_('Mark this article as accepted only. No volume and pages has to be filled in.'),
+                                   default=False)
 
     ### PUBLICATION INFO
     # journal for ARTICLE (required)
@@ -43,7 +44,8 @@ class Article(models.Model):
 
     # required for BOOK, ARTICLE
     page_from = models.CharField(max_length=10, blank=True, null=True, validators=[page_validator])
-    article_number = models.BooleanField(help_text=_('Check if the journal is using article numbers instead of pages'))
+    article_number = models.BooleanField(help_text=_('Check if the journal is using article numbers instead of pages'),
+                                         default=False)
     page_to = models.CharField(max_length=10, blank=True, null=True, validators=[page_validator],
                                help_text=_('Leave blank for one paged abstracts.'))
 

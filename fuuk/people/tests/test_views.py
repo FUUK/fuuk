@@ -192,7 +192,8 @@ class TestCourseList(TestCase):
     def test_basic(self):
         response = self.client.get('/people/courses/')
         self.assertContains(response, 'Testing course', count=1)
-        self.assertQuerysetEqual(response.context['object_list'], ['<Course: Testing course>', '<Course: Second course>'])
+        self.assertQuerysetEqual(response.context['object_list'], ['<Course: Testing course>', '<Course: Second course>'],
+                                 ordered=False)
 
 
 class TestDownloadList(TestCase):
