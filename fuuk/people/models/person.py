@@ -106,27 +106,37 @@ class Person(models.Model):
     def name(self):
         # e.g. for articles
         # should be used when titles are not displayed
-        first_names = self.first_name.split(' ')
+        first_names = self.first_name.split()
         first_names = ['%s.' % name[0] for name in first_names]
         return u"%s %s" % (
-            self.last_name,
+            self.last_name.strip(),
             ''.join(first_names)
         )
 
     @property
     def name_reversed(self):
         # for articles
-        first_names = self.first_name.split(' ')
+        first_names = self.first_name.split()
         first_names = ['%s.' % name[0] for name in first_names]
         return u"%s %s" % (
-            ''.join(first_names), self.last_name
+            ''.join(first_names), self.last_name.strip()
         )
 
     @property
     def full_name(self):
-        return u"%s%s %s%s" % (
-            self.prefix and u"%s " % self.prefix or u"",
-            self.first_name,
-            self.last_name,
-            self.suffix and u", %s" % self.suffix or u"",
+        if self.prefix:
+            prefix = self.prefix.strip()
+        else:
+            prefix = ''
+        if self.suffix:
+            suffix = self.suffix.strip()
+        else:
+            suffix = ''
+        first_names = self.first_name.split()
+        first_names = ['%s ' % name for name in first_names]
+        return u"%s%s%s%s" % (
+            prefix and u"%s " % prefix or u"",
+            ''.join(first_names),
+            self.last_name.strip(),
+            suffix and u", %s" % suffix or u"",
         )
