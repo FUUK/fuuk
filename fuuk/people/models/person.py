@@ -132,9 +132,11 @@ class Person(models.Model):
             suffix = self.suffix.strip()
         else:
             suffix = ''
-        return u"%s%s %s%s" % (
+        first_names = self.first_name.split()
+        first_names = ['%s ' % name for name in first_names]
+        return u"%s%s%s%s" % (
             prefix and u"%s " % prefix or u"",
-            self.first_name.strip(),
+            ''.join(first_names),
             self.last_name.strip(),
             suffix and u", %s" % suffix or u"",
         )

@@ -34,4 +34,4 @@ class TestPersonName(unittest.TestCase):
         A = Person.objects.create(last_name="Tester", first_name="Bad With  Spaces ")
         self.assertEqual(A.name, 'Tester B.W.S.')
         self.assertEqual(A.name_reversed, 'B.W.S. Tester')
-        self.assertEqual(A.full_name, 'Bad With  Spaces Tester')
+        self.assertEqual(A.full_name, 'Bad With Spaces Tester')
