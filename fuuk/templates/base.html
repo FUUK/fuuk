@@ -77,12 +77,10 @@
                 <div id="stripe" style="height:4px"></div>
                 <!-- END Content -->
             </div>
-            <!-- Footer -->
+
             <div id="footer">
-                <div id="paticka">
-                    {% trans "Contact" %} {{ 'alma-adm@karlov.mff.cuni.cz'|obfuscate_mailto:_("webmasters") }} {% trans  "for any suggestion or more information." %}
-                </div>
-                <!-- END Content + Footer -->
+                <span>{% trans "Contact" %} {{ 'alma-adm@karlov.mff.cuni.cz'|obfuscate_mailto:_("webmasters") }} {% trans  "for any suggestion or more information." %}</span>
+                <a class="admin-link" href="{% url 'admin:index' %}">{% trans "Administration" %}</a>
             </div>
         </div>
     </body>

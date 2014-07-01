@@ -109,7 +109,7 @@ height: 3px;
 
 #footer
 {
-padding: 5px 0px;
+padding: 5px;
 font-size: 9px;
 text-align: center;
 background: #262a26;
@@ -125,6 +125,10 @@ border-bottom-left-radius: 5px;
 #footer a{
 color:#89bf2d;
 font-size: 9px;
+}
+
+#footer .admin-link {
+    float: right;
 }
 
 /**********************/
