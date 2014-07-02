@@ -18,12 +18,11 @@ class News(MultilingualModel):
 
     class Meta:
         app_label = "people"
-        ordering = ('end',)
         verbose_name_plural = "News"
 
     def __unicode__(self):
         return self.title or u""
-    
+
     def clean(self):
         if self.start > self.end:
             raise ValidationError('The event cant end before it starts.')

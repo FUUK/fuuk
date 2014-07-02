@@ -10,6 +10,8 @@ from fuuk.people.models import Attachment, Author
 
 class DepartmentAdmin(MultilingualModelAdmin):
     list_display = ('name', 'fax')
+    search_fields = ('translations__name', )
+
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
@@ -17,6 +19,8 @@ class DepartmentAdmin(MultilingualModelAdmin):
 
 class PlaceAdmin(MultilingualModelAdmin):
     list_display = ('name', 'phone', 'department')
+    search_fields = ('translations__name', )
+
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
@@ -25,6 +29,8 @@ class PlaceAdmin(MultilingualModelAdmin):
 class HumanAdmin(MultilingualModelAdmin):
     list_display = ('nickname', 'email', 'birth_date', 'birth_place')
     ordering = ('nickname',)
+    search_fields = ('nickname', 'email')
+
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
@@ -66,7 +72,9 @@ class HumanAdmin(MultilingualModelAdmin):
 class PersonAdmin(ModelAdmin):
     list_display = ('last_name', 'first_name', 'is_active', 'type')
     list_filter = ('type', 'is_active')
-    ordering = ('human__nickname',)
+    ordering = ('last_name', )
+    search_fields = ('human__nickname', 'first_name', 'last_name')
+
     filter_horizontal = ('place',)
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
@@ -83,6 +91,7 @@ class PersonAdmin(ModelAdmin):
 
 class AttachmentAdmin(ModelAdmin):
     list_display = ('course', 'title')
+    search_fields = ('title', 'course__translations__name')
 
 
 class AttachmentInlineAdmin(TabularInline):
@@ -92,12 +101,14 @@ class AttachmentInlineAdmin(TabularInline):
 
 class CourseAdmin(MultilingualModelAdmin):
     list_display = ('name', 'ls', 'zs', 'code')
-    inlines = [AttachmentInlineAdmin, ]
+    ordering = ('code', )
+    search_fields = ('code', 'translations__name')
+
     filter_horizontal = ('lectors', 'practical_lectors')
-    ordering = ('code',)
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
+    inlines = (AttachmentInlineAdmin, )
 
     def has_change_permission(self, request, obj=None):
         """
@@ -131,11 +142,15 @@ class CourseAdmin(MultilingualModelAdmin):
 
 class AgencyAdmin(MultilingualModelAdmin):
     list_display = ('shortcut', 'name')
+    search_fields = ('translations__shortcut', 'translations__name')
 
 
 class GrantAdmin(MultilingualModelAdmin):
     list_display = ('author', 'number', 'title', 'start', 'end')
     list_filter = ('agency', 'start')
+    ordering = ('-end', )
+    search_fields = ('number', 'translations__title')
+
     filter_horizontal = ('co_authors',)
 
     def has_change_permission(self, request, obj=None):
@@ -168,9 +183,12 @@ class GrantAdmin(MultilingualModelAdmin):
 
 
 class ThesisAdmin(MultilingualModelAdmin):
-    list_display = ('type', 'title', 'author', 'advisor')
+    list_display = ('type', 'title', 'author', 'advisor', 'year')
+    list_filter = ('type', 'year', 'defended')
+    ordering = ('-year', )
+    search_fields = ('translations__title', 'translations__keywords', 'author__first_name', 'author__last_name')
+
     filter_horizontal = ('consultants',)
-    list_filter = ('type', 'year')
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
@@ -204,7 +222,10 @@ class ThesisAdmin(MultilingualModelAdmin):
 
 
 class NewsAdmin(MultilingualModelAdmin):
-    list_display = ('title', 'hyperlink', 'start', 'end', 'content')
+    list_display = ('title', 'start', 'end')
+    ordering = ('-end', )
+    search_fields = ('translations__title', 'hyperlink')
+
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
@@ -229,20 +250,16 @@ class AuthorInlineAdmin(TabularInline):
 
 
 ### Articles
-class BaseArticleAdmin(ModelAdmin):
-    list_display = ('title', 'type', 'year')
-    list_filter = ('year',)
+class BaseProxyArticleAdmin(ModelAdmin):
+    list_display = ('title', 'year')
+    list_filter = ('year', 'accepted')
+    search_fields = ('identification', 'title', 'publication')
+
     inlines = [AuthorInlineAdmin, ]
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
 
-
-class ArticleAdmin(BaseArticleAdmin):
-    list_filter = ('type', 'year')
-
-
-class BaseProxyArticleAdmin(BaseArticleAdmin):
     def has_change_permission(self, request, obj=None):
         """
         If `obj` is None, this should return True if the given request has
@@ -281,6 +298,9 @@ class ArticleArticleAdmin(BaseProxyArticleAdmin):
 
 
 class ArticleConferenceAdmin(BaseProxyArticleAdmin):
+    list_display = ('title', 'type', 'year')
+    list_filter = ('year', 'accepted', 'type')
+
     form = ArticleConferenceForm
 
     def queryset(self, request):
