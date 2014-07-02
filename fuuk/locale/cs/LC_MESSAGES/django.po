@@ -480,7 +480,7 @@ msgid "Student"
 msgstr "Student"
 
 msgid "Student activities"
-msgstr "Studentské aktivitz"
+msgstr "Studentské aktivity"
 
 msgid "Student project"
 msgstr "Studentské projekty"
