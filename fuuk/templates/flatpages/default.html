@@ -1,8 +1,8 @@
 {% extends "base_site.html" %}
 {% load markup %}
 {% block content %}
-<h1>{{ flatpage.title }}</h1>
+<h1>{{ flatpage.title_any }}</h1>
 <p>
-{{ flatpage.content|textile }}
+{{ flatpage.content_any|textile }}
 </p>
 {% endblock %}
