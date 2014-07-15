@@ -108,7 +108,7 @@ class StudentList(ListView):
 
 class RetiredList(ListView):
 
-    queryset = Person.objects.filter(type='STAFF', is_active=False).order_by('last_name') | Person.objects.filter(type='OTHER', is_active=False).order_by('last_name')
+    queryset = Person.objects.filter(type__in=('STAFF', 'OTHER'), is_active=False).order_by('last_name')
 
     def get_context_data(self, **kwargs):
         context = super(RetiredList, self).get_context_data(**kwargs)
