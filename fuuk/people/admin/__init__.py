@@ -2,8 +2,8 @@ from django.contrib import admin
 
 from fuuk.people.admin.options import PlaceAdmin, DepartmentAdmin, PersonAdmin, HumanAdmin, CourseAdmin, AttachmentAdmin, \
     GrantAdmin, ThesisAdmin, AgencyAdmin, NewsAdmin, \
-    ArticleAdmin, ArticleBookAdmin, ArticleArticleAdmin, ArticleConferenceAdmin
-from fuuk.people.models import Department, Place, Human, Person, Course, Attachment, Grant, Article, Author, Thesis, Agency, \
+    ArticleBookAdmin, ArticleArticleAdmin, ArticleConferenceAdmin
+from fuuk.people.models import Department, Place, Human, Person, Course, Attachment, Grant, Author, Thesis, Agency, \
     ArticleBook, ArticleArticle, ArticleConference, News
 
 
@@ -14,7 +14,6 @@ admin.site.register(Human, HumanAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Attachment, AttachmentAdmin)
 admin.site.register(Grant, GrantAdmin)
-admin.site.register(Article, ArticleAdmin)
 admin.site.register(Thesis, ThesisAdmin)
 admin.site.register(Agency, AgencyAdmin)
 admin.site.register(News, NewsAdmin)

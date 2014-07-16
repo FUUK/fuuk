@@ -18,8 +18,8 @@ class Course(MultilingualModel):
 
     class Translation:
         name = models.CharField(max_length=200)
-        annotation = models.CharField(max_length=500, blank=True, null=True)
-        note = models.CharField(max_length=200, blank=True, null=True)
+        annotation = models.TextField(blank=True, null=True)
+        note = models.TextField(blank=True, null=True)
 
     class Meta:
         app_label = 'people'
