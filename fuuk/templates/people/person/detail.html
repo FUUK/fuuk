@@ -7,53 +7,53 @@
     {{ block.super }}
     <table border="0">
         <tr>
-            {% if person.human.photo %}
+            {% if human.photo %}
                 <td align="center" valign="middle">
-                    <img src="{{ person.human.photo.url }}" width="120" height="154" vspace="0" hspace="30" alt="FOTO" />
+                    <img src="{{ human.photo.url }}" width="120" height="154" vspace="0" hspace="30" alt="FOTO" />
                 </td>
             {% endif %}
             <td>
                 <h2>{{ person.full_name }}</h2>
-                {% if person.human.subtitle %}
-                    <strong>{{ person.human.subtitle }}</strong><br>
+                {% if human.subtitle %}
+                    <strong>{{ human.subtitle }}</strong><br>
                 {% endif %}
-                {% if person.human.birth_date %}
-                    <em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ person.human.birth_date }}{% if person.human.birth_place %}, {{ person.human.birth_place }}{% endif %}
+                {% if human.birth_date %}
+                    <em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ human.birth_date }}{% if human.birth_place %}, {{ human.birth_place }}{% endif %}
                 {% endif %}
                 {% if person.place.all %}
-                    <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{% for i in department %}{{ i.name_any }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <br /><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{% for i in place %}{{ i.department.name_any }}{% if not forloop.last %}, {% endif %}{% endfor %}
                     <br /><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{% for i in place %}{{ i.name_any }}{% if not forloop.last %}, {% endif %}{% endfor %}
                     <br /><em><strong>{% trans "Phone" %}:</strong></em>&nbsp;&nbsp;{% for i in place %}{{ i.phone }}{% if not forloop.last %}, {% endif %}{% endfor %}
-                    <br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{% for i in department %}{{ i.fax }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <br /><em><strong>Fax:</strong></em>&nbsp;&nbsp;{% for i in place %}{{ i.department.fax }}{% if not forloop.last %}, {% endif %}{% endfor %}
                 {% endif %}
-                {% if person.human.email %}
-                    <br /><strong><em>E-mail:</em>&nbsp;&nbsp;{{ person.human.email|obfuscate_mailto }}</strong>
+                {% if human.email %}
+                    <br /><strong><em>E-mail:</em>&nbsp;&nbsp;{{ human.email|obfuscate_mailto }}</strong>
                 {% endif %}
-                {% if person.human.homepage %}
-                    <br /><strong><em>Homepage:</em>&nbsp;&nbsp;<a href="{{ person.human.homepage }}">{{ person.human.homepage }}</a></strong>
+                {% if human.homepage %}
+                    <br /><strong><em>Homepage:</em>&nbsp;&nbsp;<a href="{{ human.homepage }}">{{ human.homepage }}</a></strong>
                 {% endif %}
             </td>
         </tr>
     </table>
     <hr  style='size:3;width:100%'/>
     <div class="cv">
-    {% if person.human.interests %}
+    {% if human.interests %}
         <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
-            {{ person.human.interests|textile }}
+            {{ human.interests|textile }}
         <hr  style='size:3;width:100%'/>
     {% endif %}
-    {% if person.human.stays %}
+    {% if human.stays %}
         <p class="strong" align="left">{% trans "Long term stays" %}:</p>
-            {{ person.human.stays|textile }}
+            {{ human.stays|textile }}
         <hr  style='size:3;width:100%'/>
     {% endif %}
-    {% if person.human.cv %}
+    {% if human.cv %}
         <p class="strong" align="left">{% trans "Curiculum vitae" %}:</p>
-            {{ person.human.cv|textile }}
+            {{ human.cv|textile }}
         <hr  style='size:3;width:100%'/>
     {% endif %}
-    {% if person.human.cv_file %}
-        <p class="strong" align="left"><a href="{{ person.human.cv_file.url }}" style="text-decoration:underline">{% trans "Download curiculum vitae" %}</a></p>
+    {% if human.cv_file %}
+        <p class="strong" align="left"><a href="{{ human.cv_file.url }}" style="text-decoration:underline">{% trans "Download curiculum vitae" %}</a></p>
     {% endif %}
     </div>
     {% if theses_ongoing %}

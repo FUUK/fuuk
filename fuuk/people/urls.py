@@ -1,36 +1,41 @@
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls import patterns, url, include
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
+from .models import Course, Grant, Thesis
+
+from .views import (ArticleList, Papers, GrantList, ThesisList, PeopleList, PersonDetail, PersonArticles,
+                    PersonCourses, PersonStudents, PersonGrants, StudentList, RetiredList)
 
 urlpatterns = patterns('',
     # Global pages
-    url(r'^articles/$', 'people.views.article_list', name="articles"),
-    url(r'^articles/([0-9]{4})/$', 'people.views.article_list', name="articles"),
-    url(r'^papers/$', 'people.views.papers'),
+    url(r'^articles/$', ArticleList.as_view(), name="articles"),
+    url(r'^articles/(?P<year>[0-9]{4})/$', ArticleList.as_view(), name="articles"),
+    url(r'^papers/$', Papers.as_view()),
     # TODO: grants by years
-    url(r'^grants/$', 'people.views.grant_list', name="grants"),
-    url(r'^grants/(\d+)/$', 'people.views.grant_detail', name="grants"),
-    url(r'^theses/$', 'people.views.thesis_list', name="theses"),
-    url(r'^thesis/id=(\d+)/$', 'people.views.thesis_detail', name="theses_detail"),
-    url(r'^courses/$', 'people.views.course_list', name="courses"),
-    url(r'^downloads/$', 'people.views.download_list', name="downloads"),
-
+    url(r'^grants/$', GrantList.as_view(), name="grants"),
+    url(r'^grants/(?P<pk>\d+)/$', DetailView.as_view(model=Grant), name="grants"),
+    url(r'^theses/$', ThesisList.as_view(), name="theses"),
+    url(r'^thesis/id=(?P<pk>\d+)/$', DetailView.as_view(model=Thesis), name="theses_detail"),
+    url(r'^courses/$', ListView.as_view(model=Course), name="courses"),
+    url(r'^downloads/$', ListView.as_view(queryset=Course.objects.exclude(attachment__isnull=True)), name="downloads"),
     # Staff menu
-    url(r'^phd/$', 'people.views.phd_list', name="phd_list"),
-    url(r'^staff/$', 'people.views.staff_list', name="staff_list"),
-    url(r'^other/$', 'people.views.other_list', name="other_list"),
-    url(r'^students/$', 'people.views.student_list', name="student_list"),
-    url(r'^graduates/$', 'people.views.graduate_list', name="graduate_list"),
-    url(r'^retired/$', 'people.views.retired_list', name="retired_list"),
+    url(r'^phd/$', PeopleList.as_view(), name="phd_list"),
+    url(r'^staff/$', PeopleList.as_view(people_type='STAFF', title='Staff'), name="staff_list"),
+    url(r'^other/$', PeopleList.as_view(people_type='OTHER', title='Other workers'), name="other_list"),
+    url(r'^students/$', StudentList.as_view(), name="student_list"),
+    url(r'^graduates/$', PeopleList.as_view(people_type='GRAD', title='Graduate students'), name="graduate_list"),
+    url(r'^retired/$', RetiredList.as_view(), name="retired_list"),
 )
 
 human_patterns = patterns('',
     # Human details
-    url(r'^(\w+)/$', 'people.views.person_detail', name="person_detail"),
-    url(r'^(\w+)/papers/$', 'people.views.person_articles', name="person_articles"),
-    url(r'^(\w+)/papers/first/$', 'people.views.person_articles', name="person_articles_first"),
-    url(r'^(\w+)/courses/$', 'people.views.person_courses', name="person_courses"),
-    url(r'^(\w+)/students/$', 'people.views.person_students', name="person_students"),
-    url(r'^(\w+)/grants/$', 'people.views.person_grants', name="person_grants"),
+    url(r'^(?P<slug>\w+)/$', PersonDetail.as_view(), name="person_detail"),
+    url(r'^(?P<slug>\w+)/papers/$', PersonArticles.as_view(), name="person_articles"),
+    url(r'^(?P<slug>\w+)/papers/first/$', PersonArticles.as_view(first=True), name="person_articles_first"),
+    url(r'^(?P<slug>\w+)/courses/$', PersonCourses.as_view(), name="person_courses"),
+    url(r'^(?P<slug>\w+)/students/$', PersonStudents.as_view(), name="person_students"),
+    url(r'^(?P<slug>\w+)/grants/$', PersonGrants.as_view(), name="person_grants"),
 )
 
 urlpatterns = patterns('',
