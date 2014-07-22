@@ -7,34 +7,34 @@
     {{ block.super }}
         {% if human.photo %}
             <div class="person_photo">
-                <img src="{{ human.photo.url }}" width="120" height="154" vspace="0" hspace="30" alt="FOTO" />
+                <img src="{{ human.photo.url }}" width="120" height="154" alt="{% trans "FOTO" %}" />
             </div>
         {% endif %}
         <div class="person_table">
             <h2>{{ person.full_name }}</h2>
             {% if human.subtitle %}
-                <strong>{{ human.subtitle }}</strong><br>
+                <div class="person_sub">{{ human.subtitle }}</div>
             {% endif %}
             {% if human.birth_date %}
-               <em><strong>{% trans "Born" %}:</strong></em>&nbsp;&nbsp;{{ human.birth_date }}{% if human.birth_place %}, {{ human.birth_place }}{% endif %}
+               <div><em><strong>{% trans "Born" %}:</strong></em> {{ human.birth_date }}{% if human.birth_place %}, {{ human.birth_place }}{% endif %}</div>
             {% endif %}
             {% if human.email %}
-                <br /><strong><em>E-mail:</em>&nbsp;&nbsp;{{ human.email|obfuscate_mailto }}</strong>
+                <div><strong><em>E-mail:</em> {{ human.email|obfuscate_mailto }}</strong></div>
             {% endif %}
             {% if human.homepage %}
-                <br /><strong><em>Homepage:</em>&nbsp;&nbsp;<a href="{{ human.homepage }}">{{ human.homepage }}</a></strong>
+                <div><strong><em>Homepage:</em> <a href="{{ human.homepage }}">{{ human.homepage }}</a></strong></div>
             {% endif %}
             <ul>
                 {% for place in person.place.all %}
-                    {% if place.department %}<li><em><strong>{% trans "Affiliation" %}:</strong></em>&nbsp;&nbsp;{{ place.department.name_any }}{% endif %}</li>
-                    <li><em><strong>{% trans "Room" %}:</strong></em>&nbsp;&nbsp;{{ place.name_any }}</li>
-                    {% if place.phone %}<li><em><strong>{% trans "Phone" %}:</strong></em>&nbsp;&nbsp;{{ place.phone }}{% endif %}</li>
-                    {% if place.department.fax %}<li><em><strong>Fax:</strong></em>&nbsp;&nbsp;{{ place.department.fax }}{% endif %}</li>
+                    {% if place.department %}<li><em><strong>{% trans "Affiliation" %}:</strong></em> {{ place.department.name_any }}{% endif %}</li>
+                    <li><em><strong>{% trans "Room" %}:</strong></em> {{ place.name_any }}</li>
+                    {% if place.phone %}<li><em><strong>{% trans "Phone" %}:</strong></em> {{ place.phone }}{% endif %}</li>
+                    {% if place.department.fax %}<li><em><strong>Fax:</strong></em> {{ place.department.fax }}{% endif %}</li>
                     {% if not forloop.last %}<li>&nbsp;</li>{% endif %}
                 {% endfor %}
             </ul>
         </div>
-    <hr style='size:3;width:100%'/>
+    <hr class="line">
     <div class="cv">
     {% if human.interests %}
         <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
@@ -71,6 +71,6 @@
                 <li>{{ thesis.get_type_display }}{% trans "'s thesis" %}:</b> <a href="{% url "theses_detail" thesis.id %}">{{ thesis.title }}</a></li>
             {% endfor %}
             </ul>
-        <hr  style='size:3;width:100%'/>
+        <hr class="line">
     {% endif %}
 {% endblock %}
