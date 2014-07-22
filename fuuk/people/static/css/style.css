@@ -215,16 +215,36 @@ width: 80px;
 }
 
 /* LIST */
-div.list-name {
-margin: 1.5em 0 0 1em;
+div.people_container {
+display: table;
+width: 100%;
 }
 
-div.list-mail {
-margin: 0 0 0 5em;
+div.people_row {
+display: table-row;
 }
 
-div.list-phone {
-margin: -2em 0 0 50%;
+div.people_col {
+display: table-cell;
+}
+
+/* DETAIL */
+div.person_photo {
+width: 180px;
+float: left;
+}
+
+div.person_table {
+width: 300px;
+float: left;
+}
+
+div.person_table ul {
+padding-left: 0px;
+}
+
+div.person_table li {
+list-style: none;
 }
 
 /*CV specific*/
@@ -295,13 +315,6 @@ border-radius: 3px;
 #akt-new a  {font-size: 8pt}
 #akt-new h1    {color: #000000; font-size: 11pt}
 
-/**********/
-/* Tables */
-.people td,.people th
-{
-vertical-align: top;
-padding: 5px 20px;
-}
 
 /*******/
 /* 4F4 */

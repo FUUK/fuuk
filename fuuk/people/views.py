@@ -163,7 +163,6 @@ class PersonDetail(PersonMixin, DetailView):
         context = super(PersonDetail, self).get_context_data(**kwargs)
         context['theses'] = Thesis.objects.filter(author__human=self.object.human, defended=True).order_by('-year')
         context['theses_ongoing'] = Thesis.objects.filter(author__human=self.object.human, defended=False).order_by('-year')
-        context['place'] = self.object.place.all()
         return context
 
 

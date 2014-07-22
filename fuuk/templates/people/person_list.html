@@ -5,28 +5,43 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
-    {% for people in object_list %}
-        <div class="list-name">
-            <strong><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></strong>
-            {% if people.human.subtitle %}
-                <span class="little"><strong> {{ people.human.subtitle }}</strong></span>
-            {% endif %}
+    <div class="people_container">
+        <div class="people_row">
+            <div class="people_col">
+                &nbsp;
+            </div>
+            <div class="people_col">
+                <strong>E-mail</strong>
+            </div>
+            <div class="people_col">
+                <strong>Tel.</strong>
+            </div>
         </div>
+
+        {% for people in object_list %}
+        <div class="people_row">
+            <div class="people_col">
+                <strong><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></strong>
+                    {% if people.human.subtitle %}
+                        <span class="little"><strong> {{ people.human.subtitle }}</strong></span>
+                    {% endif %}
+            </div>
         {% if people.human.email %}
-            <div class="list-mail">
+            <div class="people_col">
                 <p class="little">
-                    <strong>E-mail:</strong> {{ people.human.email|obfuscate }}
+                    {{ people.human.email|obfuscate }}
                 </p>
             </div>
         {% endif %}
-        {% if people.place.phone %}
-            <div class="list-phone">
+        {% if people.place.all %}
+            <div class="people_col">
                 <p class="little">
-                    <strong>Tel.:</strong> {{ people.place.phone }}
+                    {% for i in people.place.all %}{% if i.phone %}{{ i.phone }}{% if not forloop.last %}<br />{% endif %}{% endif %}{% endfor %}
                 </p>
             </div>
         {% endif %}
-    {% endfor %}
+        </div>
+        {% endfor %}
 
     {{ block.super }}
 {% endblock %}
