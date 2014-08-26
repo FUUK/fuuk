@@ -7,7 +7,7 @@
     {{ block.super }}
         {% if human.photo %}
             <div class="person_photo">
-                <img src="{{ human.photo.url }}" width="120" height="154" alt="{% trans "FOTO" %}" />
+                <img src="{{ human.photo.url }}" width="120" height="154" alt="{% trans "PHOTO" %}" />
             </div>
         {% endif %}
         <div class="person_table">
@@ -24,15 +24,14 @@
             {% if human.homepage %}
                 <div><strong><em>Homepage:</em> <a href="{{ human.homepage }}">{{ human.homepage }}</a></strong></div>
             {% endif %}
-            <ul>
-                {% for place in person.place.all %}
+            {% for place in person.place.all %}
+                <ul>
                     {% if place.department %}<li><em><strong>{% trans "Affiliation" %}:</strong></em> {{ place.department.name_any }}{% endif %}</li>
                     <li><em><strong>{% trans "Room" %}:</strong></em> {{ place.name_any }}</li>
                     {% if place.phone %}<li><em><strong>{% trans "Phone" %}:</strong></em> {{ place.phone }}{% endif %}</li>
                     {% if place.department.fax %}<li><em><strong>Fax:</strong></em> {{ place.department.fax }}{% endif %}</li>
-                    {% if not forloop.last %}<li>&nbsp;</li>{% endif %}
-                {% endfor %}
-            </ul>
+                </ul>
+            {% endfor %}
         </div>
     <hr class="line">
     <div class="cv">

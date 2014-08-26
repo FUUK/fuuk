@@ -5,42 +5,37 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
-    <div class="people_container">
-        <div class="people_row">
-            <div class="people_col">
-            </div>
-            <div class="people_col">
-                <strong>E-mail</strong>
-            </div>
-            <div class="people_col">
-                <strong>Tel.</strong>
-            </div>
-        </div>
-
-        {% for people in object_list %}
-        <div class="people_row">
-            <div class="people_col">
-                <strong><a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a></strong>
-                    {% if people.human.subtitle %}
-                        <span class="little"><strong> {{ people.human.subtitle }}</strong></span>
-                    {% endif %}
-            </div>
-        {% if people.human.email %}
-            <div class="people_col">
-                <p class="little">
-                    {{ people.human.email|obfuscate }}
-                </p>
-            </div>
-        {% endif %}
-        {% if people.place.all %}
-            <div class="people_col">
-                <p class="little">
-                    {% for i in people.place.all %}{% if i.phone %}{{ i.phone }}{% if not forloop.last %}<br />{% endif %}{% endif %}{% endfor %}
-                </p>
-            </div>
-        {% endif %}
-        </div>
-        {% endfor %}
-
+    <table class="people_list">
+    <tr>
+        <th></th>
+        <th>{% trans "E-mail" %}</th>
+        <th>{% trans "Phone" %}</th>
+    </tr>
+    {% for people in object_list %}
+        <tr>
+            <td>
+            <strong>
+                <a href="{% url "person_detail" people.human.nickname %}">{{ people.full_name }}</a>
+            </strong>
+            {% if people.human.subtitle %}
+            <br />
+                <span class="little"><strong> {{ people.human.subtitle }}</strong></span>
+            {% endif %}
+            </td>
+            <td>
+            <p class="little">
+                {{ people.human.email|obfuscate }}
+            </p>
+            </td>
+            <td>
+            <p class="little">
+            {% for i in people.place.all %}
+                {% if i.phone %}{{ i.phone }}{% if not forloop.last %}<br />{% endif %}{% endif %}
+            {% endfor %}
+            </p>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
     {{ block.super }}
 {% endblock %}

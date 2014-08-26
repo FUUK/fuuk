@@ -214,17 +214,10 @@ p.citation_number
 
 /********/
 /* LIST */
-div.people_container {
-    display: table;
-    width: 100%;
-}
-
-div.people_row {
-    display: table-row;
-}
-
-div.people_col {
-    display: table-cell;
+table.people_list {
+    text-align: center;
+    border-spacing: 15px 0px;
+    border-collapse: separate;
 }
 
 /**********/
@@ -240,7 +233,7 @@ div.person_sub {
 }
 
 div.person_table {
-    width: 300px;
+    width: 500px;
     float: left;
 }
 
