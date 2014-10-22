@@ -100,6 +100,9 @@ class Person(models.Model):
         if self.type in ('PHD', 'MGR', 'BC') and not self.class_year:
             raise ValidationError(_('Students must have class year.'))
 
+        if self.advisor and not self.human:
+            raise ValidationError(_('Students with assigned advisor must have "human".'))
+
     @property
     def name(self):
         # e.g. for articles
