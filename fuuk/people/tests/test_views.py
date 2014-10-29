@@ -340,6 +340,9 @@ class TestPersonalPages(TestCase):
         # Testing person
         H1 = Human.objects.create(nickname='Person_test')
         P1 = Person.objects.create(type='STAFF', first_name='Test', last_name='Person', human=H1)
+        # Inactive version of previous
+        P1_inactive = Person.objects.create(type='PHD', first_name='Test', last_name='Person', human=H1,
+                                            is_active=False)
         # False person
         H2 = Human.objects.create(nickname='False_person')
         P2 = Person.objects.create(type='SATFF', first_name='False', last_name='Person', human=H2)

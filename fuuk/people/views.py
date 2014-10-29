@@ -156,7 +156,7 @@ class PersonListView(ListView):
 class PersonDetail(PersonMixin, DetailView):
 
     template_name = 'people/person/detail.html'
-    model = Person
+    queryset = Person.objects.filter(is_active=True)
     slug_field = 'human__nickname'
 
     def get_context_data(self, **kwargs):
