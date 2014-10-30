@@ -7,6 +7,11 @@ from .models import Course, Grant, Thesis
 from .views import (ArticleList, Papers, GrantList, ThesisList, PeopleList, PersonDetail, PersonArticles,
                     PersonCourses, PersonStudents, PersonGrants, StudentList, RetiredList)
 
+
+DOWNLOADS_VIEW = ListView.as_view(queryset=Course.objects.exclude(attachment__isnull=True),
+                                  template_name='people/download_list.html')
+
+
 urlpatterns = patterns('',
     # Global pages
     url(r'^articles/$', ArticleList.as_view(), name="articles"),
@@ -18,7 +23,7 @@ urlpatterns = patterns('',
     url(r'^theses/$', ThesisList.as_view(), name="theses"),
     url(r'^thesis/id=(?P<pk>\d+)/$', DetailView.as_view(model=Thesis), name="theses_detail"),
     url(r'^courses/$', ListView.as_view(model=Course), name="courses"),
-    url(r'^downloads/$', ListView.as_view(queryset=Course.objects.exclude(attachment__isnull=True)), name="downloads"),
+    url(r'^downloads/$', DOWNLOADS_VIEW, name="downloads"),
     # Staff menu
     url(r'^phd/$', PeopleList.as_view(), name="phd_list"),
     url(r'^staff/$', PeopleList.as_view(people_type='STAFF', title='Staff'), name="staff_list"),
