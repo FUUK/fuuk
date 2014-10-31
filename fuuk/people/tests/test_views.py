@@ -1,13 +1,14 @@
 """
 Unittests for views
 """
-import os
 import datetime
+import os
 
-from mock import Mock, patch
+from django.core.files import File
 from django.test import TestCase
-from django.utils.translation import deactivate_all
 from django.test.utils import override_settings
+from django.utils.translation import deactivate_all
+from mock import Mock, patch
 
 from fuuk.people.models import (Agency, Article, Attachment, Author, Course, Grant,
                                 Human, Person, Thesis)
@@ -200,11 +201,13 @@ class TestDownloadList(TestCase):
     def setUp(self):
         course = Course.objects.create(name='Course with attachment', code='AA001')
         Course.objects.create(name='Course without attachment', code='AA002')
-        Attachment.objects.create(course=course)
+        a_file = open(os.path.join(os.path.dirname(__file__), 'test_views.py'))
+        Attachment.objects.create(course=course, title='The attachment', file=File(a_file))
 
     def test_basic(self):
         response = self.client.get('/people/downloads/')
         self.assertContains(response, 'Course with attachment', count=1)
+        self.assertContains(response, 'The attachment', count=1)
         self.assertNotContains(response, 'Course without attachment')
 
 
