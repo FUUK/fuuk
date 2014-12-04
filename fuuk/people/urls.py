@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, url, include
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
@@ -25,11 +26,11 @@ urlpatterns = patterns('',
     url(r'^courses/$', ListView.as_view(model=Course), name="courses"),
     url(r'^downloads/$', DOWNLOADS_VIEW, name="downloads"),
     # Staff menu
-    url(r'^phd/$', PeopleList.as_view(), name="phd_list"),
-    url(r'^staff/$', PeopleList.as_view(people_type='STAFF', title='Staff'), name="staff_list"),
-    url(r'^other/$', PeopleList.as_view(people_type='OTHER', title='Other workers'), name="other_list"),
+    url(r'^phd/$', PeopleList.as_view(people_type='PHD', title=_('PhD. students')), name="phd_list"),
+    url(r'^staff/$', PeopleList.as_view(people_type='STAFF', title=_('Academic staff')), name="staff_list"),
+    url(r'^other/$', PeopleList.as_view(people_type='OTHER', title=_('Other staff')), name="other_list"),
     url(r'^students/$', StudentList.as_view(), name="student_list"),
-    url(r'^graduates/$', PeopleList.as_view(people_type='GRAD', title='Graduate students'), name="graduate_list"),
+    url(r'^graduates/$', PeopleList.as_view(people_type='GRAD', title=_('Graduate students')), name="graduate_list"),
     url(r'^retired/$', RetiredList.as_view(), name="retired_list"),
 )
 
