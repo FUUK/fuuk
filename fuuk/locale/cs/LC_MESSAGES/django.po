@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fuuk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-11 09:37+0100\n"
+"POT-Creation-Date: 2014-12-04 21:21+0100\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -289,10 +289,10 @@ msgstr "Vyplňujte, prosím, celé jméno časopisu."
 msgid "Gallery"
 msgstr "Galerie"
 
-msgid "Graduate"
-msgstr "Bývalí studenti"
+msgid "Graduate student"
+msgstr "Bývalý student"
 
-msgid "Graduates"
+msgid "Graduate students"
 msgstr "Bývalí studenti"
 
 msgid "Grant agency"
@@ -415,9 +415,6 @@ msgstr "Lidé"
 
 msgid "Person with type must have human."
 msgstr "Osoba s typem musí být \"human\"."
-
-msgid "PhD students"
-msgstr "Doktorandi"
 
 msgid "PhD. student"
 msgstr "Doktorand"

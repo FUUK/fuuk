@@ -262,7 +262,7 @@ class TestPeopleList(TestCase):
         self.assertNotContains(response, 'Test Retired')
         self.assertNotContains(response, 'FalseTest')
         self.assertQuerysetEqual(response.context['object_list'], ['<Person: Doctoral Test (PhD. student)>'])
-        self.assertEqual(response.context['title'], 'PhD students')
+        self.assertEqual(response.context['title'], 'PhD. students')
 
     def test_staff(self):
         response = self.client.get('/people/staff/')
@@ -276,7 +276,7 @@ class TestPeopleList(TestCase):
         self.assertNotContains(response, 'Test Retired')
         self.assertNotContains(response, 'FalseTest')
         self.assertQuerysetEqual(response.context['object_list'], ['<Person: Staff Test (Academic staff)>'])
-        self.assertEqual(response.context['title'], 'Staff')
+        self.assertEqual(response.context['title'], 'Academic staff')
 
     def test_other(self):
         response = self.client.get('/people/other/')
@@ -290,7 +290,7 @@ class TestPeopleList(TestCase):
         self.assertNotContains(response, 'Test Retired')
         self.assertQuerysetEqual(response.context['object_list'], ['<Person: Other Test (Other staff)>'])
         self.assertNotContains(response, 'FalseTest')
-        self.assertEqual(response.context['title'], 'Other workers')
+        self.assertEqual(response.context['title'], 'Other staff')
 
     def test_students(self):
         response = self.client.get('/people/students/')
@@ -317,7 +317,7 @@ class TestPeopleList(TestCase):
         self.assertContains(response, 'Test Graduate', count=1)
         self.assertNotContains(response, 'Test Other')
         self.assertNotContains(response, 'Test Retired')
-        self.assertQuerysetEqual(response.context['object_list'], ['<Person: Graduate Test (Graduate)>'])
+        self.assertQuerysetEqual(response.context['object_list'], ['<Person: Graduate Test (Graduate student)>'])
         self.assertNotContains(response, 'FalseTest')
         self.assertEqual(response.context['title'], 'Graduate students')
 
@@ -431,17 +431,17 @@ class TestEmptyDatabase(TestCase):
     def test_people(self):
         # All of these should return empty page with the basic title
         response = self.client.get('/people/staff/')
-        self.assertContains(response, 'Staff', count=1)
+        self.assertContains(response, '<h1>Academic staff</h1>', count=1, html=True)
         response = self.client.get('/people/phd/')
-        self.assertContains(response, 'PhD students', count=1)
+        self.assertContains(response, '<h1>PhD. students</h1>', count=1, html=True)
         response = self.client.get('/people/students/')
-        self.assertContains(response, 'Students', count=2)
+        self.assertContains(response, '<h1>Students</h1>', count=1, html=True)
         response = self.client.get('/people/other/')
-        self.assertContains(response, 'Other workers', count=1)
+        self.assertContains(response, '<h1>Other staff</h1>', count=1, html=True)
         response = self.client.get('/people/retired/')
-        self.assertContains(response, 'Former members', count=2)
+        self.assertContains(response, '<h1>Former members</h1>', count=1, html=True)
         response = self.client.get('/people/graduates/')
-        self.assertContains(response, 'Graduate students', count=1)
+        self.assertContains(response, '<h1>Graduate students</h1>', count=1, html=True)
 
     def test_theses(self):
         # Returns empty page

@@ -6,7 +6,7 @@ from django.db.models import Count
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
@@ -82,8 +82,8 @@ class ThesisList(ListView):
 
 class PeopleList(ListView):
 
-    people_type = 'PHD'
-    title = _('PhD students')
+    people_type = None
+    title = None
 
     def get_context_data(self, **kwargs):
         context = super(PeopleList, self).get_context_data(**kwargs)
