@@ -215,7 +215,6 @@ p.citation_number
 /********/
 /* LIST */
 table.people_list {
-    text-align: center;
     border-spacing: 15px 0px;
     border-collapse: separate;
 }
@@ -245,9 +244,15 @@ div.person_table li {
     list-style: none;
 }
 
-hr.line {
-    size:3px;
-    width:100%
+hr {
+    size: 3px;
+    width: 100%;
+    float: left;
+}
+
+div.cv {
+    float:left;
+    width: 100%;
 }
 
 /*************/

@@ -3,7 +3,6 @@
 {% load url from future %}
 
 {% block content %}
-    {{ block.super }}
     <div id="menu_top">
                 <a id="menu_item" class="title" href="{% url "person_detail" human.nickname %}"><span>{{ person.name }}</span></a>
             {% if publications %}
