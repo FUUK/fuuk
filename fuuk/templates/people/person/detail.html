@@ -33,26 +33,30 @@
                 </ul>
             {% endfor %}
         </div>
-    <hr class="line">
+    <hr class="line" />
     <div class="cv">
-    {% if human.interests %}
-        <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
+        {% if human.interests %}
+            <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
             {{ human.interests|textile }}
-        <hr  style='size:3;width:100%'/>
-    {% endif %}
-    {% if human.stays %}
-        <p class="strong" align="left">{% trans "Long term stays" %}:</p>
+            <hr />
+        {% endif %}
+        {% if human.stays %}
+            <p class="strong" align="left">{% trans "Long term stays" %}:</p>
             {{ human.stays|textile }}
-        <hr  style='size:3;width:100%'/>
-    {% endif %}
-    {% if human.cv %}
-        <p class="strong" align="left">{% trans "Curiculum vitae" %}:</p>
+            <hr />
+        {% endif %}
+        {% if human.cv %}
+            <p class="strong" align="left">{% trans "Curiculum vitae" %}:</p>
             {{ human.cv|textile }}
-        <hr  style='size:3;width:100%'/>
-    {% endif %}
-    {% if human.cv_file %}
-        <p class="strong" align="left"><a href="{{ human.cv_file.url }}" style="text-decoration:underline">{% trans "Download curiculum vitae" %}</a></p>
-    {% endif %}
+            <hr />
+        {% endif %}
+        {% if human.cv_file %}
+            <p class="strong" align="left">
+                <a href="{{ human.cv_file.url }}" style="text-decoration:underline">
+                    {% trans "Download curiculum vitae" %}
+                </a>
+            </p>
+        {% endif %}
     </div>
     {% if theses_ongoing %}
         <p class="strong" align="left">{% trans "Current thesis" %}:</p>
