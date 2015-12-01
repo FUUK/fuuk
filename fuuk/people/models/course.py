@@ -1,5 +1,12 @@
+"""
+Models which represents courses.
+"""
+import os.path
+
 from django.core.validators import RegexValidator
 from django.db import models
+from django.utils.encoding import force_text
+from django.utils.text import slugify
 from multilingual import MultilingualModel
 
 from fuuk.people.models import Person
@@ -28,10 +35,16 @@ class Course(MultilingualModel):
         return self.name or u""
 
 
+def attachment_filename(instance, filename):
+    base, ext = os.path.splitext(force_text(filename))
+    basename = slugify(base) + ext
+    return 'files/courses/' + basename
+
+
 class Attachment(models.Model):
     course = models.ForeignKey(Course)
     title = models.CharField(max_length=200)
-    file = models.FileField(max_length=200, upload_to='files/courses')
+    file = models.FileField(max_length=200, upload_to=attachment_filename)
 
     class Meta:
         app_label = 'people'
