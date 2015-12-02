@@ -9,7 +9,8 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
-INSTALLED_APPS = ('django.contrib.admin',
+INSTALLED_APPS = ('modeltranslation',
+                  'django.contrib.admin',
                   'django.contrib.auth',
                   'django.contrib.contenttypes',
                   'django.contrib.humanize',
@@ -53,7 +54,7 @@ DATABASES = {
     }
 }
 
-LANGUAGE_CODE = 'cs'
+LANGUAGE_CODE = 'en'
 LANGUAGES = (('en', u'English'),
              ('cs', u'Česky'))
 TIME_ZONE = 'Europe/Prague'

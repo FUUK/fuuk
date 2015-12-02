@@ -1,6 +1,8 @@
 # coding: utf-8
+from django.conf import settings
 from django.contrib.admin import ModelAdmin, TabularInline
 from django.db import models
+from modeltranslation.admin import TranslationAdmin
 from multilingual import MultilingualModelAdmin
 
 from fuuk.people.admin.fields import NullCharField
@@ -218,10 +220,10 @@ class ThesisAdmin(MultilingualModelAdmin):
         )
 
 
-class NewsAdmin(MultilingualModelAdmin):
+class NewsAdmin(TranslationAdmin):
     list_display = ('title', 'start', 'end')
     ordering = ('-end', )
-    search_fields = ('translations__title', 'hyperlink')
+    search_fields = ['hyperlink'] + get_translation_fields('title')
 
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
