@@ -11,7 +11,7 @@ DOWNLOADS_VIEW = ListView.as_view(queryset=Course.objects.exclude(attachment__is
                                   template_name='people/download_list.html')
 
 
-urlpatterns = patterns(
+PEOPLE_URLPATTERNS = patterns(
     '',
     # Global pages
     url(r'^articles/$', ArticleList.as_view(), name="articles"),
@@ -33,7 +33,7 @@ urlpatterns = patterns(
     url(r'^retired/$', RetiredList.as_view(), name="retired_list"),
 )
 
-human_patterns = patterns(
+HUMAN_PATTERNS = patterns(
     '',
     # Human details
     url(r'^(?P<slug>\w+)/$', PersonDetail.as_view(), name="person_detail"),
@@ -46,6 +46,6 @@ human_patterns = patterns(
 
 urlpatterns = patterns(
     '',
-    url(r'^people/', include(urlpatterns)),
-    url(r'^', include(human_patterns))
+    url(r'^people/', include(PEOPLE_URLPATTERNS)),
+    url(r'^', include(HUMAN_PATTERNS))
 )

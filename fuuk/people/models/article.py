@@ -3,7 +3,7 @@ from django.core.validators import MinValueValidator, RegexValidator, URLValidat
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from fuuk.people.models import Person
+from .person import Person
 
 ARTICLE_TYPES = (
     ('BOOK', _('Book')),

@@ -16,11 +16,11 @@ _CLEANUPS = []
 
 
 def setUpModule():
-    patcher = override_settings(LANGUAGE_CODE='en',
-                                TEMPLATE_DIRS=(os.path.join(os.path.dirname(__file__), '../../templates/oppo'),
-                                               os.path.join(os.path.dirname(__file__), '../../templates'),
-                                               ),
-                                )
+    patcher = override_settings(
+        LANGUAGE_CODE='en',
+        TEMPLATE_DIRS=(os.path.join(os.path.dirname(__file__), '../../templates/oppo'),
+                       os.path.join(os.path.dirname(__file__), '../../templates')),
+    )
     _CLEANUPS.append(patcher.disable)
     patcher.enable()
 

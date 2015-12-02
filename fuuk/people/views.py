@@ -62,7 +62,7 @@ class ThesisList(ListView):
             .annotate(Count('type')).order_by('-type')
 
         # we got filter but no results
-        if (self.year or self.type):
+        if self.year or self.type:
             if not queryset:
                 raise Http404
         else:

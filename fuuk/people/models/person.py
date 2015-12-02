@@ -6,9 +6,9 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from multilingual import MultilingualModel
 
-from fuuk.people.models import Place
+from .place import Place
 
-nickname_validator = RegexValidator('^\w+$')
+nickname_validator = RegexValidator(r'^\w+$')
 
 PERSON_TYPES = (
     ('STAFF', _('Academic staff')),
@@ -101,7 +101,7 @@ class Person(models.Model):
     def clean(self):
         if self.human:
             if self.is_active and Person.objects.exclude(pk=self.pk).filter(human=self.human, is_active=True):
-                    raise ValidationError(_('Only one person can be active per human.'))
+                raise ValidationError(_('Only one person can be active per human.'))
         else:
             if self.type:
                 raise ValidationError(_('Person with type must have human.'))
