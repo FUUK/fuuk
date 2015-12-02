@@ -1,8 +1,8 @@
 # coding: utf-8
-from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from multilingual import MultilingualModel
 
@@ -29,14 +29,17 @@ class Human(MultilingualModel):
     user = models.OneToOneField(User, blank=True, null=True)
     nickname = models.CharField(
         max_length=20, unique=True,
-        validators = [nickname_validator]
+        validators=[nickname_validator]
     )
     birth_date = models.DateField(blank=True, null=True)
     birth_place = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=200, blank=True, null=True, unique=True)
     photo = models.ImageField(max_length=200, blank=True, null=True, upload_to='img/person')
     display_posters = models.BooleanField(default=True, help_text=_('Uncheck to hide posters on your personal page.'))
-    display_talks = models.BooleanField(default=True, help_text=_('Uncheck to hide talks not presented by you on your personal page.'))
+    display_talks = models.BooleanField(
+        default=True,
+        help_text=_('Uncheck to hide talks not presented by you on your personal page.')
+    )
     homepage = models.URLField(
         max_length=255,
         blank=True, null=True,
@@ -47,7 +50,12 @@ class Human(MultilingualModel):
     class Translation:
         subtitle = models.CharField(max_length=200, blank=True, null=True)
         cv = models.TextField(blank=True, null=True)
-        interests = models.TextField(blank=True, null=True, help_text=_('Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &amp;#8209; for endash.'))
+        interests = models.TextField(
+            blank=True,
+            null=True,
+            help_text=_('Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &amp;#8209; '
+                        'for endash.')
+        )
         stays = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -71,7 +79,8 @@ class Person(models.Model):
     prefix = models.CharField(max_length=20, blank=True, null=True)
     first_name = models.CharField(
         max_length=50,
-        help_text=_('Only first letter is required for article authors. In case of multiple first names, fill them separated by space.')
+        help_text=_('Only first letter is required for article authors. In case of multiple first names, fill them '
+                    'separated by space.')
     )
     last_name = models.CharField(max_length=50)
     suffix = models.CharField(max_length=20, blank=True, null=True)

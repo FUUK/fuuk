@@ -5,12 +5,11 @@ from django.utils.translation import ugettext_lazy as _
 
 from fuuk.people.models import Person
 
-
 ARTICLE_TYPES = (
     ('BOOK', _('Book')),
     ('ARTICLE', _('Article')),
     ('TALK', _('Lecture')),
-    ('INVITED', _('Invited lecture')), # almost same as TALK
+    ('INVITED', _('Invited lecture')),  # almost same as TALK
     ('POSTER', _('Poster')),
 )
 
@@ -18,21 +17,23 @@ doi_validator = RegexValidator(r'^10\.[0-9]{4}.*$')
 # 978 (code for book publishing), group id, publisher code, title code, checksum, separated by dash or space
 # see ISBN at wikipedia for more info :)
 isbn_validator = RegexValidator(r'^(978[- ])?[0-9]{1,5}[- ][0-9]{1,6}[- ][0-9]{1,7}[- ][0-9]$')
-page_validator = RegexValidator(r'^[A-Z]{0,2}[0-9]+(-[0-9]+)?$') # numbers or form 'AA1857'
-volume_issue_validator = RegexValidator(r'^[A-Z]?[0-9]{1,4}([-/][0-9]{1,4})?$') # numbers with slashes or dashes
+page_validator = RegexValidator(r'^[A-Z]{0,2}[0-9]+(-[0-9]+)?$')  # numbers or form 'AA1857'
+volume_issue_validator = RegexValidator(r'^[A-Z]?[0-9]{1,4}([-/][0-9]{1,4})?$')  # numbers with slashes or dashes
 
 
 class Article(models.Model):
-    ### COMMON INFO
+    # COMMON INFO
     type = models.CharField(max_length=10, choices=ARTICLE_TYPES)
     # DOI for ARTICLE (not required); ISBN for BOOK (required)
     identification = models.CharField(max_length=100, blank=True, null=True, unique=True)
     year = models.SmallIntegerField(validators=[MinValueValidator(1979)])
     title = models.CharField(max_length=300)
-    accepted = models.BooleanField(help_text=_('Mark this article as accepted only. No volume and pages has to be filled in.'),
-                                   default=False)
+    accepted = models.BooleanField(
+        help_text=_('Mark this article as accepted only. No volume and pages has to be filled in.'),
+        default=False
+    )
 
-    ### PUBLICATION INFO
+    # PUBLICATION INFO
     # journal for ARTICLE (required)
     # book title for BOOK (required)
     # abstract collection for TALK, POSTER (not required)
@@ -59,8 +60,10 @@ class Article(models.Model):
     place = models.CharField(max_length=200, blank=True, null=True)
 
     # only TALK, POSTER
-    presenter = models.ForeignKey(Person, blank=True, null=True,
-        help_text=_('Before selecting a presenter fill authors and press "Save and continue editing".'))
+    presenter = models.ForeignKey(
+        Person, blank=True, null=True,
+        help_text=_('Before selecting a presenter fill authors and press "Save and continue editing".')
+    )
 
     class Meta:
         app_label = 'people'
@@ -161,7 +164,8 @@ class Author(models.Model):
         return super(Author, self).save(*args, **kwargs)
 
 
-### Article proxy models
+###############################################################################
+# Article proxy models
 
 class ArticleBook(Article):
     class Meta:

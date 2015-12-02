@@ -10,10 +10,10 @@ from django.test.utils import override_settings
 from django.utils.translation import deactivate_all
 from mock import Mock, patch
 
-from fuuk.people.models import (Agency, Article, Attachment, Author, Course, Grant,
-                                Human, Person, Thesis)
+from fuuk.people.models import Agency, Article, Attachment, Author, Course, Grant, Human, Person, Thesis
 
 _CLEANUPS = []
+
 
 def setUpModule():
     patcher = override_settings(LANGUAGE_CODE='en',
@@ -91,7 +91,7 @@ class TestGrantList(TestCase):
                              agency=agency)
         # Too old to be included
         Grant.objects.create(title='Jumpgate', start="1990", end="2000", number="5", author=person, agency=agency)
-                # Just started
+        # Just started
         Grant.objects.create(title='Fancy new grant', start="2013", end="2020", number="6", author=person,
                              agency=agency)
 
@@ -100,9 +100,9 @@ class TestGrantList(TestCase):
         self.assertContains(response, 'Current grants', count=1)
         self.assertContains(response, 'Ended grants', count=1)
         self.assertQuerysetEqual(response.context['object_list'],
-                                 ['<Grant: Fancy new grant>','<Grant: Perpetum mobile>', '<Grant: White holes>'])
+                                 ['<Grant: Fancy new grant>', '<Grant: Perpetum mobile>', '<Grant: White holes>'])
         self.assertQuerysetEqual(response.context['grants_finished'],
-                                  ['<Grant: Black holes>', '<Grant: Warp drive>'])
+                                 ['<Grant: Black holes>', '<Grant: Warp drive>'])
 
 
 class TestGrantDetail(TestCase):
@@ -193,8 +193,8 @@ class TestCourseList(TestCase):
     def test_basic(self):
         response = self.client.get('/people/courses/')
         self.assertContains(response, 'Testing course', count=1)
-        self.assertQuerysetEqual(response.context['object_list'], ['<Course: Testing course>', '<Course: Second course>'],
-                                 ordered=False)
+        self.assertQuerysetEqual(response.context['object_list'],
+                                 ['<Course: Testing course>', '<Course: Second course>'], ordered=False)
 
 
 class TestDownloadList(TestCase):
@@ -344,8 +344,7 @@ class TestPersonalPages(TestCase):
         H1 = Human.objects.create(nickname='Person_test')
         P1 = Person.objects.create(type='STAFF', first_name='Test', last_name='Person', human=H1)
         # Inactive version of previous
-        P1_inactive = Person.objects.create(type='PHD', first_name='Test', last_name='Person', human=H1,
-                                            is_active=False)
+        Person.objects.create(type='PHD', first_name='Test', last_name='Person', human=H1, is_active=False)
         # False person
         H2 = Human.objects.create(nickname='False_person')
         P2 = Person.objects.create(type='SATFF', first_name='False', last_name='Person', human=H2)
@@ -359,7 +358,7 @@ class TestPersonalPages(TestCase):
         A2 = Article.objects.create(type="BOOK", year="2005", title='Newest trends in writing django tests')
         A3 = Article.objects.create(type="ARTICLE", year="2005", title='False article')
         A4 = Article.objects.create(type="ARTICLE", year="2005", title='It is hard to come up with some funny thing...')
-        A5 = Article.objects.create(type="BOOK", year="2003", title='My first book')
+        Article.objects.create(type="BOOK", year="2003", title='My first book')
         # Author join
         Author.objects.create(person=P1, article=A1, order=1)
         Author.objects.create(person=P1, article=A2, order=1)
@@ -396,11 +395,12 @@ class TestPersonalPages(TestCase):
         response = self.client.get('/Person_test/papers/')
         self.assertContains(response, 'First article', count=1)
         self.assertNotContains(response, 'False article')
-        self.assertQuerysetEqual(response.context['publications'], ['<Article: First article>',
-                                                                    '<Article: It is hard to come up with some funny thing...>',
-                                                                    '<Article: Newest trends in writing django tests>'])
-        self.assertQuerysetEqual(response.context['publications_first'], ['<Article: First article>',
-                                                                          '<Article: Newest trends in writing django tests>'])
+        articles = ['<Article: First article>',
+                    '<Article: It is hard to come up with some funny thing...>',
+                    '<Article: Newest trends in writing django tests>']
+        self.assertQuerysetEqual(response.context['publications'], articles)
+        self.assertQuerysetEqual(response.context['publications_first'],
+                                 ['<Article: First article>', '<Article: Newest trends in writing django tests>'])
 
     def test_students(self):
         response = self.client.get('/Person_test/students/')
@@ -416,6 +416,7 @@ class TestPersonalPages(TestCase):
         response = self.client.get('/Person_test/grants/')
         self.assertContains(response, 'Testing grant', count=1)
         self.assertNotContains(response, 'False grant')
+
 
 class TestEmptyDatabase(TestCase):
     def test_articles(self):

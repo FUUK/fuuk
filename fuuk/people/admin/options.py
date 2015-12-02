@@ -4,7 +4,7 @@ from django.db import models
 from multilingual import MultilingualModelAdmin
 
 from fuuk.people.admin.fields import NullCharField
-from fuuk.people.admin.forms import ArticleBookForm, ArticleArticleForm, ArticleConferenceForm
+from fuuk.people.admin.forms import ArticleArticleForm, ArticleBookForm, ArticleConferenceForm
 from fuuk.people.models import Attachment, Author
 
 
@@ -135,8 +135,7 @@ class CourseAdmin(MultilingualModelAdmin):
             return queryset
         human = request.user.human
         return queryset.filter(
-            pk__in=queryset.filter(lectors__human=human) \
-                | queryset.filter(practical_lectors__human=human)
+            pk__in=queryset.filter(lectors__human=human) | queryset.filter(practical_lectors__human=human)
         )
 
 
@@ -177,8 +176,7 @@ class GrantAdmin(MultilingualModelAdmin):
             return queryset
         human = request.user.human
         return queryset.filter(
-            pk__in=queryset.filter(author__human=human) \
-                | queryset.filter(co_authors__human=human)
+            pk__in=queryset.filter(author__human=human) | queryset.filter(co_authors__human=human)
         )
 
 
@@ -216,8 +214,7 @@ class ThesisAdmin(MultilingualModelAdmin):
             return queryset
         human = request.user.human
         return queryset.filter(
-            pk__in=queryset.filter(author__human=human) \
-                | queryset.filter(advisor__human=human)
+            pk__in=queryset.filter(author__human=human) | queryset.filter(advisor__human=human)
         )
 
 
@@ -249,7 +246,8 @@ class AuthorInlineAdmin(TabularInline):
         return super(AuthorInlineAdmin, self).queryset(request).order_by('order')
 
 
-### Articles
+###############################################################################
+# Articles
 class BaseProxyArticleAdmin(ModelAdmin):
     list_display = ('title', 'year')
     list_filter = ('year', 'accepted')

@@ -11,8 +11,8 @@ from fuuk import __version__
 
 
 PACKAGES = ('fuuk', 'fuuk.common', 'fuuk.common.templatetags', 'fuuk.people', 'fuuk.people.admin',
-            'fuuk.people.context_processors', 'fuuk.people.management', 'fuuk.people.management.commands',
-            'fuuk.people.models', 'fuuk.people.templatetags')
+            'fuuk.people.management', 'fuuk.people.management.commands', 'fuuk.people.models',
+            'fuuk.people.templatetags')
 
 PACKAGE_DATA = {'fuuk': ['locale/cs/LC_MESSAGES/*', 'templates/*.html', 'templates/admin/*',
                          'templates/flatpages/*.html', 'templates/magnet/*.html',

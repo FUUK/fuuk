@@ -1,19 +1,18 @@
-from django.conf.urls import patterns, url, include
+from django.conf.urls import include, patterns, url
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
 from .models import Course, Grant, Thesis
-
-from .views import (ArticleList, Papers, GrantList, ThesisList, PeopleList, PersonDetail, PersonArticles,
-                    PersonCourses, PersonStudents, PersonGrants, StudentList, RetiredList)
-
+from .views import (ArticleList, GrantList, Papers, PeopleList, PersonArticles, PersonCourses, PersonDetail,
+                    PersonGrants, PersonStudents, RetiredList, StudentList, ThesisList)
 
 DOWNLOADS_VIEW = ListView.as_view(queryset=Course.objects.exclude(attachment__isnull=True),
                                   template_name='people/download_list.html')
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Global pages
     url(r'^articles/$', ArticleList.as_view(), name="articles"),
     url(r'^articles/(?P<year>[0-9]{4})/$', ArticleList.as_view(), name="articles"),
@@ -34,7 +33,8 @@ urlpatterns = patterns('',
     url(r'^retired/$', RetiredList.as_view(), name="retired_list"),
 )
 
-human_patterns = patterns('',
+human_patterns = patterns(
+    '',
     # Human details
     url(r'^(?P<slug>\w+)/$', PersonDetail.as_view(), name="person_detail"),
     url(r'^(?P<slug>\w+)/papers/$', PersonArticles.as_view(), name="person_articles"),
@@ -44,7 +44,8 @@ human_patterns = patterns('',
     url(r'^(?P<slug>\w+)/grants/$', PersonGrants.as_view(), name="person_grants"),
 )
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^people/', include(urlpatterns)),
     url(r'^', include(human_patterns))
 )
