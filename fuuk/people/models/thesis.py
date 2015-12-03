@@ -4,10 +4,10 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from multilingual import MultilingualModel
 
-from fuuk.people.models import Person
+from .person import Person
 
 THESIS_TYPES = (
-    ('STUD', _('Student project')), 
+    ('STUD', _('Student project')),
     ('BC', _('Bachelor')),
     ('MGR', _('Master')),
     ('PHD', _('Doctoral')),
@@ -18,7 +18,8 @@ THESIS_TYPES = (
 
 class Thesis(MultilingualModel):
     type = models.CharField(max_length=5, choices=THESIS_TYPES)
-    year = models.SmallIntegerField(validators=[MinValueValidator(1990)], help_text=_('Year of thesis start or year of defence if already defended.'))
+    year = models.SmallIntegerField(validators=[MinValueValidator(1990)],
+                                    help_text=_('Year of thesis start or year of defence if already defended.'))
     author = models.ForeignKey(Person)
     advisor = models.ForeignKey(Person, related_name='thesis_lead', blank=True, null=True)
     consultants = models.ManyToManyField(Person, related_name='thesis_consulted', blank=True, null=True)

@@ -4,7 +4,7 @@ from django.db import models
 from multilingual import MultilingualModelAdmin
 
 from fuuk.people.admin.fields import NullCharField
-from fuuk.people.admin.forms import ArticleBookForm, ArticleArticleForm, ArticleConferenceForm
+from fuuk.people.admin.forms import ArticleArticleForm, ArticleBookForm, ArticleConferenceForm
 from fuuk.people.models import Attachment, Author
 
 
@@ -58,8 +58,8 @@ class HumanAdmin(MultilingualModelAdmin):
 
         return super(HumanAdmin, self).has_change_permission(request, obj)
 
-    def queryset(self, request):
-        queryset = super(HumanAdmin, self).queryset(request)
+    def get_queryset(self, request):
+        queryset = super(HumanAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return queryset
 
@@ -129,14 +129,13 @@ class CourseAdmin(MultilingualModelAdmin):
 
         return super(CourseAdmin, self).has_change_permission(request, obj)
 
-    def queryset(self, request):
-        queryset = super(CourseAdmin, self).queryset(request)
+    def get_queryset(self, request):
+        queryset = super(CourseAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return queryset
         human = request.user.human
         return queryset.filter(
-            pk__in=queryset.filter(lectors__human=human) \
-                | queryset.filter(practical_lectors__human=human)
+            pk__in=queryset.filter(lectors__human=human) | queryset.filter(practical_lectors__human=human)
         )
 
 
@@ -171,14 +170,13 @@ class GrantAdmin(MultilingualModelAdmin):
 
         return super(GrantAdmin, self).has_change_permission(request, obj)
 
-    def queryset(self, request):
-        queryset = super(GrantAdmin, self).queryset(request)
+    def get_queryset(self, request):
+        queryset = super(GrantAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return queryset
         human = request.user.human
         return queryset.filter(
-            pk__in=queryset.filter(author__human=human) \
-                | queryset.filter(co_authors__human=human)
+            pk__in=queryset.filter(author__human=human) | queryset.filter(co_authors__human=human)
         )
 
 
@@ -210,14 +208,13 @@ class ThesisAdmin(MultilingualModelAdmin):
 
         return super(ThesisAdmin, self).has_change_permission(request, obj)
 
-    def queryset(self, request):
-        queryset = super(ThesisAdmin, self).queryset(request)
+    def get_queryset(self, request):
+        queryset = super(ThesisAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return queryset
         human = request.user.human
         return queryset.filter(
-            pk__in=queryset.filter(author__human=human) \
-                | queryset.filter(advisor__human=human)
+            pk__in=queryset.filter(author__human=human) | queryset.filter(advisor__human=human)
         )
 
 
@@ -235,7 +232,7 @@ class AuthorInlineAdmin(TabularInline):
     model = Author
     extra = 3
     fields = ('order', 'person')
-    readonly_fields = ('order',)
+    readonly_fields = ('order', )
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         defaults = {
@@ -244,12 +241,13 @@ class AuthorInlineAdmin(TabularInline):
         defaults.update(kwargs)
         return super(AuthorInlineAdmin, self).formfield_for_foreignkey(db_field, request, **defaults)
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         # Return ordered authors
-        return super(AuthorInlineAdmin, self).queryset(request).order_by('order')
+        return super(AuthorInlineAdmin, self).get_queryset(request).order_by('order')
 
 
-### Articles
+###############################################################################
+# Articles
 class BaseProxyArticleAdmin(ModelAdmin):
     list_display = ('title', 'year')
     list_filter = ('year', 'accepted')
@@ -276,8 +274,8 @@ class BaseProxyArticleAdmin(ModelAdmin):
 
         return super(BaseProxyArticleAdmin, self).has_change_permission(request, obj)
 
-    def queryset(self, request):
-        queryset = super(BaseProxyArticleAdmin, self).queryset(request)
+    def get_queryset(self, request):
+        queryset = super(BaseProxyArticleAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return queryset
         return queryset.filter(author__person__human__user=request.user)
@@ -286,15 +284,15 @@ class BaseProxyArticleAdmin(ModelAdmin):
 class ArticleBookAdmin(BaseProxyArticleAdmin):
     form = ArticleBookForm
 
-    def queryset(self, request):
-        return super(ArticleBookAdmin, self).queryset(request).filter(type='BOOK')
+    def get_queryset(self, request):
+        return super(ArticleBookAdmin, self).get_queryset(request).filter(type='BOOK')
 
 
 class ArticleArticleAdmin(BaseProxyArticleAdmin):
     form = ArticleArticleForm
 
-    def queryset(self, request):
-        return super(ArticleArticleAdmin, self).queryset(request).filter(type='ARTICLE')
+    def get_queryset(self, request):
+        return super(ArticleArticleAdmin, self).get_queryset(request).filter(type='ARTICLE')
 
 
 class ArticleConferenceAdmin(BaseProxyArticleAdmin):
@@ -303,5 +301,5 @@ class ArticleConferenceAdmin(BaseProxyArticleAdmin):
 
     form = ArticleConferenceForm
 
-    def queryset(self, request):
-        return super(ArticleConferenceAdmin, self).queryset(request).filter(type__in=('TALK', 'INVITED', 'POSTER'))
+    def get_queryset(self, request):
+        return super(ArticleConferenceAdmin, self).get_queryset(request).filter(type__in=('TALK', 'INVITED', 'POSTER'))

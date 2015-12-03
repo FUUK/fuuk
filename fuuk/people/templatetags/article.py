@@ -2,6 +2,7 @@ from django import template
 
 register = template.Library()
 
+
 def citation(article):
     pages = None
     if article.page_from:
@@ -11,7 +12,7 @@ def citation(article):
             else:
                 pages = u"%s-%s" % (article.page_from, article.page_to)
         else:
-            pages = unicode (article.page_from)
+            pages = unicode(article.page_from)
 
     tag_context = {
         'authors': article.author_set.select_related('person').order_by('order'),

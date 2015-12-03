@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 
-from django.core.urlresolvers import reverse
 from django.db.models import Count
-from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
+from django.http import Http404
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
-from fuuk.people.models import Article, Course, Person, Grant, Thesis, News, Place, Department, Human
+from fuuk.people.models import Article, Course, Grant, Human, Person, Thesis
 
 
 class ArticleList(ListView):
@@ -61,10 +58,11 @@ class ThesisList(ListView):
             queryset = queryset.filter(year=int(self.year)).order_by('-type')
         if self.type:
             queryset = queryset.filter(type=self.type.upper()).order_by('-year')
-        self.types = Thesis.objects.filter(defended=True).values_list('type', flat=True).annotate(Count('type')).order_by('-type')
+        self.types = Thesis.objects.filter(defended=True).values_list('type', flat=True) \
+            .annotate(Count('type')).order_by('-type')
 
         # we got filter but no results
-        if (self.year or self.type):
+        if self.year or self.type:
             if not queryset:
                 raise Http404
         else:
@@ -74,7 +72,8 @@ class ThesisList(ListView):
     def get_context_data(self, **kwargs):
         context = super(ThesisList, self).get_context_data(**kwargs)
         context['types'] = [(type, Thesis(type=type).get_type_display()) for type in self.types]
-        context['years'] = Thesis.objects.filter(defended=True).values_list('year', flat=True).annotate(Count('year')).order_by('-year')
+        context['years'] = Thesis.objects.filter(defended=True).values_list('year', flat=True) \
+            .annotate(Count('year')).order_by('-year')
         context['year'] = self.year
         context['type'] = self.type
         return context
@@ -116,31 +115,39 @@ class RetiredList(ListView):
         return context
 
 
-### Person pages
+###############################################################################
+# Person pages
 class PersonMixin(object):
     allow_empty = False
+
     def get_context_data(self, **kwargs):
         context = super(PersonMixin, self).get_context_data(**kwargs)
         human = Human.objects.get(nickname=self.kwargs['slug'])
 
+        publications_first = Article.objects.filter(author__order=1, author__person__human=human).order_by('-year')
+        grants_author = Grant.objects.filter(author__human=human, end__gte=date.today().year) \
+            .values_list('pk', flat=True)
+        grants_co_author = Grant.objects.filter(co_authors__human=human, end__gte=date.today().year) \
+            .values_list('pk', flat=True)
+        grants_finished_author = Grant.objects.filter(author__human=human, end__lt=date.today().year) \
+            .values_list('pk', flat=True)
+        grants_finished_co_author = Grant.objects.filter(co_authors__human=human, end__lt=date.today().year) \
+            .values_list('pk', flat=True)
+        grants_finished = Grant.objects.filter(pk__in=grants_finished_author | grants_finished_co_author) \
+            .order_by('-end', '-pk')
         context.update({
             'human': human,
             'person': human.person_set.order_by('-is_active')[0],
             'publications': Article.objects.filter(author__person__human=human).order_by('-year', 'title'),
-            'publications_first': Article.objects.filter(author__order=1, author__person__human=human).order_by('-year'),
+            'publications_first': publications_first,
             'courses': Course.objects.filter(lectors__human=human).order_by('pk'),
             'courses_practical': Course.objects.filter(practical_lectors__human=human).order_by('pk'),
             'students': Person.objects.filter(advisor__human=human, is_active=True).order_by('last_name', 'first_name'),
-            'grants': Grant.objects.filter(pk__in=
-                Grant.objects.filter(author__human=human, end__gte=date.today().year).values_list('pk', flat=True)
-                | Grant.objects.filter(co_authors__human=human, end__gte=date.today().year).values_list('pk', flat=True)
-            ).order_by('-end', '-pk'),
-            'grants_finished': Grant.objects.filter(pk__in=
-                Grant.objects.filter(author__human=human, end__lt=date.today().year).values_list('pk', flat=True)
-                | Grant.objects.filter(co_authors__human=human, end__lt=date.today().year).values_list('pk', flat=True)
-            ).order_by('-end', '-pk')
+            'grants': Grant.objects.filter(pk__in=grants_author | grants_co_author).order_by('-end', '-pk'),
+            'grants_finished': grants_finished,
         })
         return context
+
 
 class PersonListView(ListView):
     slug_field = None
@@ -162,7 +169,8 @@ class PersonDetail(PersonMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(PersonDetail, self).get_context_data(**kwargs)
         context['theses'] = Thesis.objects.filter(author__human=self.object.human, defended=True).order_by('-year')
-        context['theses_ongoing'] = Thesis.objects.filter(author__human=self.object.human, defended=False).order_by('-year')
+        context['theses_ongoing'] = Thesis.objects.filter(author__human=self.object.human, defended=False) \
+            .order_by('-year')
         return context
 
 
@@ -189,7 +197,8 @@ class PersonArticles(PersonMixin, ListView):
         if context['human'].display_talks:
             context['presentations'] = context['publications'].filter(type__in=presentation_types)
         else:
-            context['presentations'] = context['publications'].filter(type__in=presentation_types).filter(presenter__human=context['person'].human)
+            context['presentations'] = context['publications'].filter(type__in=presentation_types) \
+                .filter(presenter__human=context['person'].human)
         context['books'] = context['publications'].filter(type='BOOK')
         return context
 
