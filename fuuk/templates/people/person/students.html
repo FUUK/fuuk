@@ -4,7 +4,9 @@
 
 {% block content %}
     {{ block.super }}
-    <h1>{% trans "Students" %}:</h1>
+    {% if students %}
+        <h1>{% trans "Students" %}:</h1>
+    {% endif %}
     <ul>
         {% for student in students %}
             <li>
@@ -22,6 +24,21 @@
                         {% if thesis.type = student.type %}
                             <strong>{{ thesis.get_type_display }} {% trans "thesis" %}:</strong> {{ thesis.title }}
                         {% endif %}
+                    {% endfor %}
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if students_finished %}
+        <h1>{% trans "Finished students" %}:</h1>
+    {% endif %}
+    <ul>
+        {% for student in students_finished %}
+            <li>
+                <p align="justify"><strong>{{ student.full_name }}</strong><br />
+                    {% for thesis in student.thesis_set.all %}
+                        {{ thesis.year }} - <strong>{{ thesis.get_type_display }} {% trans "thesis" %}:</strong> <a href="{% url "theses_detail" thesis.id %}">{{ thesis.title }}</a>
+                        {% if not forloop.last %}<br />{% endif %}
                     {% endfor %}
                 </p>
             </li>
