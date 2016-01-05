@@ -11,7 +11,7 @@
             {% if students %}
                     <a id="menu_item" class="title" href="{% url "person_students" human.nickname %}"><span>{% trans "Students" %}</span></a>
             {% endif %}
-            {% if courses %}
+            {% if courses  or courses_practical %}
                     <a id="menu_item" class="title" href="{% url "person_courses" human.nickname %}"><span>{% trans "Courses" %}</span></a>
             {% endif %}
             {% if grants or grants_finished %}
