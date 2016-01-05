@@ -54,7 +54,7 @@ body
     margin-left: 15px;
 }
 
-#subheader
+.subheader
 {
     margin:10px 0px 0px 120px;
     font-weight:bold;
@@ -98,7 +98,7 @@ body
     text-align: justify
 }
 
-#stripe
+.stripe
 {
     background: #89bf2d;
     height: 3px;

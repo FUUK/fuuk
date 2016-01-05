@@ -15,13 +15,13 @@
 
 {% block header %}
 <div id="header">
-    <img src="{% static "img/protein.png" %}" height=120px width=283px class="right" />
+    <img src="{% static "img/protein.png" %}" height=120 width=283 class="right" />
     <div id="header-content">
-        <img src="{% static "img/logo.png" %}" height=110px width=112px style="float:left;padding-top:5px" />
-        <div id="subheader" style='font-size:24px; text-shadow:rgba(38,42,38,.7) 0.1em 0.1em'>
+        <img src="{% static "img/logo.png" %}" height=110 width=112 style="float:left;padding-top:5px" />
+        <div class="subheader" style='font-size:24px; text-shadow:rgba(38,42,38,.7) 0.1em 0.1em'>
             {% trans "Division of Biomolecular Physics" %} <br /> {% trans "Institute of Physics" %}
         </div>
-        <div id="subheader" style='font-size:12px'>
+        <div class="subheader" style='font-size:12px'>
             {% trans "Charles University, Ke Karlovu 5, Prague 2," %} 121 16<br/>tel.: +420 221 911 345, fax: +420 224 922 797
         </div>
     </div>
