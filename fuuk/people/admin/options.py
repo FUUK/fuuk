@@ -1,8 +1,8 @@
 # coding: utf-8
-from django.conf import settings
 from django.contrib.admin import ModelAdmin, TabularInline
 from django.db import models
 from modeltranslation.admin import TranslationAdmin
+from modeltranslation.utils import get_translation_fields
 from multilingual import MultilingualModelAdmin
 
 from fuuk.people.admin.fields import NullCharField
@@ -10,18 +10,18 @@ from fuuk.people.admin.forms import ArticleArticleForm, ArticleBookForm, Article
 from fuuk.people.models import Attachment, Author
 
 
-class DepartmentAdmin(MultilingualModelAdmin):
+class DepartmentAdmin(TranslationAdmin):
     list_display = ('name', 'fax')
-    search_fields = ('translations__name', )
+    search_fields = get_translation_fields('name')
 
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
 
 
-class PlaceAdmin(MultilingualModelAdmin):
+class PlaceAdmin(TranslationAdmin):
     list_display = ('name', 'phone', 'department')
-    search_fields = ('translations__name', )
+    search_fields = get_translation_fields('name')
 
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},

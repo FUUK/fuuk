@@ -26,8 +26,10 @@
             {% endif %}
             {% for place in person.place.all %}
                 <ul>
-                    {% if place.department %}<li><em><strong>{% trans "Affiliation" %}:</strong></em> {{ place.department.name_any }}{% endif %}</li>
-                    <li><em><strong>{% trans "Room" %}:</strong></em> {{ place.name_any }}</li>
+                    {% if place.department %}
+                        <li><em><strong>{% trans "Affiliation" %}:</strong></em> {{ place.department.name }}</li>
+                    {% endif %}
+                    <li><em><strong>{% trans "Room" %}:</strong></em> {{ place.name }}</li>
                     {% if place.phone %}<li><em><strong>{% trans "Phone" %}:</strong></em> {{ place.phone }}{% endif %}</li>
                     {% if place.department.fax %}<li><em><strong>Fax:</strong></em> {{ place.department.fax }}{% endif %}</li>
                 </ul>
