@@ -207,7 +207,12 @@ class PersonCourses(PersonMixin, PersonListView):
 
     template_name = 'people/person/courses.html'
     model = Course
-    slug_field = 'lectors__human__nickname'
+
+    def get_queryset(self):
+        nick = self.kwargs['slug']
+        courses_lector = Course.objects.filter(lectors__human__nickname=nick).values_list('pk', flat=True)
+        courses_practical = Course.objects.filter(practical_lectors__human__nickname=nick).values_list('pk', flat=True)
+        return self.model.objects.filter(pk__in=courses_lector | courses_practical)
 
 
 class PersonStudents(PersonMixin, PersonListView):

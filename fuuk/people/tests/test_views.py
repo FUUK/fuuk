@@ -412,6 +412,15 @@ class TestPersonalPages(TestCase):
         self.assertContains(response, 'Testing course', count=1)
         self.assertNotContains(response, 'False course')
 
+    def test_courses_practical(self):
+        # New testing person
+        H3 = Human.objects.create(nickname='Person_practical')
+        P3 = Person.objects.create(type='STAFF', first_name='Test', last_name='Practical', human=H3)
+        # Prepare a course with P3 as practical
+        Course.objects.get(pk=1).practical_lectors.add(P3)
+        response = self.client.get('/Person_practical/courses/')
+        self.assertContains(response, 'Testing course', count=1)
+
     def test_grants(self):
         response = self.client.get('/Person_test/grants/')
         self.assertContains(response, 'Testing grant', count=1)
