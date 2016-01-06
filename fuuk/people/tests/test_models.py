@@ -75,7 +75,7 @@ class TestAttachment(TestCase):
         self.addCleanup(storage_patcher.stop)
         storage_patcher.start()
 
-        self.course = Course.objects.create(code='COUR123')
+        self.course = Course.objects.create(code='COUR123', name='Course')
 
     def test_file_simple(self):
         # Test file is stored correctly

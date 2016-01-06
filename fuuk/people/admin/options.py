@@ -101,10 +101,10 @@ class AttachmentInlineAdmin(TabularInline):
     extra = 3
 
 
-class CourseAdmin(MultilingualModelAdmin):
+class CourseAdmin(TranslationAdmin):
     list_display = ('name', 'ls', 'zs', 'code')
     ordering = ('code', )
-    search_fields = ('code', 'translations__name')
+    search_fields = ['code'] + get_translation_fields('name')
 
     filter_horizontal = ('lectors', 'practical_lectors')
     formfield_overrides = {
