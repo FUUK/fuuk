@@ -221,7 +221,15 @@ class PersonGrants(PersonMixin, PersonListView):
 
     template_name = 'people/person/grants.html'
     model = Grant
-    slug_field = 'author__human__nickname'
+
+    def get_queryset(self):
+        '''
+        Lookup grants by author or coauthor.
+        '''
+        nick = self.kwargs['slug']
+        grants_author = Grant.objects.filter(author__human__nickname=nick).values_list('pk', flat=True)
+        grants_co_author = Grant.objects.filter(co_authors__human__nickname=nick).values_list('pk', flat=True)
+        return self.model.objects.filter(pk__in=grants_author | grants_co_author)
 
 
 class Papers(PersonMixin, ListView):

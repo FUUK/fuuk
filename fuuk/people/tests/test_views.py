@@ -417,6 +417,15 @@ class TestPersonalPages(TestCase):
         self.assertContains(response, 'Testing grant', count=1)
         self.assertNotContains(response, 'False grant')
 
+    def test_grants_coauthor(self):
+        # New testing person
+        H3 = Human.objects.create(nickname='Person3_test')
+        P3 = Person.objects.create(type='STAFF', first_name='Test', last_name='Coauthor', human=H3)
+        # Prepare a grant with P3 as coauthor
+        Grant.objects.get(pk=1).co_authors.add(P3)
+        response = self.client.get('/Person3_test/grants/')
+        self.assertContains(response, 'Testing grant', count=1)
+
 
 class TestEmptyDatabase(TestCase):
     def test_articles(self):
