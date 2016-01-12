@@ -8,7 +8,7 @@
             {% if publications %}
                     <a id="menu_item" class="title" href="{% url "person_articles" human.nickname %}"><span>{% trans "Articles" %}</span></a>
             {% endif %}
-            {% if students %}
+            {% if students or students_finished  %}
                     <a id="menu_item" class="title" href="{% url "person_students" human.nickname %}"><span>{% trans "Students" %}</span></a>
             {% endif %}
             {% if courses  or courses_practical %}

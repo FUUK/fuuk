@@ -371,6 +371,9 @@ class TestPersonalPages(TestCase):
         H4 = Human.objects.create(nickname='Student_false')
         Person.objects.create(type='BC', first_name='False', last_name='Student', human=H4,
                               advisor=P2)
+        H5 = Human.objects.create(nickname='Student_finished')
+        Person.objects.create(type='BC', first_name='Finished', last_name='Student', human=H5,
+                              advisor=P1, is_active=False)
         # Courses
         Course.objects.create(name='Testing course', code='AA001').lectors.add(P1)
         Course.objects.create(name='False course', code='FF001').lectors.add(P2)
@@ -405,6 +408,7 @@ class TestPersonalPages(TestCase):
     def test_students(self):
         response = self.client.get('/Person_test/students/')
         self.assertContains(response, 'Test Student', count=1)
+        self.assertContains(response, 'Finished Student', count=1)
         self.assertNotContains(response, 'False Student')
 
     def test_courses(self):
