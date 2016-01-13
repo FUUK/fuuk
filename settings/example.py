@@ -19,7 +19,6 @@ INSTALLED_APPS = ('modeltranslation',
                   'django.contrib.sessions',
                   'django.contrib.sites',
                   'django.contrib.staticfiles',
-                  'multilingual',
                   'email_obfuscator',
                   'fuuk.common',
                   'fuuk.people')
@@ -39,7 +38,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.contrib.messages.context_processors.messages',
-    'multilingual.context_processors.multilingual',
     'fuuk.people.context_processors.news_list',
 )
 
