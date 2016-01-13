@@ -28,7 +28,7 @@ class PlaceAdmin(TranslationAdmin):
     }
 
 
-class HumanAdmin(MultilingualModelAdmin):
+class HumanAdmin(TranslationAdmin):
     list_display = ('nickname', 'email', 'birth_date', 'birth_place')
     ordering = ('nickname',)
     search_fields = ('nickname', 'email')
