@@ -182,12 +182,12 @@ class GrantAdmin(MultilingualModelAdmin):
         )
 
 
-class ThesisAdmin(MultilingualModelAdmin):
+class ThesisAdmin(TranslationAdmin):
     list_display = ('type', 'title', 'author', 'advisor', 'year')
     list_filter = ('type', 'year', 'defended')
     ordering = ('-year', )
-    search_fields = ('translations__title', 'translations__keywords', 'author__first_name', 'author__last_name')
-
+    search_fields = ['author__first_name', 'author__last_name'] + get_translation_fields('title') + \
+        get_translation_fields('keywords')
     filter_horizontal = ('consultants',)
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},

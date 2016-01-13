@@ -141,8 +141,8 @@ class TestThesesList(TestCase):
         Thesis.objects.create(title='Wow I have finished my PhD really fast', type='PHD', year=2002, author=person,
                               defended=True)
         # Should not get counted
-        Thesis.objects.create(type='RNDR', year=2003, author=person)
-        Thesis.objects.create(type='PROF', year=2004, author=person)
+        Thesis.objects.create(title="Not so good", type='RNDR', year=2003, author=person)
+        Thesis.objects.create(title="Professor's thesis", type='PROF', year=2004, author=person)
 
     def test_basic(self):
         response = self.client.get('/people/theses/')
