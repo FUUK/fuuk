@@ -14,7 +14,7 @@ from django.test import SimpleTestCase, TestCase
 from mock import patch, sentinel
 
 from fuuk.people.models.article import doi_validator
-from fuuk.people.models.course import Attachment, Course, attachment_filename
+from fuuk.people.models.course import Attachment, attachment_filename, Course
 from fuuk.people.models.person import Person
 
 
