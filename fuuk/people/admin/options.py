@@ -3,7 +3,6 @@ from django.contrib.admin import ModelAdmin, TabularInline
 from django.db import models
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.utils import get_translation_fields
-from multilingual import MultilingualModelAdmin
 
 from fuuk.people.admin.fields import NullCharField
 from fuuk.people.admin.forms import ArticleArticleForm, ArticleBookForm, ArticleConferenceForm
@@ -141,17 +140,16 @@ class CourseAdmin(TranslationAdmin):
         )
 
 
-class AgencyAdmin(MultilingualModelAdmin):
+class AgencyAdmin(TranslationAdmin):
     list_display = ('shortcut', 'name')
-    search_fields = ('translations__shortcut', 'translations__name')
+    search_fields = get_translation_fields('name') + get_translation_fields('shortcut')
 
 
-class GrantAdmin(MultilingualModelAdmin):
+class GrantAdmin(TranslationAdmin):
     list_display = ('author', 'number', 'title', 'start', 'end')
     list_filter = ('agency', 'start')
     ordering = ('-end', )
-    search_fields = ('number', 'translations__title')
-
+    search_fields = ['number'] + get_translation_fields('title')
     filter_horizontal = ('co_authors',)
 
     def has_change_permission(self, request, obj=None):

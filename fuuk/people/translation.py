@@ -1,6 +1,6 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from fuuk.people.models import Course, Department, Human, News, Place, Thesis
+from fuuk.people.models import Agency, Course, Department, Grant, Human, News, Place, Thesis
 
 
 @register(News)
@@ -31,3 +31,13 @@ class HumanTranslationOptions(TranslationOptions):
 @register(Thesis)
 class ThesisTranslationOptions(TranslationOptions):
     fields = ('title', 'annotation', 'abstract', 'keywords')
+
+
+@register(Agency)
+class AgencyTranslationOptions(TranslationOptions):
+    fields = ('shortcut', 'name')
+
+
+@register(Grant)
+class GrantTranslationOptions(TranslationOptions):
+    fields = ('title', 'annotation')

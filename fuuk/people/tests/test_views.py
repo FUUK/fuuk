@@ -79,22 +79,23 @@ class TestGrantList(TestCase):
         # Prepare an author
         person = Person.objects.create(first_name="Test", last_name="Person")
         # Prepare agency
-        agency = Agency.objects.create(name="GA")
+        agency = Agency.objects.create(name="GA", shortcut="GA")
         # Running
         Grant.objects.create(title='Perpetum mobile', start="1990", end="2014", number="1",
-                             author=person, agency=agency)
+                             author=person, agency=agency, annotation="An annotation")
         Grant.objects.create(title='White holes', start="2000", end="2013", number="2",
-                             author=person, agency=agency)
+                             author=person, agency=agency, annotation="An annotation")
         # Finished
         Grant.objects.create(title='Black holes', start="1990", end="2012", number="3", author=person,
-                             agency=agency)
+                             agency=agency, annotation="An annotation")
         Grant.objects.create(title='Warp drive', start="2000", end="2011", number="4", author=person,
-                             agency=agency)
+                             agency=agency, annotation="An annotation")
         # Too old to be included
-        Grant.objects.create(title='Jumpgate', start="1990", end="2000", number="5", author=person, agency=agency)
+        Grant.objects.create(title='Jumpgate', start="1990", end="2000", number="5", author=person, agency=agency,
+                             annotation="An annotation")
         # Just started
         Grant.objects.create(title='Fancy new grant', start="2013", end="2020", number="6", author=person,
-                             agency=agency)
+                             agency=agency, annotation="An annotation")
 
     def test_basic(self):
         response = self.client.get('/people/grants/')
@@ -111,12 +112,12 @@ class TestGrantDetail(TestCase):
         # Prepare an author
         person = Person.objects.create(first_name="Test", last_name="Person")
         # Prepare agency
-        agency = Agency.objects.create(name="GA")
+        agency = Agency.objects.create(name="GA", shortcut="GA")
         # Prepare a grant with ids 1 and 2
         self.a = Grant.objects.create(start="2000", end="2001", agency=agency, number="1", author=person,
-                                      title="Testing grant")
+                                      title="Testing grant", annotation="An annotation")
         self.b = Grant.objects.create(start="2001", end="2005", agency=agency, number="2", author=person,
-                                      title="Second grant")
+                                      title="Second grant", annotation="An annotation")
 
     def test_basic(self):
         response = self.client.get(('/people/grants/%s/' % self.a.id))
@@ -380,12 +381,12 @@ class TestPersonalPages(TestCase):
         Course.objects.create(name='False course', code='FF001').lectors.add(P2)
         # Grants
         # Prepare agency
-        agency = Agency.objects.create(name="GA")
+        agency = Agency.objects.create(name="GA", shortcut="GA")
         # Prepare a grant with ids 1 and 2
         Grant.objects.create(start="2000", end="2001", agency=agency, number="1", author=P1,
-                             title="Testing grant")
+                             title="Testing grant", annotation="An annotation")
         Grant.objects.create(start="2001", end="2005", agency=agency, number="2", author=P2,
-                             title="False grant")
+                             title="False grant", annotation="An annotation")
 
     def test_detail(self):
         response = self.client.get('/Person_test/')
