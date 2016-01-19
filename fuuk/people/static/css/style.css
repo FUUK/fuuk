@@ -95,7 +95,8 @@ body
     min-height: 425px;
     padding: 1em;
     background: white;
-    text-align: justify
+    text-align: justify;
+    overflow: auto;
 }
 
 .stripe
