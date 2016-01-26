@@ -11,7 +11,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n>1 && n<5 ? 1 : 2;\n"
 
 msgid "'s thesis"
-msgstr "práce"
+msgstr " práce"
 
 msgid "1st author"
 msgstr "První autor"
