@@ -1,32 +1,33 @@
 # coding: utf-8
 from django.contrib.admin import ModelAdmin, TabularInline
 from django.db import models
-from multilingual import MultilingualModelAdmin
+from modeltranslation.admin import TranslationAdmin
+from modeltranslation.utils import get_translation_fields
 
 from fuuk.people.admin.fields import NullCharField
 from fuuk.people.admin.forms import ArticleArticleForm, ArticleBookForm, ArticleConferenceForm
 from fuuk.people.models import Attachment, Author
 
 
-class DepartmentAdmin(MultilingualModelAdmin):
+class DepartmentAdmin(TranslationAdmin):
     list_display = ('name', 'fax')
-    search_fields = ('translations__name', )
+    search_fields = get_translation_fields('name')
 
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
 
 
-class PlaceAdmin(MultilingualModelAdmin):
+class PlaceAdmin(TranslationAdmin):
     list_display = ('name', 'phone', 'department')
-    search_fields = ('translations__name', )
+    search_fields = get_translation_fields('name')
 
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
     }
 
 
-class HumanAdmin(MultilingualModelAdmin):
+class HumanAdmin(TranslationAdmin):
     list_display = ('nickname', 'email', 'birth_date', 'birth_place')
     ordering = ('nickname',)
     search_fields = ('nickname', 'email')
@@ -99,10 +100,10 @@ class AttachmentInlineAdmin(TabularInline):
     extra = 3
 
 
-class CourseAdmin(MultilingualModelAdmin):
+class CourseAdmin(TranslationAdmin):
     list_display = ('name', 'ls', 'zs', 'code')
     ordering = ('code', )
-    search_fields = ('code', 'translations__name')
+    search_fields = ['code'] + get_translation_fields('name')
 
     filter_horizontal = ('lectors', 'practical_lectors')
     formfield_overrides = {
@@ -139,17 +140,16 @@ class CourseAdmin(MultilingualModelAdmin):
         )
 
 
-class AgencyAdmin(MultilingualModelAdmin):
+class AgencyAdmin(TranslationAdmin):
     list_display = ('shortcut', 'name')
-    search_fields = ('translations__shortcut', 'translations__name')
+    search_fields = get_translation_fields('name') + get_translation_fields('shortcut')
 
 
-class GrantAdmin(MultilingualModelAdmin):
+class GrantAdmin(TranslationAdmin):
     list_display = ('author', 'number', 'title', 'start', 'end')
     list_filter = ('agency', 'start')
     ordering = ('-end', )
-    search_fields = ('number', 'translations__title')
-
+    search_fields = ['number'] + get_translation_fields('title')
     filter_horizontal = ('co_authors',)
 
     def has_change_permission(self, request, obj=None):
@@ -180,12 +180,12 @@ class GrantAdmin(MultilingualModelAdmin):
         )
 
 
-class ThesisAdmin(MultilingualModelAdmin):
+class ThesisAdmin(TranslationAdmin):
     list_display = ('type', 'title', 'author', 'advisor', 'year')
     list_filter = ('type', 'year', 'defended')
     ordering = ('-year', )
-    search_fields = ('translations__title', 'translations__keywords', 'author__first_name', 'author__last_name')
-
+    search_fields = ['author__first_name', 'author__last_name'] + get_translation_fields('title') + \
+        get_translation_fields('keywords')
     filter_horizontal = ('consultants',)
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},
@@ -218,10 +218,10 @@ class ThesisAdmin(MultilingualModelAdmin):
         )
 
 
-class NewsAdmin(MultilingualModelAdmin):
+class NewsAdmin(TranslationAdmin):
     list_display = ('title', 'start', 'end')
     ordering = ('-end', )
-    search_fields = ('translations__title', 'hyperlink')
+    search_fields = ['hyperlink'] + get_translation_fields('title')
 
     formfield_overrides = {
         models.CharField: {'form_class': NullCharField},

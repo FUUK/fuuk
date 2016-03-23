@@ -4,7 +4,6 @@ from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from multilingual import MultilingualModel
 
 from .place import Place
 
@@ -21,7 +20,7 @@ PERSON_TYPES = (
 )
 
 
-class Human(MultilingualModel):
+class Human(models.Model):
     """
     Collects persons for single human
     Used for history
@@ -46,17 +45,15 @@ class Human(MultilingualModel):
         help_text='Fill in form of www.link.com/subpage'
     )
     cv_file = models.FileField(max_length=200, blank=True, upload_to='cv')
-
-    class Translation:
-        subtitle = models.CharField(max_length=200, blank=True, null=True)
-        cv = models.TextField(blank=True, null=True)
-        interests = models.TextField(
-            blank=True,
-            null=True,
-            help_text=_('Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &amp;#8209; '
-                        'for endash.')
-        )
-        stays = models.TextField(blank=True, null=True)
+    subtitle = models.CharField(max_length=200, blank=True, null=True)
+    cv = models.TextField(blank=True, null=True)
+    interests = models.TextField(
+        blank=True,
+        null=True,
+        help_text=_('Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &amp;#8209; '
+                    'for endash.')
+    )
+    stays = models.TextField(blank=True, null=True)
 
     class Meta:
         app_label = 'people'

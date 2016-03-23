@@ -4,9 +4,9 @@
 <a href="http://www.cuni.cz/" target="blank">{% trans "Charles University in Prague" %}</a> &gt;
 <a href="http://www.mff.cuni.cz/" target="blank">{% trans "Faculty of Mathematics and Physics" %}</a> &gt;
 <a href="http://www.mff.cuni.cz/fakulta/struktura/fuuk.htm" target="blank">{% trans "Institute of Physics" %}</a>
-<h1>{{ flatpage.title_any }}</h1>
+<h1>{{ flatpage.title }}</h1>
 <p>
-{{ flatpage.content_any|textile }}
+{{ flatpage.content|textile }}
 {% if news_list %}
     <div id="akt-new">
         <h1>{% trans "News" %}:</h1>

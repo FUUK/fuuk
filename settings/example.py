@@ -9,16 +9,16 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
-INSTALLED_APPS = ('django.contrib.admin',
+INSTALLED_APPS = ('modeltranslation',
+                  'django.contrib.admin',
                   'django.contrib.auth',
                   'django.contrib.contenttypes',
+                  'django.contrib.flatpages',
                   'django.contrib.humanize',
                   'django.contrib.messages',
                   'django.contrib.sessions',
                   'django.contrib.sites',
                   'django.contrib.staticfiles',
-                  'multilingual',
-                  'multilingual.mlflatpages',
                   'email_obfuscator',
                   'fuuk.common',
                   'fuuk.people')
@@ -30,7 +30,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'multilingual.mlflatpages.middleware.FlatpageFallbackMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -38,7 +38,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.contrib.messages.context_processors.messages',
-    'multilingual.context_processors.multilingual',
     'fuuk.people.context_processors.news_list',
 )
 
@@ -53,7 +52,7 @@ DATABASES = {
     }
 }
 
-LANGUAGE_CODE = 'cs'
+LANGUAGE_CODE = 'en'
 LANGUAGES = (('en', u'English'),
              ('cs', u'Česky'))
 TIME_ZONE = 'Europe/Prague'
