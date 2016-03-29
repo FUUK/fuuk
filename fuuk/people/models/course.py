@@ -1,12 +1,10 @@
 """
 Models which represents courses.
 """
-import os.path
-
 from django.core.validators import RegexValidator
 from django.db import models
-from django.utils.encoding import force_text
-from django.utils.text import slugify
+
+from fuuk.people.utils import sanitize_filename
 
 from .person import Person
 
@@ -32,9 +30,7 @@ class Course(models.Model):
 
 
 def attachment_filename(instance, filename):
-    base, ext = os.path.splitext(force_text(filename))
-    basename = slugify(base) + ext
-    return 'files/courses/' + basename
+    return sanitize_filename(filename, 'files/courses')
 
 
 class Attachment(models.Model):

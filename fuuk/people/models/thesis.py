@@ -3,6 +3,8 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from fuuk.people.utils import sanitize_filename
+
 from .person import Person
 
 THESIS_TYPES = (
@@ -15,6 +17,10 @@ THESIS_TYPES = (
 )
 
 
+def thesis_filename(instance, filename):
+    return sanitize_filename(filename, 'thesis')
+
+
 class Thesis(models.Model):
     type = models.CharField(max_length=5, choices=THESIS_TYPES)
     year = models.SmallIntegerField(validators=[MinValueValidator(1990)],
@@ -23,7 +29,7 @@ class Thesis(models.Model):
     advisor = models.ForeignKey(Person, related_name='thesis_lead', blank=True, null=True)
     consultants = models.ManyToManyField(Person, related_name='thesis_consulted', blank=True, null=True)
     defended = models.BooleanField(default=False)
-    thesis_file = models.FileField(max_length=200, blank=True, upload_to='thesis')
+    thesis_file = models.FileField(max_length=200, blank=True, upload_to=thesis_filename)
 
     title = models.CharField(max_length=200)
     annotation = models.TextField(blank=True, null=True)
