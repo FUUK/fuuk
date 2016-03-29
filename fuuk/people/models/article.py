@@ -169,7 +169,7 @@ class Author(models.Model):
 
 class ArticleBook(Article):
     class Meta:
-        app_label = 'publications'
+        app_label = 'people'
         proxy = True
         verbose_name = _('Book')
         verbose_name_plural = _('Books')
@@ -177,7 +177,7 @@ class ArticleBook(Article):
 
 class ArticleArticle(Article):
     class Meta:
-        app_label = 'publications'
+        app_label = 'people'
         proxy = True
         verbose_name = _('Article')
         verbose_name_plural = _('Articles')
@@ -185,7 +185,7 @@ class ArticleArticle(Article):
 
 class ArticleConference(Article):
     class Meta:
-        app_label = 'publications'
+        app_label = 'people'
         proxy = True
         verbose_name = _('Conference paper')
         verbose_name_plural = _('Conference paper')
