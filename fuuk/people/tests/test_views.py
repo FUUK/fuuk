@@ -377,13 +377,14 @@ class TestPersonalPages(TestCase):
         Person.objects.create(type='BC', first_name='Finished', last_name='Student', human=H5,
                               advisor=P1, is_active=False)
         # Courses
-        Course.objects.create(name='Testing course', code='AA001').lectors.add(P1)
+        self.course1 = Course.objects.create(name='Testing course', code='AA001')
+        self.course1.lectors.add(P1)
         Course.objects.create(name='False course', code='FF001').lectors.add(P2)
         # Grants
         # Prepare agency
         agency = Agency.objects.create(name="GA", shortcut="GA")
         # Prepare a grant with ids 1 and 2
-        Grant.objects.create(start="2000", end="2001", agency=agency, number="1", author=P1,
+        self.grant1 = Grant.objects.create(start="2000", end="2001", agency=agency, number="1", author=P1,
                              title="Testing grant", annotation="An annotation")
         Grant.objects.create(start="2001", end="2005", agency=agency, number="2", author=P2,
                              title="False grant", annotation="An annotation")
@@ -423,7 +424,7 @@ class TestPersonalPages(TestCase):
         H3 = Human.objects.create(nickname='Person_practical')
         P3 = Person.objects.create(type='STAFF', first_name='Test', last_name='Practical', human=H3)
         # Prepare a course with P3 as practical
-        Course.objects.get(pk=1).practical_lectors.add(P3)
+        self.course1.practical_lectors.add(P3)
         response = self.client.get('/Person_practical/courses/')
         self.assertContains(response, 'Testing course', count=1)
 
@@ -437,7 +438,7 @@ class TestPersonalPages(TestCase):
         H3 = Human.objects.create(nickname='Person3_test')
         P3 = Person.objects.create(type='STAFF', first_name='Test', last_name='Coauthor', human=H3)
         # Prepare a grant with P3 as coauthor
-        Grant.objects.get(pk=1).co_authors.add(P3)
+        self.grant1.co_authors.add(P3)
         response = self.client.get('/Person3_test/grants/')
         self.assertContains(response, 'Testing grant', count=1)
 
