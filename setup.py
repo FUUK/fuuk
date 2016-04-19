@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
 import subprocess
 import sys
-
 from distutils import log
 from distutils.command.build_py import build_py
-from distutils.core import setup
 from distutils.dep_util import newer
 
+from setuptools import find_packages, setup
+
 from fuuk import __version__
-
-
-PACKAGES = ('fuuk', 'fuuk.common', 'fuuk.common.templatetags', 'fuuk.people', 'fuuk.people.admin',
-            'fuuk.people.management', 'fuuk.people.management.commands', 'fuuk.people.models',
-            'fuuk.people.templatetags')
 
 PACKAGE_DATA = {'fuuk': ['locale/cs/LC_MESSAGES/*', 'templates/*.html', 'templates/admin/*',
                          'templates/flatpages/*.html', 'templates/magnet/*.html',
@@ -48,12 +43,12 @@ class i18n_build_py(build_py):
 
 
 def main():
-    setup(name='Web FUUK',
+    setup(name='fuuk',
           version=__version__,
           author='Vlastimil Zíma',
           author_email='vlastimil.zima@gmail.com',
           description='Web of Institute of Physics at Charles University',
-          packages=PACKAGES,
+          packages=find_packages(exclude=('settings', )),
           package_data=PACKAGE_DATA,
           cmdclass={'build_py': i18n_build_py})
 
