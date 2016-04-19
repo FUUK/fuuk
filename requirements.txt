@@ -1,0 +1,5 @@
+django >=1.6,<1.7
+django-modeltranslation
+textile
+django-email-obfuscator
+Pillow

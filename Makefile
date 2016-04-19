@@ -1,8 +1,9 @@
 DJANGO_ADMIN = django-admin
 
 
+# Tests for development
 test:
-	DJANGO_SETTINGS_MODULE='settings.settings' python -W all fuuk/manage.py test fuuk
+	PYTHONPATH="settings::${PYTHONPATH}" DJANGO_SETTINGS_MODULE='test_settings' python -W all fuuk/manage.py test fuuk
 
 pylint:
 	-pylint fuuk --reports=no
@@ -21,3 +22,7 @@ i18n:
 
 check-isort:
 	isort --check-only --diff --recursive fuuk
+
+# Tests in travis - only adds 'settings' to PYTHONPATH and runs tests on installed `fuuk`
+check-test:
+	PYTHONPATH="settings" DJANGO_SETTINGS_MODULE='test_settings' python -W all fuuk/manage.py test fuuk
