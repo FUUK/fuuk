@@ -41,7 +41,8 @@ class HumanAdmin(TranslationAdmin):
             return self.readonly_fields
 
         fields = list(self.readonly_fields)
-        fields.extend(['user', 'nickname', 'subtitle', 'birth_place', 'birth_date', 'email'])
+        fields.extend(['user', 'nickname', 'birth_place', 'birth_date', 'email'])
+        fields.extend(get_translation_fields('subtitle'))
         return tuple(fields)
 
     def has_change_permission(self, request, obj=None):
