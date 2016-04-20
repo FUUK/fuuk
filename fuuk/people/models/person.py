@@ -5,6 +5,8 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from fuuk.people.utils import sanitize_filename
+
 from .place import Place
 
 nickname_validator = RegexValidator(r'^\w+$')
@@ -20,6 +22,14 @@ PERSON_TYPES = (
 )
 
 
+def image_filename(instance, filename):
+    return sanitize_filename(filename, 'img/person')
+
+
+def cv_filename(instance, filename):
+    return sanitize_filename(filename, 'cv')
+
+
 class Human(models.Model):
     """
     Collects persons for single human
@@ -33,7 +43,7 @@ class Human(models.Model):
     birth_date = models.DateField(blank=True, null=True)
     birth_place = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=200, blank=True, null=True, unique=True)
-    photo = models.ImageField(max_length=200, blank=True, null=True, upload_to='img/person')
+    photo = models.ImageField(max_length=200, blank=True, null=True, upload_to=image_filename)
     display_posters = models.BooleanField(default=True, help_text=_('Uncheck to hide posters on your personal page.'))
     display_talks = models.BooleanField(
         default=True,
@@ -44,7 +54,7 @@ class Human(models.Model):
         blank=True, null=True,
         help_text='Fill in form of www.link.com/subpage'
     )
-    cv_file = models.FileField(max_length=200, blank=True, upload_to='cv')
+    cv_file = models.FileField(max_length=200, blank=True, upload_to=cv_filename)
     subtitle = models.CharField(max_length=200, blank=True, null=True)
     cv = models.TextField(blank=True, null=True)
     interests = models.TextField(

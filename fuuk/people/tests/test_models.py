@@ -15,7 +15,7 @@ from mock import patch, sentinel
 
 from fuuk.people.models.article import doi_validator
 from fuuk.people.models.course import Attachment, attachment_filename, Course
-from fuuk.people.models.person import Person
+from fuuk.people.models.person import cv_filename, image_filename, Person
 
 
 class TestValidators(unittest.TestCase):
@@ -56,11 +56,7 @@ class TestAttachmentFilename(SimpleTestCase):
     def test_attachment_filename(self):
         # Test `attachment_filename` function
         self.assertEqual(attachment_filename(sentinel.instance, 'foo.dat'), 'files/courses/foo.dat')
-        self.assertEqual(attachment_filename(sentinel.instance, 'foo.bar.dat'), 'files/courses/foobar.dat')
         self.assertEqual(attachment_filename(sentinel.instance, 'foo bar.dat'), 'files/courses/foo-bar.dat')
-        self.assertEqual(attachment_filename(sentinel.instance, 'ěščřž.dat'), 'files/courses/escrz.dat')
-        self.assertEqual(attachment_filename(sentinel.instance, u'ěščřž.dat'), 'files/courses/escrz.dat')
-        self.assertEqual(attachment_filename(sentinel.instance, '.dat'), 'files/courses/dat')
 
 
 class TestAttachment(TestCase):
@@ -98,3 +94,22 @@ class TestAttachment(TestCase):
         self.assertEqual(attachment.file.read(), b'content')
         self.assertTrue(os.path.isfile(os.path.join(self.tmp_dir, 'files/courses/sc-rze.txt')))
         attachment.file.close()
+
+
+class TestCVFilename(SimpleTestCase):
+    """
+    Test `cv_filename` function.
+    """
+    def test_cv_filename(self):
+        # Test `cv_filename` function
+        self.assertEqual(cv_filename(sentinel.instance, 'foo.dat'), 'cv/foo.dat')
+        self.assertEqual(cv_filename(sentinel.instance, 'foo bar.dat'), 'cv/foo-bar.dat')
+
+
+class TestImageFilename(TestCase):
+    """
+    Test `image_filename` function.
+    """
+    def test_image_filename(self):
+        self.assertEqual(image_filename(sentinel.instance, 'foo.dat'), 'img/person/foo.dat')
+        self.assertEqual(image_filename(sentinel.instance, 'foo bar.dat'), 'img/person/foo-bar.dat')
