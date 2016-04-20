@@ -1,5 +1,7 @@
 DJANGO_ADMIN = django-admin
 
+# All targets are phony
+.PHONY: test pylint pepify isort i18n check-isort check-flake8 check-test
 
 # Tests for development
 test:
@@ -8,10 +10,7 @@ test:
 pylint:
 	-pylint fuuk --reports=no
 
-flake8:
-	-flake8 fuuk
-
-pepify: pylint flake8
+pepify: pylint check-flake8
 
 isort:
 	isort --recursive fuuk
@@ -22,6 +21,9 @@ i18n:
 
 check-isort:
 	isort --check-only --diff --recursive fuuk
+
+check-flake8:
+	flake8 --format=pylint fuuk
 
 # Tests in travis - only adds 'settings' to PYTHONPATH and runs tests on installed `fuuk`
 check-test:
