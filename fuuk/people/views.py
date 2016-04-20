@@ -134,6 +134,8 @@ class PersonMixin(object):
             .values_list('pk', flat=True)
         grants_finished = Grant.objects.filter(pk__in=grants_finished_author | grants_finished_co_author) \
             .order_by('-end', '-pk')
+        students_finished = Person.objects.filter(advisor__human=human, is_active=False) \
+            .order_by('last_name', 'first_name')
         context.update({
             'human': human,
             'person': human.person_set.order_by('-is_active')[0],
@@ -142,8 +144,7 @@ class PersonMixin(object):
             'courses': Course.objects.filter(lectors__human=human).order_by('pk'),
             'courses_practical': Course.objects.filter(practical_lectors__human=human).order_by('pk'),
             'students': Person.objects.filter(advisor__human=human, is_active=True).order_by('last_name', 'first_name'),
-            'students_finished': Person.objects.filter(advisor__human=human, is_active=False) \
-                .order_by('last_name', 'first_name'),
+            'students_finished': students_finished,
             'grants': Grant.objects.filter(pk__in=grants_author | grants_co_author).order_by('-end', '-pk'),
             'grants_finished': grants_finished,
         })

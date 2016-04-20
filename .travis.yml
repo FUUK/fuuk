@@ -5,8 +5,10 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install isort
+  - pip install flake8
   - pip install -e .
   - pip list
 script:
   - make check-isort
+  - make check-flake8
   - make check-test

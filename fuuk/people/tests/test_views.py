@@ -385,7 +385,7 @@ class TestPersonalPages(TestCase):
         agency = Agency.objects.create(name="GA", shortcut="GA")
         # Prepare a grant with ids 1 and 2
         self.grant1 = Grant.objects.create(start="2000", end="2001", agency=agency, number="1", author=P1,
-                             title="Testing grant", annotation="An annotation")
+                                           title="Testing grant", annotation="An annotation")
         Grant.objects.create(start="2001", end="2005", agency=agency, number="2", author=P2,
                              title="False grant", annotation="An annotation")
 
