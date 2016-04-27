@@ -1,7 +1,5 @@
-DJANGO_ADMIN = django-admin
-
 # All targets are phony
-.PHONY: test pylint pepify isort i18n check-isort check-flake8 check-test
+.PHONY: test pylint pepify isort i18n check-isort check-flake8 check-test check-migrations
 
 # Tests for development
 test:
@@ -28,3 +26,6 @@ check-flake8:
 # Tests in travis - only adds 'settings' to PYTHONPATH and runs tests on installed `fuuk`
 check-test:
 	PYTHONPATH="settings" DJANGO_SETTINGS_MODULE='test_settings' python -W all fuuk/manage.py test fuuk
+
+check-migrations:
+	test "$$(PYTHONPATH='settings::${PYTHONPATH}' DJANGO_SETTINGS_MODULE='test_settings' python fuuk/manage.py --version)" = "1.6.11" || test "$$(PYTHONPATH='settings::${PYTHONPATH}' DJANGO_SETTINGS_MODULE='test_settings' python fuuk/manage.py makemigrations --noinput --dry-run 2> /dev/null)" = "No changes detected"
