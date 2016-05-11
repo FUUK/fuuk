@@ -2,8 +2,13 @@ language: python
 sudo: false
 python:
   - "2.7"
+env:
+  - DJANGO_VERSION=1.6.11
+  - DJANGO_VERSION=1.7.10
 install:
   - pip install -r requirements.txt
+  # Force specific version of Django
+  - pip install -q Django==$DJANGO_VERSION
   - pip install isort
   - pip install flake8
   - pip install -e .

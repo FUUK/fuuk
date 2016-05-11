@@ -32,6 +32,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
+MIGRATION_MODULES = {'flatpages': 'fuuk.migrations.flatpages'}
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
@@ -66,4 +67,4 @@ MEDIA_URL = '/media/'
 
 #XXX: Remove these
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'fuuk/locale'), )
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'fuuk/templates'), )
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'fuuk/templates'), os.path.join(BASE_DIR, 'fuuk/templates/ofb'))
