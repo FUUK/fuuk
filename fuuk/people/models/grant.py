@@ -24,7 +24,7 @@ class Grant(models.Model):
     number = models.CharField(max_length=20)
     start = models.SmallIntegerField(validators=[MinValueValidator(1990), MaxValueValidator(date.today().year + 1)])
     end = models.SmallIntegerField(validators=[MinValueValidator(1990), MaxValueValidator(date.today().year + 10)])
-    co_authors = models.ManyToManyField(Person, related_name='grant_related', blank=True, null=True,
+    co_authors = models.ManyToManyField(Person, related_name='grant_related', blank=True,
                                         verbose_name=_('Co-applicant'))
     agency = models.ForeignKey(Agency, help_text=_('Contact administrators for different Grant Agency.'))
 
