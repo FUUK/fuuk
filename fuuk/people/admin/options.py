@@ -104,6 +104,7 @@ class AttachmentInlineAdmin(TabularInline):
 class CourseAdmin(TranslationAdmin):
     list_display = ('name', 'ls', 'zs', 'code')
     ordering = ('code', )
+    fields = ('code', 'name', 'lectors', 'practical_lectors', 'ls', 'zs', 'annotation', 'note')
     search_fields = ['code'] + get_translation_fields('name')
 
     filter_horizontal = ('lectors', 'practical_lectors')
