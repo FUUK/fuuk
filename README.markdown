@@ -6,5 +6,4 @@ Web of Institute of Physics at Charles University
   * django 1.7, 1.8
   * django-modeltranslation
   * python-markdown
-  * python-textile
   * django-email-obfuscator

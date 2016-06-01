@@ -1,6 +1,5 @@
 django >=1.7,<1.9
 django-modeltranslation
-textile
 Markdown
 django-email-obfuscator
 Pillow
