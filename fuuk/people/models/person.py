@@ -5,6 +5,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from fuuk.common.forms import get_markdown_help_text
 from fuuk.people.utils import sanitize_filename
 
 from .place import Place
@@ -56,14 +57,9 @@ class Human(models.Model):
     )
     cv_file = models.FileField(max_length=200, blank=True, upload_to=cv_filename)
     subtitle = models.CharField(max_length=200, blank=True, null=True)
-    cv = models.TextField(blank=True, null=True)
-    interests = models.TextField(
-        blank=True,
-        null=True,
-        help_text=_('Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and &amp;#8209; '
-                    'for endash.')
-    )
-    stays = models.TextField(blank=True, null=True)
+    cv = models.TextField(blank=True, null=True, help_text=get_markdown_help_text)
+    interests = models.TextField(blank=True, null=True, help_text=get_markdown_help_text)
+    stays = models.TextField(blank=True, null=True, help_text=get_markdown_help_text)
 
     class Meta:
         app_label = 'people'

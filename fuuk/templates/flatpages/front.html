@@ -6,7 +6,7 @@
 <a href="http://www.mff.cuni.cz/fakulta/struktura/fuuk.htm" target="blank">{% trans "Institute of Physics" %}</a>
 <h1>{{ flatpage.title }}</h1>
 <p>
-{{ flatpage.content|textile }}
+{{ flatpage.content|markdown }}
 {% if news_list %}
     <div id="akt-new">
         <h1>{% trans "News" %}:</h1>
