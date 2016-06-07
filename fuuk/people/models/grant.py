@@ -5,6 +5,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from fuuk.common.forms import get_markdown_help_text
+
 from .person import Person
 
 
@@ -29,7 +31,7 @@ class Grant(models.Model):
     agency = models.ForeignKey(Agency, help_text=_('Contact administrators for different Grant Agency.'))
 
     title = models.CharField(max_length=200)
-    annotation = models.TextField()
+    annotation = models.TextField(help_text=get_markdown_help_text)
 
     class Meta:
         app_label = 'people'

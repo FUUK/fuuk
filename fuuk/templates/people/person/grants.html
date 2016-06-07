@@ -22,7 +22,7 @@
                     <br />
                     <a href="#" onclick="toggle_visibility('grant_details_{{ grant.id }}');">{% trans "Grant annotation" %}</a>
                         <div id="grant_details_{{ grant.id }}" style='display:block'>
-                            {{ grant.annotation|textile }}
+                            {{ grant.annotation|markdown }}
                         </div>
                         <script type="text/javascript">
                             <!--script

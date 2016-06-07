@@ -3,12 +3,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fuuk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-05 15:22+0100\n"
+"POT-Creation-Date: 2016-06-01 12:58+0200\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n>1 && n<5 ? 1 : 2;\n"
+
+#, python-format
+msgid "%sThis field uses Markdown language.%s"
+msgstr "%sToto pole podporuje značkovací jazyk Markdown.%s"
 
 msgid "'s thesis"
 msgstr " práce"
@@ -527,11 +531,6 @@ msgid "Uncheck to hide posters on your personal page."
 msgstr ""
 
 msgid "Uncheck to hide talks not presented by you on your personal page."
-msgstr ""
-
-msgid ""
-"Use Textile (http://en.wikipedia.org/wiki/Textile_(markup_language)) and "
-"&amp;#8209; for endash."
 msgstr ""
 
 msgid "Vice-head of the project"

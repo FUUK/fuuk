@@ -1,7 +1,7 @@
 """
 Filters which transform plain text to HTML.
 """
-import textile as _textile
+import markdown as _markdown
 from django import template
 from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
@@ -9,10 +9,10 @@ from django.utils.safestring import mark_safe
 register = template.Library()
 
 
-@register.filter(is_safe=True)
+@register.filter
 @stringfilter
-def textile(value):
+def markdown(value):
     """
-    Returns HTML create by Textile markup language.
+    Returns HTML created by markdown language.
     """
-    return mark_safe(_textile.textile(value))
+    return mark_safe(_markdown.markdown(value))

@@ -38,17 +38,17 @@
     <div class="cv">
         {% if human.interests %}
             <p class="strong" align="left">{% trans "Fields of interest and research experience" %}:</p>
-            {{ human.interests|textile }}
+            {{ human.interests|markdown }}
             <hr />
         {% endif %}
         {% if human.stays %}
             <p class="strong" align="left">{% trans "Long term stays" %}:</p>
-            {{ human.stays|textile }}
+            {{ human.stays|markdown }}
             <hr />
         {% endif %}
         {% if human.cv %}
             <p class="strong" align="left">{% trans "Curiculum vitae" %}:</p>
-            {{ human.cv|textile }}
+            {{ human.cv|markdown }}
             <hr />
         {% endif %}
         {% if human.cv_file %}
