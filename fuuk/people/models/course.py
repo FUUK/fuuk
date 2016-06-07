@@ -14,7 +14,7 @@ hours_validator = RegexValidator(r'^[0-9]/[0-9] (Z|Zk|KZ|Zk/Z)$')
 
 class Course(models.Model):
     lectors = models.ManyToManyField(Person)
-    practical_lectors = models.ManyToManyField(Person, blank=True, null=True, related_name='practical_course_set')
+    practical_lectors = models.ManyToManyField(Person, blank=True, related_name='practical_course_set')
     code = models.CharField(max_length=10, unique=True, validators=[code_validator])
     ls = models.CharField(max_length=8, blank=True, null=True, validators=[hours_validator])
     zs = models.CharField(max_length=8, blank=True, null=True, validators=[hours_validator])

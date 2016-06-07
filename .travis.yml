@@ -4,6 +4,7 @@ python:
   - "2.7"
 env:
   - DJANGO_VERSION=1.7.11
+  - DJANGO_VERSION=1.8.13
 install:
   - pip install -r requirements.txt
   # Force specific version of Django

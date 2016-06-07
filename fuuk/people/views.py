@@ -58,7 +58,16 @@ class ThesisList(ListView):
             queryset = queryset.filter(year=int(self.year)).order_by('-type')
         if self.type:
             queryset = queryset.filter(type=self.type.upper()).order_by('-year')
-        self.types = Thesis.objects.filter(defended=True).values_list('type', flat=True).annotate().order_by('-type')
+
+        # annotate on values_list with flat=True does not work properly in Django 1.8 due to a bug in modeltransaltion
+        # self.types = Thesis.objects.filter(defended=True).values_list('type', flat=True).annotate(Count('type'))
+        #                    .order_by('-type')
+        # self.years = Thesis.objects.filter(defended=True).values_list('year', flat=True).annotate(Count('year'))
+        #                    .order_by('-year')
+        self.types = [i[0] for i in Thesis.objects.filter(defended=True).values_list('type').annotate(Count('type'))
+                                          .order_by('-type')]
+        self.years = [i[0] for i in Thesis.objects.filter(defended=True).values_list('year').annotate(Count('year'))
+                                          .order_by('-year')]
 
         # we got filter but no results
         if self.year or self.type:
@@ -71,8 +80,7 @@ class ThesisList(ListView):
     def get_context_data(self, **kwargs):
         context = super(ThesisList, self).get_context_data(**kwargs)
         context['types'] = [(type, Thesis(type=type).get_type_display()) for type in self.types]
-        years = Thesis.objects.filter(defended=True).values_list('year', flat=True).annotate().order_by('-year')
-        context['years'] = years
+        context['years'] = self.years
         context['year'] = self.year
         context['type'] = self.type
         return context

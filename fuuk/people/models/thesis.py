@@ -27,7 +27,7 @@ class Thesis(models.Model):
                                     help_text=_('Year of thesis start or year of defence if already defended.'))
     author = models.ForeignKey(Person)
     advisor = models.ForeignKey(Person, related_name='thesis_lead', blank=True, null=True)
-    consultants = models.ManyToManyField(Person, related_name='thesis_consulted', blank=True, null=True)
+    consultants = models.ManyToManyField(Person, related_name='thesis_consulted', blank=True)
     defended = models.BooleanField(default=False)
     thesis_file = models.FileField(max_length=200, blank=True, upload_to=thesis_filename)
 

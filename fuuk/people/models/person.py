@@ -79,7 +79,7 @@ class Person(models.Model):
     type = models.CharField(max_length=10, blank=True, null=True, choices=PERSON_TYPES)
     advisor = models.ForeignKey('Person', related_name='student', blank=True, null=True)
     place = models.ManyToManyField(
-        Place, blank=True, null=True,
+        Place, blank=True,
         help_text=_('Only used for grant (co-)applicants or staff.')
     )
     # data fields
