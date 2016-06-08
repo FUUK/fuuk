@@ -10,17 +10,17 @@
         {% for student in students %}
             <li>
                 <p align="justify"><a href="{% url "person_detail" student.human.nickname %}" class="strong">{{ student.full_name }}</a><br />
-                    {% if student.type = 'BC' %}
+                    {% if student.type == 'BC' %}
                         {{ student.class_year|ordinal }} {% trans "year of Bc. study" %}<br />
                     {% endif %}
-                    {% if student.type = 'MGR' %}
+                    {% if student.type == 'MGR' %}
                         {{ student.class_year|ordinal }} {% trans "year of Mgr. study" %}<br />
                     {% endif %}
-                    {% if student.type = 'PHD' %}
+                    {% if student.type == 'PHD' %}
                         {{ student.class_year|ordinal }} {% trans "year of PhD. study" %}<br />
                     {% endif %}
                     {% for thesis in student.thesis_set.all %}
-                        {% if thesis.type = student.type %}
+                        {% if thesis.type == student.type %}
                             <strong>{{ thesis.get_type_display }} {% trans "thesis" %}:</strong> {{ thesis.title }}
                         {% endif %}
                     {% endfor %}
