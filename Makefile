@@ -28,4 +28,4 @@ check-test:
 	PYTHONPATH="settings" DJANGO_SETTINGS_MODULE='test_settings' python -W all fuuk/manage.py test fuuk
 
 check-migrations:
-	test "$$(PYTHONPATH='settings::${PYTHONPATH}' DJANGO_SETTINGS_MODULE='test_settings' python fuuk/manage.py makemigrations --noinput --dry-run 2> /dev/null)" = "No changes detected"
+	! PYTHONPATH='settings::${PYTHONPATH}' DJANGO_SETTINGS_MODULE='test_settings' python fuuk/manage.py makemigrations --noinput --dry-run --exit
