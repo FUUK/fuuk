@@ -5,7 +5,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = None
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -28,19 +27,31 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 MIGRATION_MODULES = {'flatpages': 'fuuk.migrations.flatpages'}
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.contrib.messages.context_processors.messages',
-    'fuuk.people.context_processors.news_list',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # TODO: Remove the specific directories
+        'DIRS': (os.path.join(BASE_DIR, 'fuuk/templates'), os.path.join(BASE_DIR, 'fuuk/templates/oppo')),
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': (
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.contrib.messages.context_processors.messages',
+                'fuuk.people.context_processors.news_list',
+            ),
+            'debug': DEBUG,
+        },
+    },
+]
 
 ROOT_URLCONF = 'fuuk.urls'
 
@@ -67,4 +78,3 @@ MEDIA_URL = '/media/'
 
 #XXX: Remove these
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'fuuk/locale'), )
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'fuuk/templates'), os.path.join(BASE_DIR, 'fuuk/templates/ofb'))
