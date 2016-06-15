@@ -390,7 +390,7 @@ class TestPersonalPages(TestCase):
                              title="False grant", annotation="An annotation")
 
     def test_detail(self):
-        response = self.client.get('/Person_test/')
+        response = self.client.get('/people/person/Person_test/')
         self.assertContains(response, 'Test Person', count=1)
         self.assertContains(response, 'Ongoing PHD', count=1)
         self.assertContains(response, 'Finished MGR', count=1)
@@ -398,7 +398,7 @@ class TestPersonalPages(TestCase):
         self.assertQuerysetEqual(response.context['theses_ongoing'], ['<Thesis: Ongoing PHD>'])
 
     def test_articles(self):
-        response = self.client.get('/Person_test/papers/')
+        response = self.client.get('/people/person/Person_test/papers/')
         self.assertContains(response, 'First article', count=1)
         self.assertNotContains(response, 'False article')
         articles = ['<Article: First article>',
@@ -409,13 +409,13 @@ class TestPersonalPages(TestCase):
                                  ['<Article: First article>', '<Article: Newest trends in writing django tests>'])
 
     def test_students(self):
-        response = self.client.get('/Person_test/students/')
+        response = self.client.get('/people/person/Person_test/students/')
         self.assertContains(response, 'Test Student', count=1)
         self.assertContains(response, 'Finished Student', count=1)
         self.assertNotContains(response, 'False Student')
 
     def test_courses(self):
-        response = self.client.get('/Person_test/courses/')
+        response = self.client.get('/people/person/Person_test/courses/')
         self.assertContains(response, 'Testing course', count=1)
         self.assertNotContains(response, 'False course')
 
@@ -425,11 +425,11 @@ class TestPersonalPages(TestCase):
         P3 = Person.objects.create(type='STAFF', first_name='Test', last_name='Practical', human=H3)
         # Prepare a course with P3 as practical
         self.course1.practical_lectors.add(P3)
-        response = self.client.get('/Person_practical/courses/')
+        response = self.client.get('/people/person/Person_practical/courses/')
         self.assertContains(response, 'Testing course', count=1)
 
     def test_grants(self):
-        response = self.client.get('/Person_test/grants/')
+        response = self.client.get('/people/person/Person_test/grants/')
         self.assertContains(response, 'Testing grant', count=1)
         self.assertNotContains(response, 'False grant')
 
@@ -439,7 +439,7 @@ class TestPersonalPages(TestCase):
         P3 = Person.objects.create(type='STAFF', first_name='Test', last_name='Coauthor', human=H3)
         # Prepare a grant with P3 as coauthor
         self.grant1.co_authors.add(P3)
-        response = self.client.get('/Person3_test/grants/')
+        response = self.client.get('/people/person/Person3_test/grants/')
         self.assertContains(response, 'Testing grant', count=1)
 
 

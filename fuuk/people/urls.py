@@ -44,5 +44,5 @@ HUMAN_PATTERNS = [
 
 urlpatterns = [
     url(r'^people/', include(PEOPLE_URLPATTERNS)),
-    url(r'^', include(HUMAN_PATTERNS)),
+    url(r'^people/person/', include(HUMAN_PATTERNS)),
 ]
