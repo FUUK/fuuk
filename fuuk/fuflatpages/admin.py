@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.contrib import admin
-from django.contrib.flatpages.forms import FlatpageForm
-from django.contrib.flatpages.models import FlatPage
 from django.utils.translation import ugettext_lazy as _
 from modeltranslation.admin import TranslationAdmin
+
+from .forms import FlatpageForm
+from .models import FlatPage
 
 
 class FlatPageAdmin(TranslationAdmin):
@@ -18,5 +19,4 @@ class FlatPageAdmin(TranslationAdmin):
     search_fields = ['url'] + ['title_%s' % l for l, _ in settings.LANGUAGES]
 
 
-admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
