@@ -1,12 +1,14 @@
 # coding: utf-8
 from django.contrib.admin import ModelAdmin, TabularInline
+from django.contrib.auth import get_permission_codename
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.utils import get_translation_fields
 
 from fuuk.people.admin.fields import NullCharField
 from fuuk.people.admin.forms import ArticleArticleForm, ArticleBookForm, ArticleConferenceForm
-from fuuk.people.models import Attachment, Author
+from fuuk.people.models import Attachment, Author, GrantCollaborator
 
 
 class DepartmentAdmin(TranslationAdmin):
@@ -147,39 +149,105 @@ class AgencyAdmin(TranslationAdmin):
     search_fields = get_translation_fields('name') + get_translation_fields('shortcut')
 
 
+class GrantCollaboratorInlineAdmin(TabularInline):
+    model = GrantCollaborator
+    extra = 3
+
+
 class GrantAdmin(TranslationAdmin):
     list_display = ('author', 'number', 'title', 'start', 'end')
     list_filter = ('agency', 'start')
     ordering = ('-end', )
     search_fields = ['number'] + get_translation_fields('title')
     filter_horizontal = ('co_authors',)
+    inlines = (GrantCollaboratorInlineAdmin, )
+    fieldsets = [(_('Applicant'), {'fields': ['investigator_prefix', 'investigator_first_name',
+                                              'investigator_last_name', 'investigator_suffix',
+                                              'investigator_institution', 'investigator_human']}), ]
+
+    def get_readonly_fields(self, request, obj=None):
+        """`editor` can be changed only by the user with the change permission for grants."""
+        codename = get_permission_codename('change', self.opts)
+        if request.user.has_perm("%s.%s" % (self.opts.app_label, codename)):
+            return super(GrantAdmin, self).get_readonly_fields(request, obj)
+
+        fields = list(super(GrantAdmin, self).get_readonly_fields(request, obj))
+        fields.extend(['editor', ])
+        return tuple(fields)
+
+    def has_module_permission(self, request):
+        """Everybody can add a `grant`, so everybody should see the grant application in the index admin page."""
+        return True
+
+    def has_add_permission(self, request):
+        """Everybody can add a `grant`."""
+        return True
 
     def has_change_permission(self, request, obj=None):
-        """
-        If `obj` is None, this should return True if the given request has
-        permission to delete *any* object of the given type.
-        """
-        if request.user.is_superuser:
-            return True
+        """Returns True if the given request has permission to change the given `Grant` instance
 
+        The change permission has user, which is the editor, author or collaborator or has change permission for grants.
+        If `obj` is None, this should return True if the given request has permission to change *any* grant.
+        """
         if obj:
-            if request.user == getattr(obj.author.human, 'user', None):
+            if request.user == obj.editor or \
+                    request.user == getattr(obj.author.human, 'user', None):
                 return True
             for author in obj.co_authors.all():
                 if request.user == getattr(author.human, 'user', None):
                     return True
-            return False
+            return super(GrantAdmin, self).has_change_permission(request, obj)
 
-        return super(GrantAdmin, self).has_change_permission(request, obj)
+        return True
+
+    def has_delete_permission(self, request, obj=None):
+        """Returns True if the given request has permission to delete the given `Grant` instance
+
+        The delete permission has user, which is the editor, author or collaborator or has delete permission for grants.
+        If `obj` is None, this should return True if the given request has permission to delete *any* grant.
+        """
+        if obj:
+            if request.user == obj.editor or \
+                    request.user == getattr(obj.author.human, 'user', None):
+                return True
+            for author in obj.co_authors.all():
+                if request.user == getattr(author.human, 'user', None):
+                    return True
+            return super(GrantAdmin, self).has_delete_permission(request, obj)
+
+        return True
 
     def get_queryset(self, request):
+        """Returns a `QuerySet` of all `Grant` instances that can be edited by the admin site.
+
+        User with change permission can view all grants, other users can view only grants, where they are editor,
+        author or collaborator.
+        """
         queryset = super(GrantAdmin, self).get_queryset(request)
-        if request.user.is_superuser:
+        opts = self.opts
+        codename = get_permission_codename('change', opts)
+        if request.user.has_perm("%s.%s" % (opts.app_label, codename)):
             return queryset
         human = request.user.human
         return queryset.filter(
-            pk__in=queryset.filter(author__human=human) | queryset.filter(co_authors__human=human)
+            pk__in=(queryset.filter(author__human=human) | queryset.filter(co_authors__human=human) |
+                    queryset.filter(editor=request.user))
         )
+
+    def save_model(self, request, obj, form, change):
+        """Given a model instance save it to the database.
+
+        The `editor` can be changed only by user with change permission to grants but `editor` field cannot be null.
+        Sets editor to the current user if it is a new `grant`.
+        """
+        if not change and not obj.editor:
+            obj.editor = request.user
+        super(GrantAdmin, self).save_model(request, obj, form, change)
+
+
+class InstitutionAdmin(TranslationAdmin):
+    list_display = ('name', )
+    search_fields = ('name', )
 
 
 class ThesisAdmin(TranslationAdmin):

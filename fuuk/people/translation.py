@@ -1,6 +1,6 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from fuuk.people.models import Agency, Course, Department, Grant, Human, News, Place, Thesis
+from fuuk.people.models import Agency, Course, Department, Grant, Human, Institution, News, Place, Thesis
 
 
 @register(News)
@@ -16,6 +16,11 @@ class DepartmentTranslationOptions(TranslationOptions):
 @register(Place)
 class PlaceTranslationOptions(TranslationOptions):
     fields = ('name', )
+
+
+@register(Institution)
+class InstitutionTranslationOptions(TranslationOptions):
+    fields = ('name',)
 
 
 @register(Course)

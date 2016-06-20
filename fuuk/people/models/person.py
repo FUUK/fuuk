@@ -6,7 +6,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from fuuk.common.forms import get_markdown_help_text
-from fuuk.people.utils import sanitize_filename
+from fuuk.people.utils import full_name, sanitize_filename
 
 from .place import Place
 
@@ -137,19 +137,4 @@ class Person(models.Model):
 
     @property
     def full_name(self):
-        if self.prefix:
-            prefix = self.prefix.strip()
-        else:
-            prefix = ''
-        if self.suffix:
-            suffix = self.suffix.strip()
-        else:
-            suffix = ''
-        first_names = self.first_name.split()
-        first_names = ['%s ' % name for name in first_names]
-        return u"%s%s%s%s" % (
-            prefix and u"%s " % prefix or u"",
-            ''.join(first_names),
-            self.last_name.strip(),
-            suffix and u", %s" % suffix or u"",
-        )
+        return full_name(self.prefix, self.first_name, self.last_name, self.suffix)

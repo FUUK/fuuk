@@ -1,6 +1,7 @@
 # coding: utf-8
 from django.core.validators import RegexValidator
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 phone_validator = RegexValidator(r'^\+420( [0-9]{3}){3}$')
 
@@ -32,3 +33,14 @@ class Place(models.Model):
             return u'%s %s' % (self.name, self.department)
         else:
             return self.name or u""
+
+
+class Institution(models.Model):
+    name = models.CharField('name', max_length=200)
+
+    class Meta:
+        verbose_name = _('institution')
+        verbose_name_plural = _('institutions')
+
+    def __unicode__(self):
+        return self.name
