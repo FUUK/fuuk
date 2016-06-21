@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 from fuuk.people.admin.fields import NullCharField
@@ -49,3 +50,16 @@ class ArticleConferenceForm(forms.ModelForm):
             'type', 'year', 'title', 'presenter',  # talk data
             'publication', 'volume', 'page_from', 'page_to', 'editors', 'place'  # abstract collection data
         )
+
+
+class GrantCollaboratorInlineFormSet(forms.BaseInlineFormSet):
+    """
+    Checks if `Grant.investigator_human` is not among `GrantCollaborator.human` objects.
+    """
+    def clean(self):
+        super(GrantCollaboratorInlineFormSet, self).clean()
+        investigator_human = self.instance.investigator_human
+        if investigator_human:
+            for form in self.forms:
+                if investigator_human == form.cleaned_data.get('human'):
+                    raise ValidationError(_('Author can not be also collaborator.'))

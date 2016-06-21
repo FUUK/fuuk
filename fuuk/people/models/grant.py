@@ -1,7 +1,6 @@
 from datetime import date
 
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -10,7 +9,7 @@ from fuuk.common.forms import get_markdown_help_text
 
 from ..utils import full_name
 from .author import AbstractFullAuthor
-from .person import Human, Person
+from .person import Human
 from .place import Institution
 
 
@@ -26,11 +25,10 @@ class Agency(models.Model):
 
 
 class Grant(models.Model):
-    author = models.ForeignKey(Person, verbose_name=_('Applicant'))
     editor = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('editor'))
     investigator_prefix = models.CharField(_('prefix'), max_length=20, blank=True, null=True)
-    investigator_first_name = models.CharField(_('first name'), max_length=50, blank=True, null=True)
-    investigator_last_name = models.CharField(_('last name'), max_length=50, blank=True, null=True)
+    investigator_first_name = models.CharField(_('first name'), max_length=50)
+    investigator_last_name = models.CharField(_('last name'), max_length=50)
     investigator_suffix = models.CharField(_('suffix'), max_length=20, blank=True, null=True)
     investigator_institution = models.ForeignKey(Institution, blank=True, null=True, on_delete=models.CASCADE,
                                                  verbose_name=_('institution'))
@@ -41,8 +39,6 @@ class Grant(models.Model):
                                      MaxValueValidator(date.today().year + 1)])
     end = models.SmallIntegerField(_('end year'), validators=[MinValueValidator(1990),
                                    MaxValueValidator(date.today().year + 10)])
-    co_authors = models.ManyToManyField(Person, related_name='grant_related', blank=True,
-                                        verbose_name=_('Co-applicant'))
     agency = models.ForeignKey(Agency, help_text=_('Contact administrators for different Grant Agency.'),
                                verbose_name=_('grant agency'))
 
@@ -68,17 +64,6 @@ class Grant(models.Model):
         return full_name(self.investigator_prefix, self.investigator_first_name, self.investigator_last_name,
                          self.investigator_suffix)
     investigator_full_name.fget.short_description = _('applicant full name')
-
-    def clean(self):
-        # Many-to-many fields can only be checked if instance is already saved
-        if self.pk and self.co_authors.all():
-            # Check human if possible
-            if self.author.human:
-                if self.author.human in self.co_authors.values_list('human', flat=True):
-                    raise ValidationError('Author can not be also co_author.')
-            else:
-                if self.author in self.co_authors.all():
-                    raise ValidationError('Author can not be also co_author.')
 
 
 class GrantCollaborator(AbstractFullAuthor):

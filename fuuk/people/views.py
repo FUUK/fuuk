@@ -134,15 +134,15 @@ class PersonMixin(object):
         human = get_object_or_404(Human, nickname=self.kwargs['slug'])
 
         publications_first = Article.objects.filter(author__order=1, author__person__human=human).order_by('-year')
-        grants_author = Grant.objects.filter(author__human=human, end__gte=date.today().year) \
+        grants_author = Grant.objects.filter(investigator_human=human, end__gte=date.today().year) \
             .values_list('pk', flat=True)
-        grants_co_author = Grant.objects.filter(co_authors__human=human, end__gte=date.today().year) \
+        grants_collaborator = Grant.objects.filter(collaborators__human=human, end__gte=date.today().year) \
             .values_list('pk', flat=True)
-        grants_finished_author = Grant.objects.filter(author__human=human, end__lt=date.today().year) \
+        grants_finished_author = Grant.objects.filter(investigator_human=human, end__lt=date.today().year) \
             .values_list('pk', flat=True)
-        grants_finished_co_author = Grant.objects.filter(co_authors__human=human, end__lt=date.today().year) \
+        grants_finished_collaborator = Grant.objects.filter(collaborators__human=human, end__lt=date.today().year) \
             .values_list('pk', flat=True)
-        grants_finished = Grant.objects.filter(pk__in=grants_finished_author | grants_finished_co_author) \
+        grants_finished = Grant.objects.filter(pk__in=grants_finished_author | grants_finished_collaborator) \
             .order_by('-end', '-pk')
         students_finished = Person.objects.filter(advisor__human=human, is_active=False) \
             .order_by('last_name', 'first_name')
@@ -155,7 +155,7 @@ class PersonMixin(object):
             'courses_practical': Course.objects.filter(practical_lectors__human=human).order_by('pk'),
             'students': Person.objects.filter(advisor__human=human, is_active=True).order_by('last_name', 'first_name'),
             'students_finished': students_finished,
-            'grants': Grant.objects.filter(pk__in=grants_author | grants_co_author).order_by('-end', '-pk'),
+            'grants': Grant.objects.filter(pk__in=grants_author | grants_collaborator).order_by('-end', '-pk'),
             'grants_finished': grants_finished,
         })
         return context
@@ -244,8 +244,8 @@ class PersonGrants(PersonMixin, PersonListView):
         Lookup grants by author or coauthor.
         '''
         nick = self.kwargs['slug']
-        grants_author = Grant.objects.filter(author__human__nickname=nick).values_list('pk', flat=True)
-        grants_co_author = Grant.objects.filter(co_authors__human__nickname=nick).values_list('pk', flat=True)
+        grants_author = Grant.objects.filter(investigator_human__nickname=nick).values_list('pk', flat=True)
+        grants_co_author = Grant.objects.filter(collaborators__human__nickname=nick).values_list('pk', flat=True)
         return self.model.objects.filter(pk__in=grants_author | grants_co_author)
 
 

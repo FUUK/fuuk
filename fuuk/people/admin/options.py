@@ -2,12 +2,14 @@
 from django.contrib.admin import ModelAdmin, TabularInline
 from django.contrib.auth import get_permission_codename
 from django.db import models
+from django.db.models import Count, Q
 from django.utils.translation import ugettext_lazy as _
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.utils import get_translation_fields
 
 from fuuk.people.admin.fields import NullCharField
-from fuuk.people.admin.forms import ArticleArticleForm, ArticleBookForm, ArticleConferenceForm
+from fuuk.people.admin.forms import (ArticleArticleForm, ArticleBookForm, ArticleConferenceForm,
+                                     GrantCollaboratorInlineFormSet)
 from fuuk.people.models import Attachment, Author, GrantCollaborator
 
 
@@ -150,20 +152,38 @@ class AgencyAdmin(TranslationAdmin):
 
 
 class GrantCollaboratorInlineAdmin(TabularInline):
+    """Manages administration of GrantCollaborators through `GrantAdmin`.
+
+    `GrantCollaborator` objects can be added only in `GrantAdmin`. Each user who can change the grant can modify
+    attached GrantCollaborators too. `GrantCollaboratorInlineFormSet` checks if `Grant.investigator_human` is not among
+    `GrantCollaborator.human` objects.
+    """
+    formset = GrantCollaboratorInlineFormSet
     model = GrantCollaborator
     extra = 3
 
+    def has_add_permission(self, request):
+        return True
+
+    def has_change_permission(self, request, obj=None):
+        return True
+
+    def has_delete_permission(self, request, obj=None):
+        return True
+
 
 class GrantAdmin(TranslationAdmin):
-    list_display = ('author', 'number', 'title', 'start', 'end')
+    list_display = ('investigator_name', 'number', 'title', 'start', 'end')
     list_filter = ('agency', 'start')
     ordering = ('-end', )
     search_fields = ['number'] + get_translation_fields('title')
-    filter_horizontal = ('co_authors',)
     inlines = (GrantCollaboratorInlineAdmin, )
-    fieldsets = [(_('Applicant'), {'fields': ['investigator_prefix', 'investigator_first_name',
-                                              'investigator_last_name', 'investigator_suffix',
-                                              'investigator_institution', 'investigator_human']}), ]
+    fieldsets = [
+            (None, {'fields': ('title', 'editor', 'number', 'start', 'end', 'agency', 'annotation')}),
+            (_('Investigator'), {'fields': ['investigator_prefix', 'investigator_first_name',
+                                            'investigator_last_name', 'investigator_suffix',
+                                            'investigator_institution', 'investigator_human']}),
+    ]
 
     def get_readonly_fields(self, request, obj=None):
         """`editor` can be changed only by the user with the change permission for grants."""
@@ -191,11 +211,10 @@ class GrantAdmin(TranslationAdmin):
         """
         if obj:
             if request.user == obj.editor or \
-                    request.user == getattr(obj.author.human, 'user', None):
+                    request.user == getattr(obj.investigator_human, 'user', None):
                 return True
-            for author in obj.co_authors.all():
-                if request.user == getattr(author.human, 'user', None):
-                    return True
+            if obj.collaborators.filter(human__user=request.user).exists():
+                return True
             return super(GrantAdmin, self).has_change_permission(request, obj)
 
         return True
@@ -208,11 +227,10 @@ class GrantAdmin(TranslationAdmin):
         """
         if obj:
             if request.user == obj.editor or \
-                    request.user == getattr(obj.author.human, 'user', None):
+                    request.user == getattr(obj.investigator_human, 'user', None):
                 return True
-            for author in obj.co_authors.all():
-                if request.user == getattr(author.human, 'user', None):
-                    return True
+            if obj.collaborators.filter(human__user=request.user).exists():
+                return True
             return super(GrantAdmin, self).has_delete_permission(request, obj)
 
         return True
@@ -228,11 +246,13 @@ class GrantAdmin(TranslationAdmin):
         codename = get_permission_codename('change', opts)
         if request.user.has_perm("%s.%s" % (opts.app_label, codename)):
             return queryset
-        human = request.user.human
-        return queryset.filter(
-            pk__in=(queryset.filter(author__human=human) | queryset.filter(co_authors__human=human) |
-                    queryset.filter(editor=request.user))
-        )
+        human = getattr(request.user, 'human', None)
+        if human:
+            return queryset.filter(
+                    Q(investigator_human=human) | Q(collaborators__human=human) | Q(editor=request.user)
+            ).annotate(Count('id'))
+        else:
+            return queryset.filter(editor=request.user)
 
     def save_model(self, request, obj, form, change):
         """Given a model instance save it to the database.
