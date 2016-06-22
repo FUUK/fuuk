@@ -1,2 +1,5 @@
 *.pyc
-*.mo
+# Gettext files
+**/locale/cs/LC_MESSAGES/django.mo
+**/locale/django.pot
+**/locale/C

@@ -14,4 +14,5 @@ script:
   - make check-isort
   - make check-flake8
   - make check-migrations
+  - make check-i18n
   - make check-test
