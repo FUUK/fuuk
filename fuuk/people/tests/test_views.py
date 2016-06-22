@@ -10,7 +10,8 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from mock import Mock, patch
 
-from fuuk.people.models import Agency, Article, Attachment, Author, Course, Grant, Human, Person, Thesis
+from fuuk.people.models import (Agency, Article, Attachment, Author, Course, Grant, GrantCollaborator, Human, Person,
+                                Thesis)
 
 
 @override_settings(LANGUAGE_CODE='en')
@@ -58,26 +59,27 @@ class TestGrantList(TestCase):
         self.addCleanup(patcher.stop)
         self.datetime_mock = patcher.start()
 
-        # Prepare an author
-        person = Person.objects.create(first_name="Test", last_name="Person")
         # Prepare agency
         agency = Agency.objects.create(name="GA", shortcut="GA")
         # Running
         Grant.objects.create(title='Perpetum mobile', start="1990", end="2014", number="1",
-                             author=person, agency=agency, annotation="An annotation")
-        Grant.objects.create(title='White holes', start="2000", end="2013", number="2",
-                             author=person, agency=agency, annotation="An annotation")
-        # Finished
-        Grant.objects.create(title='Black holes', start="1990", end="2012", number="3", author=person,
-                             agency=agency, annotation="An annotation")
-        Grant.objects.create(title='Warp drive', start="2000", end="2011", number="4", author=person,
-                             agency=agency, annotation="An annotation")
-        # Too old to be included
-        Grant.objects.create(title='Jumpgate', start="1990", end="2000", number="5", author=person, agency=agency,
+                             investigator_first_name="Test", investigator_last_name="Investigator", agency=agency,
                              annotation="An annotation")
+        Grant.objects.create(title='White holes', start="2000", end="2013", number="2",
+                             investigator_first_name="Test", investigator_last_name="Investigator", agency=agency,
+                             annotation="An annotation")
+        # Finished
+        Grant.objects.create(title='Black holes', start="1990", end="2012", number="3", investigator_first_name="Test",
+                             investigator_last_name="Investigator", agency=agency, annotation="An annotation")
+        Grant.objects.create(title='Warp drive', start="2000", end="2011", number="4", investigator_first_name="Test",
+                             investigator_last_name="Investigator", agency=agency, annotation="An annotation")
+        # Too old to be included
+        Grant.objects.create(title='Jumpgate', start="1990", end="2000", number="5", investigator_first_name="Test",
+                             investigator_last_name="Investigator", agency=agency, annotation="An annotation")
         # Just started
-        Grant.objects.create(title='Fancy new grant', start="2013", end="2020", number="6", author=person,
-                             agency=agency, annotation="An annotation")
+        Grant.objects.create(title='Fancy new grant', start="2013", end="2020", number="6",
+                             investigator_first_name="Test", investigator_last_name="Investigator", agency=agency,
+                             annotation="An annotation")
 
     def test_basic(self):
         response = self.client.get('/people/grants/')
@@ -91,14 +93,14 @@ class TestGrantList(TestCase):
 
 class TestGrantDetail(TestCase):
     def setUp(self):
-        # Prepare an author
-        person = Person.objects.create(first_name="Test", last_name="Person")
         # Prepare agency
         agency = Agency.objects.create(name="GA", shortcut="GA")
         # Prepare a grant with ids 1 and 2
-        self.a = Grant.objects.create(start="2000", end="2001", agency=agency, number="1", author=person,
+        self.a = Grant.objects.create(start="2000", end="2001", agency=agency, number="1",
+                                      investigator_first_name="Test", investigator_last_name="Investigator",
                                       title="Testing grant", annotation="An annotation")
-        self.b = Grant.objects.create(start="2001", end="2005", agency=agency, number="2", author=person,
+        self.b = Grant.objects.create(start="2001", end="2005", agency=agency, number="2",
+                                      investigator_first_name="Test", investigator_last_name="Investigator",
                                       title="Second grant", annotation="An annotation")
 
     def test_basic(self):
@@ -371,10 +373,12 @@ class TestPersonalPages(TestCase):
         # Prepare agency
         agency = Agency.objects.create(name="GA", shortcut="GA")
         # Prepare a grant with ids 1 and 2
-        self.grant1 = Grant.objects.create(start="2000", end="2001", agency=agency, number="1", author=P1,
-                                           title="Testing grant", annotation="An annotation")
-        Grant.objects.create(start="2001", end="2005", agency=agency, number="2", author=P2,
-                             title="False grant", annotation="An annotation")
+        self.grant1 = Grant.objects.create(start="2000", end="2001", agency=agency, number="1",
+                                           investigator_first_name="Test", investigator_last_name="Investigator",
+                                           investigator_human=H1, title="Testing grant", annotation="An annotation")
+        Grant.objects.create(start="2001", end="2005", agency=agency, number="2", investigator_first_name="False",
+                             investigator_last_name="Investigator", investigator_human=H2, title="False grant",
+                             annotation="An annotation")
 
     def test_nonexistent(self):
         response1 = self.client.get('/Person_nonexistent/')
@@ -432,12 +436,11 @@ class TestPersonalPages(TestCase):
         self.assertContains(response, 'Testing grant', count=1)
         self.assertNotContains(response, 'False grant')
 
-    def test_grants_coauthor(self):
+    def test_grants_collaborator(self):
         # New testing person
         H3 = Human.objects.create(nickname='Person3_test')
-        P3 = Person.objects.create(type='STAFF', first_name='Test', last_name='Coauthor', human=H3)
-        # Prepare a grant with P3 as coauthor
-        self.grant1.co_authors.add(P3)
+        Person.objects.create(type='STAFF', first_name='Test', last_name='Coauthor', human=H3)
+        GrantCollaborator.objects.create(first_name="Test", last_name="Collaborator", human=H3, grant=self.grant1)
         response = self.client.get('/people/person/Person3_test/grants/')
         self.assertContains(response, 'Testing grant', count=1)
 
