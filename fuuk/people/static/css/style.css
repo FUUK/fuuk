@@ -220,6 +220,12 @@ table.people_list {
     border-collapse: separate;
 }
 
+span.students
+{
+    width: 200px;
+    display: inline-block;
+}
+
 /**********/
 /* DETAIL */
 div.person_photo {
