@@ -374,6 +374,18 @@ class TestPersonalPages(TestCase):
         Grant.objects.create(start="2001", end="2005", agency=agency, number="2", author=P2,
                              title="False grant", annotation="An annotation")
 
+    def test_nonexistent(self):
+        response1 = self.client.get('/Person_nonexistent/')
+        self.assertEqual(response1.status_code, 404)
+        response2 = self.client.get('/Person_nonexistent/papers/')
+        self.assertEqual(response2.status_code, 404)
+        response3 = self.client.get('/Person_nonexistent/courses/')
+        self.assertEqual(response3.status_code, 404)
+        response4 = self.client.get('/Person_nonexistent/students/')
+        self.assertEqual(response4.status_code, 404)
+        response5 = self.client.get('/Person_nonexistent/grants/')
+        self.assertEqual(response5.status_code, 404)
+
     def test_detail(self):
         response = self.client.get('/Person_test/')
         self.assertContains(response, 'Test Person', count=1)

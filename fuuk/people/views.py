@@ -129,7 +129,11 @@ class PersonMixin(object):
 
     def get_context_data(self, **kwargs):
         context = super(PersonMixin, self).get_context_data(**kwargs)
-        human = Human.objects.get(nickname=self.kwargs['slug'])
+        human_qs = Human.objects.filter(nickname=self.kwargs['slug'])
+        if not human_qs.exists():
+            raise Http404
+        else:
+            human = human_qs[0]
 
         publications_first = Article.objects.filter(author__order=1, author__person__human=human).order_by('-year')
         grants_author = Grant.objects.filter(author__human=human, end__gte=date.today().year) \
