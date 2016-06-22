@@ -36,8 +36,7 @@ MIGRATION_MODULES = {'flatpages': 'fuuk.migrations.flatpages'}
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # TODO: Remove the specific directories
-        'DIRS': (os.path.join(BASE_DIR, 'fuuk/templates'), os.path.join(BASE_DIR, 'fuuk/templates/oppo')),
+        'DIRS': [os.path.join(BASE_DIR, 'fuuk/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': (
