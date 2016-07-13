@@ -8,31 +8,12 @@ import os
 from django.core.files import File
 from django.test import TestCase
 from django.test.utils import override_settings
-from django.utils.translation import deactivate_all
 from mock import Mock, patch
 
 from fuuk.people.models import Agency, Article, Attachment, Author, Course, Grant, Human, Person, Thesis
 
-_CLEANUPS = []
 
-
-def setUpModule():
-    patcher = override_settings(
-        LANGUAGE_CODE='en',
-        TEMPLATE_DIRS=(os.path.join(os.path.dirname(__file__), '../../templates/oppo'),
-                       os.path.join(os.path.dirname(__file__), '../../templates')),
-    )
-    _CLEANUPS.append(patcher.disable)
-    patcher.enable()
-
-    deactivate_all()
-
-
-def tearDownModule():
-    for cleanup in reversed(_CLEANUPS):
-        cleanup()
-
-
+@override_settings(LANGUAGE_CODE='en')
 class TestArticleList(TestCase):
     def setUp(self):
         Article.objects.create(title='Perpetum mobile still running', type="ARTICLE", year="2013")
@@ -66,6 +47,7 @@ class TestArticleList(TestCase):
         self.assertEqual(response.status_code, 404)
 
 
+@override_settings(LANGUAGE_CODE='en')
 class TestGrantList(TestCase):
     def setUp(self):
         # This method is being overridden because GrantList uses date.today().year in get_queryset
@@ -132,6 +114,7 @@ class TestGrantDetail(TestCase):
         self.assertEqual(response.status_code, 404)
 
 
+@override_settings(LANGUAGE_CODE='en')
 class TestThesesList(TestCase):
     def setUp(self):
         # Prepare an author
@@ -166,6 +149,7 @@ class TestThesesList(TestCase):
         self.assertQuerysetEqual(response.context['object_list'], ['<Thesis: Theoretical calculations of white holes>'])
 
 
+@override_settings(LANGUAGE_CODE='en')
 class TestThesisDetail(TestCase):
     def setUp(self):
         # Prepare an author
@@ -213,6 +197,7 @@ class TestDownloadList(TestCase):
         self.assertNotContains(response, 'Course without attachment')
 
 
+@override_settings(LANGUAGE_CODE='en')
 class TestPeopleList(TestCase):
     def setUp(self):
         human = Human.objects.create(nickname='Bachelor_Test')
@@ -443,6 +428,7 @@ class TestPersonalPages(TestCase):
         self.assertContains(response, 'Testing grant', count=1)
 
 
+@override_settings(LANGUAGE_CODE='en')
 class TestEmptyDatabase(TestCase):
     def test_articles(self):
         # Should return 404
