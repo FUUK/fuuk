@@ -12,7 +12,6 @@ INSTALLED_APPS = ('modeltranslation',
                   'django.contrib.admin',
                   'django.contrib.auth',
                   'django.contrib.contenttypes',
-                  'django.contrib.flatpages',
                   'django.contrib.humanize',
                   'django.contrib.messages',
                   'django.contrib.sessions',
@@ -20,6 +19,7 @@ INSTALLED_APPS = ('modeltranslation',
                   'django.contrib.staticfiles',
                   'email_obfuscator',
                   'fuuk.common',
+                  'fuuk.fuflatpages',
                   'fuuk.people')
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -30,9 +30,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
-MIGRATION_MODULES = {'flatpages': 'fuuk.migrations.flatpages'}
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

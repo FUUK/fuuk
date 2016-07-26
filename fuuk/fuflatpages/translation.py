@@ -1,5 +1,6 @@
-from django.contrib.flatpages.models import FlatPage
 from modeltranslation.translator import register, TranslationOptions
+
+from .models import FlatPage
 
 
 @register(FlatPage)
