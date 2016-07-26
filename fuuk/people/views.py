@@ -3,6 +3,7 @@ from datetime import date
 
 from django.db.models import Count
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -129,7 +130,7 @@ class PersonMixin(object):
 
     def get_context_data(self, **kwargs):
         context = super(PersonMixin, self).get_context_data(**kwargs)
-        human = Human.objects.get(nickname=self.kwargs['slug'])
+        human = get_object_or_404(Human, nickname=self.kwargs['slug'])
 
         publications_first = Article.objects.filter(author__order=1, author__person__human=human).order_by('-year')
         grants_author = Grant.objects.filter(author__human=human, end__gte=date.today().year) \

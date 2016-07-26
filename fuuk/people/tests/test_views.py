@@ -325,6 +325,7 @@ class TestPeopleList(TestCase):
         self.assertEqual(response.context['title'], 'Former members')
 
 
+@override_settings(LANGUAGE_CODE='en')
 class TestPersonalPages(TestCase):
     def setUp(self):
         # Testing person
@@ -373,6 +374,18 @@ class TestPersonalPages(TestCase):
                                            title="Testing grant", annotation="An annotation")
         Grant.objects.create(start="2001", end="2005", agency=agency, number="2", author=P2,
                              title="False grant", annotation="An annotation")
+
+    def test_nonexistent(self):
+        response1 = self.client.get('/Person_nonexistent/')
+        self.assertContains(response1, 'File not found', status_code=404)
+        response2 = self.client.get('/Person_nonexistent/papers/')
+        self.assertContains(response2, 'File not found', status_code=404)
+        response3 = self.client.get('/Person_nonexistent/courses/')
+        self.assertContains(response3, 'File not found', status_code=404)
+        response4 = self.client.get('/Person_nonexistent/students/')
+        self.assertContains(response4, 'File not found', status_code=404)
+        response5 = self.client.get('/Person_nonexistent/grants/')
+        self.assertContains(response5, 'File not found', status_code=404)
 
     def test_detail(self):
         response = self.client.get('/people/person/Person_test/')
