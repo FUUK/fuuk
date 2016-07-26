@@ -325,6 +325,7 @@ class TestPeopleList(TestCase):
         self.assertEqual(response.context['title'], 'Former members')
 
 
+@override_settings(LANGUAGE_CODE='en')
 class TestPersonalPages(TestCase):
     def setUp(self):
         # Testing person
@@ -376,15 +377,15 @@ class TestPersonalPages(TestCase):
 
     def test_nonexistent(self):
         response1 = self.client.get('/Person_nonexistent/')
-        self.assertEqual(response1.status_code, 404)
+        self.assertContains(response1, 'File not found', status_code=404)
         response2 = self.client.get('/Person_nonexistent/papers/')
-        self.assertEqual(response2.status_code, 404)
+        self.assertContains(response2, 'File not found', status_code=404)
         response3 = self.client.get('/Person_nonexistent/courses/')
-        self.assertEqual(response3.status_code, 404)
+        self.assertContains(response3, 'File not found', status_code=404)
         response4 = self.client.get('/Person_nonexistent/students/')
-        self.assertEqual(response4.status_code, 404)
+        self.assertContains(response4, 'File not found', status_code=404)
         response5 = self.client.get('/Person_nonexistent/grants/')
-        self.assertEqual(response5.status_code, 404)
+        self.assertContains(response5, 'File not found', status_code=404)
 
     def test_detail(self):
         response = self.client.get('/Person_test/')
