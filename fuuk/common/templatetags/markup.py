@@ -1,10 +1,10 @@
 """
 Filters which transform plain text to HTML.
 """
-import markdown as _markdown
 from django import template
 from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
+from markdownx.utils import markdownify
 
 register = template.Library()
 
@@ -15,4 +15,5 @@ def markdown(value):
     """
     Returns HTML created by markdown language.
     """
-    return mark_safe(_markdown.markdown(value))
+    # Use the `markdownify` from `markdownx` to get the same results.
+    return mark_safe(markdownify(value))
