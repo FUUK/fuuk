@@ -4,7 +4,7 @@ Unittests for utils.
 '''
 from django.test import SimpleTestCase
 
-from fuuk.people.utils import sanitize_filename
+from fuuk.people.utils import full_name, sanitize_filename
 
 
 class TestSanitizeFilename(SimpleTestCase):
@@ -25,3 +25,22 @@ class TestSanitizeFilename(SimpleTestCase):
         self.assertEqual(sanitize_filename('foo.dat', ''), 'foo.dat')
         self.assertEqual(sanitize_filename('foo.dat', 'files/courses/'), 'files/courses/foo.dat')
         self.assertEqual(sanitize_filename('foo.dat', 'files/courses'), 'files/courses/foo.dat')
+
+
+class TestFullName(SimpleTestCase):
+    """
+    Test `full_name` function.
+    """
+    def test_full_name(self):
+        self.assertEqual(full_name('RNDr.', 'Pepa', 'Jahoda', 'PhD.'),
+                         'RNDr. Pepa Jahoda, PhD.')
+        self.assertEqual(full_name(None, 'Pepa', 'Jahoda', None),
+                         'Pepa Jahoda')
+        self.assertEqual(full_name(None, u'Někdo', u'Hruška', None),
+                         u'Někdo Hruška')
+        self.assertEqual(full_name(None, 'Pepa', 'Jahoda', ''),
+                         u'Pepa Jahoda')
+        self.assertEqual(full_name('Prof. Mgr. et Bc.', 'Pepa', 'Jahoda', None),
+                         'Prof. Mgr. et Bc. Pepa Jahoda')
+        self.assertEqual(full_name('', 'Pepa', 'Jahoda', None),
+                         'Pepa Jahoda')
