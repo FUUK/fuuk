@@ -16,6 +16,7 @@ urlpatterns = [
     # media
     url(r'^%s(?P<path>.*)$' % settings.MEDIA_URL[1:], serve, {'document_root': settings.MEDIA_ROOT}),
     # pages
+    url(r'^markdownx/', include('markdownx.urls')),
     url(r'^', include('fuuk.people.urls')),
     url(r'^', include('fuuk.fuflatpages.urls')),
 ]

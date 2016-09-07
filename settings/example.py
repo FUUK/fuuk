@@ -18,6 +18,7 @@ INSTALLED_APPS = ('modeltranslation',
                   'django.contrib.sites',
                   'django.contrib.staticfiles',
                   'email_obfuscator',
+                  'markdownx',
                   'fuuk.common',
                   'fuuk.fuflatpages',
                   'fuuk.people')
@@ -75,3 +76,10 @@ MEDIA_URL = '/media/'
 
 #XXX: Remove these
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'fuuk/locale'), )
+
+# Markdownx settings
+MARKDOWNX_MARKDOWN_EXTENSIONS = (
+    'markdown.extensions.tables',
+)
+MARKDOWNX_URLS_PATH = '/markdownx/markdownify/'
+MARKDOWNX_UPLOAD_URLS_PATH = None

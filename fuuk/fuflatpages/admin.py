@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.contrib import admin
+from django.db.models import TextField
 from django.utils.translation import ugettext_lazy as _
+from markdownx.widgets import AdminMarkdownxWidget
 from modeltranslation.admin import TranslationAdmin
 
 from .forms import FlatpageForm
@@ -17,6 +19,11 @@ class FlatPageAdmin(TranslationAdmin):
     list_display = ('url', 'title')
     list_filter = ('sites', 'enable_comments', 'registration_required')
     search_fields = ['url'] + ['title_%s' % l for l, _ in settings.LANGUAGES]
+
+    # Use markdownx for flatpages
+    formfield_overrides = {
+        TextField: {'widget': AdminMarkdownxWidget},
+    }
 
 
 admin.site.register(FlatPage, FlatPageAdmin)
