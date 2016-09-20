@@ -323,6 +323,7 @@ class TestPeopleList(TestCase):
                                                                    '<Person: Retired Test (Academic staff)>'])
         self.assertNotContains(response, 'FalseTest')
         self.assertEqual(response.context['title'], 'Former members')
+        self.assertTemplateUsed(response, 'people/retired_list.html')
 
 
 @override_settings(LANGUAGE_CODE='en')
