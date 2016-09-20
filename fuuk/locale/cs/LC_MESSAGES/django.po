@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fuuk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-13 13:35+0200\n"
+"POT-Creation-Date: 2016-09-27 17:05+0200\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,9 +47,6 @@ msgstr "Všechny publikace"
 msgid "Annotation"
 msgstr "Anotace"
 
-msgid "Applicant"
-msgstr "Řešitel"
-
 msgid "Article"
 msgstr "Článek"
 
@@ -82,6 +79,9 @@ msgstr "Přílohy"
 
 msgid "Author"
 msgstr "Autor"
+
+msgid "Author can not be also collaborator."
+msgstr "Řešitel nemůže být zároveň spoluřešitelem."
 
 msgid "Bachelor"
 msgstr "Bakalářská"
@@ -152,9 +152,6 @@ msgstr "Zaškrtněte, pokud časopis používá čísla článků místo stráne
 
 msgid "City, state, date."
 msgstr "Město, stát, datum."
-
-msgid "Co-applicant"
-msgstr "Spoluřešitel"
 
 msgid "Code"
 msgstr "Kód"
@@ -303,7 +300,7 @@ msgid "Grant agency"
 msgstr "Grantová agentura"
 
 msgid "Grant annotation"
-msgstr "Annotace grantu"
+msgstr "Anotace grantu"
 
 msgid "Grants"
 msgstr "Granty"
@@ -322,6 +319,9 @@ msgstr "Identifikační číslo grantu"
 
 msgid "Institute of Physics"
 msgstr "Fyzikální ústav UK"
+
+msgid "Investigator"
+msgstr "Řešitel"
 
 msgid "Invited lecture"
 msgstr "Zvaná přednáška"
@@ -549,14 +549,74 @@ msgstr "Rok"
 msgid "Year of thesis start or year of defence if already defended."
 msgstr "Rok začátku práce nebo rok obhajoby u ukončené práce."
 
+msgid "applicant full name"
+msgstr "celé jméno řešitele"
+
+msgid "applicant name"
+msgstr "jméno řešitele"
+
+msgid "co-applicant"
+msgstr "spoluřešitel"
+
+msgid "co-applicants"
+msgstr "spoluřešitelé"
+
+msgid "editor"
+msgstr "editor"
+
+msgid "end year"
+msgstr "rok ukončení"
+
+msgid "first name"
+msgstr "křestní jméno"
+
 msgid "for any suggestion or more information."
 msgstr "stránek."
+
+msgid "grant"
+msgstr "grant"
+
+msgid "grant agency"
+msgstr "grantová agentura"
+
+msgid "grant annotation"
+msgstr "anotace grantu"
+
+msgid "grant number"
+msgstr "číslo grantu"
+
+msgid "grants"
+msgstr "granty"
+
+msgid "human"
+msgstr "human"
+
+msgid "institution"
+msgstr "instituce"
+
+msgid "institutions"
+msgstr "instituce"
+
+msgid "last name"
+msgstr "příjmení"
+
+msgid "prefix"
+msgstr "tituly před jménem"
+
+msgid "start year"
+msgstr "počáteční rok"
+
+msgid "suffix"
+msgstr "tituly za jménem"
 
 msgid "theses"
 msgstr "práce"
 
 msgid "thesis"
 msgstr "práce"
+
+msgid "title"
+msgstr "název"
 
 msgid "webmasters"
 msgstr "správce"
