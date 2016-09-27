@@ -17,6 +17,10 @@ PACKAGE_DATA = {'fuuk': ['locale/cs/LC_MESSAGES/*', 'templates/*.html', 'templat
                 'fuuk.people': ['fixtures/*.yaml', 'static/css/*', 'static/img/*', 'static/js/*']}
 
 
+def get_requirements(filename):
+    return open(filename).read().splitlines()
+
+
 class i18n_build_py(build_py):
     """
     Distuutils `build_py` command which compiles also gettext files.
@@ -50,6 +54,7 @@ def main():
           description='Web of Institute of Physics at Charles University',
           packages=find_packages(exclude=('settings', )),
           package_data=PACKAGE_DATA,
+          install_requires=get_requirements('requirements.txt'),
           cmdclass={'build_py': i18n_build_py})
 
 
