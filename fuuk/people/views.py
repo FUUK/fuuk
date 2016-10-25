@@ -115,6 +115,7 @@ class StudentList(ListView):
 
 class RetiredList(ListView):
 
+    template_name = 'people/retired_list.html'
     queryset = Person.objects.filter(type__in=('STAFF', 'OTHER'), is_active=False).order_by('last_name')
 
     def get_context_data(self, **kwargs):

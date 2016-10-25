@@ -1,0 +1,40 @@
+{% extends "people/base.html" %}
+{% load i18n %}
+{% load email_obfuscator %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <table class="people_list">
+        <tr>
+            <th></th>
+            <th>{% trans "E-mail" %}</th>
+            <th>{% trans "Phone" %}</th>
+        </tr>
+        {% for people in object_list %}
+            <tr>
+                <td>
+                    <strong>
+                        {{ people.full_name }}
+                    </strong>
+                    {% if people.human.subtitle %}
+                        <br />
+                        <span class="little"><strong> {{ people.human.subtitle }}</strong></span>
+                    {% endif %}
+                </td>
+                <td>
+                    <p class="little">
+                        {{ people.human.email|obfuscate }}
+                    </p>
+                </td>
+                <td>
+                    <p class="little">
+                        {% for i in people.place.all %}
+                            {% if i.phone %}{{ i.phone }}{% if not forloop.last %}<br />{% endif %}{% endif %}
+                        {% endfor %}
+                    </p>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {{ block.super }}
+{% endblock %}
