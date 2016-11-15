@@ -32,4 +32,5 @@ def citation(article):
     }
     return tag_context
 
+
 register.inclusion_tag('people/citation.html')(citation)
