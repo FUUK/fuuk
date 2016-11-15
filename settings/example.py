@@ -81,5 +81,3 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'fuuk/locale'), )
 MARKDOWNX_MARKDOWN_EXTENSIONS = (
     'markdown.extensions.tables',
 )
-MARKDOWNX_URLS_PATH = '/markdownx/markdownify/'
-MARKDOWNX_UPLOAD_URLS_PATH = None
