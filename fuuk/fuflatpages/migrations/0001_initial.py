@@ -29,7 +29,6 @@ class Migration(migrations.Migration):
             ],
             options={
                 'ordering': ('url',),
-                'db_table': 'django_flatpage',
                 'verbose_name': 'flat page',
                 'verbose_name_plural': 'flat pages',
             },

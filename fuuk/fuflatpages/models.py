@@ -31,7 +31,6 @@ class FlatPage(models.Model):
     sites = models.ManyToManyField(Site)
 
     class Meta:
-        db_table = 'django_flatpage'
         verbose_name = _('flat page')
         verbose_name_plural = _('flat pages')
         ordering = ('url', )
