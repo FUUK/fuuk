@@ -35,18 +35,14 @@ class TestPersonName(unittest.TestCase):
     Unittests for name and name_reversed @property on Person model
     """
     def test_name(self):
-        A = Person.objects.create(last_name="Tester", first_name="Bad Name  ", prefix=" Mgr.  ")
-        self.assertEqual(A.name, 'Tester B.N.')
-        self.assertEqual(A.name_reversed, 'B.N. Tester')
-        self.assertEqual(A.full_name, 'Mgr. Bad Name Tester')
-        A = Person.objects.create(last_name="Tester", first_name="  Second Bad Name ", suffix=" RNDr.")
-        self.assertEqual(A.name, 'Tester S.B.N.')
-        self.assertEqual(A.name_reversed, 'S.B.N. Tester')
-        self.assertEqual(A.full_name, 'Second Bad Name Tester, RNDr.')
-        A = Person.objects.create(last_name="Tester", first_name="Bad With  Spaces ")
-        self.assertEqual(A.name, 'Tester B.W.S.')
-        self.assertEqual(A.name_reversed, 'B.W.S. Tester')
-        self.assertEqual(A.full_name, 'Bad With Spaces Tester')
+        A = Person.objects.create(last_name="Tester", first_name="Two Name", prefix="Mgr.")
+        self.assertEqual(A.name, 'Tester T.N.')
+        self.assertEqual(A.name_reversed, 'T.N. Tester')
+        self.assertEqual(A.full_name, 'Mgr. Two Name Tester')
+        A = Person.objects.create(last_name="Tester", first_name="Mr Three Name", suffix="RNDr.")
+        self.assertEqual(A.name, 'Tester M.T.N.')
+        self.assertEqual(A.name_reversed, 'M.T.N. Tester')
+        self.assertEqual(A.full_name, 'Mr Three Name Tester, RNDr.')
 
 
 class TestAttachmentFilename(SimpleTestCase):
