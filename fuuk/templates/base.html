@@ -12,6 +12,7 @@
         <title>{% block title %}{% endblock %}</title>
 
         <link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css" />
+        <link rel="stylesheet" href="{% static "css/user_styles.css" %}" type="text/css" />
         {% block extrahead %}{% endblock %}
         {% if media %}{{ media }}{% endif %}
         <script type="text/javascript" src="{% static "js/cookie.js" %}"></script>

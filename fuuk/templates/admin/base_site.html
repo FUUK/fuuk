@@ -3,6 +3,7 @@
 {% load staticfiles %}
 
 {% block title %}{{ title }} | {% trans 'FUUK administration' %}{% endblock %}
+{% block extrastyle %}<link rel="stylesheet" href="{% static "css/user_styles.css" %}" type="text/css" />{% endblock %}
 
 {% block branding %}
 <h1 id="site-name">{% trans 'FUUK administration' %}</h1>

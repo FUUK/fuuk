@@ -1,0 +1,91 @@
+/* styles used by users */
+
+.user_indentblock {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.user_image--center {
+    display: block;
+    margin: 10px auto 10px auto;
+    margin-right: auto;
+    clear: both;
+    max-width: 100%
+}
+
+.user_image--right, .user_image--left {
+    max-width: 300px;
+    clear: both;
+}
+
+.user_image--right {
+    float: right;
+    margin: 10px 10px 10px 20px;
+}
+
+.user_image--left {
+    float: left;
+    margin: 10px 20px 10px 10px;
+}
+
+.user_container--center {
+    text-align: center;
+    clear: both;
+}
+
+.user_container--right, .user_container--left {
+    max-width: 300px;
+    text-align: center;
+    clear: both;
+}
+
+.user_container--right {
+    float: right;
+    margin: 10px 10px 10px 20px;
+}
+
+.user_container--left {
+    float: left;
+    margin: 10px 20px 10px 10px;
+}
+
+.user_container__image {
+    max-width: 100%;
+}
+
+.user_container__caption {
+    font-style: italic;
+}
+
+.imagelink {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    width: 170px;
+    margin: 5px;
+}
+
+.imagelink__image_container {
+    display: block;
+    position: relative;
+    height: 120px;
+    width: 120px;
+    line-height: 120px;
+    margin: 0 auto 5px auto;
+}
+
+.imagelink__image {
+    display: block;
+    position: absolute;
+    margin: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 2px solid #156790;
+    max-width: 116px;
+    max-height: 116px;
+}
+
+.imagelink__caption {
+    font-weight: bold;
+}

@@ -3,19 +3,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fuuk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-13 13:35+0200\n"
+"POT-Creation-Date: 2016-12-12 10:39+0100\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n>1 && n<5 ? 1 : 2;\n"
 
-#, python-format
-msgid "%sThis field uses Markdown language.%s"
-msgstr "%sToto pole podporuje značkovací jazyk Markdown.%s"
-
 msgid "'s thesis"
 msgstr " práce"
+
+msgid "/path/to/image.jpg"
+msgstr "/odkaz/na/obrázek.jpg"
 
 msgid "1st author"
 msgstr "První autor"
@@ -272,6 +271,9 @@ msgstr "Matematicko-fyzikální fakulta"
 msgid "Fields of interest and research experience"
 msgstr "Odborné zájmy"
 
+msgid "Figure 1: My beautiful image."
+msgstr "Obrázek 1: Můj krásný obrázek."
+
 msgid "File not found"
 msgstr "Soubor nenalezen"
 
@@ -325,6 +327,9 @@ msgstr "Fyzikální ústav UK"
 
 msgid "Invited lecture"
 msgstr "Zvaná přednáška"
+
+msgid "It is possible to drag and drop image into the editing window."
+msgstr "Obrázek můžete drag and drop do editovacího okna."
 
 msgid "Journal"
 msgstr "Časopis"
@@ -497,6 +502,17 @@ msgstr "Studenti se zadaným šklitelem musí být \"human\"."
 msgid "Supervisor"
 msgstr "Vedoucí práce"
 
+msgid "Text displayed if the image was not found"
+msgstr "Text zobrazený v případě, že obrázek nebyl nalezen"
+
+#, python-format
+msgid "The %(indentblock_class)s class can be used to indent paragraph."
+msgstr ""
+"Třída %(indentblock_class)s může být použita k odsazení odstavce zleva."
+
+msgid "The details you can see in [Figure 1](#fig_beautiful_img)."
+msgstr "Podrobnosti naleznete v [Obrázku 1](#obr_krasny_obrazek)."
+
 msgid "Themes"
 msgstr "Témata"
 
@@ -513,11 +529,32 @@ msgstr ""
 "Vyskytla se chyba. Administrátorům byla nahlášena emailem a měla by být brzy "
 "opravena. Děkujeme za trpělivost."
 
+#, python-format
+msgid "These CSS classes can be used for image positioning: %(image_classes)s."
+msgstr ""
+"Tyto CSS třídy mohou být použity pro polohování obrázků: %(image_classes)s."
+
+msgid "These classes can be used for positioning of image with caption:"
+msgstr "Tyto třídy mohou být použity k polohování obrázku s titulkem:"
+
 msgid "Theses defended in year"
 msgstr "Práce obhájené v roce"
 
 msgid "Thesis offer"
 msgstr "Nabídka prací"
+
+#, python-format
+msgid ""
+"This field uses %(markdown_link)sMarkdown language%(endlink)s with "
+"%(tables_link)stables%(endlink)s and %(attr_list_link)sattr_list%(endlink)s "
+"extensions."
+msgstr ""
+"Toto pole podporuje %(markdown_link)sznačkovací jazyk Markdown%(endlink)s s "
+"rozšířeními %(tables_link)stables%(endlink)s a %(attr_list_link)sattr_list"
+"%(endlink)s."
+
+msgid "This is a paragraph."
+msgstr "Toto je odstavec."
 
 msgid "Topics"
 msgstr "Problematika"
@@ -548,6 +585,12 @@ msgstr "Rok"
 
 msgid "Year of thesis start or year of defence if already defended."
 msgstr "Rok začátku práce nebo rok obhajoby u ukončené práce."
+
+msgid "example:"
+msgstr "příklad:"
+
+msgid "fig_beautiful_img"
+msgstr "obr_krasny_obrazek"
 
 msgid "for any suggestion or more information."
 msgstr "stránek."

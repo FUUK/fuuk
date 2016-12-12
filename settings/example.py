@@ -80,4 +80,5 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'fuuk/locale'), )
 # Markdownx settings
 MARKDOWNX_MARKDOWN_EXTENSIONS = (
     'markdown.extensions.tables',
+    'markdown.extensions.attr_list'
 )
