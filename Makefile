@@ -32,7 +32,7 @@ check-test:
 	PYTHONPATH="settings" DJANGO_SETTINGS_MODULE='test_settings' python -W all fuuk/manage.py test fuuk
 
 check-migrations:
-	! PYTHONPATH='settings::${PYTHONPATH}' DJANGO_SETTINGS_MODULE='test_settings' python fuuk/manage.py makemigrations --noinput --dry-run --exit
+	! PYTHONPATH='settings::${PYTHONPATH}' DJANGO_SETTINGS_MODULE='test_settings' python fuuk/manage.py makemigrations --verbosity 3 --noinput --dry-run --exit
 
 check-i18n:
 	# Make sure there are no obsolete entries

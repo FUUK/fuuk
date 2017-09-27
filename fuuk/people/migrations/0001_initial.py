@@ -115,8 +115,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('number', models.CharField(max_length=20)),
-                ('start', models.SmallIntegerField(validators=[django.core.validators.MinValueValidator(1990), django.core.validators.MaxValueValidator(2017)])),
-                ('end', models.SmallIntegerField(validators=[django.core.validators.MinValueValidator(1990), django.core.validators.MaxValueValidator(2026)])),
+                ('start', models.SmallIntegerField(validators=[django.core.validators.MinValueValidator(1990), django.core.validators.MaxValueValidator(2018)])),
+                ('end', models.SmallIntegerField(validators=[django.core.validators.MinValueValidator(1990), django.core.validators.MaxValueValidator(2027)])),
                 ('title', models.CharField(max_length=200)),
                 ('title_en', models.CharField(max_length=200, null=True)),
                 ('title_cs', models.CharField(max_length=200, null=True)),
