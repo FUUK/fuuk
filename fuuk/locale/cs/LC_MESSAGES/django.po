@@ -216,21 +216,21 @@ msgstr "Obhájená"
 msgid "Defended thesis"
 msgstr "Obhájené práce"
 
-msgid "Department of Optoelectronics and Magneto-optics"
-msgstr "Oddělení optoelektroniky a magnetooptiky"
-
-msgid ""
-"Department of Optoelectronics and Magneto-optics, Institute of Physics at "
-"Charles University"
-msgstr ""
-"Oddělení optoelektroniky a magnetooptiky, Fyzikální ústav Univerzity Karlovy"
-
 msgid "Division of Biomolecular Physics"
 msgstr "Oddělení fyziky biomolekul"
 
 msgid ""
 "Division of Biomolecular Physics, Institute of Physics at Charles University"
 msgstr "MFF UK: Oddělení fyziky biomolekul"
+
+msgid "Division of Optoelectronics and Magneto-optics"
+msgstr "Oddělení optoelektroniky a magnetooptiky"
+
+msgid ""
+"Division of Optoelectronics and Magneto-optics, Institute of Physics at "
+"Charles University"
+msgstr ""
+"Oddělení optoelektroniky a magnetooptiky, Fyzikální ústav Univerzity Karlovy"
 
 msgid "Division of magnetooptics"
 msgstr "Oddělení magnetooptiky"
